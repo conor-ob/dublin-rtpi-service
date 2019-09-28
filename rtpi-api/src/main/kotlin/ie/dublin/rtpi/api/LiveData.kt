@@ -24,7 +24,7 @@ interface TimedLiveData : LiveData {
 }
 
 data class DueTime(
-    val minutes: Long,
+    val minutes: Int,
     val time: LocalTime
 )
 

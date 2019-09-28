@@ -31,10 +31,10 @@ class IrishRailLiveDataService(private val irishRailApi: IrishRailApi) {
         if (expectedArrivalTimestamp == "00:00") {
             val now = LocalTime.parse(queryTime, DateTimeFormatter.ofPattern("HH:mm:ss"))
             val expectedTime = now.plusMinutes(dueInMinutes.toLong())
-            return DueTime(dueInMinutes.toLong(), expectedTime)
+            return DueTime(dueInMinutes.toInt(), expectedTime)
         }
         val expectedTime = LocalTime.parse(expectedArrivalTimestamp, DateTimeFormatter.ofPattern("HH:mm"))
-        return DueTime(dueInMinutes.toLong(), expectedTime)
+        return DueTime(dueInMinutes.toInt(), expectedTime)
     }
 
     private fun mapOperator(trainType: String, trainCode: String): Operator {

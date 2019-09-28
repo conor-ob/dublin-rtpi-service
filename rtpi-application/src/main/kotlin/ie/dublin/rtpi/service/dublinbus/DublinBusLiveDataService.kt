@@ -34,7 +34,7 @@ class DublinBusLiveDataService(
             .map { xml ->
                 val expected = LocalDateTime.parse(xml.expectedTimestamp!!, DateTimeFormatter.ISO_DATE_TIME)
                 val current = LocalDateTime.parse(xml.responseTimestamp!!, DateTimeFormatter.ISO_DATE_TIME)
-                val minutes = ChronoUnit.MINUTES.between(current, expected)
+                val minutes = ChronoUnit.MINUTES.between(current, expected).toInt()
                 return@map DublinBusLiveData(
                     nextDueTime = DueTime(
                         minutes,
@@ -56,7 +56,7 @@ class DublinBusLiveDataService(
             .map { json ->
                 DublinBusLiveData(
                     nextDueTime = DueTime(
-                        if (json.dueTime == "Due") 0L else json.dueTime!!.toLong(),
+                        if (json.dueTime == "Due") 0 else json.dueTime!!.toInt(),
                         LocalDateTime.parse(json.arrivalDateTime!!, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")).toLocalTime()
                     ),
                     laterDueTimes = emptyList(),

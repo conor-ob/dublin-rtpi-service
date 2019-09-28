@@ -17,7 +17,7 @@ class LuasLiveDataService(private val rtpiService: RtpiApi) {
             .map { json ->
                 LuasLiveData(
                     nextDueTime = DueTime(
-                        if (json.dueTime == "Due") 0L else json.dueTime!!.toLong(),
+                        if (json.dueTime == "Due") 0 else json.dueTime!!.toInt(),
                         LocalDateTime.parse(json.arrivalDateTime!!, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")).toLocalTime()
                     ),
                     laterDueTimes = emptyList(),
