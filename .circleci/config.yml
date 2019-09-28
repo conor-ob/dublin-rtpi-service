@@ -31,12 +31,20 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: gradle dependencies
+      - run:
+          name: Dependencies
+          command: gradle dependencies
 
       - save_cache:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      # run tests!
-      - run: gradle test
+      - run:
+          name: Run tests
+          command: |
+            mkdir test-results
+            gradle test
+
+      - store_test_results:
+          path: test-results
