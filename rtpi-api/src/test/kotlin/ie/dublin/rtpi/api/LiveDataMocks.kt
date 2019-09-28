@@ -18,7 +18,8 @@ fun createIrishRailLiveData(
     laterDueTimes: List<Int> = listOf(14, 27),
     operator: Operator = Operator.DART,
     direction: String = "Southbound",
-    destination: String = "Bray"
+    destination: String = "Bray",
+    route: String = operator.fullName
 ): IrishRailLiveData {
     return IrishRailLiveData(
         nextDueTime = createDueTime(nextDueTime, currentTime),
@@ -26,7 +27,7 @@ fun createIrishRailLiveData(
         operator = operator,
         direction = direction,
         destination = destination,
-        route = operator.fullName
+        route = route
     )
 }
 
