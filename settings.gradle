@@ -1,0 +1,4 @@
+rootProject.name = 'dublin-rtpi-service'
+include ':rtpi-api'
+include ':rtpi-application'
+include ':rtpi-client-android'

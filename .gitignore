@@ -1,0 +1,31 @@
+# Ignore all dotfiles...
+.*
+# except for .gitignore
+!.gitignore
+!.gitattributes
+!.dockerignore
+!.github
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+*.iml
+*.ipr
+*.iws
+*.pyc
+*.tar.gz
+
+**/target/
+**/.metadata
+**/.classpath
+**/.project
+**/.settings
+**/tmp/
+**/classes
+**/out
+**/build
+
+**/dependency-reduced-pom.xml

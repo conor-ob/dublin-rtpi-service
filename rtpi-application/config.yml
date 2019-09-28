@@ -1,0 +1,14 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 9000
+  adminConnectors:
+    - type: http
+      port: 9001
+
+apiConfig:
+  aircoachBaseUrl: "https://tracker.aircoach.ie/"
+  dublinBusBaseUrl: "http://rtpi.dublinbus.ie/"
+  irishRailBaseUrl: "http://api.irishrail.ie/realtime/realtime.asmx/"
+  jcDecauxBaseUrl: "https://api.jcdecaux.com/vls/v1/"
+  rtpiBaseUrl: "https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V2/service.svc/"
