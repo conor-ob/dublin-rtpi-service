@@ -83,7 +83,7 @@ class GsonTest {
         val deserialized = gson.fromJson(serialized, LuasLiveData::class.java)
         val luasLiveData = LuasLiveData(
             nextDueTime = DueTime(
-                minutes = 10L,
+                minutes = 10,
                 time = LocalTime.of(10, 10)
             ),
             laterDueTimes = emptyList(),
