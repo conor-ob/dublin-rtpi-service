@@ -24,7 +24,7 @@ interface TimedLiveData : LiveData {
 }
 
 data class DueTime(
-    val minutes: Long,
+    val minutes: Int,
     val time: LocalTime
 )
 
@@ -38,7 +38,7 @@ data class AircoachLiveData(
     override val operator = Operator.AIRCOACH
 
     override val identifier = hash(operator, route, destination)
-
+    
 }
 
 data class BusEireannLiveData(
@@ -52,7 +52,7 @@ data class BusEireannLiveData(
 //    override val operator = Operator.BUS_EIREANN
 
     override val identifier = hash(operator, route, destination)
-
+    
 }
 
 data class DublinBikesLiveData(
@@ -73,7 +73,7 @@ data class DublinBusLiveData(
 ) : TimedLiveData {
 
     override val identifier = hash(operator, route, destination)
-
+    
 }
 
 data class IrishRailLiveData(
@@ -84,9 +84,9 @@ data class IrishRailLiveData(
     override val destination: String,
     val direction: String
 ) : TimedLiveData {
-
+    
     override val identifier = hash(operator, route, destination, direction)
-
+    
 }
 
 data class LuasLiveData(
@@ -99,9 +99,9 @@ data class LuasLiveData(
 ) : TimedLiveData {
 
 //    override val operator = Operator.LUAS
-
+    
     override val identifier = hash(operator, route, destination, direction)
-
+    
 }
 
 data class SwordsExpressLiveData(
@@ -114,5 +114,5 @@ data class SwordsExpressLiveData(
     override val operator = Operator.SWORDS_EXPRESS
 
     override val identifier = hash(operator, route, destination)
-
+    
 }
