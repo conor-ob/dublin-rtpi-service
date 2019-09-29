@@ -40,7 +40,7 @@ shadowJar {
                 .format(DateTimeFormatter.ISO_ZONED_DATE_TIME)
         attributes 'Built-By': InetAddress.localHost.hostName
         attributes 'Created-By': 'Gradle ' + gradle.gradleVersion
-        attributes 'Main-Class': 'ie.dublin.rtpi.RtpiServiceApplication'
+        attributes 'Main-Class': 'io.rtpi.RtpiServiceApplication'
     }
     archiveName 'dublin-rtpi-service.jar'
 }
