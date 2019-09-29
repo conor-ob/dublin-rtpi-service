@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk
 
-COPY /rtpi-application/producation-config.yml /data/dublin-rtpi-service/producation-config.yml
+COPY /rtpi-application/production-config.yml /data/dublin-rtpi-service/production-config.yml
 COPY /build/libs/dublin-rtpi-service-1-SNAPSHOT.jar /data/dublin-rtpi-service/dublin-rtpi-service-1-SNAPSHOT.jar
 
 WORKDIR /data/dublin-rtpi-service
