@@ -63,7 +63,6 @@ class GsonTest {
     @Test
     fun testDeserializeLiveData() {
         val serialized = "{\n" +
-            "        \"identifier\": 99906535,\n" +
             "        \"nextDueTime\": {\n" +
             "            \"minutes\": 10,\n" +
             "            \"time\": {\n" +

@@ -7,6 +7,7 @@ import io.rtpi.service.irishrail.IrishRailStationService
 import io.dropwizard.testing.junit.ResourceTestRule
 import io.mockk.every
 import io.mockk.mockk
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.ClassRule
 import org.junit.Test
 import java.time.LocalTime
@@ -48,7 +49,6 @@ class IrishRailResourceTest {
         // assert
         val expectedJson = "[\n" +
             "   {\n" +
-            "      \"identifier\":2027355157,\n" +
             "      \"nextDueTime\":{\n" +
             "         \"minutes\":2,\n" +
             "         \"time\":[\n" +
@@ -78,7 +78,7 @@ class IrishRailResourceTest {
             "      \"direction\":\"Northbound\"\n" +
             "   }\n" +
             "]"
-//        assertThat(jsonResponse).isEqualTo(expectedJson.replace("\\s+".toRegex(), "")) //TODO
+        assertThat(jsonResponse).isEqualTo(expectedJson.replace("\\s+".toRegex(), ""))
     }
 
 }

@@ -1,7 +1,6 @@
 package io.rtpi.api
 
 import java.time.LocalTime
-import java.util.Objects.hash
 
 interface LiveData {
 
@@ -19,8 +18,6 @@ interface TimedLiveData : LiveData {
 
     val destination: String
 
-    val identifier: Int
-
 }
 
 data class DueTime(
@@ -37,8 +34,6 @@ data class AircoachLiveData(
 
     override val operator = Operator.AIRCOACH
 
-    override val identifier = hash(operator, route, destination)
-    
 }
 
 data class BusEireannLiveData(
@@ -51,8 +46,6 @@ data class BusEireannLiveData(
 
 //    override val operator = Operator.BUS_EIREANN
 
-    override val identifier = hash(operator, route, destination)
-    
 }
 
 data class DublinBikesLiveData(
@@ -72,8 +65,6 @@ data class DublinBusLiveData(
     override val destination: String
 ) : TimedLiveData {
 
-    override val identifier = hash(operator, route, destination)
-    
 }
 
 data class IrishRailLiveData(
@@ -84,8 +75,6 @@ data class IrishRailLiveData(
     override val destination: String,
     val direction: String
 ) : TimedLiveData {
-    
-    override val identifier = hash(operator, route, destination, direction)
     
 }
 
@@ -100,8 +89,6 @@ data class LuasLiveData(
 
 //    override val operator = Operator.LUAS
     
-    override val identifier = hash(operator, route, destination, direction)
-    
 }
 
 data class SwordsExpressLiveData(
@@ -113,6 +100,4 @@ data class SwordsExpressLiveData(
 
     override val operator = Operator.SWORDS_EXPRESS
 
-    override val identifier = hash(operator, route, destination)
-    
 }
