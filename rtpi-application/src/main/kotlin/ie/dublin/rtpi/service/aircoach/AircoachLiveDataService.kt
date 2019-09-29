@@ -33,11 +33,11 @@ class AircoachLiveDataService(private val aircoachApi: AircoachApi) {
         val currentInstant = LocalTime.now()
         if (expected == null) {
             val scheduledInstant = LocalDateTime.parse(scheduled.dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-            val minutes = ChronoUnit.MINUTES.between(currentInstant, scheduledInstant)
+            val minutes = ChronoUnit.MINUTES.between(currentInstant, scheduledInstant).toInt()
             return DueTime(minutes, scheduledInstant.toLocalTime())
         }
         val expectedInstant = LocalDateTime.parse(expected.etaArrive.dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-        val minutes = ChronoUnit.MINUTES.between(currentInstant, expectedInstant)
+        val minutes = ChronoUnit.MINUTES.between(currentInstant, expectedInstant).toInt()
         return DueTime(minutes, expectedInstant.toLocalTime())
     }
 
