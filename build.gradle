@@ -47,3 +47,8 @@ subprojects {
         mavenCentral()
     }
 }
+
+// Heroku deployment
+// - git push heroku master
+// or git push heroku <branch-name>:master
+task stage(dependsOn: [':rtpi-application:shadowJar'])
