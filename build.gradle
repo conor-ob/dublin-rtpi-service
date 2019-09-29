@@ -39,7 +39,7 @@ buildscript {
 subprojects {
     apply plugin: 'kotlin'
 
-    group = 'ie.dublin.rtpi'
+    group = 'io.rtpi'
     version = '1-SNAPSHOT'
 
     repositories {
