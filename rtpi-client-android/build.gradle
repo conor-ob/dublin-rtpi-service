@@ -1,13 +1,12 @@
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50"
+    implementation libraries.kotlin
+    implementation libraries.retrofit
+    implementation libraries.retrofit_gson
+    implementation libraries.retrofit_rx
+    implementation libraries.threetenabp
 
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-
-    implementation "com.jakewharton.threetenabp:threetenabp:1.2.1"
-
-    testImplementation 'junit:junit:4.12'
+    testImplementation libraries.junit
+    testImplementation libraries.assertj
 }
 
 sourceSets {

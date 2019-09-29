@@ -6,26 +6,22 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 dependencies {
     implementation project(':rtpi-api')
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50"
-
-    implementation 'io.dropwizard:dropwizard-core:1.3.14'
-
-    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-    implementation("com.squareup.retrofit2:converter-simplexml:2.5.0") {
+    implementation libraries.kotlin
+    implementation libraries.dropwizard_core
+    implementation libraries.jsoup
+    implementation libraries.retrofit
+    implementation libraries.retrofit_gson
+    implementation(libraries.retrofit_simplexml) {
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
         exclude group: 'xpp3', module: 'xpp3'
     }
 
-    implementation 'org.jsoup:jsoup:1.11.3'
-
-    testImplementation 'io.dropwizard:dropwizard-testing:1.3.14'
-    testImplementation 'org.assertj:assertj-core:3.13.2'
-    testImplementation 'io.mockk:mockk:1.9.3'
-
     testImplementation project(path: ':rtpi-api', configuration: 'testOutput')
+    testImplementation libraries.junit
+    testImplementation libraries.assertj
+    testImplementation libraries.mockk
+    testImplementation libraries.dropwizard_testing
 }
 
 sourceSets {
