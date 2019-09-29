@@ -1,9 +1,13 @@
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+
 plugins {
-    id 'java'
-    id 'org.jetbrains.kotlin.jvm'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.10'
 }
 
-description = ''
+apply plugin: 'com.github.johnrengelman.shadow'
+
 dependencies {
     implementation project(':rtpi-api')
 //    implementation 'javax.servlet:javax.servlet-api:3.1.0' //needs this otherwise it runs into MethodNotFoundException
@@ -32,4 +36,46 @@ dependencies {
 sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
     test.java.srcDirs += 'src/test/kotlin'
+}
+
+//shadowJar {
+//    baseName = 'dublin-rtpi-service'
+//    classifier = null
+//    version = null
+//}
+
+//import java.time.ZoneId
+//import java.time.ZonedDateTime
+//import java.time.format.DateTimeFormatter
+//
+//plugins {
+//    id 'java'
+//    id 'org.jetbrains.kotlin.jvm'
+//    id 'com.github.johnrengelman.shadow' version '1.2.4'
+//}
+//
+//repositories {
+//    mavenCentral()
+//}
+//
+//mainClassName = 'ie.dublin.rtpi.RtpiServiceApplication'
+//
+//description = ''
+//
+//
+//
+shadowJar {
+    mergeServiceFiles()
+    exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+    manifest {
+        attributes 'Implementation-Title': rootProject.name
+        attributes 'Implementation-Version': rootProject.version
+        attributes 'Implementation-Vendor-Id': rootProject.group
+        attributes 'Build-Time': ZonedDateTime.now(ZoneId.of("UTC"))
+                .format(DateTimeFormatter.ISO_ZONED_DATE_TIME)
+        attributes 'Built-By': InetAddress.localHost.hostName
+        attributes 'Created-By': 'Gradle ' + gradle.gradleVersion
+        attributes 'Main-Class': 'ie.dublin.rtpi.RtpiServiceApplication'
+    }
+    archiveName 'dublin-rtpi-service.jar'
 }
