@@ -1,6 +1,6 @@
 package ie.dublin.rtpi.api
 
-import com.google.common.truth.Truth.assertThat
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 class LiveDataTest {
