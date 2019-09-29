@@ -47,3 +47,5 @@ subprojects {
         mavenCentral()
     }
 }
+
+task stage(dependsOn: [':rtpi-application:shadowJar'])
