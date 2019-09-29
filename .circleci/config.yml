@@ -47,4 +47,8 @@ jobs:
             gradle test
 
       - store_test_results:
-          path: test-results
+          path: rtpi-api/build/test-results/test
+      - store_test_results:
+          path: rtpi-application/build/test-results/test
+      - store_test_results:
+          path: rtpi-client-android/build/test-results/test
