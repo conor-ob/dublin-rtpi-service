@@ -4,6 +4,7 @@ import io.rtpi.api.LuasLiveData
 import io.rtpi.api.LuasStop
 import io.rtpi.api.RtpiApi
 import io.reactivex.Single
+import org.threeten.bp.LocalTime
 
 class LuasClient(private val rtpiApi: RtpiApi) {
 
@@ -11,7 +12,7 @@ class LuasClient(private val rtpiApi: RtpiApi) {
         return rtpiApi.getLuasStops()
     }
 
-    fun getLiveData(stopId: String, compact: Boolean): Single<List<LuasLiveData>> {
+    fun getLiveData(stopId: String, compact: Boolean): Single<List<LuasLiveData<LocalTime>>> {
         return rtpiApi.getLuasLiveData(stopId, compact)
     }
 

@@ -1,13 +1,13 @@
-package io.rtpi.service.luas
+package io.rtpi.service.buseireann
 
 import io.rtpi.api.DueTime
 import io.rtpi.resource.rtpi.RtpiApi
 import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
-import java.time.LocalDateTime
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.LocalTime
+import org.threeten.bp.format.DateTimeFormatter
 
-class LuasLiveDataService(rtpiApi: RtpiApi) : AbstractLuasLiveDataService<LocalTime>(rtpiApi) {
+class BusEireannLiveDataService(rtpiApi: RtpiApi) : AbstractBusEireannLiveDataService<LocalTime>(rtpiApi) {
 
     override fun createDueTime(json: RtpiRealTimeBusInformationJson): DueTime<LocalTime> {
         return DueTime(

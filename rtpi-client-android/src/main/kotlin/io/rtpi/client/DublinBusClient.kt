@@ -4,6 +4,7 @@ import io.rtpi.api.DublinBusLiveData
 import io.rtpi.api.DublinBusStop
 import io.rtpi.api.RtpiApi
 import io.reactivex.Single
+import org.threeten.bp.LocalTime
 
 class DublinBusClient(private val rtpiApi: RtpiApi) {
 
@@ -11,7 +12,7 @@ class DublinBusClient(private val rtpiApi: RtpiApi) {
         return rtpiApi.getDublinBusStops()
     }
 
-    fun getLiveData(stopId: String, compact: Boolean): Single<List<DublinBusLiveData>> {
+    fun getLiveData(stopId: String, compact: Boolean): Single<List<DublinBusLiveData<LocalTime>>> {
         return rtpiApi.getDublinBusLiveData(stopId, compact)
     }
 

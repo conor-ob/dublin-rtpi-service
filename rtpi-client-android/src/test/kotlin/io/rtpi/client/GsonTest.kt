@@ -1,6 +1,7 @@
 package io.rtpi.client
 
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import io.rtpi.api.Coordinate
 import io.rtpi.api.DueTime
 import io.rtpi.api.LuasLiveData
@@ -79,7 +80,7 @@ class GsonTest {
             "        \"direction\": \"Outbound\"\n" +
             "    }"
 
-        val deserialized = gson.fromJson(serialized, LuasLiveData::class.java)
+        val deserialized: LuasLiveData<LocalTime> = gson.fromJson(serialized, object : TypeToken<LuasLiveData<LocalTime>>(){}.type)
         val luasLiveData = LuasLiveData(
             nextDueTime = DueTime(
                 minutes = 10,

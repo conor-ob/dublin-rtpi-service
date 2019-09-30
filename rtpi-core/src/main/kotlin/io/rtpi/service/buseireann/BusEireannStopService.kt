@@ -6,10 +6,10 @@ import io.rtpi.api.Operator
 import io.rtpi.ktx.validate
 import io.rtpi.resource.rtpi.RtpiApi
 
-class BusEireannStopService(private val rtpiService: RtpiApi) {
+class BusEireannStopService(private val rtpiApi: RtpiApi) {
 
     fun getStops(): List<BusEireannStop> {
-        return rtpiService.busStopInformation(operator = "be", format = "json")
+        return rtpiApi.busStopInformation(operator = "be", format = "json")
             .validate()
             .results
             .map { json ->

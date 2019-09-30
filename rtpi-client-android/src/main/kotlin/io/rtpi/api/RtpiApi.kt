@@ -1,6 +1,7 @@
 package io.rtpi.api
 
 import io.reactivex.Single
+import org.threeten.bp.LocalTime
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,7 +14,7 @@ interface RtpiApi {
     fun getAircoachLiveData(
         @Query(value = "stopId") stopId: String,
         @Query(value = "compact") compact: Boolean
-    ): Single<List<AircoachLiveData>>
+    ): Single<List<AircoachLiveData<LocalTime>>>
 
     @GET("buseireann/stops")
     fun getBusEireannStops(): Single<List<BusEireannStop>>
@@ -22,15 +23,14 @@ interface RtpiApi {
     fun getBusEireannLiveData(
         @Query(value = "stopId") stopId: String,
         @Query(value = "compact") compact: Boolean
-    ): Single<List<BusEireannLiveData>>
+    ): Single<List<BusEireannLiveData<LocalTime>>>
 
     @GET("dublinbikes/docks")
     fun getDublinBikesDocks(): Single<List<DublinBikesDock>>
 
     @GET("dublinbikes/livedata")
     fun getDublinBikesLiveData(
-        @Query(value = "dockId") dockId: String,
-        @Query(value = "compact") compact: Boolean
+        @Query(value = "dockId") dockId: String
     ): Single<List<DublinBikesLiveData>>
 
     @GET("dublinbus/stops")
@@ -40,7 +40,7 @@ interface RtpiApi {
     fun getDublinBusLiveData(
         @Query(value = "stopId") stopId: String,
         @Query(value = "compact") compact: Boolean
-    ): Single<List<DublinBusLiveData>>
+    ): Single<List<DublinBusLiveData<LocalTime>>>
 
     @GET("irishrail/stations")
     fun getIrishRailStations(): Single<List<IrishRailStation>>
@@ -49,7 +49,7 @@ interface RtpiApi {
     fun getIrishRailLiveData(
         @Query(value = "stationId") stationId: String,
         @Query(value = "compact") compact: Boolean
-    ): Single<List<IrishRailLiveData>>
+    ): Single<List<IrishRailLiveData<LocalTime>>>
 
     @GET("luas/stops")
     fun getLuasStops(): Single<List<LuasStop>>
@@ -58,6 +58,6 @@ interface RtpiApi {
     fun getLuasLiveData(
         @Query(value = "stopId") stopId: String,
         @Query(value = "compact") compact: Boolean
-    ): Single<List<LuasLiveData>>
+    ): Single<List<LuasLiveData<LocalTime>>>
 
 }

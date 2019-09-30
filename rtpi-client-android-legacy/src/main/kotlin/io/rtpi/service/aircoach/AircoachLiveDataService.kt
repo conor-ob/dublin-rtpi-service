@@ -4,10 +4,10 @@ import io.rtpi.api.DueTime
 import io.rtpi.resource.aircoach.AircoachApi
 import io.rtpi.resource.aircoach.EtaJson
 import io.rtpi.resource.aircoach.TimestampJson
-import java.time.LocalDateTime
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.LocalTime
+import org.threeten.bp.format.DateTimeFormatter
+import org.threeten.bp.temporal.ChronoUnit
 
 class AircoachLiveDataService(aircoachApi: AircoachApi) : AbstractAircoachLiveDataService<LocalTime>(aircoachApi) {
 

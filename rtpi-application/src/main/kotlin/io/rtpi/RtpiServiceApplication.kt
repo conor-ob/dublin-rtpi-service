@@ -141,8 +141,14 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         )
         environment.jersey().register(
             DublinBikesResource(
-                DublinBikesDockService(jcDecauxApi, configuration.apiConfig.jcDecauxApiKey!!),
-                DublinBikesLiveDataService(jcDecauxApi, configuration.apiConfig.jcDecauxApiKey!!)
+                DublinBikesDockService(
+                    jcDecauxApi,
+                    configuration.apiConfig.jcDecauxApiKey!!
+                ),
+                DublinBikesLiveDataService(
+                    jcDecauxApi,
+                    configuration.apiConfig.jcDecauxApiKey!!
+                )
             )
         )
         environment.jersey().register(
