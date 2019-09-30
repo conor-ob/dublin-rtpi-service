@@ -5,10 +5,10 @@ import io.rtpi.resource.dublinbus.DublinBusApi
 import io.rtpi.resource.dublinbus.DublinBusRealTimeStopDataXml
 import io.rtpi.resource.rtpi.RtpiApi
 import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
-import java.time.LocalDateTime
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.LocalTime
+import org.threeten.bp.format.DateTimeFormatter
+import org.threeten.bp.temporal.ChronoUnit
 
 class DublinBusLiveDataService(
     dublinBusApi: DublinBusApi,

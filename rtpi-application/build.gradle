@@ -6,9 +6,10 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 dependencies {
     implementation project(':rtpi-api')
+    implementation project(':rtpi-core')
+
     implementation libraries.kotlin
     implementation libraries.dropwizard_core
-    implementation libraries.jsoup
     implementation libraries.retrofit
     implementation libraries.retrofit_gson
     implementation(libraries.retrofit_simplexml) {

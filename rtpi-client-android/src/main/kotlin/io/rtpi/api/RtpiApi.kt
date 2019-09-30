@@ -30,8 +30,7 @@ interface RtpiApi {
 
     @GET("dublinbikes/livedata")
     fun getDublinBikesLiveData(
-        @Query(value = "dockId") dockId: String,
-        @Query(value = "compact") compact: Boolean
+        @Query(value = "dockId") dockId: String
     ): Single<List<DublinBikesLiveData>>
 
     @GET("dublinbus/stops")

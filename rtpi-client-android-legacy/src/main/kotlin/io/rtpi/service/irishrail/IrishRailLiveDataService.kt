@@ -2,8 +2,8 @@ package io.rtpi.service.irishrail
 
 import io.rtpi.api.DueTime
 import io.rtpi.resource.irishrail.IrishRailApi
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
+import org.threeten.bp.LocalTime
+import org.threeten.bp.format.DateTimeFormatter
 
 class IrishRailLiveDataService(irishRailApi: IrishRailApi) : AbstractIrishRailLiveDataService<LocalTime>(irishRailApi) {
 
