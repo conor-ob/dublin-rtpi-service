@@ -38,6 +38,7 @@ buildscript {
 
 subprojects {
     apply plugin: 'kotlin'
+    apply plugin: 'maven-publish'
 
     group = 'io.rtpi'
     version = '1-SNAPSHOT'
@@ -45,6 +46,13 @@ subprojects {
     repositories {
         jcenter()
         mavenCentral()
+    }
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from components.java
+            }
+        }
     }
 }
 
