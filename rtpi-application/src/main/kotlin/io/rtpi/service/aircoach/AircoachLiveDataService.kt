@@ -13,7 +13,7 @@ import java.time.temporal.ChronoUnit
 
 class AircoachLiveDataService(private val aircoachApi: AircoachApi) {
 
-    fun getLiveData(stopId: String, compact: Boolean): List<AircoachLiveData> {
+    fun getLiveData(stopId: String, compact: Boolean): List<AircoachLiveData<LocalTime>> {
         return aircoachApi.getLiveData(stopId)
             .validate()
             .services
@@ -29,7 +29,7 @@ class AircoachLiveDataService(private val aircoachApi: AircoachApi) {
             .sortedBy { it.nextDueTime.minutes }
     }
 
-    private fun mapDueTime(expected: EtaJson?, scheduled: TimestampJson): DueTime {
+    private fun mapDueTime(expected: EtaJson?, scheduled: TimestampJson): DueTime<LocalTime> {
         val currentInstant = LocalTime.now()
         if (expected == null) {
             val scheduledInstant = LocalDateTime.parse(scheduled.dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))

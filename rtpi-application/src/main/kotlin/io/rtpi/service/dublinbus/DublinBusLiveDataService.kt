@@ -10,6 +10,7 @@ import io.rtpi.resource.dublinbus.DublinBusRealTimeStopDataRequestRootXml
 import io.rtpi.resource.dublinbus.DublinBusRealTimeStopDataRequestXml
 import io.rtpi.resource.rtpi.RtpiApi
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
@@ -18,7 +19,7 @@ class DublinBusLiveDataService(
     private val rtpiApi: RtpiApi
 ) {
 
-    fun getLiveData(stopId: String, compact: Boolean): List<DublinBusLiveData> {
+    fun getLiveData(stopId: String, compact: Boolean): List<DublinBusLiveData<LocalTime>> {
         val requestRoot = DublinBusRealTimeStopDataRequestRootXml(stopId, true.toString())
         val requestBody = DublinBusRealTimeStopDataRequestBodyXml(requestRoot)
         val request = DublinBusRealTimeStopDataRequestXml(requestBody)

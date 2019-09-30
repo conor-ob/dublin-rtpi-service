@@ -4,6 +4,7 @@ import io.rtpi.api.IrishRailLiveData
 import io.rtpi.api.IrishRailStation
 import io.rtpi.api.RtpiApi
 import io.reactivex.Single
+import org.threeten.bp.LocalTime
 
 class IrishRailClient(private val rtpiApi: RtpiApi) {
 
@@ -11,7 +12,7 @@ class IrishRailClient(private val rtpiApi: RtpiApi) {
         return rtpiApi.getIrishRailStations()
     }
 
-    fun getLiveData(stopId: String, compact: Boolean): Single<List<IrishRailLiveData>> {
+    fun getLiveData(stopId: String, compact: Boolean): Single<List<IrishRailLiveData<LocalTime>>> {
         return rtpiApi.getIrishRailLiveData(stopId, compact)
     }
 

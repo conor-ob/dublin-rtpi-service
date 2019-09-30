@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter
 
 class IrishRailLiveDataService(private val irishRailApi: IrishRailApi) {
 
-    fun getLiveData(stationId: String, compact: Boolean): List<IrishRailLiveData> {
+    fun getLiveData(stationId: String, compact: Boolean): List<IrishRailLiveData<LocalTime>> {
         return irishRailApi.getStationDataByCodeXml(stationId)
             .validate()
             .stationData
@@ -27,7 +27,7 @@ class IrishRailLiveDataService(private val irishRailApi: IrishRailApi) {
             }
     }
 
-    private fun mapDueTime(expectedArrivalTimestamp: String, dueInMinutes: String, queryTime: String): DueTime {
+    private fun mapDueTime(expectedArrivalTimestamp: String, dueInMinutes: String, queryTime: String): DueTime<LocalTime> {
         if (expectedArrivalTimestamp == "00:00") {
             val now = LocalTime.parse(queryTime, DateTimeFormatter.ofPattern("HH:mm:ss"))
             val expectedTime = now.plusMinutes(dueInMinutes.toLong())

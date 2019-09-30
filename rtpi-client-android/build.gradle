@@ -1,4 +1,6 @@
 dependencies {
+    implementation project(':rtpi-api')
+
     implementation libraries.kotlin
     implementation libraries.retrofit
     implementation libraries.retrofit_gson

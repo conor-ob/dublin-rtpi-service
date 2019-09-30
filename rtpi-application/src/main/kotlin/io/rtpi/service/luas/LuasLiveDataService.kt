@@ -6,11 +6,12 @@ import io.rtpi.api.Operator
 import io.rtpi.ktx.validate
 import io.rtpi.resource.rtpi.RtpiApi
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 class LuasLiveDataService(private val rtpiService: RtpiApi) {
 
-    fun getLiveData(stopId: String, compact: Boolean): List<LuasLiveData> {
+    fun getLiveData(stopId: String, compact: Boolean): List<LuasLiveData<LocalTime>> {
         return rtpiService.realTimeBusInformation(stopId = stopId, operator = "luas", format = "json")
             .validate()
             .results
