@@ -49,6 +49,8 @@ class IrishRailResourceTest {
         // assert
         val expectedJson = "[\n" +
             "   {\n" +
+            "      \"route\":\"DART\",\n" +
+            "      \"destination\":\"Howth\",\n" +
             "      \"nextDueTime\":{\n" +
             "         \"minutes\":2,\n" +
             "         \"time\":[\n" +
@@ -73,8 +75,6 @@ class IrishRailResourceTest {
             "         }\n" +
             "      ],\n" +
             "      \"operator\":\"DART\",\n" +
-            "      \"route\":\"DART\",\n" +
-            "      \"destination\":\"Howth\",\n" +
             "      \"direction\":\"Northbound\"\n" +
             "   }\n" +
             "]"

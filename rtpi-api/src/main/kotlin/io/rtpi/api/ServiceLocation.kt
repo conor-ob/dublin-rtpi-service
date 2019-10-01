@@ -8,9 +8,9 @@ interface ServiceLocation {
 
     val coordinate: Coordinate
 
-    val operators: Set<Operator>
-
     val service: Service
+
+    val operators: Set<Operator>
 
 }
 

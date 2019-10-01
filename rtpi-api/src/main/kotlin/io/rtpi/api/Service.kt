@@ -1,5 +1,7 @@
 package io.rtpi.api
 
+import java.text.Normalizer
+
 enum class Service(
     val fullName: String,
     val shortName: String,
@@ -21,11 +23,15 @@ enum class Service(
     companion object {
 
         fun parse(value: String): Service {
-            for (operator in values()) {
-                if (operator.name.equals(value, ignoreCase = true)
-                    || operator.fullName.equals(value, ignoreCase = true)
-                    || operator.shortName.equals(value, ignoreCase = true)) {
-                    return operator
+            for (service in values()) {
+                if (service.name.equals(value, ignoreCase = true)
+                    || service.fullName.equals(value, ignoreCase = true)
+                    || service.shortName.equals(value, ignoreCase = true)
+                    || service.name.replace(oldValue = "_", newValue = " ").equals(value, ignoreCase = true)
+                    || service.name.normalize().equals(value, ignoreCase = true)
+                    || service.name.replace(oldValue = "_", newValue = " ").normalize().equals(value, ignoreCase = true)
+                ) {
+                    return service
                 }
             }
             throw IllegalArgumentException("Unable to parse Service from string value: $value")
@@ -61,7 +67,11 @@ enum class Operator(
             for (operator in values()) {
                 if (operator.name.equals(value, ignoreCase = true)
                     || operator.fullName.equals(value, ignoreCase = true)
-                    || operator.shortName.equals(value, ignoreCase = true)) {
+                    || operator.shortName.equals(value, ignoreCase = true)
+                    || operator.name.replace(oldValue = "_", newValue = " ").equals(value, ignoreCase = true)
+                    || operator.name.normalize().equals(value, ignoreCase = true)
+                    || operator.name.replace(oldValue = "_", newValue = " ").normalize().equals(value, ignoreCase = true)
+                ) {
                     return operator
                 }
             }
@@ -70,4 +80,10 @@ enum class Operator(
 
     }
 
+}
+
+private val normalizingRegex = "\\p{InCombiningDiacriticalMarks}+".toRegex()
+
+fun CharSequence.normalize(): String {
+    return normalizingRegex.replace(Normalizer.normalize(this, Normalizer.Form.NFD), "")
 }
