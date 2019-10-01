@@ -1,6 +1,6 @@
 rootProject.name = 'dublin-rtpi-service'
 include ':rtpi-api'
 include ':rtpi-application'
-include ':rtpi-client-android'
-include ':rtpi-client-android-legacy'
+include ':rtpi-client-android-v1'
+include ':rtpi-client-android-v2'
 include ':rtpi-core'
