@@ -34,7 +34,7 @@ enum class Service(
                     return service
                 }
             }
-            throw IllegalArgumentException("Unable to parse Service from string value: $value")
+            throw IllegalArgumentException("Unable to parse ${Service::class.java.simpleName} from string value: $value")
         }
 
     }
@@ -75,7 +75,7 @@ enum class Operator(
                     return operator
                 }
             }
-            throw IllegalArgumentException("Unable to parse Operator from string value: $value")
+            throw IllegalArgumentException("Unable to parse ${Operator::class.java.simpleName} from string value: $value")
         }
 
     }
