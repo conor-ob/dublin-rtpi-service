@@ -11,8 +11,8 @@ class DublinBikesClient(private val rtpiApi: RtpiApi) {
         return rtpiApi.getDublinBikesDocks()
     }
 
-    fun getLiveData(stopId: String): Single<List<DublinBikesLiveData>> {
-        return rtpiApi.getDublinBikesLiveData(stopId)
+    fun getLiveData(dockId: String): Single<DublinBikesLiveData> {
+        return rtpiApi.getDublinBikesLiveData(dockId)
     }
 
 }

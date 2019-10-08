@@ -15,8 +15,8 @@ class IrishRailClient(
         return irishRailStationService.getStations()
     }
 
-    fun getLiveData(stationId: String, compact: Boolean): List<IrishRailLiveData<LocalTime>> {
-        return irishRailLiveDataService.getLiveData(stationId, compact)
+    fun getLiveData(stationId: String): List<IrishRailLiveData<LocalTime>> {
+        return irishRailLiveDataService.getLiveData(stationId)
     }
 
 }

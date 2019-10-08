@@ -26,5 +26,3 @@
 **/build
 
 **/dependency-reduced-pom.xml
-
-/rtpi-application/production-config.yml

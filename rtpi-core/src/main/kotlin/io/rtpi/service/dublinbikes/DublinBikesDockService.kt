@@ -7,12 +7,11 @@ import io.rtpi.ktx.validate
 import io.rtpi.resource.jcdecaux.JcDecauxApi
 
 class DublinBikesDockService(
-    private val jcDecauxApi: JcDecauxApi,
-    private val jcDecauxApiKey: String
+    private val jcDecauxApi: JcDecauxApi
 ) {
 
-    fun getDocks(): List<DublinBikesDock> {
-        return jcDecauxApi.stations(contract = "Dublin", apiKey = jcDecauxApiKey)
+    fun getDocks(apiKey: String): List<DublinBikesDock> {
+        return jcDecauxApi.stations(contract = "Dublin", apiKey = apiKey)
             .validate()
             .map { json ->
                 DublinBikesDock(

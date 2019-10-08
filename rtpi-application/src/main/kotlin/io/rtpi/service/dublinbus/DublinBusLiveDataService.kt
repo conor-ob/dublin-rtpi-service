@@ -1,6 +1,6 @@
 package io.rtpi.service.dublinbus
 
-import io.rtpi.api.DueTime
+import io.rtpi.api.Time
 import io.rtpi.resource.dublinbus.DublinBusApi
 import io.rtpi.resource.dublinbus.DublinBusRealTimeStopDataXml
 import io.rtpi.resource.rtpi.RtpiApi
@@ -15,15 +15,15 @@ class DublinBusLiveDataService(
     rtpiApi: RtpiApi
 ) : AbstractDublinBusLiveDataService<LocalTime>(dublinBusApi, rtpiApi) {
 
-    override fun createDueTime(xml: DublinBusRealTimeStopDataXml): DueTime<LocalTime> {
+    override fun createDueTime(xml: DublinBusRealTimeStopDataXml): Time<LocalTime> {
         val expected = LocalDateTime.parse(xml.expectedTimestamp!!, DateTimeFormatter.ISO_DATE_TIME)
         val current = LocalDateTime.parse(xml.responseTimestamp!!, DateTimeFormatter.ISO_DATE_TIME)
         val minutes = ChronoUnit.MINUTES.between(current, expected).toInt()
-        return DueTime(minutes, expected.toLocalTime())
+        return Time(minutes, expected.toLocalTime())
     }
 
-    override fun createDueTime(json: RtpiRealTimeBusInformationJson): DueTime<LocalTime> {
-        return DueTime(
+    override fun createDueTime(json: RtpiRealTimeBusInformationJson): Time<LocalTime> {
+        return Time(
             if (json.dueTime == "Due") 0 else json.dueTime!!.toInt(),
             LocalDateTime.parse(json.arrivalDateTime!!, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")).toLocalTime()
         )

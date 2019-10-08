@@ -122,8 +122,8 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
     )
 
     private val dublinBikesClient = DublinBikesClient(
-        DublinBikesDockService(jcDecauxApi, ""), //TODO
-        DublinBikesLiveDataService(jcDecauxApi, "")
+        DublinBikesDockService(jcDecauxApi),
+        DublinBikesLiveDataService(jcDecauxApi)
     )
 
     private val dublinBusClient = DublinBusClient(

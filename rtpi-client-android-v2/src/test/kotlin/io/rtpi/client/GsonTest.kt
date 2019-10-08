@@ -3,7 +3,7 @@ package io.rtpi.client
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.rtpi.api.Coordinate
-import io.rtpi.api.DueTime
+import io.rtpi.api.Time
 import io.rtpi.api.LuasLiveData
 import io.rtpi.api.LuasStop
 import io.rtpi.api.Operator
@@ -64,7 +64,10 @@ class GsonTest {
     @Test
     fun testDeserializeLiveData() {
         val serialized = "{\n" +
-            "        \"nextDueTime\": {\n" +
+            "    \"route\": \"Green\",\n" +
+            "    \"destination\":\"Sandyford\",\n" +
+            "    \"times\": [\n" +
+            "        {\n" +
             "            \"minutes\": 10,\n" +
             "            \"time\": {\n" +
             "                \"hour\": 10,\n" +
@@ -72,21 +75,21 @@ class GsonTest {
             "                \"second\": 0,\n" +
             "                \"nano\": 0\n" +
             "            }\n" +
-            "        },\n" +
-            "        \"laterDueTimes\": [],\n" +
-            "        \"operator\": \"LUAS\",\n" +
-            "        \"route\": \"Green\",\n" +
-            "        \"destination\": \"Sandyford\",\n" +
-            "        \"direction\": \"Outbound\"\n" +
-            "    }"
+            "        }\n" +
+            "     ],\n" +
+            "    \"operator\": \"LUAS\",\n" +
+            "    \"direction\":\"Outbound\"\n" +
+            "}"
 
         val deserialized: LuasLiveData<LocalTime> = gson.fromJson(serialized, object : TypeToken<LuasLiveData<LocalTime>>(){}.type)
+//        val deserialized: LuasLiveData<LocalTime> = gson.fromJson(serialized, object : TypeToken<LuasLiveData<LocalTime>>(){}.type)
         val luasLiveData = LuasLiveData(
-            nextDueTime = DueTime(
-                minutes = 10,
-                time = LocalTime.of(10, 10)
+            times = listOf(
+                Time(
+                    minutes = 10,
+                    time = LocalTime.of(10, 10)
+                )
             ),
-            laterDueTimes = emptyList(),
             operator = Operator.LUAS,
             route = "Green",
             destination = "Sandyford",

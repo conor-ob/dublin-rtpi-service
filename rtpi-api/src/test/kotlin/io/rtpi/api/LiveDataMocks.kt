@@ -5,8 +5,8 @@ import java.time.LocalTime
 fun createDueTime(
     minutes: Int,
     currentTime: LocalTime = LocalTime.now()
-): DueTime<LocalTime> {
-    return DueTime(
+): Time<LocalTime> {
+    return Time(
         minutes = minutes,
         time = currentTime.plusMinutes(minutes.toLong())
     )
