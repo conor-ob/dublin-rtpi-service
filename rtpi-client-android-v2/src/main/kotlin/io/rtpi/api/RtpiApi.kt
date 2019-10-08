@@ -12,8 +12,7 @@ interface RtpiApi {
 
     @GET("aircoach/livedata")
     fun getAircoachLiveData(
-        @Query(value = "stopId") stopId: String,
-        @Query(value = "compact") compact: Boolean
+        @Query(value = "stopId") stopId: String
     ): Single<List<AircoachLiveData>>
 
     @GET("buseireann/stops")
@@ -21,16 +20,18 @@ interface RtpiApi {
 
     @GET("buseireann/livedata")
     fun getBusEireannLiveData(
-        @Query(value = "stopId") stopId: String,
-        @Query(value = "compact") compact: Boolean
+        @Query(value = "stopId") stopId: String
     ): Single<List<BusEireannLiveData>>
 
     @GET("dublinbikes/docks")
-    fun getDublinBikesDocks(): Single<List<DublinBikesDock>>
+    fun getDublinBikesDocks(
+        @Query(value = "apiKey") apiKey: String
+    ): Single<List<DublinBikesDock>>
 
     @GET("dublinbikes/livedata")
     fun getDublinBikesLiveData(
-        @Query(value = "dockId") dockId: String
+        @Query(value = "dockId") dockId: String,
+        @Query(value = "apiKey") apiKey: String
     ): Single<DublinBikesLiveData>
 
     @GET("dublinbus/stops")
@@ -38,8 +39,7 @@ interface RtpiApi {
 
     @GET("dublinbus/livedata")
     fun getDublinBusLiveData(
-        @Query(value = "stopId") stopId: String,
-        @Query(value = "compact") compact: Boolean
+        @Query(value = "stopId") stopId: String
     ): Single<List<DublinBusLiveData>>
 
     @GET("irishrail/stations")
@@ -47,8 +47,7 @@ interface RtpiApi {
 
     @GET("irishrail/livedata")
     fun getIrishRailLiveData(
-        @Query(value = "stationId") stationId: String,
-        @Query(value = "compact") compact: Boolean
+        @Query(value = "stationId") stationId: String
     ): Single<List<IrishRailLiveData>>
 
     @GET("luas/stops")
@@ -56,8 +55,7 @@ interface RtpiApi {
 
     @GET("luas/livedata")
     fun getLuasLiveData(
-        @Query(value = "stopId") stopId: String,
-        @Query(value = "compact") compact: Boolean
+        @Query(value = "stopId") stopId: String
     ): Single<List<LuasLiveData>>
 
 }
