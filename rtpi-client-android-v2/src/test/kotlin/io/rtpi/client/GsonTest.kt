@@ -81,13 +81,14 @@ class GsonTest {
             "    \"direction\":\"Outbound\"\n" +
             "}"
 
-        val deserialized: LuasLiveData<LocalTime> = gson.fromJson(serialized, object : TypeToken<LuasLiveData<LocalTime>>(){}.type)
+        val deserialized = gson.fromJson(serialized, LuasLiveData::class.java)
+//        val deserialized: LuasLiveData = gson.fromJson(serialized, object : TypeToken<LuasLiveData<LocalTime>>(){}.type)
 //        val deserialized: LuasLiveData<LocalTime> = gson.fromJson(serialized, object : TypeToken<LuasLiveData<LocalTime>>(){}.type)
         val luasLiveData = LuasLiveData(
             times = listOf(
                 Time(
-                    minutes = 10,
-                    time = LocalTime.of(10, 10)
+                    minutes = 10
+//                    time = LocalTime.of(10, 10)
                 )
             ),
             operator = Operator.LUAS,
