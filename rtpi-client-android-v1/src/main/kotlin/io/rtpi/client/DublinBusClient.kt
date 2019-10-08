@@ -15,7 +15,7 @@ class DublinBusClient(
         return dublinBusStopService.getStops()
     }
 
-    fun getLiveData(stopId: String): List<DublinBusLiveData<LocalTime>> {
+    fun getLiveData(stopId: String): List<DublinBusLiveData> {
         return dublinBusLiveDataService.getLiveData(stopId)
     }
 

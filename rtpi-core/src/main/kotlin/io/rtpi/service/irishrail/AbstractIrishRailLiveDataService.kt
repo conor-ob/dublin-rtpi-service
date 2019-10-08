@@ -7,9 +7,9 @@ import io.rtpi.ktx.validate
 import io.rtpi.resource.irishrail.IrishRailApi
 import java.util.Objects
 
-abstract class AbstractIrishRailLiveDataService<T>(private val irishRailApi: IrishRailApi) {
+abstract class AbstractIrishRailLiveDataService(private val irishRailApi: IrishRailApi) {
 
-    fun getLiveData(stationId: String): List<IrishRailLiveData<T>> {
+    fun getLiveData(stationId: String): List<IrishRailLiveData> {
         val liveData = irishRailApi.getStationDataByCodeXml(stationId)
             .validate()
             .stationData
@@ -25,7 +25,7 @@ abstract class AbstractIrishRailLiveDataService<T>(private val irishRailApi: Iri
             }
             .sortedBy { it.times.first().minutes }
 
-        val condensedLiveData = LinkedHashMap<Int, IrishRailLiveData<T>>()
+        val condensedLiveData = LinkedHashMap<Int, IrishRailLiveData>()
         for (data in liveData) {
             val id = Objects.hash(data.operator, data.route, data.destination, data.direction)
             var cachedLiveData = condensedLiveData[id]
@@ -38,7 +38,21 @@ abstract class AbstractIrishRailLiveDataService<T>(private val irishRailApi: Iri
                 condensedLiveData[id] = cachedLiveData
             }
         }
-        return condensedLiveData.values.toList()
+//        return condensedLiveData.values.toList()
+
+        return listOf(
+            IrishRailLiveData(
+                route = Operator.DART.fullName,
+                destination = "Dummy Data",
+                direction = "Northbound",
+                operator = Operator.DART,
+                times = listOf(
+                    Time(0),
+                    Time(7),
+                    Time(42)
+                )
+            )
+        )
     }
 
     private fun mapOperator(trainType: String, trainCode: String): Operator {
@@ -72,6 +86,6 @@ abstract class AbstractIrishRailLiveDataService<T>(private val irishRailApi: Iri
         }
     }
 
-    protected abstract fun createDueTime(expectedArrivalTimestamp: String, dueInMinutes: String, queryTime: String): Time<T>
+    protected abstract fun createDueTime(expectedArrivalTimestamp: String, dueInMinutes: String, queryTime: String): Time
 
 }

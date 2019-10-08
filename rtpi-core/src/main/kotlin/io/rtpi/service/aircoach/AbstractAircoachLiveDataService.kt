@@ -10,7 +10,7 @@ import java.util.Objects
 
 abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: AircoachApi) {
 
-    fun getLiveData(stopId: String): List<AircoachLiveData<T>> {
+    fun getLiveData(stopId: String): List<AircoachLiveData> {
         val liveData = aircoachApi.getLiveData(stopId)
             .validate()
             .services
@@ -24,7 +24,7 @@ abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: Airco
             .filter { it.times.first().minutes > -1 }
             .sortedBy { it.times.first().minutes }
 
-        val condensedLiveData = LinkedHashMap<Int, AircoachLiveData<T>>()
+        val condensedLiveData = LinkedHashMap<Int, AircoachLiveData>()
         for (data in liveData) {
             val id = Objects.hash(data.operator, data.route, data.destination)
             var cachedLiveData = condensedLiveData[id]
@@ -40,5 +40,5 @@ abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: Airco
         return condensedLiveData.values.toList()
     }
 
-    protected abstract fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): Time<T>
+    protected abstract fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): Time
 }

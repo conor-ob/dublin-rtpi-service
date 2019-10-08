@@ -15,7 +15,7 @@ class LuasClient(
         return luasStopService.getStops()
     }
 
-    fun getLiveData(stopId: String): List<LuasLiveData<LocalTime>> {
+    fun getLiveData(stopId: String): List<LuasLiveData> {
         return luasLiveDataService.getLiveData(stopId)
     }
 

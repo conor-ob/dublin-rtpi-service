@@ -11,16 +11,18 @@ import org.threeten.bp.temporal.ChronoUnit
 
 class AircoachLiveDataService(aircoachApi: AircoachApi) : AbstractAircoachLiveDataService<LocalTime>(aircoachApi) {
 
-    override fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): Time<LocalTime> {
+    override fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): Time {
         val currentInstant = LocalTime.now()
         if (expected == null) {
             val scheduledInstant = LocalDateTime.parse(scheduled.dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
             val minutes = ChronoUnit.MINUTES.between(currentInstant, scheduledInstant).toInt()
-            return Time(minutes, scheduledInstant.toLocalTime())
+            return Time(minutes)
+//            return Time(minutes, scheduledInstant.toLocalTime())
         }
         val expectedInstant = LocalDateTime.parse(expected.etaArrive.dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         val minutes = ChronoUnit.MINUTES.between(currentInstant, expectedInstant).toInt()
-        return Time(minutes, expectedInstant.toLocalTime())
+        return Time(minutes)
+//        return Time(minutes, expectedInstant.toLocalTime())
     }
 
 }

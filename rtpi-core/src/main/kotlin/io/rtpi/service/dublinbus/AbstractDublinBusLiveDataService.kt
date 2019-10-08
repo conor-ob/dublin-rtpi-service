@@ -13,12 +13,12 @@ import io.rtpi.resource.rtpi.RtpiApi
 import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
 import java.util.Objects
 
-abstract class AbstractDublinBusLiveDataService<T>(
+abstract class AbstractDublinBusLiveDataService(
     private val dublinBusApi: DublinBusApi,
     private val rtpiApi: RtpiApi
 ) {
 
-    fun getLiveData(stopId: String): List<DublinBusLiveData<T>> {
+    fun getLiveData(stopId: String): List<DublinBusLiveData> {
         val requestRoot = DublinBusRealTimeStopDataRequestRootXml(stopId, true.toString())
         val requestBody = DublinBusRealTimeStopDataRequestBodyXml(requestRoot)
         val request = DublinBusRealTimeStopDataRequestXml(requestBody)
@@ -59,7 +59,7 @@ abstract class AbstractDublinBusLiveDataService<T>(
             .plus(rtpiFiltered)
             .sortedBy { it.times.first().minutes }
 
-        val condensedLiveData = LinkedHashMap<Int, DublinBusLiveData<T>>()
+        val condensedLiveData = LinkedHashMap<Int, DublinBusLiveData>()
         for (data in liveData) {
             val id = Objects.hash(data.operator, data.route, data.destination)
             var cachedLiveData = condensedLiveData[id]
@@ -75,8 +75,8 @@ abstract class AbstractDublinBusLiveDataService<T>(
         return condensedLiveData.values.toList()
     }
 
-    protected abstract fun createDueTime(xml: DublinBusRealTimeStopDataXml): Time<T>
+    protected abstract fun createDueTime(xml: DublinBusRealTimeStopDataXml): Time
 
-    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): Time<T>
+    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): Time
 
 }

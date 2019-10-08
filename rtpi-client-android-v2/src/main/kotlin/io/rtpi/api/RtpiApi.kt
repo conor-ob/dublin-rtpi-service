@@ -14,7 +14,7 @@ interface RtpiApi {
     fun getAircoachLiveData(
         @Query(value = "stopId") stopId: String,
         @Query(value = "compact") compact: Boolean
-    ): Single<List<AircoachLiveData<LocalTime>>>
+    ): Single<List<AircoachLiveData>>
 
     @GET("buseireann/stops")
     fun getBusEireannStops(): Single<List<BusEireannStop>>
@@ -23,7 +23,7 @@ interface RtpiApi {
     fun getBusEireannLiveData(
         @Query(value = "stopId") stopId: String,
         @Query(value = "compact") compact: Boolean
-    ): Single<List<BusEireannLiveData<LocalTime>>>
+    ): Single<List<BusEireannLiveData>>
 
     @GET("dublinbikes/docks")
     fun getDublinBikesDocks(): Single<List<DublinBikesDock>>
@@ -40,7 +40,7 @@ interface RtpiApi {
     fun getDublinBusLiveData(
         @Query(value = "stopId") stopId: String,
         @Query(value = "compact") compact: Boolean
-    ): Single<List<DublinBusLiveData<LocalTime>>>
+    ): Single<List<DublinBusLiveData>>
 
     @GET("irishrail/stations")
     fun getIrishRailStations(): Single<List<IrishRailStation>>
@@ -49,7 +49,7 @@ interface RtpiApi {
     fun getIrishRailLiveData(
         @Query(value = "stationId") stationId: String,
         @Query(value = "compact") compact: Boolean
-    ): Single<List<IrishRailLiveData<LocalTime>>>
+    ): Single<List<IrishRailLiveData>>
 
     @GET("luas/stops")
     fun getLuasStops(): Single<List<LuasStop>>
@@ -58,6 +58,6 @@ interface RtpiApi {
     fun getLuasLiveData(
         @Query(value = "stopId") stopId: String,
         @Query(value = "compact") compact: Boolean
-    ): Single<List<LuasLiveData<LocalTime>>>
+    ): Single<List<LuasLiveData>>
 
 }

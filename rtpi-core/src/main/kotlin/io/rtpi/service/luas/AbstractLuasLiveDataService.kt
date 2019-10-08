@@ -8,9 +8,9 @@ import io.rtpi.resource.rtpi.RtpiApi
 import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
 import java.util.Objects
 
-abstract class AbstractLuasLiveDataService<T>(private val rtpiApi: RtpiApi) {
+abstract class AbstractLuasLiveDataService(private val rtpiApi: RtpiApi) {
 
-    fun getLiveData(stopId: String): List<LuasLiveData<T>> {
+    fun getLiveData(stopId: String): List<LuasLiveData> {
         val liveData = rtpiApi.realTimeBusInformation(stopId = stopId, operator = "luas", format = "json")
             .validate()
             .results
@@ -25,7 +25,7 @@ abstract class AbstractLuasLiveDataService<T>(private val rtpiApi: RtpiApi) {
             }
             .sortedBy { it.times.first().minutes }
 
-        val condensedLiveData = LinkedHashMap<Int, LuasLiveData<T>>()
+        val condensedLiveData = LinkedHashMap<Int, LuasLiveData>()
         for (data in liveData) {
             val id = Objects.hash(data.operator, data.route, data.destination, data.direction)
             var cachedLiveData = condensedLiveData[id]
@@ -41,6 +41,6 @@ abstract class AbstractLuasLiveDataService<T>(private val rtpiApi: RtpiApi) {
         return condensedLiveData.values.toList()
     }
 
-    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): Time<T>
+    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): Time
 
 }

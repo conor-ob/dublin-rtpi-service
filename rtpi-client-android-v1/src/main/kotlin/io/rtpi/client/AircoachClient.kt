@@ -15,7 +15,7 @@ class AircoachClient(
         return aircoachStopService.getStops()
     }
 
-    fun getLiveData(stopId: String): List<AircoachLiveData<LocalTime>> {
+    fun getLiveData(stopId: String): List<AircoachLiveData> {
         return aircoachLiveDataService.getLiveData(stopId)
     }
 

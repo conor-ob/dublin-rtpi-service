@@ -6,37 +6,38 @@ interface LiveData {
 
 }
 
-interface TimedLiveData<T> : LiveData {
+interface TimedLiveData : LiveData {
 
     val route: String
 
     val destination: String
 
-    val times: List<Time<T>>
+    val times: List<Time>
 
 }
 
-data class Time<T>(
-    val minutes: Int,
-    val time: T
+data class Time(
+    val minutes: Int
+//    val hour: Int,
+//    val minute: Int
 )
 
-data class AircoachLiveData<T>(
+data class AircoachLiveData(
     override val route: String,
     override val destination: String,
-    override val times: List<Time<T>>
-) : TimedLiveData<T> {
+    override val times: List<Time>
+) : TimedLiveData {
 
     override val operator = Operator.AIRCOACH
 
 }
 
-data class BusEireannLiveData<T>(
+data class BusEireannLiveData(
     override val route: String,
     override val destination: String,
-    override val times: List<Time<T>>,
+    override val times: List<Time>,
     override val operator: Operator
-) : TimedLiveData<T>
+) : TimedLiveData
 
 data class DublinBikesLiveData(
     val bikes: Int,
@@ -47,34 +48,34 @@ data class DublinBikesLiveData(
 
 }
 
-data class DublinBusLiveData<T>(
+data class DublinBusLiveData(
     override val route: String,
     override val destination: String,
-    override val times: List<Time<T>>,
+    override val times: List<Time>,
     override val operator: Operator
-) : TimedLiveData<T>
+) : TimedLiveData
 
-data class IrishRailLiveData<T>(
+data class IrishRailLiveData(
     override val route: String,
     override val destination: String,
-    override val times: List<Time<T>>,
+    override val times: List<Time>,
     override val operator: Operator,
     val direction: String
-) : TimedLiveData<T>
+) : TimedLiveData
 
-data class LuasLiveData<T>(
+data class LuasLiveData(
     override val route: String,
     override val destination: String,
-    override val times: List<Time<T>>,
+    override val times: List<Time>,
     override val operator: Operator,
     val direction: String
-) : TimedLiveData<T>
+) : TimedLiveData
 
-data class SwordsExpressLiveData<T>(
+data class SwordsExpressLiveData(
     override val route: String,
     override val destination: String,
-    override val times: List<Time<T>>
-) : TimedLiveData<T> {
+    override val times: List<Time>
+) : TimedLiveData {
 
     override val operator = Operator.SWORDS_EXPRESS
 

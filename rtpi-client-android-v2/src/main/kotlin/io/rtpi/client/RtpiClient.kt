@@ -18,13 +18,13 @@ import java.util.concurrent.TimeUnit
 class RtpiClient(okHttpClient: OkHttpClient? = null) {
 
     private val gson = GsonBuilder()
-        .registerTypeAdapter(object : TypeToken<IrishRailLiveData<LocalTime>>(){}.type, object :
-            TypeAdapter<IrishRailLiveData<LocalTime>>() {
-            override fun write(out: JsonWriter?, value: IrishRailLiveData<LocalTime>?) {
+        .registerTypeAdapter(object : TypeToken<IrishRailLiveData>(){}.type, object :
+            TypeAdapter<IrishRailLiveData>() {
+            override fun write(out: JsonWriter?, value: IrishRailLiveData?) {
 
             }
 
-            override fun read(`in`: JsonReader?): IrishRailLiveData<LocalTime> {
+            override fun read(`in`: JsonReader?): IrishRailLiveData {
                 return IrishRailLiveData(
                     "Dart",
                     "Malahide",
