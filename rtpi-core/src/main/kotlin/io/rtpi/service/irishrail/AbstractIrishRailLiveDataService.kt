@@ -38,21 +38,7 @@ abstract class AbstractIrishRailLiveDataService(private val irishRailApi: IrishR
                 condensedLiveData[id] = cachedLiveData
             }
         }
-//        return condensedLiveData.values.toList()
-
-        return listOf(
-            IrishRailLiveData(
-                route = Operator.DART.fullName,
-                destination = "Dummy Data",
-                direction = "Northbound",
-                operator = Operator.DART,
-                times = listOf(
-                    Time(0),
-                    Time(7),
-                    Time(42)
-                )
-            )
-        )
+        return condensedLiveData.values.toList()
     }
 
     private fun mapOperator(trainType: String, trainCode: String): Operator {
