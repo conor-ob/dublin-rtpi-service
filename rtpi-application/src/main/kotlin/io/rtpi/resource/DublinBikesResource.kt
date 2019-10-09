@@ -26,10 +26,10 @@ class DublinBikesResource(
     @Path("livedata")
     @Produces(MediaType.APPLICATION_JSON)
     fun getLiveData(
-        @QueryParam(value = "stopId") stopId: String,
+        @QueryParam(value = "dockId") dockId: String,
         @QueryParam(value = "apiKey") apiKey: String
     ): Response {
-        return Response.ok(dublinBikesLiveDataService.getLiveData(stopId, apiKey)).build()
+        return Response.ok(dublinBikesLiveDataService.getLiveData(dockId, apiKey)).build()
     }
 
 }
