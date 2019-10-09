@@ -11,6 +11,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
 
     private val rtpiApi = Retrofit.Builder()
         .baseUrl("https://dublin-rtpi.herokuapp.com/")
+//        .baseUrl("http://192.168.0.241:9000/")
         .client(
             okHttpClient ?: OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
