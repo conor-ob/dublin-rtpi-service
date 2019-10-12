@@ -98,7 +98,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         .create(JcDecauxApi::class.java)
 
     private val rtpiApi = Retrofit.Builder()
-        .baseUrl("https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V2/service.svc/")
+        .baseUrl("https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/")
         .client(defaultOkHttpClient)
         .addConverterFactory(gsonConverterFactory)
         .build()
