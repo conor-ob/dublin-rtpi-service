@@ -22,11 +22,11 @@ import io.rtpi.resource.DublinBusResource
 import io.rtpi.resource.IrishRailResource
 import io.rtpi.resource.LuasResource
 import io.rtpi.resource.aircoach.AircoachApi
-import io.rtpi.resource.aircoach.JsoupAircoachWebScraper
 import io.rtpi.service.aircoach.AircoachLiveDataService
 import io.rtpi.service.aircoach.AircoachStopService
 import io.dropwizard.Application
 import io.dropwizard.setup.Environment
+import io.rtpi.service.aircoach.JsoupAircoachWebScraper
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -1,10 +1,11 @@
 package io.rtpi.service.irishrail
 
-import io.rtpi.api.Time
+import io.rtpi.api.LiveTime
 import io.rtpi.api.IrishRailLiveData
 import io.rtpi.api.Operator
 import io.rtpi.ktx.validate
 import io.rtpi.resource.irishrail.IrishRailApi
+import io.rtpi.resource.irishrail.IrishRailStationDataXml
 import java.util.Objects
 
 abstract class AbstractIrishRailLiveDataService(private val irishRailApi: IrishRailApi) {
@@ -16,14 +17,14 @@ abstract class AbstractIrishRailLiveDataService(private val irishRailApi: IrishR
             .map { xml ->
                 val operator = mapOperator(xml.trainType!!, xml.trainCode!!)
                 IrishRailLiveData(
-                    times = listOf(createDueTime(xml.expArrival!!, xml.dueIn!!, xml.queryTime!!)),
+                    liveTimes = listOf(createDueTime(xml)),
                     operator = operator,
                     direction = xml.direction!!,
                     route = operator.fullName,
                     destination = xml.destination!!
                 )
             }
-            .sortedBy { it.times.first().minutes }
+            .sortedBy { it.liveTimes.first().waitTimeSeconds }
 
         val condensedLiveData = LinkedHashMap<Int, IrishRailLiveData>()
         for (data in liveData) {
@@ -32,14 +33,17 @@ abstract class AbstractIrishRailLiveDataService(private val irishRailApi: IrishR
             if (cachedLiveData == null) {
                 condensedLiveData[id] = data
             } else {
-                val dueTimes = cachedLiveData.times.toMutableList()
-                dueTimes.add(data.times.first())
-                cachedLiveData = cachedLiveData.copy(times = dueTimes)
+                val dueTimes = cachedLiveData.liveTimes.toMutableList()
+                dueTimes.add(data.liveTimes.first())
+                cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
                 condensedLiveData[id] = cachedLiveData
             }
         }
         return condensedLiveData.values.toList()
     }
+
+//    override fun id(liveData: IrishRailLiveData): Int =
+//        Objects.hash(liveData.operator, liveData.route, liveData.destination, liveData.direction)
 
     private fun mapOperator(trainType: String, trainCode: String): Operator {
         if (Operator.DART.shortName.equals(trainType, ignoreCase = true)) {
@@ -72,6 +76,6 @@ abstract class AbstractIrishRailLiveDataService(private val irishRailApi: IrishR
         }
     }
 
-    protected abstract fun createDueTime(expectedArrivalTimestamp: String, dueInMinutes: String, queryTime: String): Time
+    protected abstract fun createDueTime(xml: IrishRailStationDataXml): LiveTime
 
 }

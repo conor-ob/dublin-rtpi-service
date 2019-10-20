@@ -5,9 +5,9 @@ import java.time.LocalTime
 fun createDueTime(
     minutes: Int,
     currentTime: LocalTime = LocalTime.now()
-): Time {
-    return Time(
-        minutes = minutes
+): LiveTime {
+    return LiveTime(
+        waitTimeSeconds = minutes
 //        time = currentTime.plusMinutes(minutes.toLong())
     )
 }
@@ -21,7 +21,7 @@ fun createIrishRailLiveData(
     route: String = operator.fullName
 ): IrishRailLiveData {
     return IrishRailLiveData(
-        times = dueTimes.map { createDueTime(it, currentTime) },
+        liveTimes = dueTimes.map { createDueTime(it, currentTime) },
         operator = operator,
         direction = direction,
         destination = destination,
@@ -36,7 +36,7 @@ fun createLuasLiveData(
     direction: String = "Outbound"
 ): LuasLiveData {
     return LuasLiveData(
-        times = laterDueTimes.map { createDueTime(it) },
+        liveTimes = laterDueTimes.map { createDueTime(it) },
         operator = Operator.LUAS,
         route = route,
         destination = destination,

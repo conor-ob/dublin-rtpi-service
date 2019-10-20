@@ -1,15 +1,13 @@
 package io.rtpi.client
 
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import io.rtpi.api.Coordinate
-import io.rtpi.api.Time
+import io.rtpi.api.LiveTime
 import io.rtpi.api.LuasLiveData
 import io.rtpi.api.LuasStop
 import io.rtpi.api.Operator
 import org.junit.Assert
 import org.junit.Test
-import org.threeten.bp.LocalTime
 
 class GsonTest {
 
@@ -85,9 +83,9 @@ class GsonTest {
 //        val deserialized: LuasLiveData = gson.fromJson(serialized, object : TypeToken<LuasLiveData<LocalTime>>(){}.type)
 //        val deserialized: LuasLiveData<LocalTime> = gson.fromJson(serialized, object : TypeToken<LuasLiveData<LocalTime>>(){}.type)
         val luasLiveData = LuasLiveData(
-            times = listOf(
-                Time(
-                    minutes = 10
+            liveTimes = listOf(
+                LiveTime(
+                    waitTimeSeconds = 10
 //                    time = LocalTime.of(10, 10)
                 )
             ),

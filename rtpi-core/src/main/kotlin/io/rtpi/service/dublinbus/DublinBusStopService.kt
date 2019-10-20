@@ -22,21 +22,45 @@ class DublinBusStopService(
         val requestBody = DublinBusDestinationRequestBodyXml(requestRoot)
         val request = DublinBusDestinationRequestXml(requestBody)
 
-        val dublinBusResponse = dublinBusApi.getAllDestinations(request).validate()
-        val rtpiDublinBusResponse = rtpiApi.busStopInformation(operator = Operator.DUBLIN_BUS.shortName, format = "json").validate()
-        val rtpiGoAheadResponse = rtpiApi.busStopInformation(operator = Operator.GO_AHEAD.shortName, format = "json").validate()
+        val dublinBusResponse = dublinBusApi.getAllDestinations(request)
+            .validate()
+            .stops
+            .filter { xml ->
+                xml.id != null
+                    && xml.name != null
+                    && xml.latitude != null
+                    && xml.longitude != null
+            }
+        val rtpiDublinBusResponse = rtpiApi.busStopInformation(operator = Operator.DUBLIN_BUS.shortName, format = "json")
+            .validate()
+            .results
+            .filter { json ->
+                json.stopId != null
+                    && json.fullName != null
+                    && json.latitude != null
+                    && json.longitude != null
+            }
+        val rtpiGoAheadResponse = rtpiApi.busStopInformation(operator = Operator.GO_AHEAD.shortName, format = "json")
+            .validate()
+            .results
+            .filter { json ->
+                json.stopId != null
+                    && json.fullName != null
+                    && json.latitude != null
+                    && json.longitude != null
+            }
 
         return aggregate(
-            dublinBusResponse.stops,
-            rtpiDublinBusResponse.results,
-            rtpiGoAheadResponse.results
+            dublinBusResponse,
+            rtpiDublinBusResponse,
+            rtpiGoAheadResponse
         ).map { json ->
             DublinBusStop(
-                id = json.stopId,
-                name = json.fullName!!,
-                coordinate = Coordinate(json.latitude.toDouble(), json.longitude.toDouble()),
-                operators = json.operators.map { operator -> Operator.parse(operator.name) }.toSet(),
-                routes = json.operators.associateBy( { Operator.parse(it.name) }, { it.routes } )
+                id = json.stopId!!.trim(),
+                name = json.fullName!!.trim(),
+                coordinate = Coordinate(json.latitude!!.toDouble(), json.longitude!!.toDouble()),
+                operators = json.operators.map { operator -> Operator.parse(operator.name!!.trim()) }.toSet(),
+                routes = json.operators.associateBy( { Operator.parse(it.name!!.trim()) }, { it.routes } )
             )
         }
     }
@@ -69,23 +93,23 @@ class DublinBusStopService(
         for (stop in dublinBusStops) {
             var aggregatedStop = aggregatedStops[stop.stopId]
             if (aggregatedStop == null) {
-                aggregatedStops[stop.stopId] = stop
+                aggregatedStops[stop.stopId!!] = stop
             } else {
                 val existingOperators = aggregatedStop.operators.toMutableList()
                 existingOperators.addAll(stop.operators)
                 aggregatedStop = aggregatedStop.copy(operators = existingOperators)
-                aggregatedStops[stop.stopId] = aggregatedStop
+                aggregatedStops[stop.stopId!!] = aggregatedStop
             }
         }
         for (stop in goAheadDublinStops) {
             var aggregatedStop = aggregatedStops[stop.stopId]
             if (aggregatedStop == null) {
-                aggregatedStops[stop.stopId] = stop
+                aggregatedStops[stop.stopId!!] = stop
             } else {
                 val existingOperators = aggregatedStop.operators.toMutableList()
                 existingOperators.addAll(stop.operators)
                 aggregatedStop = aggregatedStop.copy(operators = existingOperators)
-                aggregatedStops[stop.stopId] = aggregatedStop
+                aggregatedStops[stop.stopId!!] = aggregatedStop
             }
         }
         return aggregatedStops.values.toList()

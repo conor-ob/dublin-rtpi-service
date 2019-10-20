@@ -12,20 +12,21 @@ interface TimedLiveData : LiveData {
 
     val destination: String
 
-    val times: List<Time>
+    val liveTimes: List<LiveTime>
 
 }
 
-data class Time(
-    val minutes: Int
-//    val hour: Int,
-//    val minute: Int
+data class LiveTime(
+    val waitTimeSeconds: Int,
+    val expectedTimestamp: String
+//    val lateTimeSeconds: Int = 0,
+//    val scheduledTimestamp: String = ""
 )
 
 data class AircoachLiveData(
     override val route: String,
     override val destination: String,
-    override val times: List<Time>
+    override val liveTimes: List<LiveTime>
 ) : TimedLiveData {
 
     override val operator = Operator.AIRCOACH
@@ -35,7 +36,7 @@ data class AircoachLiveData(
 data class BusEireannLiveData(
     override val route: String,
     override val destination: String,
-    override val times: List<Time>,
+    override val liveTimes: List<LiveTime>,
     override val operator: Operator
 ) : TimedLiveData
 
@@ -51,14 +52,14 @@ data class DublinBikesLiveData(
 data class DublinBusLiveData(
     override val route: String,
     override val destination: String,
-    override val times: List<Time>,
+    override val liveTimes: List<LiveTime>,
     override val operator: Operator
 ) : TimedLiveData
 
 data class IrishRailLiveData(
     override val route: String,
     override val destination: String,
-    override val times: List<Time>,
+    override val liveTimes: List<LiveTime>,
     override val operator: Operator,
     val direction: String
 ) : TimedLiveData
@@ -66,17 +67,7 @@ data class IrishRailLiveData(
 data class LuasLiveData(
     override val route: String,
     override val destination: String,
-    override val times: List<Time>,
+    override val liveTimes: List<LiveTime>,
     override val operator: Operator,
     val direction: String
 ) : TimedLiveData
-
-data class SwordsExpressLiveData(
-    override val route: String,
-    override val destination: String,
-    override val times: List<Time>
-) : TimedLiveData {
-
-    override val operator = Operator.SWORDS_EXPRESS
-
-}

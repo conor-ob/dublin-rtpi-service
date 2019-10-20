@@ -91,15 +91,3 @@ data class LuasStop(
     override val service = Service.LUAS
 
 }
-
-data class SwordsExpressStop(
-    override val id: String,
-    override val name: String,
-    override val coordinate: Coordinate,
-    override val operators: Set<Operator>,
-    val direction: String
-) : ServiceLocation {
-
-    override val service = Service.SWORDS_EXPRESS
-
-}

@@ -1,7 +1,7 @@
 package io.rtpi.service.aircoach
 
 import io.rtpi.api.AircoachLiveData
-import io.rtpi.api.Time
+import io.rtpi.api.LiveTime
 import io.rtpi.ktx.validate
 import io.rtpi.resource.aircoach.AircoachApi
 import io.rtpi.resource.aircoach.EtaJson
@@ -16,13 +16,13 @@ abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: Airco
             .services
             .map { json ->
                 AircoachLiveData(
-                    times = listOf(createDueTime(json.eta, json.time.arrive)),
+                    liveTimes = listOf(createDueTime(json.eta, json.time.arrive)),
                     route = json.route,
                     destination = json.arrival
                 )
             }
-            .filter { it.times.first().minutes > -1 }
-            .sortedBy { it.times.first().minutes }
+            .filter { it.liveTimes.first().waitTimeSeconds > -1 }
+            .sortedBy { it.liveTimes.first().waitTimeSeconds }
 
         val condensedLiveData = LinkedHashMap<Int, AircoachLiveData>()
         for (data in liveData) {
@@ -31,14 +31,14 @@ abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: Airco
             if (cachedLiveData == null) {
                 condensedLiveData[id] = data
             } else {
-                val dueTimes = cachedLiveData.times.toMutableList()
-                dueTimes.add(data.times.first())
-                cachedLiveData = cachedLiveData.copy(times = dueTimes)
+                val dueTimes = cachedLiveData.liveTimes.toMutableList()
+                dueTimes.add(data.liveTimes.first())
+                cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
                 condensedLiveData[id] = cachedLiveData
             }
         }
         return condensedLiveData.values.toList()
     }
 
-    protected abstract fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): Time
+    protected abstract fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): LiveTime
 }

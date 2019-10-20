@@ -1,7 +1,7 @@
 package io.rtpi.service.buseireann
 
 import io.rtpi.api.BusEireannLiveData
-import io.rtpi.api.Time
+import io.rtpi.api.LiveTime
 import io.rtpi.api.Operator
 import io.rtpi.ktx.validate
 import io.rtpi.resource.rtpi.RtpiApi
@@ -16,13 +16,13 @@ abstract class AbstractBusEireannLiveDataService(private val rtpiService: RtpiAp
             .results
             .map { json ->
                 BusEireannLiveData(
-                    times = listOf(createDueTime(json)),
+                    liveTimes = listOf(createDueTime(json)),
                     operator = Operator.parse(json.operator!!),
                     route = json.route!!,
                     destination = json.destination!!.replace("LUAS ", "")
                 )
             }
-            .sortedBy { it.times.first().minutes }
+            .sortedBy { it.liveTimes.first().waitTimeSeconds }
 
         val condensedLiveData = LinkedHashMap<Int, BusEireannLiveData>()
         for (data in liveData) {
@@ -31,14 +31,14 @@ abstract class AbstractBusEireannLiveDataService(private val rtpiService: RtpiAp
             if (cachedLiveData == null) {
                 condensedLiveData[id] = data
             } else {
-                val dueTimes = cachedLiveData.times.toMutableList()
-                dueTimes.add(data.times.first())
-                cachedLiveData = cachedLiveData.copy(times = dueTimes)
+                val dueTimes = cachedLiveData.liveTimes.toMutableList()
+                dueTimes.add(data.liveTimes.first())
+                cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
                 condensedLiveData[id] = cachedLiveData
             }
         }
         return condensedLiveData.values.toList()
     }
 
-    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): Time
+    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): LiveTime
 }

@@ -1,19 +1,24 @@
 package io.rtpi.service.buseireann
 
-import io.rtpi.api.Time
+import io.rtpi.api.LiveTime
 import io.rtpi.resource.rtpi.RtpiApi
 import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
-import java.time.LocalDateTime
-import java.time.LocalTime
+import io.rtpi.time.DateTimeProvider
+import io.rtpi.time.toIso8601
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 class BusEireannLiveDataService(rtpiApi: RtpiApi) : AbstractBusEireannLiveDataService(rtpiApi) {
 
-    override fun createDueTime(json: RtpiRealTimeBusInformationJson): Time {
-        return Time(
-            if (json.dueTime == "Due") 0 else json.dueTime!!.toInt()
-//            LocalDateTime.parse(json.arrivalDateTime!!, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")).toLocalTime()
+    override fun createDueTime(json: RtpiRealTimeBusInformationJson): LiveTime {
+        val currentTime = DateTimeProvider.getCurrentDateTime()
+        val expectedTimestamp = json.arrivalDateTime!!
+        val expectedTime = DateTimeProvider.getDateTime(
+            expectedTimestamp,
+            DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
         )
+        val waitTimeSeconds = ChronoUnit.SECONDS.between(currentTime, expectedTime).toInt()
+        return LiveTime(waitTimeSeconds, expectedTime.toIso8601())
     }
 
 }

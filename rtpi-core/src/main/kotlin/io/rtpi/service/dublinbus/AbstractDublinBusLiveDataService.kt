@@ -1,7 +1,7 @@
 package io.rtpi.service.dublinbus
 
 import io.rtpi.api.DublinBusLiveData
-import io.rtpi.api.Time
+import io.rtpi.api.LiveTime
 import io.rtpi.api.Operator
 import io.rtpi.ktx.validate
 import io.rtpi.resource.dublinbus.DublinBusApi
@@ -33,7 +33,7 @@ abstract class AbstractDublinBusLiveDataService(
         }
             .map { xml ->
                 return@map DublinBusLiveData(
-                    times = listOf(createDueTime(xml)),
+                    liveTimes = listOf(createDueTime(xml)),
                     operator = Operator.DUBLIN_BUS, //TODO
                     route = xml.routeId!!,
                     destination = xml.destination!!
@@ -48,7 +48,7 @@ abstract class AbstractDublinBusLiveDataService(
         }
             .map { json ->
                 DublinBusLiveData(
-                    times = listOf(createDueTime(json)),
+                    liveTimes = listOf(createDueTime(json)),
                     operator = Operator.parse(json.operator!!),
                     route = json.route!!,
                     destination = json.destination!!
@@ -57,7 +57,7 @@ abstract class AbstractDublinBusLiveDataService(
 
         val liveData = dublinBusFiltered
             .plus(rtpiFiltered)
-            .sortedBy { it.times.first().minutes }
+            .sortedBy { it.liveTimes.first().waitTimeSeconds }
 
         val condensedLiveData = LinkedHashMap<Int, DublinBusLiveData>()
         for (data in liveData) {
@@ -66,17 +66,17 @@ abstract class AbstractDublinBusLiveDataService(
             if (cachedLiveData == null) {
                 condensedLiveData[id] = data
             } else {
-                val dueTimes = cachedLiveData.times.toMutableList()
-                dueTimes.add(data.times.first())
-                cachedLiveData = cachedLiveData.copy(times = dueTimes)
+                val dueTimes = cachedLiveData.liveTimes.toMutableList()
+                dueTimes.add(data.liveTimes.first())
+                cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
                 condensedLiveData[id] = cachedLiveData
             }
         }
         return condensedLiveData.values.toList()
     }
 
-    protected abstract fun createDueTime(xml: DublinBusRealTimeStopDataXml): Time
+    protected abstract fun createDueTime(xml: DublinBusRealTimeStopDataXml): LiveTime
 
-    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): Time
+    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): LiveTime
 
 }

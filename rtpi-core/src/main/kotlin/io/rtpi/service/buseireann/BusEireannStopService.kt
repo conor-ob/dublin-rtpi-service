@@ -12,13 +12,18 @@ class BusEireannStopService(private val rtpiApi: RtpiApi) {
         return rtpiApi.busStopInformation(operator = "be", format = "json")
             .validate()
             .results
-            .map { json ->
+            .filter { json ->
+                json.stopId != null
+                    && json.fullName != null
+                    && json.latitude != null
+                    && json.longitude != null
+            }.map { json ->
                 BusEireannStop(
-                        id = json.stopId,
+                        id = json.stopId!!,
                         name = json.fullName!!,
-                        coordinate = Coordinate(json.latitude.toDouble(), json.longitude.toDouble()),
-                        operators = json.operators.map { operator -> Operator.parse(operator.name) }.toSet(),
-                        routes = json.operators.associateBy( { Operator.parse(it.name) }, { it.routes } )
+                        coordinate = Coordinate(json.latitude!!.toDouble(), json.longitude!!.toDouble()),
+                        operators = json.operators.map { operator -> Operator.parse(operator.name!!) }.toSet(),
+                        routes = json.operators.associateBy( { Operator.parse(it.name!!) }, { it.routes } )
                     )
             }
     }
