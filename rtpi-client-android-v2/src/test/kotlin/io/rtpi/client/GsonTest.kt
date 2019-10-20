@@ -64,15 +64,10 @@ class GsonTest {
         val serialized = "{\n" +
             "    \"route\": \"Green\",\n" +
             "    \"destination\":\"Sandyford\",\n" +
-            "    \"times\": [\n" +
+            "    \"liveTimes\": [\n" +
             "        {\n" +
-            "            \"minutes\": 10,\n" +
-            "            \"time\": {\n" +
-            "                \"hour\": 10,\n" +
-            "                \"minute\": 10,\n" +
-            "                \"second\": 0,\n" +
-            "                \"nano\": 0\n" +
-            "            }\n" +
+            "            \"waitTimeSeconds\": 10,\n" +
+            "            \"expectedTimestamp\": \"TEST\"\n" +
             "        }\n" +
             "     ],\n" +
             "    \"operator\": \"LUAS\",\n" +
@@ -85,7 +80,8 @@ class GsonTest {
         val luasLiveData = LuasLiveData(
             liveTimes = listOf(
                 LiveTime(
-                    waitTimeSeconds = 10
+                    waitTimeSeconds = 10,
+                    expectedTimestamp = "TEST"
 //                    time = LocalTime.of(10, 10)
                 )
             ),

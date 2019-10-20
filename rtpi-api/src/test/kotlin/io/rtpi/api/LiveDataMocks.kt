@@ -7,7 +7,8 @@ fun createDueTime(
     currentTime: LocalTime = LocalTime.now()
 ): LiveTime {
     return LiveTime(
-        waitTimeSeconds = minutes
+        waitTimeSeconds = minutes,
+        expectedTimestamp = ""
 //        time = currentTime.plusMinutes(minutes.toLong())
     )
 }
