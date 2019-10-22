@@ -12,13 +12,18 @@ class LuasStopService(private val rtpiApi: RtpiApi) {
         return rtpiApi.busStopInformation(operator = "luas", format = "json")
             .validate()
             .results
-            .map { json ->
+            .filter { json ->
+                json.stopId != null
+                    && json.fullName != null
+                    && json.latitude != null
+                    && json.longitude != null
+            }.map { json ->
                 LuasStop(
-                    id = json.stopId,
-                    name = json.fullName!!.replace("LUAS ", ""),
-                    coordinate = Coordinate(json.latitude.toDouble(), json.longitude.toDouble()),
-                    operators = json.operators.map { operator -> Operator.parse(operator.name) }.toSet(),
-                    routes = json.operators.associateBy( { Operator.parse(it.name) }, { it.routes } )
+                    id = json.stopId!!.trim(),
+                    name = json.fullName!!.trim().replace("LUAS ", ""),
+                    coordinate = Coordinate(json.latitude!!.toDouble(), json.longitude!!.toDouble()),
+                    operators = json.operators.map { operator -> Operator.parse(operator.name!!.trim()) }.toSet(),
+                    routes = json.operators.associateBy( { Operator.parse(it.name!!.trim()) }, { it.routes } )
                 )
             }
     }

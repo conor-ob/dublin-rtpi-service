@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 class RtpiClient(okHttpClient: OkHttpClient? = null) {
 
     private val rtpiApi = Retrofit.Builder()
-        .baseUrl("http://localhost:9000/")
+        .baseUrl("https://dublin-rtpi.herokuapp.com/")
         .client(
             okHttpClient ?: OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)

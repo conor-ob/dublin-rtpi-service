@@ -12,8 +12,8 @@ class IrishRailClient(private val rtpiApi: RtpiApi) {
         return rtpiApi.getIrishRailStations()
     }
 
-    fun getLiveData(stopId: String, compact: Boolean): Single<List<IrishRailLiveData<LocalTime>>> {
-        return rtpiApi.getIrishRailLiveData(stopId, compact)
+    fun getLiveData(stationId: String): Single<List<IrishRailLiveData>> {
+        return rtpiApi.getIrishRailLiveData(stationId)
     }
 
 }

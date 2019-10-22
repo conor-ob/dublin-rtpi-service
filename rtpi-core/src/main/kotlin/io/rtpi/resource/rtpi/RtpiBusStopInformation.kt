@@ -11,20 +11,20 @@ data class RtpiBusStopInformationResponseJson(
 )
 
 data class RtpiBusStopInformationJson(
-    @SerializedName("stopid") val stopId: String,
+    @SerializedName("stopid") val stopId: String? = null,
     @SerializedName("displaystopid") val displayId: String? = null,
     @SerializedName("shortname") val shortName: String? = null,
     @SerializedName("shortnamelocalized") val shortNameLocalized: String? = null,
     @SerializedName("fullname") val fullName: String? = null,
     @SerializedName("fullnamelocalized") val fullNameLocalized: String? = null,
-    @SerializedName("latitude") val latitude: String,
-    @SerializedName("longitude") val longitude: String,
+    @SerializedName("latitude") val latitude: String? = null,
+    @SerializedName("longitude") val longitude: String? = null,
     @SerializedName("lastupdated") val lastUpdated: String? = null,
     @SerializedName("operators") val operators: List<RtpiBusStopOperatorInformationJson> = mutableListOf()
 )
 
 data class RtpiBusStopOperatorInformationJson(
-    @SerializedName("name") val name: String,
+    @SerializedName("name") val name: String? = null,
     @SerializedName("operatortype") val operatorType: Int? = null,
     @SerializedName("routes") val routes: List<String> = mutableListOf()
 )

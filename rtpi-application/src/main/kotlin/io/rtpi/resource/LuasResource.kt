@@ -26,11 +26,8 @@ class LuasResource(
     @GET
     @Path("livedata")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getLiveData(
-        @QueryParam(value = "stopId") stopId: String,
-        @QueryParam(value = "compact") @DefaultValue(value = "false") compact: Boolean
-    ): Response {
-        return Response.ok(luasLiveDataService.getLiveData(stopId, compact)).build()
+    fun getLiveData(@QueryParam(value = "stopId") stopId: String): Response {
+        return Response.ok(luasLiveDataService.getLiveData(stopId)).build()
     }
 
 }

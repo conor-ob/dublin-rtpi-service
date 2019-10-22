@@ -4,7 +4,6 @@ import io.rtpi.api.AircoachLiveData
 import io.rtpi.api.AircoachStop
 import io.rtpi.service.aircoach.AircoachLiveDataService
 import io.rtpi.service.aircoach.AircoachStopService
-import org.threeten.bp.LocalTime
 
 class AircoachClient(
     private val aircoachStopService: AircoachStopService,
@@ -15,8 +14,8 @@ class AircoachClient(
         return aircoachStopService.getStops()
     }
 
-    fun getLiveData(stopId: String, compact: Boolean): List<AircoachLiveData<LocalTime>> {
-        return aircoachLiveDataService.getLiveData(stopId, compact)
+    fun getLiveData(stopId: String): List<AircoachLiveData> {
+        return aircoachLiveDataService.getLiveData(stopId)
     }
 
 }

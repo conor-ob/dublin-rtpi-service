@@ -12,8 +12,8 @@ class AircoachClient(private val rtpiApi: RtpiApi) {
         return rtpiApi.getAircoachStops()
     }
 
-    fun getLiveData(stopId: String, compact: Boolean): Single<List<AircoachLiveData<LocalTime>>> {
-        return rtpiApi.getAircoachLiveData(stopId, compact)
+    fun getLiveData(stopId: String): Single<List<AircoachLiveData>> {
+        return rtpiApi.getAircoachLiveData(stopId)
     }
 
 }

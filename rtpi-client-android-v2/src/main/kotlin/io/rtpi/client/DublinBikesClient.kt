@@ -7,12 +7,12 @@ import io.rtpi.api.DublinBikesLiveData
 
 class DublinBikesClient(private val rtpiApi: RtpiApi) {
 
-    fun getDocks(): Single<List<DublinBikesDock>> {
-        return rtpiApi.getDublinBikesDocks()
+    fun getDocks(apiKey: String): Single<List<DublinBikesDock>> {
+        return rtpiApi.getDublinBikesDocks(apiKey)
     }
 
-    fun getLiveData(stopId: String): Single<List<DublinBikesLiveData>> {
-        return rtpiApi.getDublinBikesLiveData(stopId)
+    fun getLiveData(dockId: String, apiKey: String): Single<DublinBikesLiveData> {
+        return rtpiApi.getDublinBikesLiveData(dockId, apiKey)
     }
 
 }

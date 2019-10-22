@@ -12,8 +12,8 @@ class BusEireannClient(private val rtpiApi: RtpiApi) {
         return rtpiApi.getBusEireannStops()
     }
 
-    fun getLiveData(stopId: String, compact: Boolean): Single<List<BusEireannLiveData<LocalTime>>> {
-        return rtpiApi.getBusEireannLiveData(stopId, compact)
+    fun getLiveData(stopId: String): Single<List<BusEireannLiveData>> {
+        return rtpiApi.getBusEireannLiveData(stopId)
     }
 
 }

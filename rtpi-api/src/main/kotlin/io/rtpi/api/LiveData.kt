@@ -6,41 +6,39 @@ interface LiveData {
 
 }
 
-interface TimedLiveData<T> : LiveData {
+interface TimedLiveData : LiveData {
 
     val route: String
 
     val destination: String
 
-    val nextDueTime: DueTime<T>
-
-    val laterDueTimes: List<DueTime<T>>
+    val liveTimes: List<LiveTime>
 
 }
 
-data class DueTime<T>(
-    val minutes: Int,
-    val time: T
+data class LiveTime(
+    val waitTimeSeconds: Int,
+    val expectedTimestamp: String
+//    val lateTimeSeconds: Int = 0,
+//    val scheduledTimestamp: String = ""
 )
 
-data class AircoachLiveData<T>(
+data class AircoachLiveData(
     override val route: String,
     override val destination: String,
-    override val nextDueTime: DueTime<T>,
-    override val laterDueTimes: List<DueTime<T>>
-) : TimedLiveData<T> {
+    override val liveTimes: List<LiveTime>
+) : TimedLiveData {
 
     override val operator = Operator.AIRCOACH
 
 }
 
-data class BusEireannLiveData<T>(
+data class BusEireannLiveData(
     override val route: String,
     override val destination: String,
-    override val nextDueTime: DueTime<T>,
-    override val laterDueTimes: List<DueTime<T>>,
+    override val liveTimes: List<LiveTime>,
     override val operator: Operator
-) : TimedLiveData<T>
+) : TimedLiveData
 
 data class DublinBikesLiveData(
     val bikes: Int,
@@ -51,39 +49,26 @@ data class DublinBikesLiveData(
 
 }
 
-data class DublinBusLiveData<T>(
+data class DublinBusLiveData(
     override val route: String,
     override val destination: String,
-    override val nextDueTime: DueTime<T>,
-    override val laterDueTimes: List<DueTime<T>>,
+    override val liveTimes: List<LiveTime>,
     override val operator: Operator
-) : TimedLiveData<T>
+) : TimedLiveData
 
-data class IrishRailLiveData<T>(
+data class IrishRailLiveData(
     override val route: String,
     override val destination: String,
-    override val nextDueTime: DueTime<T>,
-    override val laterDueTimes: List<DueTime<T>>,
+    override val liveTimes: List<LiveTime>,
+    override val operator: Operator,
+    val direction: String,
+    val origin: String
+) : TimedLiveData
+
+data class LuasLiveData(
+    override val route: String,
+    override val destination: String,
+    override val liveTimes: List<LiveTime>,
     override val operator: Operator,
     val direction: String
-) : TimedLiveData<T>
-
-data class LuasLiveData<T>(
-    override val route: String,
-    override val destination: String,
-    override val nextDueTime: DueTime<T>,
-    override val laterDueTimes: List<DueTime<T>>,
-    override val operator: Operator,
-    val direction: String
-) : TimedLiveData<T>
-
-data class SwordsExpressLiveData<T>(
-    override val route: String,
-    override val destination: String,
-    override val nextDueTime: DueTime<T>,
-    override val laterDueTimes: List<DueTime<T>>
-) : TimedLiveData<T> {
-
-    override val operator = Operator.SWORDS_EXPRESS
-
-}
+) : TimedLiveData

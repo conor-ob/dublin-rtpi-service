@@ -12,8 +12,8 @@ class LuasClient(private val rtpiApi: RtpiApi) {
         return rtpiApi.getLuasStops()
     }
 
-    fun getLiveData(stopId: String, compact: Boolean): Single<List<LuasLiveData<LocalTime>>> {
-        return rtpiApi.getLuasLiveData(stopId, compact)
+    fun getLiveData(stopId: String): Single<List<LuasLiveData>> {
+        return rtpiApi.getLuasLiveData(stopId)
     }
 
 }

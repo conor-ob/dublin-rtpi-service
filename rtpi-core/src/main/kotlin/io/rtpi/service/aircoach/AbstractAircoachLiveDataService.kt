@@ -1,29 +1,44 @@
 package io.rtpi.service.aircoach
 
 import io.rtpi.api.AircoachLiveData
-import io.rtpi.api.DueTime
+import io.rtpi.api.LiveTime
 import io.rtpi.ktx.validate
 import io.rtpi.resource.aircoach.AircoachApi
 import io.rtpi.resource.aircoach.EtaJson
 import io.rtpi.resource.aircoach.TimestampJson
+import java.util.Objects
 
 abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: AircoachApi) {
 
-    fun getLiveData(stopId: String, compact: Boolean): List<AircoachLiveData<T>> {
-        return aircoachApi.getLiveData(stopId)
+    fun getLiveData(stopId: String): List<AircoachLiveData> {
+        val liveData = aircoachApi.getLiveData(stopId)
             .validate()
             .services
             .map { json ->
                 AircoachLiveData(
-                    nextDueTime = createDueTime(json.eta, json.time.arrive),
-                    laterDueTimes = emptyList(),
+                    liveTimes = listOf(createDueTime(json.eta, json.time.arrive)),
                     route = json.route,
                     destination = json.arrival
                 )
             }
-            .filter { it.nextDueTime.minutes > -1 }
-            .sortedBy { it.nextDueTime.minutes }
+            .filter { it.liveTimes.first().waitTimeSeconds > -1 }
+            .sortedBy { it.liveTimes.first().waitTimeSeconds }
+
+        val condensedLiveData = LinkedHashMap<Int, AircoachLiveData>()
+        for (data in liveData) {
+            val id = Objects.hash(data.operator, data.route, data.destination)
+            var cachedLiveData = condensedLiveData[id]
+            if (cachedLiveData == null) {
+                condensedLiveData[id] = data
+            } else {
+                val dueTimes = cachedLiveData.liveTimes.toMutableList()
+                dueTimes.add(data.liveTimes.first())
+                cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
+                condensedLiveData[id] = cachedLiveData
+            }
+        }
+        return condensedLiveData.values.toList()
     }
 
-    protected abstract fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): DueTime<T>
+    protected abstract fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): LiveTime
 }

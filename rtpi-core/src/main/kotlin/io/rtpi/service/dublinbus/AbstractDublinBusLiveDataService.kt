@@ -1,7 +1,7 @@
 package io.rtpi.service.dublinbus
 
 import io.rtpi.api.DublinBusLiveData
-import io.rtpi.api.DueTime
+import io.rtpi.api.LiveTime
 import io.rtpi.api.Operator
 import io.rtpi.ktx.validate
 import io.rtpi.resource.dublinbus.DublinBusApi
@@ -11,58 +11,78 @@ import io.rtpi.resource.dublinbus.DublinBusRealTimeStopDataRequestXml
 import io.rtpi.resource.dublinbus.DublinBusRealTimeStopDataXml
 import io.rtpi.resource.rtpi.RtpiApi
 import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
+import java.util.Objects
 
-abstract class AbstractDublinBusLiveDataService<T>(
+abstract class AbstractDublinBusLiveDataService(
     private val dublinBusApi: DublinBusApi,
     private val rtpiApi: RtpiApi
 ) {
 
-    fun getLiveData(stopId: String, compact: Boolean): List<DublinBusLiveData<T>> {
+    fun getLiveData(stopId: String): List<DublinBusLiveData> = runBlocking {
+        val dublinBusResponse = async { getDublinBusLiveData(stopId) }
+        val rtpiResponse = async { getGoAheadLiveData(stopId) }
+        val liveData = dublinBusResponse.await()
+            .plus(rtpiResponse.await())
+            .sortedBy { it.liveTimes.first().waitTimeSeconds }
+
+        val condensedLiveData = LinkedHashMap<Int, DublinBusLiveData>()
+        for (data in liveData) {
+            val id = Objects.hash(data.operator, data.route, data.destination)
+            var cachedLiveData = condensedLiveData[id]
+            if (cachedLiveData == null) {
+                condensedLiveData[id] = data
+            } else {
+                val dueTimes = cachedLiveData.liveTimes.toMutableList()
+                dueTimes.add(data.liveTimes.first())
+                cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
+                condensedLiveData[id] = cachedLiveData
+            }
+        }
+        return@runBlocking condensedLiveData.values.toList()
+    }
+
+    private suspend fun getDublinBusLiveData(stopId: String): List<DublinBusLiveData> {
         val requestRoot = DublinBusRealTimeStopDataRequestRootXml(stopId, true.toString())
         val requestBody = DublinBusRealTimeStopDataRequestBodyXml(requestRoot)
         val request = DublinBusRealTimeStopDataRequestXml(requestBody)
-
-        val dublinBusResponse = dublinBusApi.getRealTimeStopData(request).validate()
-        val rtpiResponse = rtpiApi.realTimeBusInformation(stopId, Operator.GO_AHEAD.shortName, "json").validate()
-
-        val dublinBusFiltered = dublinBusResponse.dublinBusRealTimeStopData.filter {
-            it.routeId != null
+        return dublinBusApi.getRealTimeStopData(request)
+            .validate()
+            .dublinBusRealTimeStopData
+            .filter { it.routeId != null
                 && it.destination != null
                 && it.expectedTimestamp != null
-        }
-            .map { xml ->
+            }.map { xml ->
                 return@map DublinBusLiveData(
-                    nextDueTime = createDueTime(xml),
-                    laterDueTimes = emptyList(),
+                    liveTimes = listOf(createDueTime(xml)),
                     operator = Operator.DUBLIN_BUS, //TODO
                     route = xml.routeId!!,
                     destination = xml.destination!!
                 )
             }
-
-        val rtpiFiltered = rtpiResponse.results.filter {
-            it.route != null
-                && it.destination != null
-                && it.operator != null
-                && it.arrivalDateTime != null
-        }
-            .map { json ->
+    }
+    private suspend fun getGoAheadLiveData(stopId: String): List<DublinBusLiveData> {
+        return rtpiApi.realTimeBusInformation(stopId, Operator.GO_AHEAD.shortName, "json")
+            .validate()
+            .results
+            .filter {
+                it.route != null
+                    && it.destination != null
+                    && it.operator != null
+                    && it.arrivalDateTime != null
+            }.map { json ->
                 DublinBusLiveData(
-                    nextDueTime = createDueTime(json),
-                    laterDueTimes = emptyList(),
+                    liveTimes = listOf(createDueTime(json)),
                     operator = Operator.parse(json.operator!!),
                     route = json.route!!,
                     destination = json.destination!!
                 )
             }
-
-        return dublinBusFiltered
-            .plus(rtpiFiltered)
-            .sortedBy { it.nextDueTime.minutes }
     }
 
-    protected abstract fun createDueTime(xml: DublinBusRealTimeStopDataXml): DueTime<T>
+    protected abstract fun createDueTime(xml: DublinBusRealTimeStopDataXml): LiveTime
 
-    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): DueTime<T>
+    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): LiveTime
 
 }

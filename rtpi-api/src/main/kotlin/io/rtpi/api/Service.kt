@@ -13,8 +13,7 @@ enum class Service(
     DUBLIN_BIKES("Dublin Bikes", "BIKE", setOf(Operator.DUBLIN_BIKES)),
     DUBLIN_BUS("Dublin Bus", "BAC", setOf(Operator.DUBLIN_BUS, Operator.GO_AHEAD)),
     IRISH_RAIL("Irish Rail", "IR", setOf(Operator.COMMUTER, Operator.DART, Operator.INTERCITY)),
-    LUAS("Luas", "LUAS", setOf(Operator.LUAS)),
-    SWORDS_EXPRESS("Swords Express", "SE", setOf(Operator.SWORDS_EXPRESS));
+    LUAS("Luas", "LUAS", setOf(Operator.LUAS));
 
     override fun toString(): String {
         return fullName
@@ -54,8 +53,7 @@ enum class Operator(
     DUBLIN_BUS("Dublin Bus", "BAC"),
     GO_AHEAD("Go Ahead", "GAD"),
     INTERCITY("InterCity", "ICTY"),
-    LUAS("Luas", "LUAS"),
-    SWORDS_EXPRESS("Swords Express", "SE");
+    LUAS("Luas", "LUAS");
 
     override fun toString(): String {
         return fullName

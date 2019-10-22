@@ -13,6 +13,5 @@ data class ApiConfig(
     val dublinBusBaseUrl: String? = null,
     val irishRailBaseUrl: String? = null,
     val jcDecauxBaseUrl: String? = null,
-    val jcDecauxApiKey: String? = null,
     val rtpiBaseUrl: String? = null
 )

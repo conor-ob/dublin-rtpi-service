@@ -10,12 +10,12 @@ class DublinBikesClient(
     private val dublinBikesLiveDataService: DublinBikesLiveDataService
 ) {
 
-    fun getDocks(): List<DublinBikesDock> {
-        return dublinBikesDockService.getDocks()
+    fun getDocks(apiKey: String): List<DublinBikesDock> {
+        return dublinBikesDockService.getDocks(apiKey)
     }
 
-    fun getLiveData(dockId: String): List<DublinBikesLiveData> {
-        return dublinBikesLiveDataService.getLiveData(dockId)
+    fun getLiveData(dockId: String, apiKey: String): DublinBikesLiveData {
+        return dublinBikesLiveDataService.getLiveData(dockId, apiKey)
     }
 
 }

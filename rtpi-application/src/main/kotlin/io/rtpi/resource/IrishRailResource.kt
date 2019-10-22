@@ -26,11 +26,8 @@ class IrishRailResource(
     @GET
     @Path("livedata")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getLiveData(
-        @QueryParam(value = "stationId") stationId: String,
-        @QueryParam(value = "compact") @DefaultValue(value = "false") compact: Boolean
-    ): Response {
-        return Response.ok(irishRailLiveDataService.getLiveData(stationId, compact)).build()
+    fun getLiveData(@QueryParam(value = "stationId") stationId: String): Response {
+        return Response.ok(irishRailLiveDataService.getLiveData(stationId)).build()
     }
 
 }

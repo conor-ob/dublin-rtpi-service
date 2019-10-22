@@ -11,5 +11,4 @@ apiConfig:
   dublinBusBaseUrl: "http://rtpi.dublinbus.ie/"
   irishRailBaseUrl: "http://api.irishrail.ie/realtime/realtime.asmx/"
   jcDecauxBaseUrl: "https://api.jcdecaux.com/vls/v1/"
-  jcDecauxApiKey: ""
-  rtpiBaseUrl: "https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V2/service.svc/"
+  rtpiBaseUrl: "https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/"

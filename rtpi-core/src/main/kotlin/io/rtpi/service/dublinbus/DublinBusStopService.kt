@@ -11,34 +11,70 @@ import io.rtpi.resource.dublinbus.DublinBusDestinationRequestXml
 import io.rtpi.resource.dublinbus.DublinBusDestinationXml
 import io.rtpi.resource.rtpi.RtpiApi
 import io.rtpi.resource.rtpi.RtpiBusStopInformationJson
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 class DublinBusStopService(
     private val dublinBusApi: DublinBusApi,
     private val rtpiApi: RtpiApi
 ) {
 
-    fun getStops(): List<DublinBusStop> {
+    fun getStops(): List<DublinBusStop> = runBlocking {
+        val dublinBusResponse = async { getDublinBusStops() }
+        val rtpiDublinBusResponse = async { getRtpiDublinBusStops() }
+        val rtpiGoAheadResponse = async { getRtpiGoAheadStops() }
+        return@runBlocking aggregate(
+            dublinBusResponse.await(),
+            rtpiDublinBusResponse.await(),
+            rtpiGoAheadResponse.await()
+        ).map { json ->
+            DublinBusStop(
+                id = json.stopId!!.trim(),
+                name = json.fullName!!.trim(),
+                coordinate = Coordinate(json.latitude!!.toDouble(), json.longitude!!.toDouble()),
+                operators = json.operators.map { operator -> Operator.parse(operator.name!!.trim()) }.toSet(),
+                routes = json.operators.associateBy( { Operator.parse(it.name!!.trim()) }, { it.routes } )
+            )
+        }
+    }
+
+    private suspend fun getDublinBusStops(): List<DublinBusDestinationXml> {
         val requestRoot = DublinBusDestinationRequestRootXml()
         val requestBody = DublinBusDestinationRequestBodyXml(requestRoot)
         val request = DublinBusDestinationRequestXml(requestBody)
+        return dublinBusApi.getAllDestinations(request)
+            .validate()
+            .stops
+            .filter { xml ->
+                xml.id != null
+                    && xml.name != null
+                    && xml.latitude != null
+                    && xml.longitude != null
+            }
+    }
 
-        val dublinBusResponse = dublinBusApi.getAllDestinations(request).validate()
-        val rtpiDublinBusResponse = rtpiApi.busStopInformation(operator = Operator.DUBLIN_BUS.shortName, format = "json").validate()
-        val rtpiGoAheadResponse = rtpiApi.busStopInformation(operator = Operator.GO_AHEAD.shortName, format = "json").validate()
+    private suspend fun getRtpiDublinBusStops(): List<RtpiBusStopInformationJson> {
+        return rtpiApi.busStopInformation(operator = Operator.DUBLIN_BUS.shortName, format = "json")
+            .validate()
+            .results
+            .filter { json ->
+                json.stopId != null
+                    && json.fullName != null
+                    && json.latitude != null
+                    && json.longitude != null
+            }
+    }
 
-        return aggregate(
-            dublinBusResponse.stops,
-            rtpiDublinBusResponse.results,
-            rtpiGoAheadResponse.results
-        ).map { json ->
-            DublinBusStop(
-                id = json.stopId,
-                name = json.fullName!!,
-                coordinate = Coordinate(json.latitude.toDouble(), json.longitude.toDouble()),
-                operators = json.operators.map { operator -> Operator.parse(operator.name) }.toSet(),
-                routes = json.operators.associateBy( { Operator.parse(it.name) }, { it.routes } )
-            )
-        }
+    private suspend fun getRtpiGoAheadStops(): List<RtpiBusStopInformationJson> {
+        return rtpiApi.busStopInformation(operator = Operator.GO_AHEAD.shortName, format = "json")
+            .validate()
+            .results
+            .filter { json ->
+                json.stopId != null
+                    && json.fullName != null
+                    && json.latitude != null
+                    && json.longitude != null
+            }
     }
 
     private fun aggregate(
@@ -69,23 +105,23 @@ class DublinBusStopService(
         for (stop in dublinBusStops) {
             var aggregatedStop = aggregatedStops[stop.stopId]
             if (aggregatedStop == null) {
-                aggregatedStops[stop.stopId] = stop
+                aggregatedStops[stop.stopId!!] = stop
             } else {
                 val existingOperators = aggregatedStop.operators.toMutableList()
                 existingOperators.addAll(stop.operators)
                 aggregatedStop = aggregatedStop.copy(operators = existingOperators)
-                aggregatedStops[stop.stopId] = aggregatedStop
+                aggregatedStops[stop.stopId!!] = aggregatedStop
             }
         }
         for (stop in goAheadDublinStops) {
             var aggregatedStop = aggregatedStops[stop.stopId]
             if (aggregatedStop == null) {
-                aggregatedStops[stop.stopId] = stop
+                aggregatedStops[stop.stopId!!] = stop
             } else {
                 val existingOperators = aggregatedStop.operators.toMutableList()
                 existingOperators.addAll(stop.operators)
                 aggregatedStop = aggregatedStop.copy(operators = existingOperators)
-                aggregatedStops[stop.stopId] = aggregatedStop
+                aggregatedStops[stop.stopId!!] = aggregatedStop
             }
         }
         return aggregatedStops.values.toList()

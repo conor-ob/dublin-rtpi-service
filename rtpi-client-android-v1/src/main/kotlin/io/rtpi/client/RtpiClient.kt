@@ -1,13 +1,13 @@
 package io.rtpi.client
 
 import io.rtpi.resource.aircoach.AircoachApi
-import io.rtpi.resource.aircoach.JsoupAircoachWebScraper
 import io.rtpi.resource.dublinbus.DublinBusApi
 import io.rtpi.resource.irishrail.IrishRailApi
 import io.rtpi.resource.jcdecaux.JcDecauxApi
 import io.rtpi.resource.rtpi.RtpiApi
 import io.rtpi.service.aircoach.AircoachLiveDataService
 import io.rtpi.service.aircoach.AircoachStopService
+import io.rtpi.service.aircoach.JsoupAircoachWebScraper
 import io.rtpi.service.buseireann.BusEireannLiveDataService
 import io.rtpi.service.buseireann.BusEireannStopService
 import io.rtpi.service.dublinbikes.DublinBikesDockService
@@ -30,14 +30,15 @@ import javax.net.ssl.X509TrustManager
 
 class RtpiClient(okHttpClient: OkHttpClient? = null) {
 
-    private val defaultOkHttpClient: OkHttpClient = okHttpClient ?: OkHttpClient.Builder()
-        .retryOnConnectionFailure(true)
-        .connectTimeout(60, TimeUnit.SECONDS)
-        .writeTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
-        .build()
+    private val defaultOkHttpClient: OkHttpClient =
+        okHttpClient ?: OkHttpClient.Builder()
+            .retryOnConnectionFailure(true)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .build()
 
-    private var sslContext: SSLContext = SSLContext.getInstance("TLS")
+    private val sslContext = SSLContext.getInstance("TLS")
 
     init {
         sslContext.init(
@@ -55,91 +56,111 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
             }),
             SecureRandom()
         )
+        sslContext
     }
 
-    private val aircoachOkHttpClient: OkHttpClient = OkHttpClient.Builder()
-        .hostnameVerifier { hostname, session ->
-            return@hostnameVerifier hostname == "tracker.aircoach.ie"
-                && session.peerHost == "tracker.aircoach.ie"
-                && session.peerPort == 443
-        }
-        .sslSocketFactory(sslContext.socketFactory)
-        .retryOnConnectionFailure(true)
-        .connectTimeout(60, TimeUnit.SECONDS)
-        .writeTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
-        .build()
+    private val aircoachOkHttpClient =
+        OkHttpClient.Builder()
+            .hostnameVerifier { hostname, session ->
+                return@hostnameVerifier hostname == "tracker.aircoach.ie"
+                    && session.peerHost == "tracker.aircoach.ie"
+                    && session.peerPort == 443
+            }
+            .sslSocketFactory(sslContext.socketFactory)
+            .retryOnConnectionFailure(true)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .build()
+
+//        if (!okHttpClient?.networkInterceptors().isNullOrEmpty()) {
+//            okHttpClient!!.networkInterceptors().forEach {
+//                builder.addInterceptor(it)
+//            }
+//        }
 
     private val gsonConverterFactory = GsonConverterFactory.create()
 
-    private val xmlConverterFactory = SimpleXmlConverterFactory.create()
+    private val xmlConverterFactory =SimpleXmlConverterFactory.create()
 
-    private val aircoachApi = Retrofit.Builder()
-        .baseUrl("https://tracker.aircoach.ie/")
-        .client(aircoachOkHttpClient)
-        .addConverterFactory(gsonConverterFactory)
-        .build()
-        .create(AircoachApi::class.java)
+    private val aircoachApi =
+        Retrofit.Builder()
+            .baseUrl("https://tracker.aircoach.ie/")
+            .client(aircoachOkHttpClient)
+            .addConverterFactory(gsonConverterFactory)
+            .build()
+            .create(AircoachApi::class.java)
 
-    private val aircoachWebScraper = JsoupAircoachWebScraper("https://tracker.aircoach.ie/")
+    private val aircoachWebScraper =
+        JsoupAircoachWebScraper("https://tracker.aircoach.ie/")
 
-    private val dublinBusApi = Retrofit.Builder()
-        .baseUrl("http://rtpi.dublinbus.ie/")
-        .client(defaultOkHttpClient)
-        .addConverterFactory(xmlConverterFactory)
-        .build()
-        .create(DublinBusApi::class.java)
+    private val dublinBusApi =
+        Retrofit.Builder()
+            .baseUrl("http://rtpi.dublinbus.ie/")
+            .client(defaultOkHttpClient)
+            .addConverterFactory(xmlConverterFactory)
+            .build()
+            .create(DublinBusApi::class.java)
 
-    private val jcDecauxApi = Retrofit.Builder()
-        .baseUrl("https://api.jcdecaux.com/vls/v1/")
-        .client(defaultOkHttpClient)
-        .addConverterFactory(gsonConverterFactory)
-        .build()
-        .create(JcDecauxApi::class.java)
+    private val jcDecauxApi =
+        Retrofit.Builder()
+            .baseUrl("https://api.jcdecaux.com/vls/v1/")
+            .client(defaultOkHttpClient)
+            .addConverterFactory(gsonConverterFactory)
+            .build()
+            .create(JcDecauxApi::class.java)
 
-    private val rtpiApi = Retrofit.Builder()
-        .baseUrl("https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V2/service.svc/")
-        .client(defaultOkHttpClient)
-        .addConverterFactory(gsonConverterFactory)
-        .build()
-        .create(RtpiApi::class.java)
+    private val rtpiApi =
+        Retrofit.Builder()
+            .baseUrl("https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/")
+            .client(defaultOkHttpClient)
+            .addConverterFactory(gsonConverterFactory)
+            .build()
+            .create(RtpiApi::class.java)
 
-    private val irishRailApi = Retrofit.Builder()
-        .baseUrl("http://api.irishrail.ie/realtime/realtime.asmx/")
-        .client(defaultOkHttpClient)
-        .addConverterFactory(xmlConverterFactory)
-        .build()
-        .create(IrishRailApi::class.java)
+    private val irishRailApi =
+        Retrofit.Builder()
+            .baseUrl("http://api.irishrail.ie/realtime/realtime.asmx/")
+            .client(defaultOkHttpClient)
+            .addConverterFactory(xmlConverterFactory)
+            .build()
+            .create(IrishRailApi::class.java)
 
-    private val aircoachClient = AircoachClient(
-        AircoachStopService(aircoachWebScraper),
-        AircoachLiveDataService(aircoachApi)
-    )
+    private val aircoachClient =
+        AircoachClient(
+            AircoachStopService(aircoachWebScraper),
+            AircoachLiveDataService(aircoachApi)
+        )
 
-    private val busEireannClient = BusEireannClient(
-        BusEireannStopService(rtpiApi),
-        BusEireannLiveDataService(rtpiApi)
-    )
+    private val busEireannClient =
+        BusEireannClient(
+            BusEireannStopService(rtpiApi),
+            BusEireannLiveDataService(rtpiApi)
+        )
 
-    private val dublinBikesClient = DublinBikesClient(
-        DublinBikesDockService(jcDecauxApi, ""), //TODO
-        DublinBikesLiveDataService(jcDecauxApi, "")
-    )
+    private val dublinBikesClient =
+        DublinBikesClient(
+            DublinBikesDockService(jcDecauxApi),
+            DublinBikesLiveDataService(jcDecauxApi)
+        )
 
-    private val dublinBusClient = DublinBusClient(
-        DublinBusStopService(dublinBusApi, rtpiApi),
-        DublinBusLiveDataService(dublinBusApi, rtpiApi)
-    )
+    private val dublinBusClient =
+        DublinBusClient(
+            DublinBusStopService(dublinBusApi, rtpiApi),
+            DublinBusLiveDataService(dublinBusApi, rtpiApi)
+        )
 
-    private val irishRailClient = IrishRailClient(
-        IrishRailStationService(irishRailApi),
-        IrishRailLiveDataService(irishRailApi)
-    )
+    private val irishRailClient =
+        IrishRailClient(
+            IrishRailStationService(irishRailApi),
+            IrishRailLiveDataService(irishRailApi)
+        )
 
-    private val luasClient = LuasClient(
-        LuasStopService(rtpiApi),
-        LuasLiveDataService(rtpiApi)
-    )
+    private val luasClient =
+        LuasClient(
+            LuasStopService(rtpiApi),
+            LuasLiveDataService(rtpiApi)
+        )
 
     fun aircoach() = aircoachClient
 
