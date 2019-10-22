@@ -19,14 +19,16 @@ fun createIrishRailLiveData(
     operator: Operator = Operator.DART,
     direction: String = "Southbound",
     destination: String = "Bray",
-    route: String = operator.fullName
+    route: String = operator.fullName,
+    origin: String = "Howth"
 ): IrishRailLiveData {
     return IrishRailLiveData(
         liveTimes = dueTimes.map { createDueTime(it, currentTime) },
         operator = operator,
         direction = direction,
         destination = destination,
-        route = route
+        route = route,
+        origin = origin
     )
 }
 

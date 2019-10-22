@@ -61,7 +61,8 @@ data class IrishRailLiveData(
     override val destination: String,
     override val liveTimes: List<LiveTime>,
     override val operator: Operator,
-    val direction: String
+    val direction: String,
+    val origin: String
 ) : TimedLiveData
 
 data class LuasLiveData(

@@ -21,7 +21,8 @@ abstract class AbstractIrishRailLiveDataService(private val irishRailApi: IrishR
                     operator = operator,
                     direction = xml.direction!!,
                     route = operator.fullName,
-                    destination = xml.destination!!
+                    destination = xml.destination!!,
+                    origin = xml.origin!!
                 )
             }
             .sortedBy { it.liveTimes.first().waitTimeSeconds }

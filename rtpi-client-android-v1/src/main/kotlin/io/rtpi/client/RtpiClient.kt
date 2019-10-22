@@ -1,7 +1,6 @@
 package io.rtpi.client
 
 import io.rtpi.resource.aircoach.AircoachApi
-import io.rtpi.resource.aircoach.AircoachWebScraper
 import io.rtpi.resource.dublinbus.DublinBusApi
 import io.rtpi.resource.irishrail.IrishRailApi
 import io.rtpi.resource.jcdecaux.JcDecauxApi
@@ -20,7 +19,6 @@ import io.rtpi.service.irishrail.IrishRailStationService
 import io.rtpi.service.luas.LuasLiveDataService
 import io.rtpi.service.luas.LuasStopService
 import okhttp3.OkHttpClient
-import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
@@ -40,8 +38,9 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
             .readTimeout(60, TimeUnit.SECONDS)
             .build()
 
-    private val sslContext: SSLContext by lazy {
-        val sslContext = SSLContext.getInstance("TLS")
+    private val sslContext = SSLContext.getInstance("TLS")
+
+    init {
         sslContext.init(
             null,
             arrayOf<X509TrustManager>(object : X509TrustManager {
@@ -60,7 +59,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         sslContext
     }
 
-    private val aircoachOkHttpClient: OkHttpClient by lazy {
+    private val aircoachOkHttpClient =
         OkHttpClient.Builder()
             .hostnameVerifier { hostname, session ->
                 return@hostnameVerifier hostname == "tracker.aircoach.ie"
@@ -73,102 +72,95 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
             .writeTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .build()
-    }
 
-    private val gsonConverterFactory: Converter.Factory by lazy { GsonConverterFactory.create() }
+//        if (!okHttpClient?.networkInterceptors().isNullOrEmpty()) {
+//            okHttpClient!!.networkInterceptors().forEach {
+//                builder.addInterceptor(it)
+//            }
+//        }
 
-    private val xmlConverterFactory: Converter.Factory by lazy { SimpleXmlConverterFactory.create() }
+    private val gsonConverterFactory = GsonConverterFactory.create()
 
-    private val aircoachApi: AircoachApi by lazy {
+    private val xmlConverterFactory =SimpleXmlConverterFactory.create()
+
+    private val aircoachApi =
         Retrofit.Builder()
             .baseUrl("https://tracker.aircoach.ie/")
             .client(aircoachOkHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(AircoachApi::class.java)
-    }
 
-    private val aircoachWebScraper: AircoachWebScraper by lazy {
+    private val aircoachWebScraper =
         JsoupAircoachWebScraper("https://tracker.aircoach.ie/")
-    }
 
-    private val dublinBusApi: DublinBusApi by lazy {
+    private val dublinBusApi =
         Retrofit.Builder()
             .baseUrl("http://rtpi.dublinbus.ie/")
             .client(defaultOkHttpClient)
             .addConverterFactory(xmlConverterFactory)
             .build()
             .create(DublinBusApi::class.java)
-    }
 
-    private val jcDecauxApi: JcDecauxApi by lazy {
+    private val jcDecauxApi =
         Retrofit.Builder()
             .baseUrl("https://api.jcdecaux.com/vls/v1/")
             .client(defaultOkHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(JcDecauxApi::class.java)
-    }
 
-    private val rtpiApi: RtpiApi by lazy {
+    private val rtpiApi =
         Retrofit.Builder()
             .baseUrl("https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/")
             .client(defaultOkHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(RtpiApi::class.java)
-    }
 
-    private val irishRailApi: IrishRailApi by lazy {
+    private val irishRailApi =
         Retrofit.Builder()
             .baseUrl("http://api.irishrail.ie/realtime/realtime.asmx/")
             .client(defaultOkHttpClient)
             .addConverterFactory(xmlConverterFactory)
             .build()
             .create(IrishRailApi::class.java)
-    }
 
-    private val aircoachClient: AircoachClient by lazy {
+    private val aircoachClient =
         AircoachClient(
             AircoachStopService(aircoachWebScraper),
             AircoachLiveDataService(aircoachApi)
         )
-    }
 
-    private val busEireannClient: BusEireannClient by lazy {
+    private val busEireannClient =
         BusEireannClient(
             BusEireannStopService(rtpiApi),
             BusEireannLiveDataService(rtpiApi)
         )
-    }
 
-    private val dublinBikesClient: DublinBikesClient by lazy {
+    private val dublinBikesClient =
         DublinBikesClient(
             DublinBikesDockService(jcDecauxApi),
             DublinBikesLiveDataService(jcDecauxApi)
         )
-    }
 
-    private val dublinBusClient: DublinBusClient by lazy {
+    private val dublinBusClient =
         DublinBusClient(
             DublinBusStopService(dublinBusApi, rtpiApi),
             DublinBusLiveDataService(dublinBusApi, rtpiApi)
         )
-    }
 
-    private val irishRailClient: IrishRailClient by lazy {
+    private val irishRailClient =
         IrishRailClient(
             IrishRailStationService(irishRailApi),
             IrishRailLiveDataService(irishRailApi)
         )
-    }
 
-    private val luasClient: LuasClient by lazy {
+    private val luasClient =
         LuasClient(
             LuasStopService(rtpiApi),
             LuasLiveDataService(rtpiApi)
         )
-    }
 
     fun aircoach() = aircoachClient
 
