@@ -26,7 +26,8 @@ data class LiveTime(
 data class AircoachLiveData(
     override val route: String,
     override val destination: String,
-    override val liveTimes: List<LiveTime>
+    override val liveTimes: List<LiveTime>,
+    val origin: String
 ) : TimedLiveData {
 
     override val operator = Operator.AIRCOACH

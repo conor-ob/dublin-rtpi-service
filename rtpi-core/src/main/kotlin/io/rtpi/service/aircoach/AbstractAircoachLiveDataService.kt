@@ -18,7 +18,8 @@ abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: Airco
                 AircoachLiveData(
                     liveTimes = listOf(createDueTime(json.eta, json.time.arrive)),
                     route = json.route,
-                    destination = json.arrival
+                    destination = json.arrival,
+                    origin = json.depart
                 )
             }
             .filter { it.liveTimes.first().waitTimeSeconds > -1 }
