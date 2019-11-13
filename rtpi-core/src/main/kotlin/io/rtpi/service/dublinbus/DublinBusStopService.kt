@@ -1,9 +1,11 @@
 package io.rtpi.service.dublinbus
 
+import io.reactivex.Single
+import io.reactivex.functions.Function3
 import io.rtpi.api.Coordinate
 import io.rtpi.api.DublinBusStop
 import io.rtpi.api.Operator
-import io.rtpi.ktx.validate
+import io.rtpi.api.Route
 import io.rtpi.resource.dublinbus.DublinBusApi
 import io.rtpi.resource.dublinbus.DublinBusDestinationRequestBodyXml
 import io.rtpi.resource.dublinbus.DublinBusDestinationRequestRootXml
@@ -11,70 +13,66 @@ import io.rtpi.resource.dublinbus.DublinBusDestinationRequestXml
 import io.rtpi.resource.dublinbus.DublinBusDestinationXml
 import io.rtpi.resource.rtpi.RtpiApi
 import io.rtpi.resource.rtpi.RtpiBusStopInformationJson
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
 
 class DublinBusStopService(
     private val dublinBusApi: DublinBusApi,
     private val rtpiApi: RtpiApi
 ) {
 
-    fun getStops(): List<DublinBusStop> = runBlocking {
-        val dublinBusResponse = async { getDublinBusStops() }
-        val rtpiDublinBusResponse = async { getRtpiDublinBusStops() }
-        val rtpiGoAheadResponse = async { getRtpiGoAheadStops() }
-        return@runBlocking aggregate(
-            dublinBusResponse.await(),
-            rtpiDublinBusResponse.await(),
-            rtpiGoAheadResponse.await()
-        ).map { json ->
-            DublinBusStop(
-                id = json.stopId!!.trim(),
-                name = json.fullName!!.trim(),
-                coordinate = Coordinate(json.latitude!!.toDouble(), json.longitude!!.toDouble()),
-                operators = json.operators.map { operator -> Operator.parse(operator.name!!.trim()) }.toSet(),
-                routes = json.operators.associateBy( { Operator.parse(it.name!!.trim()) }, { it.routes } )
-            )
-        }
+    fun getStops(): Single<List<DublinBusStop>> {
+        return Single.zip(
+            getDublinBusStops(),
+            getRtpiDublinBusStops(),
+            getRtpiGoAheadStops(),
+            Function3 { t1, t2, t3 -> aggregate(t1, t2, t3).map { json ->
+                DublinBusStop(
+                    id = json.stopId!!.trim(),
+                    name = json.fullName!!.trim(),
+                    coordinate = Coordinate(json.latitude!!.toDouble(), json.longitude!!.toDouble()),
+                    operators = json.operators.map { operator -> Operator.parse(operator.name!!.trim()) }.toSet(),
+                    routes = json.operators.flatMap { operator ->
+                        operator.routes.map {
+                            Route(it.trim(), Operator.parse(operator.name!!))
+                        }
+                    }
+                )
+            }
+            }
+        )
     }
 
-    private suspend fun getDublinBusStops(): List<DublinBusDestinationXml> {
+    private fun getDublinBusStops(): Single<List<DublinBusDestinationXml>> {
         val requestRoot = DublinBusDestinationRequestRootXml()
         val requestBody = DublinBusDestinationRequestBodyXml(requestRoot)
         val request = DublinBusDestinationRequestXml(requestBody)
         return dublinBusApi.getAllDestinations(request)
-            .validate()
-            .stops
-            .filter { xml ->
+            .map { it.stops.filter { xml ->
                 xml.id != null
                     && xml.name != null
                     && xml.latitude != null
                     && xml.longitude != null
             }
+            }
     }
 
-    private suspend fun getRtpiDublinBusStops(): List<RtpiBusStopInformationJson> {
+    private fun getRtpiDublinBusStops(): Single<List<RtpiBusStopInformationJson>> {
         return rtpiApi.busStopInformation(operator = Operator.DUBLIN_BUS.shortName, format = "json")
-            .validate()
-            .results
-            .filter { json ->
+            .map { it.results.filter { json ->
                 json.stopId != null
                     && json.fullName != null
                     && json.latitude != null
                     && json.longitude != null
-            }
+            }}
     }
 
-    private suspend fun getRtpiGoAheadStops(): List<RtpiBusStopInformationJson> {
+    private fun getRtpiGoAheadStops(): Single<List<RtpiBusStopInformationJson>> {
         return rtpiApi.busStopInformation(operator = Operator.GO_AHEAD.shortName, format = "json")
-            .validate()
-            .results
-            .filter { json ->
+            .map { it.results.filter { json ->
                 json.stopId != null
                     && json.fullName != null
                     && json.latitude != null
                     && json.longitude != null
-            }
+            } }
     }
 
     private fun aggregate(

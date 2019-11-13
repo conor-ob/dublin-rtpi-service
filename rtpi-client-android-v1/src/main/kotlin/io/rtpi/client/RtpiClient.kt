@@ -20,6 +20,7 @@ import io.rtpi.service.luas.LuasLiveDataService
 import io.rtpi.service.luas.LuasStopService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.security.SecureRandom
@@ -87,6 +88,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         Retrofit.Builder()
             .baseUrl("https://tracker.aircoach.ie/")
             .client(aircoachOkHttpClient)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(AircoachApi::class.java)
@@ -98,6 +100,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         Retrofit.Builder()
             .baseUrl("http://rtpi.dublinbus.ie/")
             .client(defaultOkHttpClient)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(xmlConverterFactory)
             .build()
             .create(DublinBusApi::class.java)
@@ -106,6 +109,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         Retrofit.Builder()
             .baseUrl("https://api.jcdecaux.com/vls/v1/")
             .client(defaultOkHttpClient)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(JcDecauxApi::class.java)
@@ -114,6 +118,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         Retrofit.Builder()
             .baseUrl("https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/")
             .client(defaultOkHttpClient)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(RtpiApi::class.java)
@@ -122,6 +127,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         Retrofit.Builder()
             .baseUrl("http://api.irishrail.ie/realtime/realtime.asmx/")
             .client(defaultOkHttpClient)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(xmlConverterFactory)
             .build()
             .create(IrishRailApi::class.java)

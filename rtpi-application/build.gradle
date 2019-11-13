@@ -17,6 +17,7 @@ dependencies {
         exclude group: 'stax', module: 'stax'
         exclude group: 'xpp3', module: 'xpp3'
     }
+    implementation libraries.rxjava
 
     testImplementation project(path: ':rtpi-api', configuration: 'testOutput')
     testImplementation libraries.junit

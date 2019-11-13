@@ -1,6 +1,6 @@
 package io.rtpi.resource.rtpi
 
-import retrofit2.Call
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,12 +10,12 @@ interface RtpiApi {
     fun busStopInformation(
         @Query("operator") operator: String,
         @Query("format") format: String
-    ): Call<RtpiBusStopInformationResponseJson>
+    ): Single<RtpiBusStopInformationResponseJson>
 
     @GET("realtimebusinformation")
     fun realTimeBusInformation(
         @Query("stopid") stopId: String,
         @Query("operator") operator: String,
         @Query("format") format: String
-    ): Call<RtpiRealTimeBusInformationResponseJson>
+    ): Single<RtpiRealTimeBusInformationResponseJson>
 }

@@ -21,12 +21,17 @@ data class Coordinate(
     val longitude: Double
 )
 
+data class Route(
+    val id: String,
+    val operator: Operator
+)
+
 data class AircoachStop(
     override val id: String,
     override val name: String,
     override val coordinate: Coordinate,
     override val operators: Set<Operator>,
-    val routes: Map<Operator, List<String>>
+    val routes: List<Route>
 ) : ServiceLocation {
 
     override val service = Service.AIRCOACH
@@ -40,7 +45,7 @@ data class BusEireannStop(
     override val name: String,
     override val coordinate: Coordinate,
     override val operators: Set<Operator>,
-    val routes: Map<Operator, List<String>>
+    val routes: List<Route>
 ) : ServiceLocation {
 
     override val service = Service.BUS_EIREANN
@@ -70,7 +75,7 @@ data class DublinBusStop(
     override val name: String,
     override val coordinate: Coordinate,
     override val operators: Set<Operator>,
-    val routes: Map<Operator, List<String>>
+    val routes: List<Route>
 ) : ServiceLocation {
 
     override val service = Service.DUBLIN_BUS
@@ -97,7 +102,7 @@ data class LuasStop(
     override val name: String,
     override val coordinate: Coordinate,
     override val operators: Set<Operator>,
-    val routes: Map<Operator, List<String>>
+    val routes: List<Route>
 ) : ServiceLocation {
 
     override val service = Service.LUAS
