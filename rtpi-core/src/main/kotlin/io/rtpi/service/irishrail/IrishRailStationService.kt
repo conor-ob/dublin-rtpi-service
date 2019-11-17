@@ -37,13 +37,15 @@ class IrishRailStationService(private val irishRailApi: IrishRailApi) {
             "DLERY",
             "GSTNS",
             "MHIDE",
-            "PERSE" -> setOf(Operator.COMMUTER, Operator.DART, Operator.INTERCITY)
+            "PERSE",
+            "TARA" -> setOf(Operator.COMMUTER, Operator.DART, Operator.INTERCITY)
             "BROCK",
             "GCDK",
             "LDWNE" -> setOf(Operator.COMMUTER, Operator.DART)
             "HZLCH",
             "HAZEF" -> setOf(Operator.COMMUTER)
             "BTSTN",
+            "SEAPT",
             "SMONT" -> setOf(Operator.DART)
             else -> setOf(Operator.INTERCITY)
         }

@@ -26,7 +26,12 @@ class LuasStopService(private val rtpiApi: RtpiApi) {
                             operators = json.operators.map { operator -> Operator.parse(operator.name!!.trim()) }.toSet(),
                             routes = json.operators.flatMap { operator ->
                                 operator.routes.map {
-                                    Route(it.trim(), Operator.parse(operator.name!!))
+                                    val route = if (it.contains("Line")) {
+                                        it.trim()
+                                    } else {
+                                        "${it.trim()} Line"
+                                    }
+                                    Route(route, Operator.parse(operator.name!!))
                                 }
                             }
                         )

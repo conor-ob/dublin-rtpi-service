@@ -19,7 +19,7 @@ abstract class AbstractLuasLiveDataService(private val rtpiApi: RtpiApi) {
                         LuasLiveData(
                             liveTimes = listOf(createDueTime(json)),
                             operator = Operator.parse(json.operator!!),
-                            route = json.route!!,
+                            route = mapRoute(json),
                             direction = json.direction!!,
                             destination = json.destination!!.replace("LUAS ", "")
                         )
@@ -41,6 +41,14 @@ abstract class AbstractLuasLiveDataService(private val rtpiApi: RtpiApi) {
                 }
                 condensedLiveData.values.toList()
             }
+    }
+
+    private fun mapRoute(json: RtpiRealTimeBusInformationJson): String {
+        val route = json.route!!.trim()
+        if (route.contains("Line")) {
+            return route
+        }
+        return "$route Line"
     }
 
     protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): LiveTime
