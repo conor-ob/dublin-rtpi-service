@@ -23,7 +23,7 @@ class DublinBusLiveDataService(
             DateTimeFormatter.ISO_DATE_TIME
         )
         val waitTimeSeconds = ChronoUnit.SECONDS.between(currentTime, expectedTime).toInt()
-        return LiveTime(waitTimeSeconds, expectedTime.toIso8601())
+        return LiveTime(waitTimeMinutes = waitTimeSeconds, expectedArrivalTimestamp = expectedTime.toIso8601())
     }
 
     override fun createDueTime(json: RtpiRealTimeBusInformationJson): LiveTime {
@@ -34,7 +34,7 @@ class DublinBusLiveDataService(
             DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
         )
         val waitTimeSeconds = ChronoUnit.SECONDS.between(currentTime, expectedTime).toInt()
-        return LiveTime(waitTimeSeconds, expectedTime.toIso8601())
+        return LiveTime(waitTimeMinutes = waitTimeSeconds, expectedArrivalTimestamp = expectedTime.toIso8601())
     }
 
 }

@@ -18,7 +18,7 @@ class LuasLiveDataService(rtpiApi: RtpiApi) : AbstractLuasLiveDataService(rtpiAp
             DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
         )
         val waitTimeSeconds = ChronoUnit.SECONDS.between(currentTime, expectedTime).toInt()
-        return LiveTime(waitTimeSeconds, expectedTime.toIso8601())
+        return LiveTime(waitTimeMinutes = waitTimeSeconds, expectedArrivalTimestamp = expectedTime.toIso8601())
     }
 
 }

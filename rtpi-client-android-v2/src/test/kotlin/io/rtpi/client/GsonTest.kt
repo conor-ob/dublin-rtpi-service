@@ -78,10 +78,10 @@ class GsonTest {
 //        val deserialized: LuasLiveData = gson.fromJson(serialized, object : TypeToken<LuasLiveData<LocalTime>>(){}.type)
 //        val deserialized: LuasLiveData<LocalTime> = gson.fromJson(serialized, object : TypeToken<LuasLiveData<LocalTime>>(){}.type)
         val luasLiveData = LuasLiveData(
-            liveTimes = listOf(
+            liveTime = listOf(
                 LiveTime(
-                    waitTimeSeconds = 10,
-                    expectedTimestamp = "TEST"
+                    waitTimeMinutes = 10,
+                    expectedArrivalTimestamp = "TEST"
 //                    time = LocalTime.of(10, 10)
                 )
             ),

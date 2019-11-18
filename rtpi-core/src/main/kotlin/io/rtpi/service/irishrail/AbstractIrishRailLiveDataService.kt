@@ -7,7 +7,6 @@ import io.rtpi.api.Operator
 import io.rtpi.resource.irishrail.IrishRailApi
 import io.rtpi.resource.irishrail.IrishRailStationDataResponseXml
 import io.rtpi.resource.irishrail.IrishRailStationDataXml
-import java.util.Objects
 
 abstract class AbstractIrishRailLiveDataService(private val irishRailApi: IrishRailApi) {
 
@@ -17,32 +16,32 @@ abstract class AbstractIrishRailLiveDataService(private val irishRailApi: IrishR
     }
 
     private fun mapResponse(response: IrishRailStationDataResponseXml): List<IrishRailLiveData> {
-        val liveData = response.stationData.map { xml ->
+        return response.stationData.map { xml ->
             val operator = mapOperator(xml.trainType!!, xml.trainCode!!)
             IrishRailLiveData(
-                liveTimes = listOf(createDueTime(xml)),
+                liveTime = createDueTime(xml),
                 operator = operator,
                 direction = xml.direction!!,
                 route = operator.fullName,
                 destination = xml.destination!!,
                 origin = xml.origin!!
             )
-        }.sortedBy { it.liveTimes.first().waitTimeSeconds }
+        }.sortedBy { it.liveTime.waitTimeMinutes }
 
-        val condensedLiveData = LinkedHashMap<Int, IrishRailLiveData>()
-        for (data in liveData) {
-            val id = Objects.hash(data.operator, data.route, data.destination, data.direction)
-            var cachedLiveData = condensedLiveData[id]
-            if (cachedLiveData == null) {
-                condensedLiveData[id] = data
-            } else {
-                val dueTimes = cachedLiveData.liveTimes.toMutableList()
-                dueTimes.add(data.liveTimes.first())
-                cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
-                condensedLiveData[id] = cachedLiveData
-            }
-        }
-        return condensedLiveData.values.toList()
+//        val condensedLiveData = LinkedHashMap<Int, IrishRailLiveData>()
+//        for (data in liveData) {
+//            val id = Objects.hash(data.operator, data.route, data.destination, data.direction)
+//            var cachedLiveData = condensedLiveData[id]
+//            if (cachedLiveData == null) {
+//                condensedLiveData[id] = data
+//            } else {
+//                val dueTimes = cachedLiveData.liveTime.toMutableList()
+//                dueTimes.add(data.liveTime.first())
+//                cachedLiveData = cachedLiveData.copy(liveTime = dueTimes)
+//                condensedLiveData[id] = cachedLiveData
+//            }
+//        }
+//        return condensedLiveData.values.toList()
     }
 
 //    override fun id(liveData: IrishRailLiveData): Int =

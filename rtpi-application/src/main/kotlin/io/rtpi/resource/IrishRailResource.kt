@@ -2,7 +2,6 @@ package io.rtpi.resource
 
 import io.rtpi.service.irishrail.IrishRailLiveDataService
 import io.rtpi.service.irishrail.IrishRailStationService
-import javax.ws.rs.DefaultValue
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.Produces
@@ -27,7 +26,7 @@ class IrishRailResource(
     @Path("livedata")
     @Produces(MediaType.APPLICATION_JSON)
     fun getLiveData(@QueryParam(value = "stationId") stationId: String): Response {
-        return Response.ok(irishRailLiveDataService.getLiveData(stationId)).build()
+        return Response.ok(irishRailLiveDataService.getLiveData(stationId).blockingGet()).build()
     }
 
 }

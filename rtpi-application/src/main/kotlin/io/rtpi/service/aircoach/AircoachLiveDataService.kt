@@ -20,7 +20,7 @@ class AircoachLiveDataService(aircoachApi: AircoachApi) : AbstractAircoachLiveDa
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         )
         val waitTimeSeconds = ChronoUnit.SECONDS.between(currentTime, expectedTime).toInt()
-        return LiveTime(waitTimeSeconds, expectedTime.toIso8601())
+        return LiveTime(waitTimeMinutes = waitTimeSeconds, expectedArrivalTimestamp = expectedTime.toIso8601())
     }
 
 }

@@ -6,7 +6,6 @@ import io.rtpi.api.LiveTime
 import io.rtpi.api.Operator
 import io.rtpi.resource.rtpi.RtpiApi
 import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
-import java.util.Objects
 
 abstract class AbstractBusEireannLiveDataService(private val rtpiService: RtpiApi) {
 
@@ -16,27 +15,30 @@ abstract class AbstractBusEireannLiveDataService(private val rtpiService: RtpiAp
                 val liveData = response.results
                     .map { json ->
                         BusEireannLiveData(
-                            liveTimes = listOf(createDueTime(json)),
+                            liveTime = createDueTime(json),
                             operator = Operator.parse(json.operator!!),
                             route = json.route!!,
-                            destination = json.destination!!.replace("LUAS ", "")
+                            destination = json.destination!!.replace("LUAS ", ""),
+                            origin = json.origin!!,
+                            direction = json.direction!!
                         )
                     }
-                    .sortedBy { it.liveTimes.first().waitTimeSeconds }
-                val condensedLiveData = LinkedHashMap<Int, BusEireannLiveData>()
-                for (data in liveData) {
-                    val id = Objects.hash(data.operator, data.route, data.destination)
-                    var cachedLiveData = condensedLiveData[id]
-                    if (cachedLiveData == null) {
-                        condensedLiveData[id] = data
-                    } else {
-                        val dueTimes = cachedLiveData.liveTimes.toMutableList()
-                        dueTimes.add(data.liveTimes.first())
-                        cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
-                        condensedLiveData[id] = cachedLiveData
-                    }
-                }
-                condensedLiveData.values.toList()
+                    .sortedBy { it.liveTime.waitTimeMinutes }
+                    liveData
+//                val condensedLiveData = LinkedHashMap<Int, BusEireannLiveData>()
+//                for (data in liveData) {
+//                    val id = Objects.hash(data.operator, data.route, data.destination)
+//                    var cachedLiveData = condensedLiveData[id]
+//                    if (cachedLiveData == null) {
+//                        condensedLiveData[id] = data
+//                    } else {
+//                        val dueTimes = cachedLiveData.liveTime.toMutableList()
+//                        dueTimes.add(data.liveTime.first())
+//                        cachedLiveData = cachedLiveData.copy(liveTime = dueTimes)
+//                        condensedLiveData[id] = cachedLiveData
+//                    }
+//                }
+//                condensedLiveData.values.toList()
             }
     }
 

@@ -29,6 +29,7 @@ import io.dropwizard.setup.Environment
 import io.rtpi.service.aircoach.JsoupAircoachWebScraper
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.security.SecureRandom
@@ -91,6 +92,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         val aircoachApi = Retrofit.Builder()
             .baseUrl(configuration.apiConfig.aircoachBaseUrl!!)
             .client(aircoachClient)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(AircoachApi::class.java)
@@ -102,6 +104,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         val dublinBusApi = Retrofit.Builder()
             .baseUrl(configuration.apiConfig.dublinBusBaseUrl!!)
             .client(client)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(xmlConverterFactory)
             .build()
             .create(DublinBusApi::class.java)
@@ -109,6 +112,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         val jcDecauxApi = Retrofit.Builder()
             .baseUrl(configuration.apiConfig.jcDecauxBaseUrl!!)
             .client(client)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(JcDecauxApi::class.java)
@@ -116,6 +120,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         val rtpiApi = Retrofit.Builder()
             .baseUrl(configuration.apiConfig.rtpiBaseUrl!!)
             .client(client)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(RtpiApi::class.java)
@@ -123,6 +128,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         val irishRailApi = Retrofit.Builder()
             .baseUrl(configuration.apiConfig.irishRailBaseUrl!!)
             .client(client)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(xmlConverterFactory)
             .build()
             .create(IrishRailApi::class.java)

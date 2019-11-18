@@ -7,8 +7,8 @@ fun createDueTime(
     currentTime: LocalTime = LocalTime.now()
 ): LiveTime {
     return LiveTime(
-        waitTimeSeconds = minutes,
-        expectedTimestamp = ""
+        waitTimeMinutes = minutes,
+        expectedArrivalTimestamp = ""
 //        time = currentTime.plusMinutes(minutes.toLong())
     )
 }
@@ -23,7 +23,7 @@ fun createIrishRailLiveData(
     origin: String = "Howth"
 ): IrishRailLiveData {
     return IrishRailLiveData(
-        liveTimes = dueTimes.map { createDueTime(it, currentTime) },
+        liveTime = dueTimes.map { createDueTime(it, currentTime) },
         operator = operator,
         direction = direction,
         destination = destination,
@@ -39,7 +39,7 @@ fun createLuasLiveData(
     direction: String = "Outbound"
 ): LuasLiveData {
     return LuasLiveData(
-        liveTimes = laterDueTimes.map { createDueTime(it) },
+        liveTime = laterDueTimes.map { createDueTime(it) },
         operator = Operator.LUAS,
         route = route,
         destination = destination,

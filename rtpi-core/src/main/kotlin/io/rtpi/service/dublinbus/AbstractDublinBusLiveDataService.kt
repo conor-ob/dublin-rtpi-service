@@ -12,7 +12,6 @@ import io.rtpi.resource.dublinbus.DublinBusRealTimeStopDataRequestXml
 import io.rtpi.resource.dublinbus.DublinBusRealTimeStopDataXml
 import io.rtpi.resource.rtpi.RtpiApi
 import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
-import java.util.Objects
 
 abstract class AbstractDublinBusLiveDataService(
     private val dublinBusApi: DublinBusApi,
@@ -28,22 +27,22 @@ abstract class AbstractDublinBusLiveDataService(
     }
 
     private fun aggregate(t1: List<DublinBusLiveData>, t2: List<DublinBusLiveData>): List<DublinBusLiveData> {
-        val liveData = t1.plus(t2).sortedBy { it.liveTimes.first().waitTimeSeconds }
+        return t1.plus(t2).sortedBy { it.liveTime.waitTimeMinutes }
 
-        val condensedLiveData = LinkedHashMap<Int, DublinBusLiveData>()
-        for (data in liveData) {
-            val id = Objects.hash(data.operator, data.route, data.destination)
-            var cachedLiveData = condensedLiveData[id]
-            if (cachedLiveData == null) {
-                condensedLiveData[id] = data
-            } else {
-                val dueTimes = cachedLiveData.liveTimes.toMutableList()
-                dueTimes.add(data.liveTimes.first())
-                cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
-                condensedLiveData[id] = cachedLiveData
-            }
-        }
-        return condensedLiveData.values.toList()
+//        val condensedLiveData = LinkedHashMap<Int, DublinBusLiveData>()
+//        for (data in liveData) {
+//            val id = Objects.hash(data.operator, data.route, data.destination)
+//            var cachedLiveData = condensedLiveData[id]
+//            if (cachedLiveData == null) {
+//                condensedLiveData[id] = data
+//            } else {
+//                val dueTimes = cachedLiveData.liveTime.toMutableList()
+//                dueTimes.add(data.liveTime.first())
+//                cachedLiveData = cachedLiveData.copy(liveTime = dueTimes)
+//                condensedLiveData[id] = cachedLiveData
+//            }
+//        }
+//        return condensedLiveData.values.toList()
     }
 
     private fun getDublinBusLiveData(stopId: String): Single<List<DublinBusLiveData>> {
@@ -58,10 +57,12 @@ abstract class AbstractDublinBusLiveDataService(
                     && it.expectedTimestamp != null
                 }.map { xml ->
                     DublinBusLiveData(
-                        liveTimes = listOf(createDueTime(xml)),
+                        liveTime = createDueTime(xml),
                         operator = Operator.DUBLIN_BUS, //TODO
                         route = xml.routeId!!,
-                        destination = xml.destination!!
+                        destination = xml.destination!!,
+                        direction = "",
+                        origin = ""
                     )
                 }
             }
@@ -76,10 +77,12 @@ abstract class AbstractDublinBusLiveDataService(
                         && it.arrivalDateTime != null
                 }.map { json ->
                     DublinBusLiveData(
-                        liveTimes = listOf(createDueTime(json)),
+                        liveTime = createDueTime(json),
                         operator = Operator.parse(json.operator!!),
                         route = json.route!!,
-                        destination = json.destination!!
+                        destination = json.destination!!,
+                        origin = json.origin!!,
+                        direction = json.direction!!
                     )
                 }
             }

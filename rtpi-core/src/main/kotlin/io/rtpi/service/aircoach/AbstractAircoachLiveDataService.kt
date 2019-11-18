@@ -6,39 +6,39 @@ import io.rtpi.ktx.validate
 import io.rtpi.resource.aircoach.AircoachApi
 import io.rtpi.resource.aircoach.EtaJson
 import io.rtpi.resource.aircoach.TimestampJson
-import java.util.Objects
 
 abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: AircoachApi) {
 
     fun getLiveData(stopId: String): List<AircoachLiveData> {
-        val liveData = aircoachApi.getLiveData(stopId)
+        return aircoachApi.getLiveData(stopId)
             .validate()
             .services
             .map { json ->
                 AircoachLiveData(
-                    liveTimes = listOf(createDueTime(json.eta, json.time.arrive)),
+                    liveTime = createDueTime(json.eta, json.time.arrive),
                     route = json.route,
                     destination = json.arrival,
-                    origin = json.depart
+                    origin = json.depart,
+                    direction = ""
                 )
             }
-            .filter { it.liveTimes.first().waitTimeSeconds > -1 }
-            .sortedBy { it.liveTimes.first().waitTimeSeconds }
-
-        val condensedLiveData = LinkedHashMap<Int, AircoachLiveData>()
-        for (data in liveData) {
-            val id = Objects.hash(data.operator, data.route, data.destination)
-            var cachedLiveData = condensedLiveData[id]
-            if (cachedLiveData == null) {
-                condensedLiveData[id] = data
-            } else {
-                val dueTimes = cachedLiveData.liveTimes.toMutableList()
-                dueTimes.add(data.liveTimes.first())
-                cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
-                condensedLiveData[id] = cachedLiveData
-            }
-        }
-        return condensedLiveData.values.toList()
+            .filter { it.liveTime.waitTimeMinutes > -1 }
+            .sortedBy { it.liveTime.waitTimeMinutes }
+//
+//        val condensedLiveData = LinkedHashMap<Int, AircoachLiveData>()
+//        for (data in liveData) {
+//            val id = Objects.hash(data.operator, data.route, data.destination)
+//            var cachedLiveData = condensedLiveData[id]
+//            if (cachedLiveData == null) {
+//                condensedLiveData[id] = data
+//            } else {
+//                val dueTimes = cachedLiveData.liveTimes.toMutableList()
+//                dueTimes.add(data.liveTimes.first())
+//                cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
+//                condensedLiveData[id] = cachedLiveData
+//            }
+//        }
+//        return condensedLiveData.values.toList()
     }
 
     protected abstract fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): LiveTime

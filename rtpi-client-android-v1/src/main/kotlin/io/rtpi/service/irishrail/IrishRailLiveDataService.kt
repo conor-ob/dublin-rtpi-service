@@ -3,18 +3,48 @@ package io.rtpi.service.irishrail
 import io.rtpi.api.LiveTime
 import io.rtpi.resource.irishrail.IrishRailApi
 import io.rtpi.resource.irishrail.IrishRailStationDataXml
-import io.rtpi.time.DateTimeProvider
 import io.rtpi.time.toIso8601
 import org.threeten.bp.Duration
+import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.LocalTime
+import org.threeten.bp.ZoneId
+import org.threeten.bp.ZonedDateTime
+import org.threeten.bp.format.DateTimeFormatter
+
+private val dublin = ZoneId.of("Europe/Dublin")
 
 class IrishRailLiveDataService(irishRailApi: IrishRailApi) : AbstractIrishRailLiveDataService(irishRailApi) {
 
     override fun createDueTime(xml: IrishRailStationDataXml): LiveTime {
-        val currentTime = DateTimeProvider.getCurrentDateTime()
-        val waitTimeMinutes = xml.dueIn!!.toLong()
-        val expectedTime = currentTime.plusMinutes(waitTimeMinutes)
-        val waitTimeSeconds = Duration.ofMinutes(waitTimeMinutes).seconds.toInt()
-        return LiveTime(waitTimeSeconds, expectedTime.toIso8601())
+        val serverDateTime = LocalDateTime.parse(xml.serverTime, DateTimeFormatter.ISO_DATE_TIME).atZone(dublin)
+        val serverDate = serverDateTime.toLocalDate()
+
+        val midnight = LocalTime.of(0, 0).atDate(serverDate).atZone(dublin)
+        val scheduledArrivalDateTime = parseTime(xml.schArrival!!, serverDate)
+        val expectedArrivalDateTime = parseTime(xml.expArrival!!, serverDate)
+        val scheduledDepartureDateTime = parseTime(xml.schDepart!!, serverDate)
+        val expectedDepartureDateTime = parseTime(xml.expDepart!!, serverDate)
+
+        val isStarting = scheduledArrivalDateTime == midnight && expectedArrivalDateTime == midnight
+        val isTerminating = scheduledDepartureDateTime == midnight && expectedDepartureDateTime == midnight
+
+        return LiveTime(
+            waitTimeMinutes = when {
+                isStarting -> Duration.between(serverDateTime, expectedDepartureDateTime).toMinutes().toInt()
+                isTerminating -> Duration.between(serverDateTime, expectedArrivalDateTime).toMinutes().toInt()
+                else -> Duration.between(serverDateTime, expectedArrivalDateTime).toMinutes().toInt()
+            },
+            currentTimestamp = serverDateTime.toIso8601(),
+            scheduledArrivalTimestamp = if (isStarting) null else scheduledArrivalDateTime.toIso8601(),
+            expectedArrivalTimestamp = if (isStarting) null else expectedArrivalDateTime.toIso8601(),
+            scheduledDepartureTimestamp = if (isTerminating) null else scheduledDepartureDateTime.toIso8601(),
+            expectedDepartureTimestamp = if (isTerminating) null else expectedDepartureDateTime.toIso8601()
+        )
+    }
+
+    private fun parseTime(timestamp: String, date: LocalDate): ZonedDateTime {
+        return LocalTime.parse(timestamp).atDate(date).atZone(dublin)
     }
 
 }
