@@ -31,9 +31,15 @@ class IrishRailLiveDataService(irishRailApi: IrishRailApi) : AbstractIrishRailLi
 
         return LiveTime(
             waitTimeMinutes = when {
-                isStarting -> Duration.between(serverDateTime, expectedDepartureDateTime).toMinutes().toInt()
-                isTerminating -> Duration.between(serverDateTime, expectedArrivalDateTime).toMinutes().toInt()
-                else -> Duration.between(serverDateTime, expectedArrivalDateTime).toMinutes().toInt()
+                isStarting -> minutesBetween(serverDateTime, expectedDepartureDateTime)
+                isTerminating -> minutesBetween(serverDateTime, expectedArrivalDateTime)
+                else -> minutesBetween(serverDateTime, expectedArrivalDateTime)
+            },
+            lateTimeMinutes = when {
+                xml.late!!.toInt() < 0 -> 0
+                isStarting -> minutesBetween(scheduledDepartureDateTime, expectedDepartureDateTime)
+                isTerminating -> minutesBetween(scheduledArrivalDateTime, expectedArrivalDateTime)
+                else -> minutesBetween(scheduledArrivalDateTime, expectedArrivalDateTime)
             },
             currentTimestamp = serverDateTime.toIso8601(),
             scheduledArrivalTimestamp = if (isStarting) null else scheduledArrivalDateTime.toIso8601(),
@@ -45,6 +51,17 @@ class IrishRailLiveDataService(irishRailApi: IrishRailApi) : AbstractIrishRailLi
 
     private fun parseTime(timestamp: String, date: LocalDate): ZonedDateTime {
         return LocalTime.parse(timestamp).atDate(date).atZone(dublin)
+    }
+
+    private fun minutesBetween(start: ZonedDateTime, end: ZonedDateTime): Int {
+        val minutes = Duration.between(start, end).toMinutes().toInt()
+        return if (minutes > -1) {
+            minutes
+        } else {
+            val adjustedEnd = end.plusDays(1)
+            val adjustedMinutes = Duration.between(start, adjustedEnd).toMinutes().toInt()
+            adjustedMinutes
+        }
     }
 
 }

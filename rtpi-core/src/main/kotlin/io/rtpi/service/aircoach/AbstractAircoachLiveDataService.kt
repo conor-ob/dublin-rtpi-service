@@ -5,6 +5,7 @@ import io.rtpi.api.LiveTime
 import io.rtpi.ktx.validate
 import io.rtpi.resource.aircoach.AircoachApi
 import io.rtpi.resource.aircoach.EtaJson
+import io.rtpi.resource.aircoach.ServiceJson
 import io.rtpi.resource.aircoach.TimestampJson
 
 abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: AircoachApi) {
@@ -15,11 +16,11 @@ abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: Airco
             .services
             .map { json ->
                 AircoachLiveData(
-                    liveTime = createDueTime(json.eta, json.time.arrive),
+                    liveTime = createDueTime(json),
                     route = json.route,
                     destination = json.arrival,
                     origin = json.depart,
-                    direction = ""
+                    direction = json.dir
                 )
             }
             .filter { it.liveTime.waitTimeMinutes > -1 }
@@ -42,4 +43,6 @@ abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: Airco
     }
 
     protected abstract fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): LiveTime
+
+    protected abstract fun createDueTime(json: ServiceJson): LiveTime
 }

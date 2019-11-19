@@ -3,6 +3,7 @@ package io.rtpi.service.aircoach
 import io.rtpi.api.LiveTime
 import io.rtpi.resource.aircoach.AircoachApi
 import io.rtpi.resource.aircoach.EtaJson
+import io.rtpi.resource.aircoach.ServiceJson
 import io.rtpi.resource.aircoach.TimestampJson
 import io.rtpi.time.DateTimeProvider
 import io.rtpi.time.toIso8601
@@ -21,6 +22,11 @@ class AircoachLiveDataService(aircoachApi: AircoachApi) : AbstractAircoachLiveDa
         )
         val waitTimeSeconds = ChronoUnit.SECONDS.between(currentTime, expectedTime).toInt()
         return LiveTime(waitTimeMinutes = waitTimeSeconds, expectedArrivalTimestamp = expectedTime.toIso8601())
+    }
+
+    override fun createDueTime(json: ServiceJson): LiveTime {
+        val currentDateTime = DateTimeProvider.getCurrentDateTime()
+        TODO()
     }
 
 }

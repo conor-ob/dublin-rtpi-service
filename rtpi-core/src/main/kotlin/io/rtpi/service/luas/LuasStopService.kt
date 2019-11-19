@@ -25,14 +25,7 @@ class LuasStopService(private val rtpiApi: RtpiApi) {
                             coordinate = Coordinate(json.latitude!!.toDouble(), json.longitude!!.toDouble()),
                             operators = json.operators.map { operator -> Operator.parse(operator.name!!.trim()) }.toSet(),
                             routes = json.operators.flatMap { operator ->
-                                operator.routes.map {
-                                    val route = if (it.contains("Line")) {
-                                        it.trim()
-                                    } else {
-                                        "${it.trim()} Line"
-                                    }
-                                    Route(route, Operator.parse(operator.name!!))
-                                }
+                                operator.routes.map { Route(it.trim(), Operator.parse(operator.name!!)) }
                             }
                         )
                     }

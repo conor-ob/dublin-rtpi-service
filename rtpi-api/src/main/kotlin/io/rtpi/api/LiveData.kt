@@ -22,6 +22,7 @@ interface TimedLiveData : LiveData {
 
 data class LiveTime(
     val waitTimeMinutes: Int = 0,
+    val lateTimeMinutes: Int = 0,
     val currentTimestamp: String = "",
     val scheduledArrivalTimestamp: String? = null,
     val expectedArrivalTimestamp: String? = null,

@@ -35,6 +35,11 @@ class IrishRailLiveDataService(irishRailApi: IrishRailApi) : AbstractIrishRailLi
                 isTerminating -> minutesBetween(serverDateTime, expectedArrivalDateTime)
                 else -> minutesBetween(serverDateTime, expectedArrivalDateTime)
             },
+            lateTimeMinutes = when {
+                isStarting -> minutesBetween(scheduledDepartureDateTime, expectedDepartureDateTime)
+                isTerminating -> minutesBetween(scheduledArrivalDateTime, expectedArrivalDateTime)
+                else -> minutesBetween(scheduledArrivalDateTime, expectedArrivalDateTime)
+            },
             currentTimestamp = serverDateTime.toIso8601(),
             scheduledArrivalTimestamp = if (isStarting) null else scheduledArrivalDateTime.toIso8601(),
             expectedArrivalTimestamp = if (isStarting) null else expectedArrivalDateTime.toIso8601(),
@@ -52,8 +57,9 @@ class IrishRailLiveDataService(irishRailApi: IrishRailApi) : AbstractIrishRailLi
         return if (minutes > -1) {
             minutes
         } else {
-            // not sure when this can happen
-            0
+            val adjustedEnd = end.plusDays(1)
+            val adjustedMinutes = Duration.between(start, adjustedEnd).toMinutes().toInt()
+            adjustedMinutes
         }
     }
 

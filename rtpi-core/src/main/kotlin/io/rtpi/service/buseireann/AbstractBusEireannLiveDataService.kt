@@ -15,10 +15,10 @@ abstract class AbstractBusEireannLiveDataService(private val rtpiService: RtpiAp
                 val liveData = response.results
                     .map { json ->
                         BusEireannLiveData(
-                            liveTime = createDueTime(json),
+                            liveTime = createDueTime(response.timestamp!!, json),
                             operator = Operator.parse(json.operator!!),
                             route = json.route!!,
-                            destination = json.destination!!.replace("LUAS ", ""),
+                            destination = json.destination!!,
                             origin = json.origin!!,
                             direction = json.direction!!
                         )
@@ -42,5 +42,5 @@ abstract class AbstractBusEireannLiveDataService(private val rtpiService: RtpiAp
             }
     }
 
-    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): LiveTime
+    protected abstract fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): LiveTime
 }
