@@ -3,13 +3,12 @@ package io.rtpi.service.aircoach
 import io.rtpi.api.LiveTime
 import io.rtpi.resource.aircoach.AircoachApi
 import io.rtpi.resource.aircoach.EtaJson
-import io.rtpi.resource.aircoach.ServiceJson
 import io.rtpi.resource.aircoach.TimestampJson
 import io.rtpi.time.DateTimeProvider
 import io.rtpi.time.toIso8601
+import org.threeten.bp.Duration
 import org.threeten.bp.LocalTime
 import org.threeten.bp.format.DateTimeFormatter
-import org.threeten.bp.temporal.ChronoUnit
 
 class AircoachLiveDataService(aircoachApi: AircoachApi) : AbstractAircoachLiveDataService<LocalTime>(aircoachApi) {
 
@@ -20,12 +19,16 @@ class AircoachLiveDataService(aircoachApi: AircoachApi) : AbstractAircoachLiveDa
             expectedTimestamp,
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         )
-        val waitTimeSeconds = ChronoUnit.SECONDS.between(currentTime, expectedTime).toInt()
-        return LiveTime(waitTimeMinutes = waitTimeSeconds, expectedArrivalTimestamp = expectedTime.toIso8601())
-    }
-
-    override fun createDueTime(json: ServiceJson): LiveTime {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val scheduledTime = DateTimeProvider.getDateTime(
+            scheduled.dateTime,
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        )
+        return LiveTime(
+            waitTimeMinutes = Duration.between(currentTime, expectedTime).toMinutes().toInt(),
+            currentTimestamp = currentTime.toIso8601(),
+            expectedTimestamp = expectedTime.toIso8601(),
+            scheduledTimestamp = scheduledTime.toIso8601()
+        )
     }
 
 }
