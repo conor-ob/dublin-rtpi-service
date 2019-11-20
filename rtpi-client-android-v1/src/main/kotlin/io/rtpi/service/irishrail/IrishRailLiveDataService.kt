@@ -4,6 +4,7 @@ import io.rtpi.api.LiveTime
 import io.rtpi.resource.irishrail.IrishRailApi
 import io.rtpi.resource.irishrail.IrishRailStationDataXml
 import io.rtpi.time.toIso8601
+import org.threeten.bp.Duration
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.LocalTime
@@ -19,25 +20,29 @@ class IrishRailLiveDataService(irishRailApi: IrishRailApi) : AbstractIrishRailLi
         val serverDateTime = LocalDateTime.parse(xml.serverTime, DateTimeFormatter.ISO_DATE_TIME).atZone(dublin)
         val serverDate = serverDateTime.toLocalDate()
 
-        val midnight = LocalTime.of(0, 0).atDate(serverDate).atZone(dublin)
-        val scheduledArrivalDateTime = parseTime(xml.schArrival!!, serverDate)
-        val expectedArrivalDateTime = parseTime(xml.expArrival!!, serverDate)
-        val scheduledDepartureDateTime = parseTime(xml.schDepart!!, serverDate)
-        val expectedDepartureDateTime = parseTime(xml.expDepart!!, serverDate)
+        val midnight = LocalTime.of(0, 0)
+        val scheduledArrivalDateTime = parseTime(xml.schArrival!!, serverDate, serverDateTime)
+        val expectedArrivalDateTime = parseTime(xml.expArrival!!, serverDate, serverDateTime)
+        val scheduledDepartureDateTime = parseTime(xml.schDepart!!, serverDate, serverDateTime)
+        val expectedDepartureDateTime = parseTime(xml.expDepart!!, serverDate, serverDateTime)
 
-        val isStarting = scheduledArrivalDateTime == midnight && expectedArrivalDateTime == midnight
-        val isTerminating = scheduledDepartureDateTime == midnight && expectedDepartureDateTime == midnight
+        val isStarting = scheduledArrivalDateTime.toLocalTime() == midnight && expectedArrivalDateTime.toLocalTime() == midnight
+        val isTerminating = scheduledDepartureDateTime.toLocalTime() == midnight && expectedDepartureDateTime.toLocalTime() == midnight
 
         return LiveTime(
             waitTimeMinutes = xml.dueIn!!.toInt(),
             currentTimestamp = serverDateTime.toIso8601(),
-            expectedTimestamp = if (isStarting) expectedDepartureDateTime.toIso8601() else expectedArrivalDateTime.toIso8601(),
-            scheduledTimestamp = if (isStarting) scheduledDepartureDateTime.toIso8601() else expectedDepartureDateTime.toIso8601()
+            expectedTimestamp = if (isTerminating) expectedArrivalDateTime.toIso8601() else expectedDepartureDateTime.toIso8601(),
+            scheduledTimestamp = if (isTerminating) scheduledArrivalDateTime.toIso8601() else scheduledDepartureDateTime.toIso8601()
         )
     }
 
-    private fun parseTime(timestamp: String, date: LocalDate): ZonedDateTime {
-        return LocalTime.parse(timestamp).atDate(date).atZone(dublin)
+    private fun parseTime(timestamp: String, date: LocalDate, serverDateTime: ZonedDateTime): ZonedDateTime {
+        val dateTime = LocalTime.parse(timestamp).atDate(date).atZone(dublin)
+        if (Duration.between(dateTime, serverDateTime).toHours() > 12) {
+            return dateTime.plusDays(1)
+        }
+        return dateTime
     }
 
 }
