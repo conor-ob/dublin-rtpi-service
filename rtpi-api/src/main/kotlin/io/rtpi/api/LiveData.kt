@@ -1,23 +1,15 @@
 package io.rtpi.api
 
 interface LiveData {
-
     val operator: Operator
-
 }
 
 interface TimedLiveData : LiveData {
-
     val route: String
-
     val origin: String
-
     val destination: String
-
     val direction: String
-
     val liveTime: LiveTime
-
 }
 
 data class LiveTime(
@@ -34,9 +26,7 @@ data class AircoachLiveData(
     override val direction: String,
     override val liveTime: LiveTime
 ) : TimedLiveData {
-
     override val operator = Operator.AIRCOACH
-
 }
 
 data class BusEireannLiveData(
@@ -52,9 +42,7 @@ data class DublinBikesLiveData(
     val bikes: Int,
     val docks: Int
 ) : LiveData {
-
     override val operator = Operator.DUBLIN_BIKES
-
 }
 
 data class DublinBusLiveData(
