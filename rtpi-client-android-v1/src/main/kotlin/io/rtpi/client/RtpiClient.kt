@@ -1,10 +1,10 @@
 package io.rtpi.client
 
-import io.rtpi.resource.aircoach.AircoachApi
-import io.rtpi.resource.dublinbus.DublinBusApi
-import io.rtpi.resource.irishrail.IrishRailApi
-import io.rtpi.resource.jcdecaux.JcDecauxApi
-import io.rtpi.resource.rtpi.RtpiApi
+import io.rtpi.external.aircoach.AircoachApi
+import io.rtpi.external.dublinbus.DublinBusApi
+import io.rtpi.external.irishrail.IrishRailApi
+import io.rtpi.external.jcdecaux.JcDecauxApi
+import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.service.aircoach.AircoachLiveDataService
 import io.rtpi.service.aircoach.AircoachStopService
 import io.rtpi.service.aircoach.JsoupAircoachWebScraper
@@ -96,14 +96,14 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
     private val aircoachWebScraper =
         JsoupAircoachWebScraper("https://tracker.aircoach.ie/")
 
-    private val dublinBusApi =
-        Retrofit.Builder()
-            .baseUrl("http://rtpi.dublinbus.ie/")
-            .client(defaultOkHttpClient)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(xmlConverterFactory)
-            .build()
-            .create(DublinBusApi::class.java)
+//    private val dublinBusApi =
+//        Retrofit.Builder()
+//            .baseUrl("http://rtpi.dublinbus.ie/")
+//            .client(defaultOkHttpClient)
+//            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//            .addConverterFactory(xmlConverterFactory)
+//            .build()
+//            .create(DublinBusApi::class.java)
 
     private val jcDecauxApi =
         Retrofit.Builder()
@@ -152,8 +152,8 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
 
     private val dublinBusClient =
         DublinBusClient(
-            DublinBusStopService(dublinBusApi, rtpiApi),
-            DublinBusLiveDataService(dublinBusApi, rtpiApi)
+            DublinBusStopService(rtpiApi),
+            DublinBusLiveDataService(rtpiApi)
         )
 
     private val irishRailClient =

@@ -19,14 +19,14 @@ class AircoachResource(
     @Path("stops")
     @Produces(MediaType.APPLICATION_JSON)
     fun getStops(): Response {
-        return Response.ok(aircoachStopService.getStops()).build()
+        return Response.ok(aircoachStopService.getStops().blockingGet()).build()
     }
 
     @GET
     @Path("livedata")
     @Produces(MediaType.APPLICATION_JSON)
     fun getLiveData(@QueryParam(value = "stopId") stopId: String): Response {
-        return Response.ok(aircoachLiveDataService.getLiveData(stopId)).build()
+        return Response.ok(aircoachLiveDataService.getLiveData(stopId).blockingGet()).build()
     }
 
 }

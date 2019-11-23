@@ -19,7 +19,7 @@ class IrishRailResource(
     @Path("stations")
     @Produces(MediaType.APPLICATION_JSON)
     fun getStops(): Response {
-        return Response.ok(irishRailStationService.getStations()).build()
+        return Response.ok(irishRailStationService.getStations().blockingGet()).build()
     }
 
     @GET

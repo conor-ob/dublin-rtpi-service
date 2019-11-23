@@ -4,8 +4,8 @@ import io.reactivex.Single
 import io.rtpi.api.LiveTime
 import io.rtpi.api.LuasLiveData
 import io.rtpi.api.Operator
-import io.rtpi.resource.rtpi.RtpiApi
-import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
+import io.rtpi.external.rtpi.RtpiApi
+import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 
 abstract class AbstractLuasLiveDataService(private val rtpiApi: RtpiApi) {
 
@@ -20,7 +20,7 @@ abstract class AbstractLuasLiveDataService(private val rtpiApi: RtpiApi) {
                             route = json.route!!,
                             direction = json.direction!!,
                             destination = json.destination!!.replace("LUAS ", ""),
-                            origin = json.origin!!
+                            origin = json.origin!!.replace("LUAS ", "")
                         )
                     }
                     .sortedBy { it.liveTime.waitTimeMinutes }
@@ -44,5 +44,12 @@ abstract class AbstractLuasLiveDataService(private val rtpiApi: RtpiApi) {
     }
 
     protected abstract fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): LiveTime
+
+    protected fun parseDueTime(json: RtpiRealTimeBusInformationJson): Int {
+        if ("Due" == json.dueTime) {
+            return 0
+        }
+        return json.dueTime!!.toInt()
+    }
 
 }

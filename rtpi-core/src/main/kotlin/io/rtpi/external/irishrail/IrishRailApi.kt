@@ -1,4 +1,4 @@
-package io.rtpi.resource.irishrail
+package io.rtpi.external.irishrail
 
 import io.reactivex.Single
 import retrofit2.http.GET

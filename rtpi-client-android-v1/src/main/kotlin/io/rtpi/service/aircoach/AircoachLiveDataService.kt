@@ -1,9 +1,9 @@
 package io.rtpi.service.aircoach
 
 import io.rtpi.api.LiveTime
-import io.rtpi.resource.aircoach.AircoachApi
-import io.rtpi.resource.aircoach.EtaJson
-import io.rtpi.resource.aircoach.TimestampJson
+import io.rtpi.external.aircoach.AircoachApi
+import io.rtpi.external.aircoach.EtaJson
+import io.rtpi.external.aircoach.TimestampJson
 import io.rtpi.time.DateTimeProvider
 import io.rtpi.time.toIso8601
 import org.threeten.bp.Duration

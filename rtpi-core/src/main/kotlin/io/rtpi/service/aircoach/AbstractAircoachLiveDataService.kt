@@ -1,29 +1,30 @@
 package io.rtpi.service.aircoach
 
+import io.reactivex.Single
 import io.rtpi.api.AircoachLiveData
 import io.rtpi.api.LiveTime
-import io.rtpi.ktx.validate
-import io.rtpi.resource.aircoach.AircoachApi
-import io.rtpi.resource.aircoach.EtaJson
-import io.rtpi.resource.aircoach.TimestampJson
+import io.rtpi.external.aircoach.AircoachApi
+import io.rtpi.external.aircoach.EtaJson
+import io.rtpi.external.aircoach.TimestampJson
 
 abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: AircoachApi) {
 
-    fun getLiveData(stopId: String): List<AircoachLiveData> {
+    fun getLiveData(stopId: String): Single<List<AircoachLiveData>> {
         return aircoachApi.getLiveData(stopId)
-            .validate()
-            .services
-            .map { json ->
-                AircoachLiveData(
-                    liveTime = createDueTime(json.eta, json.time.arrive),
-                    route = json.route,
-                    destination = json.arrival,
-                    origin = json.depart,
-                    direction = json.dir
-                )
+            .map {
+                it.services
+                    .map { json ->
+                        AircoachLiveData(
+                            liveTime = createDueTime(json.eta, json.time.arrive),
+                            route = json.route,
+                            destination = json.arrival,
+                            origin = json.depart,
+                            direction = json.dir
+                        )
+                    }
+                    .filter { it.liveTime.waitTimeMinutes > -1 }
+                    .sortedBy { it.liveTime.waitTimeMinutes }
             }
-            .filter { it.liveTime.waitTimeMinutes > -1 }
-            .sortedBy { it.liveTime.waitTimeMinutes }
 //
 //        val condensedLiveData = LinkedHashMap<Int, AircoachLiveData>()
 //        for (data in liveData) {

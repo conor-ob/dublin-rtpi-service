@@ -20,14 +20,14 @@ class DublinBusResource(
     @Path("stops")
     @Produces(MediaType.APPLICATION_JSON)
     fun getStops(): Response {
-        return Response.ok(dublinBusStopService.getStops()).build()
+        return Response.ok(dublinBusStopService.getStops().blockingGet()).build()
     }
 
     @GET
     @Path("livedata")
     @Produces(MediaType.APPLICATION_JSON)
     fun getLiveData(@QueryParam(value = "stopId") stopId: String): Response {
-        return Response.ok(dublinBusLiveDataService.getLiveData(stopId)).build()
+        return Response.ok(dublinBusLiveDataService.getLiveData(stopId).blockingGet()).build()
     }
 
 }

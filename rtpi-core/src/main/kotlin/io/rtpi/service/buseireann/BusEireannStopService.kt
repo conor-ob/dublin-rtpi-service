@@ -5,8 +5,7 @@ import io.rtpi.api.BusEireannStop
 import io.rtpi.api.Coordinate
 import io.rtpi.api.Operator
 import io.rtpi.api.Route
-import io.rtpi.ktx.validate
-import io.rtpi.resource.rtpi.RtpiApi
+import io.rtpi.external.rtpi.RtpiApi
 
 class BusEireannStopService(private val rtpiApi: RtpiApi) {
 

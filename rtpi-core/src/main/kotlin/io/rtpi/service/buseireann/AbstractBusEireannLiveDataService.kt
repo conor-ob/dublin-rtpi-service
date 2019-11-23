@@ -4,8 +4,8 @@ import io.reactivex.Single
 import io.rtpi.api.BusEireannLiveData
 import io.rtpi.api.LiveTime
 import io.rtpi.api.Operator
-import io.rtpi.resource.rtpi.RtpiApi
-import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
+import io.rtpi.external.rtpi.RtpiApi
+import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 
 abstract class AbstractBusEireannLiveDataService(private val rtpiService: RtpiApi) {
 
@@ -43,4 +43,11 @@ abstract class AbstractBusEireannLiveDataService(private val rtpiService: RtpiAp
     }
 
     protected abstract fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): LiveTime
+
+    protected fun parseDueTime(json: RtpiRealTimeBusInformationJson): Int {
+        if ("Due" == json.dueTime) {
+            return 0
+        }
+        return json.dueTime!!.toInt()
+    }
 }

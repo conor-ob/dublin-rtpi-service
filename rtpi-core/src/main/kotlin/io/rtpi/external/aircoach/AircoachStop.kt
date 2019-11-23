@@ -1,4 +1,4 @@
-package io.rtpi.resource.aircoach
+package io.rtpi.external.aircoach
 
 import com.google.gson.annotations.SerializedName
 

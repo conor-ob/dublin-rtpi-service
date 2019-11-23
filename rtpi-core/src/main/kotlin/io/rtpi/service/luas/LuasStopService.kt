@@ -5,7 +5,7 @@ import io.rtpi.api.Coordinate
 import io.rtpi.api.LuasStop
 import io.rtpi.api.Operator
 import io.rtpi.api.Route
-import io.rtpi.resource.rtpi.RtpiApi
+import io.rtpi.external.rtpi.RtpiApi
 
 class LuasStopService(private val rtpiApi: RtpiApi) {
 

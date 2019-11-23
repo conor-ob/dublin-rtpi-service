@@ -20,7 +20,7 @@ class LuasResource(
     @Path("stops")
     @Produces(MediaType.APPLICATION_JSON)
     fun getStops(): Response {
-        return Response.ok(luasStopService.getStops()).build()
+        return Response.ok(luasStopService.getStops().blockingGet()).build()
     }
 
     @GET

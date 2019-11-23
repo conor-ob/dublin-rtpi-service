@@ -1,8 +1,8 @@
 package io.rtpi.service.irishrail
 
 import io.rtpi.api.LiveTime
-import io.rtpi.resource.irishrail.IrishRailApi
-import io.rtpi.resource.irishrail.IrishRailStationDataXml
+import io.rtpi.external.irishrail.IrishRailApi
+import io.rtpi.external.irishrail.IrishRailStationDataXml
 import io.rtpi.time.toIso8601
 import java.time.Duration
 import java.time.LocalDate

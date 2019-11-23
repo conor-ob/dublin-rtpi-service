@@ -1,4 +1,4 @@
-package io.rtpi.resource.irishrail
+package io.rtpi.external.irishrail
 
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.ElementList

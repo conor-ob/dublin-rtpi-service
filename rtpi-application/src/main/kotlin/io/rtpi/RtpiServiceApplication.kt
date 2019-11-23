@@ -1,10 +1,10 @@
 package io.rtpi
 
 import com.codahale.metrics.health.HealthCheck
-import io.rtpi.resource.dublinbus.DublinBusApi
-import io.rtpi.resource.irishrail.IrishRailApi
-import io.rtpi.resource.jcdecaux.JcDecauxApi
-import io.rtpi.resource.rtpi.RtpiApi
+import io.rtpi.external.dublinbus.DublinBusApi
+import io.rtpi.external.irishrail.IrishRailApi
+import io.rtpi.external.jcdecaux.JcDecauxApi
+import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.service.buseireann.BusEireannLiveDataService
 import io.rtpi.service.buseireann.BusEireannStopService
 import io.rtpi.service.dublinbikes.DublinBikesDockService
@@ -21,7 +21,7 @@ import io.rtpi.resource.DublinBikesResource
 import io.rtpi.resource.DublinBusResource
 import io.rtpi.resource.IrishRailResource
 import io.rtpi.resource.LuasResource
-import io.rtpi.resource.aircoach.AircoachApi
+import io.rtpi.external.aircoach.AircoachApi
 import io.rtpi.service.aircoach.AircoachLiveDataService
 import io.rtpi.service.aircoach.AircoachStopService
 import io.dropwizard.Application
@@ -101,13 +101,13 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
             configuration.apiConfig.aircoachBaseUrl!!
         )
 
-        val dublinBusApi = Retrofit.Builder()
-            .baseUrl(configuration.apiConfig.dublinBusBaseUrl!!)
-            .client(client)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(xmlConverterFactory)
-            .build()
-            .create(DublinBusApi::class.java)
+//        val dublinBusApi = Retrofit.Builder()
+//            .baseUrl(configuration.apiConfig.dublinBusBaseUrl!!)
+//            .client(client)
+//            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//            .addConverterFactory(xmlConverterFactory)
+//            .build()
+//            .create(DublinBusApi::class.java)
 
         val jcDecauxApi = Retrofit.Builder()
             .baseUrl(configuration.apiConfig.jcDecauxBaseUrl!!)
@@ -157,8 +157,8 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         )
         environment.jersey().register(
             DublinBusResource(
-                DublinBusStopService(dublinBusApi, rtpiApi),
-                DublinBusLiveDataService(dublinBusApi, rtpiApi)
+                DublinBusStopService(rtpiApi),
+                DublinBusLiveDataService(rtpiApi)
             )
         )
         environment.jersey().register(

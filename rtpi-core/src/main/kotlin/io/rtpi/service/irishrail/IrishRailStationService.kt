@@ -4,7 +4,7 @@ import io.reactivex.Single
 import io.rtpi.api.Coordinate
 import io.rtpi.api.IrishRailStation
 import io.rtpi.api.Operator
-import io.rtpi.resource.irishrail.IrishRailApi
+import io.rtpi.external.irishrail.IrishRailApi
 
 class IrishRailStationService(private val irishRailApi: IrishRailApi) {
 

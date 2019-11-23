@@ -4,9 +4,9 @@ import io.reactivex.Single
 import io.rtpi.api.LiveTime
 import io.rtpi.api.IrishRailLiveData
 import io.rtpi.api.Operator
-import io.rtpi.resource.irishrail.IrishRailApi
-import io.rtpi.resource.irishrail.IrishRailStationDataResponseXml
-import io.rtpi.resource.irishrail.IrishRailStationDataXml
+import io.rtpi.external.irishrail.IrishRailApi
+import io.rtpi.external.irishrail.IrishRailStationDataResponseXml
+import io.rtpi.external.irishrail.IrishRailStationDataXml
 
 abstract class AbstractIrishRailLiveDataService(private val irishRailApi: IrishRailApi) {
 
