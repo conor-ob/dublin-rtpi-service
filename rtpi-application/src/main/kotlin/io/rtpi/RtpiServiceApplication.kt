@@ -26,6 +26,7 @@ import io.rtpi.service.aircoach.AircoachLiveDataService
 import io.rtpi.service.aircoach.AircoachStopService
 import io.dropwizard.Application
 import io.dropwizard.setup.Environment
+import io.rtpi.external.staticdata.StaticDataApi
 import io.rtpi.service.aircoach.JsoupAircoachWebScraper
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -133,9 +134,18 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
             .build()
             .create(IrishRailApi::class.java)
 
+        val staticDataApi =
+            Retrofit.Builder()
+                .baseUrl("https://raw.githubusercontent.com/conor-ob/rtpi-static-data/master/")
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(gsonConverterFactory)
+                .addConverterFactory(xmlConverterFactory)
+                .build()
+                .create(StaticDataApi::class.java)
+
         environment.jersey().register(
             AircoachResource(
-                AircoachStopService(aircoachWebScraper),
+                AircoachStopService(aircoachWebScraper, staticDataApi),
                 AircoachLiveDataService(aircoachApi)
             )
         )

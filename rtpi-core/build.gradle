@@ -12,6 +12,7 @@ dependencies {
     }
     implementation libraries.rxjava
 
+    testImplementation project(path: ':rtpi-api', configuration: 'testOutput')
     testImplementation libraries.junit
     testImplementation libraries.assertj
 }
