@@ -4,6 +4,7 @@ import io.reactivex.Single
 import io.rtpi.api.Coordinate
 import io.rtpi.api.IrishRailStation
 import io.rtpi.api.Operator
+import io.rtpi.api.Route
 import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.irishrail.IrishRailStationResponseXml
 import io.rtpi.external.irishrail.IrishRailStationXml
@@ -18,7 +19,7 @@ class IrishRailStationService(private val irishRailApi: IrishRailApi) {
 
     private fun filterStations(responseXml: IrishRailStationResponseXml): List<IrishRailStationXml> {
         return responseXml.stations.filter { xml ->
-            xml.code != null
+            xml.code != null && filterDuplicates(xml)
                 && xml.name != null
                 && xml.latitude != null
                 && xml.longitude != null
@@ -27,14 +28,23 @@ class IrishRailStationService(private val irishRailApi: IrishRailApi) {
         }
     }
 
+    private fun filterDuplicates(xml: IrishRailStationXml): Boolean {
+        return xml.code != "ADAMF" && xml.code != "ADAMS" // Adamstown
+            && xml.code != "CLONF" && xml.code != "CLONS" // Clondalkin
+            && xml.code != "HAZEF" && xml.code != "HAZES" // Hazelhatch
+            && xml.code != "PWESF" && xml.code != "PWESS" // Park West and Cherry Orchard
+    }
+
     private fun mapStations(filteredXml: List<IrishRailStationXml>): List<IrishRailStation>? {
         return filteredXml.map { xml ->
             val id = xml.code!!.trim().toUpperCase()
+            val operators = mapOperators(id)
             IrishRailStation(
                 id = id,
                 name = xml.name!!.trim(),
                 coordinate = Coordinate(xml.latitude!!, xml.longitude!!),
-                operators = mapOperators(id)
+                operators = operators,
+                routes = operators.map { Route(it.fullName, it) }
             )
         }
     }
@@ -63,17 +73,17 @@ class IrishRailStationService(private val irishRailApi: IrishRailApi) {
             "SUTTN"  // Sutton
             -> setOf(Operator.DART)
 
-            "ADAMF", // Adamstown
-            "ADAMS", // Adamstown
-            "ADMTN", // Adamstown TODO check which one of these is in use
+//            "ADAMF", // Adamstown
+//            "ADAMS", // Adamstown
+            "ADMTN", // Adamstown
             "ASHTN", // Ashtown
             "ATLNE", // Athlone
             "BBRDG", // Broombridge
             "BBRGN", // Balbriggan
             "CLARA", // Clara
             "CLDKN", // Clondalkin
-            "CLONF", // Clondalkin
-            "CLONS", // Clondalkin TODO check which one of these is in use
+//            "CLONF", // Clondalkin
+//            "CLONS", // Clondalkin
             "CLSLA", // Clonsilla
             "CMINE", // Coolmine
             "CNOCK", // Castleknock
@@ -84,17 +94,17 @@ class IrishRailStationService(private val irishRailApi: IrishRailApi) {
             "DGHDA", // Drogheda
             "GSTON", // Gormanston
             "HAFLD", // Hansfield
-            "HAZEF", // Hazelhatch
-            "HAZES", // Hazelhatch
-            "HZLCH", // Hazelhatch TODO check which one of these is in use
+//            "HAZEF", // Hazelhatch
+//            "HAZES", // Hazelhatch
+            "HZLCH", // Hazelhatch
             "LTOWN", // Laytown
             "LXCON", // Leixlip (Confey)
             "LXLSA", // Leixlip (Louisa Bridge)
             "M3WAY", // M3 Parkway
             "PHNPK", // Navan Road Parkway
-            "PWESF", // Park West and Cherry Orchard
-            "PWESS", // PARK WEST
-            "CHORC", // Park West and Cherry Orchard TODO check which one of these is in use
+//            "PWESF", // Park West and Cherry Orchard
+//            "PWESS", // PARK WEST
+            "CHORC", // Park West and Cherry Orchard
             "RLUSK", // Rush and Lusk
             "SKRES", // Skerries
             "TMORE"  // Tullamore
