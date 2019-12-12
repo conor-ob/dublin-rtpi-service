@@ -7,6 +7,7 @@ buildscript {
             rhino: '1.0',
             rxjava: '2.2.14',
             shadow: "5.1.0",
+            threetenabp: "1.2.1",
 
             assertj: "3.13.2",
             junit: "4.12",
@@ -22,6 +23,7 @@ buildscript {
             retrofit_simplexml: "com.squareup.retrofit2:converter-simplexml:${versions.retrofit}",
             rhino: "io.apisense:rhino-android:${versions.rhino}",
             rxjava: "io.reactivex.rxjava2:rxjava:${versions.rxjava}",
+            threetenabp: "com.jakewharton.threetenabp:threetenabp:${versions.threetenabp}",
 
             assertj: "org.assertj:assertj-core:${versions.assertj}",
             dropwizard_testing: "io.dropwizard:dropwizard-testing:${versions.dropwizard}",

@@ -6,7 +6,7 @@ import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiLiveDataService
 
-class LuasLiveDataService(
+abstract class AbstractLuasLiveDataService(
     rtpiApi: RtpiApi
 ) : AbstractRtpiLiveDataService<LuasLiveData>(
     rtpiApi = rtpiApi,

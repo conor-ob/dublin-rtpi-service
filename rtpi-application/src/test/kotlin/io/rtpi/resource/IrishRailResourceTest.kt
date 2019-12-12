@@ -8,7 +8,6 @@ import io.dropwizard.testing.junit.ResourceTestRule
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Single
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.ClassRule
 import org.junit.Test
 import java.time.LocalTime
