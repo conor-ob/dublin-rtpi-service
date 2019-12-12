@@ -1,4 +1,4 @@
-package io.rtpi.resource.rtpi
+package io.rtpi.external.rtpi
 
 import com.google.gson.annotations.SerializedName
 

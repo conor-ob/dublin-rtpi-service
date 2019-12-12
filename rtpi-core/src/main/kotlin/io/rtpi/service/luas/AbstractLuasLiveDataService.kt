@@ -1,46 +1,55 @@
 package io.rtpi.service.luas
 
+import io.reactivex.Single
 import io.rtpi.api.LiveTime
 import io.rtpi.api.LuasLiveData
 import io.rtpi.api.Operator
-import io.rtpi.ktx.validate
-import io.rtpi.resource.rtpi.RtpiApi
-import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
-import java.util.Objects
+import io.rtpi.external.rtpi.RtpiApi
+import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 
 abstract class AbstractLuasLiveDataService(private val rtpiApi: RtpiApi) {
 
-    fun getLiveData(stopId: String): List<LuasLiveData> {
-        val liveData = rtpiApi.realTimeBusInformation(stopId = stopId, operator = "luas", format = "json")
-            .validate()
-            .results
-            .map { json ->
-                LuasLiveData(
-                    liveTimes = listOf(createDueTime(json)),
-                    operator = Operator.parse(json.operator!!),
-                    route = json.route!!,
-                    direction = json.direction!!,
-                    destination = json.destination!!.replace("LUAS ", "")
-                )
-            }
-            .sortedBy { it.liveTimes.first().waitTimeSeconds }
+    fun getLiveData(stopId: String): Single<List<LuasLiveData>> {
+        return rtpiApi.realTimeBusInformation(stopId = stopId, operator = "luas", format = "json")
+            .map { response ->
+                val liveData = response.results
+                    .map { json ->
+                        LuasLiveData(
+                            liveTime = createDueTime(response.timestamp!!, json),
+                            operator = Operator.parse(json.operator!!),
+                            route = json.route!!,
+                            direction = json.direction!!,
+                            destination = json.destination!!.replace("LUAS ", ""),
+                            origin = json.origin!!.replace("LUAS ", "")
+                        )
+                    }
+                    .sortedBy { it.liveTime.waitTimeMinutes }
+                liveData
 
-        val condensedLiveData = LinkedHashMap<Int, LuasLiveData>()
-        for (data in liveData) {
-            val id = Objects.hash(data.operator, data.route, data.destination, data.direction)
-            var cachedLiveData = condensedLiveData[id]
-            if (cachedLiveData == null) {
-                condensedLiveData[id] = data
-            } else {
-                val dueTimes = cachedLiveData.liveTimes.toMutableList()
-                dueTimes.add(data.liveTimes.first())
-                cachedLiveData = cachedLiveData.copy(liveTimes = dueTimes)
-                condensedLiveData[id] = cachedLiveData
+//                val condensedLiveData = LinkedHashMap<Int, LuasLiveData>()
+//                for (data in liveData) {
+//                    val id = Objects.hash(data.operator, data.route, data.destination, data.direction)
+//                    var cachedLiveData = condensedLiveData[id]
+//                    if (cachedLiveData == null) {
+//                        condensedLiveData[id] = data
+//                    } else {
+//                        val dueTimes = cachedLiveData.liveTime.toMutableList()
+//                        dueTimes.add(data.liveTime.first())
+//                        cachedLiveData = cachedLiveData.copy(liveTime = dueTimes)
+//                        condensedLiveData[id] = cachedLiveData
+//                    }
+//                }
+//                condensedLiveData.values.toList()
             }
-        }
-        return condensedLiveData.values.toList()
     }
 
-    protected abstract fun createDueTime(json: RtpiRealTimeBusInformationJson): LiveTime
+    protected abstract fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): LiveTime
+
+    protected fun parseDueTime(json: RtpiRealTimeBusInformationJson): Int {
+        if ("Due" == json.dueTime) {
+            return 0
+        }
+        return json.dueTime!!.toInt()
+    }
 
 }

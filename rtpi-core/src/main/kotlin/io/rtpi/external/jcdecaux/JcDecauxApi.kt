@@ -1,6 +1,6 @@
-package io.rtpi.resource.jcdecaux
+package io.rtpi.external.jcdecaux
 
-import retrofit2.Call
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -11,13 +11,13 @@ interface JcDecauxApi {
     fun stations(
         @Query("contract") contract: String,
         @Query("apiKey") apiKey: String
-    ): Call<List<StationJson>>
+    ): Single<List<StationJson>>
 
     @GET("stations/{station_number}")
     fun station(
         @Path("station_number") stationNumber: String,
         @Query("contract") contract: String,
         @Query("apiKey") apiKey: String
-    ): Call<StationJson>
+    ): Single<StationJson>
 
 }

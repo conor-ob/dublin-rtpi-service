@@ -1,40 +1,32 @@
 package io.rtpi.service.dublinbus
 
 import io.rtpi.api.LiveTime
-import io.rtpi.resource.dublinbus.DublinBusApi
-import io.rtpi.resource.dublinbus.DublinBusRealTimeStopDataXml
-import io.rtpi.resource.rtpi.RtpiApi
-import io.rtpi.resource.rtpi.RtpiRealTimeBusInformationJson
-import io.rtpi.time.DateTimeProvider
+import io.rtpi.external.dublinbus.DublinBusApi
+import io.rtpi.external.rtpi.RtpiApi
+import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 import io.rtpi.time.toIso8601
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.ZoneId
+import org.threeten.bp.ZonedDateTime
 import org.threeten.bp.format.DateTimeFormatter
-import org.threeten.bp.temporal.ChronoUnit
+
+private val dublin = ZoneId.of("Europe/Dublin")
 
 class DublinBusLiveDataService(
-    dublinBusApi: DublinBusApi,
     rtpiApi: RtpiApi
-) : AbstractDublinBusLiveDataService(dublinBusApi, rtpiApi) {
+) : AbstractDublinBusLiveDataService(rtpiApi) {
 
-    override fun createDueTime(xml: DublinBusRealTimeStopDataXml): LiveTime {
-        val currentTime = DateTimeProvider.getCurrentDateTime()
-        val expectedTimestamp = xml.expectedTimestamp!!
-        val expectedTime = DateTimeProvider.getDateTime(
-            expectedTimestamp,
-            DateTimeFormatter.ISO_DATE_TIME
+    override fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): LiveTime {
+        return LiveTime(
+            currentTimestamp = parseDateTime(serverTimestamp).toIso8601(),
+            waitTimeMinutes = parseDueTime(json),
+            expectedTimestamp = parseDateTime(json.arrivalDateTime!!).toIso8601(),
+            scheduledTimestamp = parseDateTime(json.scheduledArrivalDateTime!!).toIso8601()
         )
-        val waitTimeSeconds = ChronoUnit.SECONDS.between(currentTime, expectedTime).toInt()
-        return LiveTime(waitTimeSeconds, expectedTime.toIso8601())
     }
 
-    override fun createDueTime(json: RtpiRealTimeBusInformationJson): LiveTime {
-        val currentTime = DateTimeProvider.getCurrentDateTime()
-        val expectedTimestamp = json.arrivalDateTime!!
-        val expectedTime = DateTimeProvider.getDateTime(
-            expectedTimestamp,
-            DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
-        )
-        val waitTimeSeconds = ChronoUnit.SECONDS.between(currentTime, expectedTime).toInt()
-        return LiveTime(waitTimeSeconds, expectedTime.toIso8601())
+    private fun parseDateTime(timestamp: String): ZonedDateTime {
+        return LocalDateTime.parse(timestamp, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")).atZone(dublin)
     }
 
 }

@@ -1,4 +1,4 @@
-package io.rtpi.resource.dublinbus
+package io.rtpi.external.dublinbus
 
 import org.simpleframework.xml.*
 

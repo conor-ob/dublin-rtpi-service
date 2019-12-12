@@ -1,4 +1,4 @@
-package io.rtpi.resource.irishrail
+package io.rtpi.external.irishrail
 
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.ElementList
@@ -26,9 +26,9 @@ data class IrishRailStationDataXml(
     @field:Element(name = "Duein") var dueIn: String? = null,
     @field:Element(name = "Late", required = false) var late: String? = null,
     @field:Element(name = "Exparrival", required = false) var expArrival: String? = null,
-    @field:Element(name = "Expdepart", required = false) var expectedDepartureTime: String? = null,
+    @field:Element(name = "Expdepart", required = false) var expDepart: String? = null,
     @field:Element(name = "Scharrival", required = false) var schArrival: String? = null,
-    @field:Element(name = "Schdepart", required = false) var scheduledDepartureTime: String? = null,
+    @field:Element(name = "Schdepart", required = false) var schDepart: String? = null,
     @field:Element(name = "Direction") var direction: String? = null,
     @field:Element(name = "Traintype") var trainType: String? = null,
     @field:Element(name = "Locationtype", required = false) var locationType: String? = null

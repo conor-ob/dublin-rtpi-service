@@ -1,6 +1,6 @@
-package io.rtpi.resource.aircoach
+package io.rtpi.external.aircoach
 
-import retrofit2.Call
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -9,6 +9,6 @@ interface AircoachApi {
     @GET("api/eta/stops/{id}")
     fun getLiveData(
         @Path("id") id: String
-    ): Call<ServiceResponseJson>
+    ): Single<ServiceResponseJson>
 
 }

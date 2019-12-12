@@ -1,10 +1,10 @@
 package io.rtpi
 
 import com.codahale.metrics.health.HealthCheck
-import io.rtpi.resource.dublinbus.DublinBusApi
-import io.rtpi.resource.irishrail.IrishRailApi
-import io.rtpi.resource.jcdecaux.JcDecauxApi
-import io.rtpi.resource.rtpi.RtpiApi
+import io.rtpi.external.dublinbus.DublinBusApi
+import io.rtpi.external.irishrail.IrishRailApi
+import io.rtpi.external.jcdecaux.JcDecauxApi
+import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.service.buseireann.BusEireannLiveDataService
 import io.rtpi.service.buseireann.BusEireannStopService
 import io.rtpi.service.dublinbikes.DublinBikesDockService
@@ -21,14 +21,16 @@ import io.rtpi.resource.DublinBikesResource
 import io.rtpi.resource.DublinBusResource
 import io.rtpi.resource.IrishRailResource
 import io.rtpi.resource.LuasResource
-import io.rtpi.resource.aircoach.AircoachApi
+import io.rtpi.external.aircoach.AircoachApi
 import io.rtpi.service.aircoach.AircoachLiveDataService
 import io.rtpi.service.aircoach.AircoachStopService
 import io.dropwizard.Application
 import io.dropwizard.setup.Environment
+import io.rtpi.external.staticdata.StaticDataApi
 import io.rtpi.service.aircoach.JsoupAircoachWebScraper
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.security.SecureRandom
@@ -91,6 +93,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         val aircoachApi = Retrofit.Builder()
             .baseUrl(configuration.apiConfig.aircoachBaseUrl!!)
             .client(aircoachClient)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(AircoachApi::class.java)
@@ -99,16 +102,18 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
             configuration.apiConfig.aircoachBaseUrl!!
         )
 
-        val dublinBusApi = Retrofit.Builder()
-            .baseUrl(configuration.apiConfig.dublinBusBaseUrl!!)
-            .client(client)
-            .addConverterFactory(xmlConverterFactory)
-            .build()
-            .create(DublinBusApi::class.java)
+//        val dublinBusApi = Retrofit.Builder()
+//            .baseUrl(configuration.apiConfig.dublinBusBaseUrl!!)
+//            .client(client)
+//            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//            .addConverterFactory(xmlConverterFactory)
+//            .build()
+//            .create(DublinBusApi::class.java)
 
         val jcDecauxApi = Retrofit.Builder()
             .baseUrl(configuration.apiConfig.jcDecauxBaseUrl!!)
             .client(client)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(JcDecauxApi::class.java)
@@ -116,6 +121,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         val rtpiApi = Retrofit.Builder()
             .baseUrl(configuration.apiConfig.rtpiBaseUrl!!)
             .client(client)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(RtpiApi::class.java)
@@ -123,13 +129,23 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         val irishRailApi = Retrofit.Builder()
             .baseUrl(configuration.apiConfig.irishRailBaseUrl!!)
             .client(client)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(xmlConverterFactory)
             .build()
             .create(IrishRailApi::class.java)
 
+        val staticDataApi =
+            Retrofit.Builder()
+                .baseUrl("https://raw.githubusercontent.com/conor-ob/rtpi-static-data/master/")
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(gsonConverterFactory)
+                .addConverterFactory(xmlConverterFactory)
+                .build()
+                .create(StaticDataApi::class.java)
+
         environment.jersey().register(
             AircoachResource(
-                AircoachStopService(aircoachWebScraper),
+                AircoachStopService(aircoachWebScraper, staticDataApi),
                 AircoachLiveDataService(aircoachApi)
             )
         )
@@ -151,8 +167,8 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         )
         environment.jersey().register(
             DublinBusResource(
-                DublinBusStopService(dublinBusApi, rtpiApi),
-                DublinBusLiveDataService(dublinBusApi, rtpiApi)
+                DublinBusStopService(rtpiApi),
+                DublinBusLiveDataService(rtpiApi)
             )
         )
         environment.jersey().register(

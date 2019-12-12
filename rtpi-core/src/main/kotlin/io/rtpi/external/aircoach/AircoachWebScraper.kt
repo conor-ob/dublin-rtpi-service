@@ -1,4 +1,4 @@
-package io.rtpi.resource.aircoach
+package io.rtpi.external.aircoach
 
 import org.jsoup.Jsoup
 
@@ -29,7 +29,6 @@ abstract class AbstractAircoachWebScraper(private val aircoachBaseUrl: String) :
                 stops.addAll(scrapeStops(javascript))
             }
         }
-        check(stops.isNotEmpty()) { "Aircoach stops cannot be empty" }
         return stops
     }
 

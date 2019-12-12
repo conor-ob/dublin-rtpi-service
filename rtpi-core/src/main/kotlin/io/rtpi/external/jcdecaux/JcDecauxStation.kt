@@ -1,4 +1,4 @@
-package io.rtpi.resource.jcdecaux
+package io.rtpi.external.jcdecaux
 
 import com.google.gson.annotations.SerializedName
 

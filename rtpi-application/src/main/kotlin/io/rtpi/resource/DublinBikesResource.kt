@@ -19,7 +19,7 @@ class DublinBikesResource(
     @Path("docks")
     @Produces(MediaType.APPLICATION_JSON)
     fun getStops(@QueryParam(value = "apiKey") apiKey: String): Response {
-        return Response.ok(dublinBikesDockService.getDocks(apiKey)).build()
+        return Response.ok(dublinBikesDockService.getDocks(apiKey).blockingGet()).build()
     }
 
     @GET
@@ -29,7 +29,7 @@ class DublinBikesResource(
         @QueryParam(value = "dockId") dockId: String,
         @QueryParam(value = "apiKey") apiKey: String
     ): Response {
-        return Response.ok(dublinBikesLiveDataService.getLiveData(dockId, apiKey)).build()
+        return Response.ok(dublinBikesLiveDataService.getLiveData(dockId, apiKey).blockingGet()).build()
     }
 
 }

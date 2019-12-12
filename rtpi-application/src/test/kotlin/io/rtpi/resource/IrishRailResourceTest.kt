@@ -7,6 +7,7 @@ import io.rtpi.service.irishrail.IrishRailStationService
 import io.dropwizard.testing.junit.ResourceTestRule
 import io.mockk.every
 import io.mockk.mockk
+import io.reactivex.Single
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.ClassRule
 import org.junit.Test
@@ -28,7 +29,7 @@ class IrishRailResourceTest {
         )
         private val irishRailStationService = mockk<IrishRailStationService>()
         private val irishRailLiveDataService = mockk<IrishRailLiveDataService> {
-            every { getLiveData(eq("TARA")) } returns irishRailLiveData
+            every { getLiveData(eq("TARA")) } returns Single.just(irishRailLiveData)
         }
 
         @ClassRule @JvmField

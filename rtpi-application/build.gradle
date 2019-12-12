@@ -12,11 +12,13 @@ dependencies {
     implementation libraries.dropwizard_core
     implementation libraries.retrofit
     implementation libraries.retrofit_gson
+    implementation libraries.retrofit_rx
     implementation(libraries.retrofit_simplexml) {
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
         exclude group: 'xpp3', module: 'xpp3'
     }
+    implementation libraries.rxjava
 
     testImplementation project(path: ':rtpi-api', configuration: 'testOutput')
     testImplementation libraries.junit

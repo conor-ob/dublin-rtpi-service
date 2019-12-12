@@ -35,9 +35,7 @@ enum class Service(
             }
             throw IllegalArgumentException("Unable to parse ${Service::class.java.simpleName} from string value: $value")
         }
-
     }
-
 }
 
 enum class Operator(
@@ -75,9 +73,7 @@ enum class Operator(
             }
             throw IllegalArgumentException("Unable to parse ${Operator::class.java.simpleName} from string value: $value")
         }
-
     }
-
 }
 
 private val normalizingRegex = "\\p{InCombiningDiacriticalMarks}+".toRegex()
