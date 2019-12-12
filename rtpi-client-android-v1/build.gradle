@@ -12,8 +12,8 @@ dependencies {
         exclude group: 'xpp3', module: 'xpp3'
     }
     implementation libraries.rxjava
-    implementation libraries.threetenabp
     implementation libraries.rhino
+    implementation libraries.threetenabp
 
     testImplementation libraries.junit
     testImplementation libraries.assertj

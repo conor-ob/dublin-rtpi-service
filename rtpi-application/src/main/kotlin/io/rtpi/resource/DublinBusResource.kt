@@ -2,7 +2,6 @@ package io.rtpi.resource
 
 import io.rtpi.service.dublinbus.DublinBusLiveDataService
 import io.rtpi.service.dublinbus.DublinBusStopService
-import javax.ws.rs.DefaultValue
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.Produces

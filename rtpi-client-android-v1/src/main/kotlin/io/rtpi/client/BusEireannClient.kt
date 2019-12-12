@@ -5,7 +5,6 @@ import io.rtpi.api.BusEireannLiveData
 import io.rtpi.api.BusEireannStop
 import io.rtpi.service.buseireann.BusEireannLiveDataService
 import io.rtpi.service.buseireann.BusEireannStopService
-import org.threeten.bp.LocalTime
 
 class BusEireannClient(
     private val busEireannStopService: BusEireannStopService,

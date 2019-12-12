@@ -1,7 +1,6 @@
 package io.rtpi.api
 
 import io.reactivex.Single
-import org.threeten.bp.LocalTime
 import retrofit2.http.GET
 import retrofit2.http.Query
 

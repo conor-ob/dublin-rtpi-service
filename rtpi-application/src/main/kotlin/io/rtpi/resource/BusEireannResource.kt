@@ -2,7 +2,6 @@ package io.rtpi.resource
 
 import io.rtpi.service.buseireann.BusEireannLiveDataService
 import io.rtpi.service.buseireann.BusEireannStopService
-import javax.ws.rs.DefaultValue
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.Produces

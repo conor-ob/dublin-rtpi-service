@@ -4,7 +4,6 @@ import io.rtpi.api.AircoachLiveData
 import io.rtpi.api.AircoachStop
 import io.rtpi.api.RtpiApi
 import io.reactivex.Single
-import org.threeten.bp.LocalTime
 
 class AircoachClient(private val rtpiApi: RtpiApi) {
 

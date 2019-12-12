@@ -3,20 +3,20 @@ package io.rtpi.external.aircoach
 import com.google.gson.annotations.SerializedName
 
 data class AircoachStopJson(
-    @SerializedName("id") val id: String,
-    @SerializedName("stopId") val stopId: String,
-    @SerializedName("name") val name: String,
-    @SerializedName("shortName") val shortName: String,
-    @SerializedName("linkName") val linkName: String,
-    @SerializedName("ticketName") val ticketName: String,
-    @SerializedName("place") val place: String,
-    @SerializedName("stopLatitude") val stopLatitude: Double,
-    @SerializedName("stopLongitude") val stopLongitude: Double,
-    @SerializedName("services") val services: List<AircoachStopServiceJson> = mutableListOf()
+    @SerializedName("id") var id: String? = null,
+    @SerializedName("stopId") var stopId: String? = null,
+    @SerializedName("name") var name: String? = null,
+    @SerializedName("shortName") var shortName: String? = null,
+    @SerializedName("linkName") var linkName: String? = null,
+    @SerializedName("ticketName") var ticketName: String? = null,
+    @SerializedName("place") var place: String? = null,
+    @SerializedName("stopLatitude") var stopLatitude: Double? = null,
+    @SerializedName("stopLongitude") var stopLongitude: Double? = null,
+    @SerializedName("services") var services: List<AircoachStopServiceJson>? = null
 )
 
 data class AircoachStopServiceJson(
-    @SerializedName("route") val route: String,
-    @SerializedName("dir") val dir: String,
-    @SerializedName("linkName") val linkName: String
+    @SerializedName("route") var route: String? = null,
+    @SerializedName("dir") var dir: String? = null,
+    @SerializedName("linkName") var linkName: String? = null
 )

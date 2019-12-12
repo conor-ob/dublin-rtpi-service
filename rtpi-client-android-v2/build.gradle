@@ -5,7 +5,6 @@ dependencies {
     implementation libraries.retrofit
     implementation libraries.retrofit_gson
     implementation libraries.retrofit_rx
-    implementation libraries.threetenabp
 
     testImplementation libraries.junit
     testImplementation libraries.assertj

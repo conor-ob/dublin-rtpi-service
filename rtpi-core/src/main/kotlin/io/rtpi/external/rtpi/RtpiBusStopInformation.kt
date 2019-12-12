@@ -3,28 +3,28 @@ package io.rtpi.external.rtpi
 import com.google.gson.annotations.SerializedName
 
 data class RtpiBusStopInformationResponseJson(
-    @SerializedName("errorcode") val errorCode: String,
-    @SerializedName("errormessage") val errorMessage: String,
-    @SerializedName("numberofresults") val numberOfResults: Int? = null,
-    @SerializedName("timestamp") val timestamp: String? = null,
-    @SerializedName("results") val results: List<RtpiBusStopInformationJson> = mutableListOf()
+    @SerializedName("errorcode") var errorCode: String? = null,
+    @SerializedName("errormessage") var errorMessage: String? = null,
+    @SerializedName("numberofresults") var numberOfResults: Int? = null,
+    @SerializedName("timestamp") var timestamp: String? = null,
+    @SerializedName("results") var results: List<RtpiBusStopInformationJson>? = null
 )
 
 data class RtpiBusStopInformationJson(
-    @SerializedName("stopid") val stopId: String? = null,
-    @SerializedName("displaystopid") val displayId: String? = null,
-    @SerializedName("shortname") val shortName: String? = null,
-    @SerializedName("shortnamelocalized") val shortNameLocalized: String? = null,
-    @SerializedName("fullname") val fullName: String? = null,
-    @SerializedName("fullnamelocalized") val fullNameLocalized: String? = null,
-    @SerializedName("latitude") val latitude: String? = null,
-    @SerializedName("longitude") val longitude: String? = null,
-    @SerializedName("lastupdated") val lastUpdated: String? = null,
-    @SerializedName("operators") val operators: List<RtpiBusStopOperatorInformationJson> = mutableListOf()
+    @SerializedName("stopid") var stopId: String? = null,
+    @SerializedName("displaystopid") var displayId: String? = null,
+    @SerializedName("shortname") var shortName: String? = null,
+    @SerializedName("shortnamelocalized") var shortNameLocalized: String? = null,
+    @SerializedName("fullname") var fullName: String? = null,
+    @SerializedName("fullnamelocalized") var fullNameLocalized: String? = null,
+    @SerializedName("latitude") var latitude: String? = null,
+    @SerializedName("longitude") var longitude: String? = null,
+    @SerializedName("lastupdated") var lastUpdated: String? = null,
+    @SerializedName("operators") var operators: List<RtpiBusStopOperatorInformationJson>? = null
 )
 
 data class RtpiBusStopOperatorInformationJson(
-    @SerializedName("name") val name: String? = null,
-    @SerializedName("operatortype") val operatorType: Int? = null,
-    @SerializedName("routes") val routes: List<String> = mutableListOf()
+    @SerializedName("name") var name: String? = null,
+    @SerializedName("operatortype") var operatorType: Int? = null,
+    @SerializedName("routes") var routes: List<String>? = null
 )

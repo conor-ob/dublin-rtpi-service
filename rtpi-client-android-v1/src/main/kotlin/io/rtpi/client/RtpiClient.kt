@@ -7,7 +7,7 @@ import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.staticdata.StaticDataApi
 import io.rtpi.service.aircoach.AircoachLiveDataService
 import io.rtpi.service.aircoach.AircoachStopService
-import io.rtpi.service.aircoach.JsoupAircoachWebScraper
+import io.rtpi.service.aircoach.RhinoEngineAircoachWebScraper
 import io.rtpi.service.buseireann.BusEireannLiveDataService
 import io.rtpi.service.buseireann.BusEireannStopService
 import io.rtpi.service.dublinbikes.DublinBikesDockService
@@ -60,25 +60,29 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         sslContext
     }
 
-    private val aircoachOkHttpClient =
-        OkHttpClient.Builder()
+    private val aircoachOkHttpClient = newAircoachOkHttpClient(okHttpClient)
+
+    private fun newAircoachOkHttpClient(okHttpClient: OkHttpClient?): OkHttpClient {
+        val builder = OkHttpClient.Builder()
             .hostnameVerifier { hostname, session ->
                 return@hostnameVerifier hostname == "tracker.aircoach.ie"
                     && session.peerHost == "tracker.aircoach.ie"
                     && session.peerPort == 443
             }
             .sslSocketFactory(sslContext.socketFactory)
-            .retryOnConnectionFailure(true)
+            .retryOnConnectionFailure(okHttpClient?.retryOnConnectionFailure() ?: true)
             .connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
-            .build()
 
-//        if (!okHttpClient?.networkInterceptors().isNullOrEmpty()) {
-//            okHttpClient!!.networkInterceptors().forEach {
-//                builder.addInterceptor(it)
-//            }
-//        }
+        if (!okHttpClient?.networkInterceptors().isNullOrEmpty()) {
+            okHttpClient!!.networkInterceptors().forEach { interceptor ->
+                builder.addInterceptor(interceptor)
+            }
+        }
+
+        return builder.build()
+    }
 
     private val callAdapterFactory = RxJava2CallAdapterFactory.create()
 
@@ -96,16 +100,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
             .create(AircoachApi::class.java)
 
     private val aircoachWebScraper =
-        JsoupAircoachWebScraper("https://tracker.aircoach.ie/")
-
-//    private val dublinBusApi =
-//        Retrofit.Builder()
-//            .baseUrl("http://rtpi.dublinbus.ie/")
-//            .client(defaultOkHttpClient)
-//            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//            .addConverterFactory(xmlConverterFactory)
-//            .build()
-//            .create(DublinBusApi::class.java)
+        RhinoEngineAircoachWebScraper("https://tracker.aircoach.ie/")
 
     private val jcDecauxApi =
         Retrofit.Builder()
