@@ -5,6 +5,7 @@ import io.rtpi.api.AircoachLiveData
 import io.rtpi.api.LiveTime
 import io.rtpi.external.aircoach.AircoachApi
 import io.rtpi.external.aircoach.EtaJson
+import io.rtpi.external.aircoach.ServiceJson
 import io.rtpi.external.aircoach.TimestampJson
 
 abstract class AbstractAircoachLiveDataService(private val aircoachApi: AircoachApi) {
@@ -20,21 +21,35 @@ abstract class AbstractAircoachLiveDataService(private val aircoachApi: Aircoach
                         && json.time!!.arrive != null
                         && json.time!!.arrive!!.dateTime != null
                         && json.route != null
-                        && json.arrival != null
-                        && json.depart != null
+//                        && json.arrival != null
+//                        && json.depart != null
                         && json.dir != null
                 }.map { json ->
                     AircoachLiveData(
                         liveTime = createDueTime(json.eta, json.time!!.arrive!!),
                         route = json.route!!.trim(),
-                        destination = json.arrival!!.trim(),
-                        origin = json.depart!!.trim(),
+                        destination = getDestination(json),
+                        origin = getOrigin(json),
                         direction = json.dir!!.trim()
                     )
                 }
                 .filter { it.liveTime.waitTimeMinutes >= 0 }
                 .sortedBy { it.liveTime.waitTimeMinutes }
         }
+    }
+
+    private fun getOrigin(json: ServiceJson): String {
+        if (json.stops.isNullOrEmpty()) {
+            return json.depart!!.trim()
+        }
+        return json.stops!!.first()
+    }
+
+    private fun getDestination(json: ServiceJson): String {
+        if (json.stops.isNullOrEmpty()) {
+            return json.arrival!!.trim()
+        }
+        return json.stops!!.last()
     }
 
     // TODO check nullable
