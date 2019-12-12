@@ -10,18 +10,21 @@ import org.threeten.bp.Duration
 import org.threeten.bp.LocalTime
 import org.threeten.bp.format.DateTimeFormatter
 
+private const val DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
+private val DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)
+
 class AircoachLiveDataService(aircoachApi: AircoachApi) : AbstractAircoachLiveDataService<LocalTime>(aircoachApi) {
 
     override fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): LiveTime {
         val currentTime = DateTimeProvider.getCurrentDateTime()
         val expectedTimestamp = expected?.etaArrive?.dateTime ?: scheduled.dateTime
         val expectedTime = DateTimeProvider.getDateTime(
-            expectedTimestamp,
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            timestamp = expectedTimestamp,
+            formatter = DATE_TIME_FORMATTER
         )
         val scheduledTime = DateTimeProvider.getDateTime(
-            scheduled.dateTime,
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            timestamp = scheduled.dateTime,
+            formatter = DATE_TIME_FORMATTER
         )
         return LiveTime(
             waitTimeMinutes = Duration.between(currentTime, expectedTime).toMinutes().toInt(),

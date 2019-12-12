@@ -6,9 +6,7 @@ import io.rtpi.api.DublinBikesDock
 import io.rtpi.api.Operator
 import io.rtpi.external.jcdecaux.JcDecauxApi
 
-class DublinBikesDockService(
-    private val jcDecauxApi: JcDecauxApi
-) {
+class DublinBikesDockService(private val jcDecauxApi: JcDecauxApi) {
 
     fun getDocks(apiKey: String): Single<List<DublinBikesDock>> {
         return jcDecauxApi.stations(contract = "Dublin", apiKey = apiKey)

@@ -10,46 +10,35 @@ import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 abstract class AbstractLuasLiveDataService(private val rtpiApi: RtpiApi) {
 
     fun getLiveData(stopId: String): Single<List<LuasLiveData>> {
-        return rtpiApi.realTimeBusInformation(stopId = stopId, operator = "luas", format = "json")
-            .map { response ->
-                val liveData = response.results
-                    .map { json ->
-                        LuasLiveData(
-                            liveTime = createDueTime(response.timestamp!!, json),
-                            operator = Operator.parse(json.operator!!),
-                            route = json.route!!,
-                            direction = json.direction!!,
-                            destination = json.destination!!.replace("LUAS ", ""),
-                            origin = json.origin!!.replace("LUAS ", "")
-                        )
-                    }
-                    .sortedBy { it.liveTime.waitTimeMinutes }
-                liveData
-
-//                val condensedLiveData = LinkedHashMap<Int, LuasLiveData>()
-//                for (data in liveData) {
-//                    val id = Objects.hash(data.operator, data.route, data.destination, data.direction)
-//                    var cachedLiveData = condensedLiveData[id]
-//                    if (cachedLiveData == null) {
-//                        condensedLiveData[id] = data
-//                    } else {
-//                        val dueTimes = cachedLiveData.liveTime.toMutableList()
-//                        dueTimes.add(data.liveTime.first())
-//                        cachedLiveData = cachedLiveData.copy(liveTime = dueTimes)
-//                        condensedLiveData[id] = cachedLiveData
-//                    }
-//                }
-//                condensedLiveData.values.toList()
-            }
+        return rtpiApi.realTimeBusInformation(
+            stopId = stopId,
+            operator = "luas",
+            format = "json"
+        ).map { response ->
+            response.results
+                .filter { json ->
+                    json.route != null
+                        && json.operator != null
+                        && json.destination != null
+                        && json.arrivalDateTime != null
+                        && json.scheduledArrivalDateTime != null
+                        && json.origin != null
+                        && json.direction != null
+                }.map { json ->
+                    LuasLiveData(
+                        liveTime = createDueTime(response.timestamp!!, json),
+                        operator = Operator.parse(json.operator!!.trim()),
+                        route = json.route!!.trim(),
+                        destination = json.destination!!.replace("LUAS ", "").trim(),
+                        direction = json.direction!!.trim(),
+                        origin = json.origin!!.replace("LUAS ", "").trim()
+                    )
+                }
+                .filter { it.liveTime.waitTimeMinutes >= 0 }
+                .sortedBy { it.liveTime.waitTimeMinutes }
+        }
     }
 
     protected abstract fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): LiveTime
-
-    protected fun parseDueTime(json: RtpiRealTimeBusInformationJson): Int {
-        if ("Due" == json.dueTime) {
-            return 0
-        }
-        return json.dueTime!!.toInt()
-    }
 
 }

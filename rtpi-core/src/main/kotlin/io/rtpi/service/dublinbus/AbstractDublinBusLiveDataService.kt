@@ -1,51 +1,53 @@
 package io.rtpi.service.dublinbus
 
 import io.reactivex.Single
-import io.reactivex.functions.BiFunction
 import io.rtpi.api.DublinBusLiveData
 import io.rtpi.api.LiveTime
 import io.rtpi.api.Operator
-import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 
-abstract class AbstractDublinBusLiveDataService(
-    private val rtpiApi: RtpiApi
-) {
+abstract class AbstractDublinBusLiveDataService(private val rtpiApi: RtpiApi) {
 
-//    fun getLiveData(stopId: String): Single<List<DublinBusLiveData>> {
+    fun getLiveData(stopId: String): Single<List<DublinBusLiveData>> {
+        return rtpiApi.realTimeBusInformation(
+            stopId = stopId,
+            operator = "",
+            format = "json"
+        ).map { response ->
+            response.results
+                .filter { json ->
+                    json.route != null
+                        && json.operator != null
+                        && json.destination != null
+                        && json.arrivalDateTime != null
+                        && json.scheduledArrivalDateTime != null
+                        && json.origin != null
+                        && json.direction != null
+                }.map { json ->
+                    DublinBusLiveData(
+                        liveTime = createDueTime(response.timestamp!!, json),
+                        operator = Operator.parse(json.operator!!.trim()),
+                        route = json.route!!.trim(),
+                        destination = json.destination!!.trim(),
+                        origin = json.origin!!.trim(),
+                        direction = json.direction!!.trim()
+                    )
+                }
+                .filter { it.liveTime.waitTimeMinutes >= 0 }
+                .sortedBy { it.liveTime.waitTimeMinutes }
+        }
+    }
+
+    protected abstract fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): LiveTime
+
+    //    fun getLiveData(stopId: String): Single<List<DublinBusLiveData>> {
 //        return Single.zip(
 //            getDublinBusLiveData(stopId),
 //            getGoAheadLiveData(stopId),
 //            BiFunction { t1, t2 -> aggregate(t1, t2) }
 //        )
 //    }
-
-    fun getLiveData(stopId: String): Single<List<DublinBusLiveData>> {
-//        return Single.zip(
-//            getDublinBusLiveData(stopId),
-//            getGoAheadLiveData(stopId),
-//            BiFunction { t1, t2 -> aggregate(t1, t2) }
-//        )
-        return rtpiApi.realTimeBusInformation(stopId, "", "json")
-            .map { response ->
-                response.results.filter {
-                    it.route != null
-                        && it.destination != null
-                        && it.operator != null
-                        && it.arrivalDateTime != null
-                }.map { json ->
-                    DublinBusLiveData(
-                        liveTime = createDueTime(response.timestamp!!, json),
-                        operator = Operator.parse(json.operator!!),
-                        route = json.route!!,
-                        destination = json.destination!!,
-                        origin = json.origin!!,
-                        direction = json.direction!!
-                    )
-                }
-            }
-    }
 
 //    private fun aggregate(t1: List<DublinBusLiveData>, t2: List<DublinBusLiveData>): List<DublinBusLiveData> {
 //        return t1.plus(t2).sortedBy { it.liveTime.waitTimeMinutes }
@@ -156,12 +158,4 @@ abstract class AbstractDublinBusLiveDataService(
 
 //    protected abstract fun createDueTime(xml: DublinBusRealTimeStopDataXml): LiveTime
 
-    protected abstract fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): LiveTime
-
-    protected fun parseDueTime(json: RtpiRealTimeBusInformationJson): Int {
-        if ("Due" == json.dueTime) {
-            return 0
-        }
-        return json.dueTime!!.toInt()
-    }
 }
