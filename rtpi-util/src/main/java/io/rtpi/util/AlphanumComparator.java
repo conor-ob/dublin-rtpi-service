@@ -29,7 +29,7 @@ import java.util.Comparator;
  * This class has been modified by Niall Scott for better code formatting and
  * other enhancements.
  */
-public final class AlphanumComparator implements Comparator<String> {
+final class AlphanumComparator implements Comparator<String> {
 
     private static AlphanumComparator INSTANCE;
 

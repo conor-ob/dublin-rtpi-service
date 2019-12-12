@@ -1,6 +1,7 @@
 package io.rtpi.service.aircoach
 
 import io.reactivex.Single
+import io.rtpi.api.Operator
 import io.rtpi.api.createAircoachStop
 import io.rtpi.external.aircoach.AircoachStopJson
 import io.rtpi.external.aircoach.AircoachWebScraper
@@ -45,7 +46,8 @@ class AircoachStopServiceTest {
         observer.assertValue(
             listOf(
                 createAircoachStop(
-                    name = "Airport"
+                    name = "Airport",
+                    operators = setOf(Operator.AIRCOACH)
                 )
             )
         )
@@ -86,7 +88,8 @@ class AircoachStopServiceTest {
         observer.assertValue(
             listOf(
                 createAircoachStop(
-                    name = "Airport"
+                    name = "Airport",
+                    operators = setOf(Operator.AIRCOACH)
                 )
             )
         )
@@ -134,10 +137,12 @@ class AircoachStopServiceTest {
         observer.assertValue(
             listOf(
                 createAircoachStop(
-                    name = "Airport1"
+                    name = "Airport1",
+                    operators = setOf(Operator.AIRCOACH)
                 ),
                 createAircoachStop(
-                    name = "Airport2"
+                    name = "Airport2",
+                    operators = setOf(Operator.AIRCOACH)
                 )
             )
         )

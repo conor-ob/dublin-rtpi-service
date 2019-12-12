@@ -7,7 +7,7 @@ import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.staticdata.StaticDataApi
 import io.rtpi.service.aircoach.AircoachLiveDataService
 import io.rtpi.service.aircoach.AircoachStopService
-import io.rtpi.service.aircoach.JsoupAircoachWebScraper
+import io.rtpi.service.aircoach.RhinoEngineAircoachWebScraper
 import io.rtpi.service.buseireann.BusEireannLiveDataService
 import io.rtpi.service.buseireann.BusEireannStopService
 import io.rtpi.service.dublinbikes.DublinBikesDockService
@@ -96,7 +96,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
             .create(AircoachApi::class.java)
 
     private val aircoachWebScraper =
-        JsoupAircoachWebScraper("https://tracker.aircoach.ie/")
+        RhinoEngineAircoachWebScraper("https://tracker.aircoach.ie/")
 
 //    private val dublinBusApi =
 //        Retrofit.Builder()

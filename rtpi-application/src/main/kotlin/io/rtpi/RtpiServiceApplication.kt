@@ -26,7 +26,7 @@ import io.rtpi.service.aircoach.AircoachStopService
 import io.dropwizard.Application
 import io.dropwizard.setup.Environment
 import io.rtpi.external.staticdata.StaticDataApi
-import io.rtpi.service.aircoach.JsoupAircoachWebScraper
+import io.rtpi.service.aircoach.JavascriptEngineAircoachWebScraper
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -97,7 +97,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
             .build()
             .create(AircoachApi::class.java)
 
-        val aircoachWebScraper = JsoupAircoachWebScraper(
+        val aircoachWebScraper = JavascriptEngineAircoachWebScraper(
             configuration.apiConfig.aircoachBaseUrl!!
         )
 

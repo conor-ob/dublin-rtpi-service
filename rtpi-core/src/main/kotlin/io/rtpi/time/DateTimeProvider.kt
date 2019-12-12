@@ -1,11 +1,11 @@
 package io.rtpi.time
 
-import org.threeten.bp.Clock
-import org.threeten.bp.LocalDate
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.format.DateTimeFormatter
+import java.time.Clock
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 private const val dublinZoneId = "Europe/Dublin"
 
@@ -25,7 +25,7 @@ object DateTimeProvider {
 //    }
 
     fun setClock(clock: Clock) {
-        this.clock = clock
+        DateTimeProvider.clock = clock
     }
 }
 

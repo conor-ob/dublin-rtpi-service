@@ -4,7 +4,6 @@ import io.rtpi.api.LuasLiveData
 import io.rtpi.api.LuasStop
 import io.rtpi.api.RtpiApi
 import io.reactivex.Single
-import org.threeten.bp.LocalTime
 
 class LuasClient(private val rtpiApi: RtpiApi) {
 
