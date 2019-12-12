@@ -15,7 +15,7 @@ abstract class AbstractDublinBusLiveDataService(private val rtpiApi: RtpiApi) {
             operator = "",
             format = "json"
         ).map { response ->
-            response.results
+            response.results!!
                 .filter { json ->
                     json.route != null
                         && json.operator != null
@@ -75,7 +75,7 @@ abstract class AbstractDublinBusLiveDataService(private val rtpiApi: RtpiApi) {
     private fun getDublinBusLiveData(stopId: String): Single<List<DublinBusLiveData>> {
         return rtpiApi.realTimeBusInformation(stopId, Operator.DUBLIN_BUS.shortName, "json")
             .map { response ->
-                response.results.filter {
+                response.results!!.filter {
                     it.route != null
                         && it.destination != null
                         && it.operator != null
@@ -95,7 +95,7 @@ abstract class AbstractDublinBusLiveDataService(private val rtpiApi: RtpiApi) {
     private fun getGoAheadLiveData(stopId: String): Single<List<DublinBusLiveData>> {
         return rtpiApi.realTimeBusInformation(stopId, Operator.GO_AHEAD.shortName, "json")
             .map { response ->
-                response.results.filter {
+                response.results!!.filter {
                     it.route != null
                         && it.destination != null
                         && it.operator != null

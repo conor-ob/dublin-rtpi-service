@@ -13,22 +13,23 @@ abstract class AbstractAircoachLiveDataService<T>(private val aircoachApi: Airco
         return aircoachApi.getLiveData(
             id = stopId
         ).map { response ->
-            response.services
+            response.services!!
                 .filter { json ->
 //                    json.eta != null
-                    json.time.arrive.dateTime != null
-                        && json.time.arrive != null
+                    json.time != null
+                        && json.time!!.arrive != null
+                        && json.time!!.arrive!!.dateTime != null
                         && json.route != null
                         && json.arrival != null
                         && json.depart != null
                         && json.dir != null
                 }.map { json ->
                     AircoachLiveData(
-                        liveTime = createDueTime(json.eta, json.time.arrive),
-                        route = json.route.trim(),
-                        destination = json.arrival.trim(),
-                        origin = json.depart.trim(),
-                        direction = json.dir.trim()
+                        liveTime = createDueTime(json.eta, json.time!!.arrive!!),
+                        route = json.route!!.trim(),
+                        destination = json.arrival!!.trim(),
+                        origin = json.depart!!.trim(),
+                        direction = json.dir!!.trim()
                     )
                 }
                 .filter { it.liveTime.waitTimeMinutes >= 0 }

@@ -13,8 +13,8 @@ class DublinBikesLiveDataService(private val jcDecauxApi: JcDecauxApi) {
             apiKey = apiKey
         ).map { json ->
             DublinBikesLiveData(
-                bikes = json.availableBikes,
-                docks = json.availableBikeStands
+                bikes = json.availableBikes!!,
+                docks = json.availableBikeStands!!
             )
         }
     }

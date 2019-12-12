@@ -15,7 +15,7 @@ abstract class AbstractBusEireannLiveDataService(private val rtpiApi: RtpiApi) {
             operator = "be",
             format = "json"
         ).map { response ->
-            response.results
+            response.results!!
                 .filter { json ->
                     json.route != null
                         && json.operator != null

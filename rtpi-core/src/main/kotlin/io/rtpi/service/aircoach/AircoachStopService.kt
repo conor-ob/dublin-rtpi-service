@@ -7,6 +7,7 @@ import io.rtpi.api.Operator
 import io.rtpi.api.Route
 import io.rtpi.external.aircoach.AircoachWebScraper
 import io.rtpi.external.staticdata.StaticDataApi
+import io.rtpi.util.RouteComparator
 import java.lang.Exception
 
 class AircoachStopService(
@@ -28,13 +29,28 @@ class AircoachStopService(
 
     private fun scrapeAircoachStops(): List<AircoachStop> {
         return aircoachWebScraper.scrapeStops()
-            .map { json ->
+            .filter { json ->
+                json.id != null
+                    && json.name != null
+                    && json.stopLatitude != null
+                    && json.stopLongitude != null
+                    && json.services != null
+            }.map { json ->
                 AircoachStop(
-                    id = json.id,
-                    name = json.name,
-                    coordinate = Coordinate(json.stopLatitude, json.stopLongitude),
+                    id = json.id!!.trim(),
+                    name = json.name!!.trim(),
+                    coordinate = Coordinate(
+                        latitude = json.stopLatitude!!,
+                        longitude = json.stopLongitude!!
+                    ),
                     operators = setOf(Operator.AIRCOACH),
-                    routes = json.services.map { Route(it.route, Operator.AIRCOACH) }.toSet().toList()
+                    routes = json.services!!
+                        .map { serviceJson ->
+                            Route(
+                                id = serviceJson.route!!.trim(),
+                                operator = Operator.AIRCOACH
+                            )
+                        }.toSet().sortedWith(RouteComparator)
                 )
             }
     }
@@ -42,13 +58,29 @@ class AircoachStopService(
     private fun retryFetchStaticDataAircoachStops(): Single<List<AircoachStop>> {
         return staticDataApi.getAircoachStops()
             .map { stopsJson ->
-                stopsJson.map { json ->
+                stopsJson
+                    .filter { json ->
+                        json.id != null
+                            && json.name != null
+                            && json.stopLatitude != null
+                            && json.stopLongitude != null
+                            && json.services != null
+                    }.map { json ->
                     AircoachStop(
-                        id = json.id,
-                        name = json.name,
-                        coordinate = Coordinate(json.stopLatitude, json.stopLongitude),
+                        id = json.id!!.trim(),
+                        name = json.name!!.trim(),
+                        coordinate = Coordinate(
+                            latitude = json.stopLatitude!!,
+                            longitude = json.stopLongitude!!
+                        ),
                         operators = setOf(Operator.AIRCOACH),
-                        routes = json.services.map { Route(it.route, Operator.AIRCOACH) }.toSet().toList()
+                        routes = json.services!!
+                            .map { serviceJson ->
+                                Route(
+                                    id = serviceJson.route!!.trim(),
+                                    operator = Operator.AIRCOACH
+                                )
+                            }.toSet().sortedWith(RouteComparator)
                     )
                 }
             }

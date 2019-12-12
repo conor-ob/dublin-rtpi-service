@@ -17,13 +17,13 @@ class AircoachLiveDataService(aircoachApi: AircoachApi) : AbstractAircoachLiveDa
 
     override fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): LiveTime {
         val currentTime = DateTimeProvider.getCurrentDateTime()
-        val expectedTimestamp = expected?.etaArrive?.dateTime ?: scheduled.dateTime
+        val expectedTimestamp = expected?.etaArrive?.dateTime ?: scheduled.dateTime!!
         val expectedTime = DateTimeProvider.getDateTime(
             timestamp = expectedTimestamp,
             formatter = DATE_TIME_FORMATTER
         )
         val scheduledTime = DateTimeProvider.getDateTime(
-            timestamp = scheduled.dateTime,
+            timestamp = scheduled.dateTime!!,
             formatter = DATE_TIME_FORMATTER
         )
         return LiveTime(

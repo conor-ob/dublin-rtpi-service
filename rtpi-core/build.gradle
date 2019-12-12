@@ -1,5 +1,6 @@
 dependencies {
     implementation project(':rtpi-api')
+    implementation project(':rtpi-util')
 
     implementation libraries.kotlin
     implementation libraries.jsoup
@@ -13,8 +14,9 @@ dependencies {
     implementation libraries.rxjava
 
     testImplementation project(path: ':rtpi-api', configuration: 'testOutput')
-    testImplementation libraries.junit
     testImplementation libraries.assertj
+    testImplementation libraries.junit
+    testImplementation libraries.mockk
 }
 
 sourceSets {

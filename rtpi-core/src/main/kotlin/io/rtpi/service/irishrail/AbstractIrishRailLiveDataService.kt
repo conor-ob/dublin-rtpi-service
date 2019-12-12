@@ -13,7 +13,7 @@ abstract class AbstractIrishRailLiveDataService(private val irishRailApi: IrishR
         return irishRailApi.getStationDataByCodeXml(
             stationCode = stationId
         ).map { response ->
-            response.stationData
+            response.stationData!!
                 .filter { xml ->
                     xml.trainType != null
                         && xml.trainCode != null

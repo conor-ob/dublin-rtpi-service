@@ -15,7 +15,7 @@ abstract class AbstractLuasLiveDataService(private val rtpiApi: RtpiApi) {
             operator = "luas",
             format = "json"
         ).map { response ->
-            response.results
+            response.results!!
                 .filter { json ->
                     json.route != null
                         && json.operator != null

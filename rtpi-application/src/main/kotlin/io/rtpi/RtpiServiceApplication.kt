@@ -1,7 +1,6 @@
 package io.rtpi
 
 import com.codahale.metrics.health.HealthCheck
-import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.jcdecaux.JcDecauxApi
 import io.rtpi.external.rtpi.RtpiApi

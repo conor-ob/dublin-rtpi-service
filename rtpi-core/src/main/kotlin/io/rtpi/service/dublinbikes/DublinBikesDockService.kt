@@ -14,12 +14,12 @@ class DublinBikesDockService(private val jcDecauxApi: JcDecauxApi) {
                 it.map { json ->
                     DublinBikesDock(
                         id = json.number.toString(),
-                        name = json.address,
-                        coordinate = Coordinate(json.position.lat, json.position.lng),
+                        name = json.address!!.trim(),
+                        coordinate = Coordinate(json.position!!.lat!!, json.position!!.lng!!),
                         operators = setOf(Operator.DUBLIN_BIKES),
-                        availableBikes = json.availableBikes,
-                        availableDocks = json.availableBikeStands,
-                        docks = json.bikeStands
+                        availableBikes = json.availableBikes!!,
+                        availableDocks = json.availableBikeStands!!,
+                        docks = json.bikeStands!!
                     )
                 }
             }
