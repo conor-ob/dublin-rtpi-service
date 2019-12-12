@@ -60,25 +60,29 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         sslContext
     }
 
-    private val aircoachOkHttpClient =
-        OkHttpClient.Builder()
+    private val aircoachOkHttpClient = newAircoachOkHttpClient(okHttpClient)
+
+    private fun newAircoachOkHttpClient(okHttpClient: OkHttpClient?): OkHttpClient {
+        val builder = OkHttpClient.Builder()
             .hostnameVerifier { hostname, session ->
                 return@hostnameVerifier hostname == "tracker.aircoach.ie"
                     && session.peerHost == "tracker.aircoach.ie"
                     && session.peerPort == 443
             }
             .sslSocketFactory(sslContext.socketFactory)
-            .retryOnConnectionFailure(true)
+            .retryOnConnectionFailure(okHttpClient?.retryOnConnectionFailure() ?: true)
             .connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
-            .build()
 
-//        if (!okHttpClient?.networkInterceptors().isNullOrEmpty()) {
-//            okHttpClient!!.networkInterceptors().forEach {
-//                builder.addInterceptor(it)
-//            }
-//        }
+        if (!okHttpClient?.networkInterceptors().isNullOrEmpty()) {
+            okHttpClient!!.networkInterceptors().forEach { interceptor ->
+                builder.addInterceptor(interceptor)
+            }
+        }
+
+        return builder.build()
+    }
 
     private val callAdapterFactory = RxJava2CallAdapterFactory.create()
 
@@ -97,15 +101,6 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
 
     private val aircoachWebScraper =
         RhinoEngineAircoachWebScraper("https://tracker.aircoach.ie/")
-
-//    private val dublinBusApi =
-//        Retrofit.Builder()
-//            .baseUrl("http://rtpi.dublinbus.ie/")
-//            .client(defaultOkHttpClient)
-//            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//            .addConverterFactory(xmlConverterFactory)
-//            .build()
-//            .create(DublinBusApi::class.java)
 
     private val jcDecauxApi =
         Retrofit.Builder()
