@@ -1,5 +1,6 @@
 package io.rtpi.resource
 
+import com.google.inject.Inject
 import io.rtpi.service.aircoach.AircoachLiveDataService
 import io.rtpi.service.aircoach.AircoachStopService
 import javax.ws.rs.GET
@@ -10,7 +11,7 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
 @Path("aircoach")
-class AircoachResource(
+class AircoachResource @Inject constructor(
     private val aircoachStopService: AircoachStopService,
     private val aircoachLiveDataService: AircoachLiveDataService
 ) {

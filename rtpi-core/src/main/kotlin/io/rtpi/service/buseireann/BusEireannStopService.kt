@@ -1,5 +1,6 @@
 package io.rtpi.service.buseireann
 
+import com.google.inject.Inject
 import io.rtpi.api.BusEireannStop
 import io.rtpi.api.Coordinate
 import io.rtpi.api.Operator
@@ -9,7 +10,7 @@ import io.rtpi.external.rtpi.RtpiBusStopInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiStopService
 import io.rtpi.util.RouteComparator
 
-class BusEireannStopService(
+class BusEireannStopService @Inject constructor(
     rtpiApi: RtpiApi
 ) : AbstractRtpiStopService<BusEireannStop>(
     rtpiApi = rtpiApi,

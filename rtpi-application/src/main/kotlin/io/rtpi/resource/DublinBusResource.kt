@@ -1,5 +1,6 @@
 package io.rtpi.resource
 
+import com.google.inject.Inject
 import io.rtpi.service.dublinbus.DublinBusLiveDataService
 import io.rtpi.service.dublinbus.DublinBusStopService
 import javax.ws.rs.GET
@@ -10,7 +11,7 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
 @Path("dublinbus")
-class DublinBusResource(
+class DublinBusResource @Inject constructor(
     private val dublinBusStopService: DublinBusStopService,
     private val dublinBusLiveDataService: DublinBusLiveDataService
 ) {

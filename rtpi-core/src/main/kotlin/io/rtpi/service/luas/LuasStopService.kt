@@ -1,5 +1,6 @@
 package io.rtpi.service.luas
 
+import com.google.inject.Inject
 import io.rtpi.api.Coordinate
 import io.rtpi.api.LuasStop
 import io.rtpi.api.Operator
@@ -9,7 +10,7 @@ import io.rtpi.external.rtpi.RtpiBusStopInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiStopService
 import io.rtpi.util.RouteComparator
 
-class LuasStopService(
+class LuasStopService @Inject constructor(
     rtpiApi: RtpiApi
 ) : AbstractRtpiStopService<LuasStop>(
     rtpiApi = rtpiApi,

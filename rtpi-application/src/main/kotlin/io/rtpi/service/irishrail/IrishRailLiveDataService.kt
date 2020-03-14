@@ -1,5 +1,6 @@
 package io.rtpi.service.irishrail
 
+import com.google.inject.Inject
 import io.rtpi.api.LiveTime
 import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.irishrail.IrishRailStationDataXml
@@ -14,7 +15,7 @@ import java.time.format.DateTimeFormatter
 
 private val dublin = ZoneId.of("Europe/Dublin")
 
-class IrishRailLiveDataService(irishRailApi: IrishRailApi) : AbstractIrishRailLiveDataService(irishRailApi) {
+class IrishRailLiveDataService @Inject constructor(irishRailApi: IrishRailApi) : AbstractIrishRailLiveDataService(irishRailApi) {
 
     override fun createDueTime(xml: IrishRailStationDataXml): LiveTime {
         val serverDateTime = LocalDateTime.parse(xml.serverTime, DateTimeFormatter.ISO_DATE_TIME).atZone(dublin)

@@ -1,12 +1,13 @@
 package io.rtpi.service.luas
 
+import com.google.inject.Inject
 import io.rtpi.api.LuasLiveData
 import io.rtpi.api.Operator
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiLiveDataService
 
-abstract class AbstractLuasLiveDataService(
+abstract class AbstractLuasLiveDataService @Inject constructor(
     rtpiApi: RtpiApi
 ) : AbstractRtpiLiveDataService<LuasLiveData>(
     rtpiApi = rtpiApi,

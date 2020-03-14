@@ -1,5 +1,6 @@
 package io.rtpi.service.irishrail
 
+import com.google.inject.Inject
 import io.reactivex.Single
 import io.rtpi.api.Coordinate
 import io.rtpi.api.IrishRailStation
@@ -9,7 +10,7 @@ import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.irishrail.IrishRailStationResponseXml
 import io.rtpi.external.irishrail.IrishRailStationXml
 
-class IrishRailStationService(private val irishRailApi: IrishRailApi) {
+class IrishRailStationService @Inject constructor(private val irishRailApi: IrishRailApi) {
 
     fun getStations(): Single<List<IrishRailStation>> {
         return irishRailApi.getAllStationsXml()
