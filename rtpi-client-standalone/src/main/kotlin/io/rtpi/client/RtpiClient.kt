@@ -90,89 +90,77 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
 
     private val xmlConverterFactory =SimpleXmlConverterFactory.create()
 
-    private val aircoachApi =
-        Retrofit.Builder()
-            .baseUrl("https://tracker.aircoach.ie/")
-            .client(aircoachOkHttpClient)
-            .addCallAdapterFactory(callAdapterFactory)
-            .addConverterFactory(gsonConverterFactory)
-            .build()
-            .create(AircoachApi::class.java)
+    private val aircoachApi = Retrofit.Builder()
+        .baseUrl("https://tracker.aircoach.ie/")
+        .client(aircoachOkHttpClient)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(gsonConverterFactory)
+        .build()
+        .create(AircoachApi::class.java)
 
-    private val aircoachWebScraper =
-        RhinoEngineAircoachWebScraper("https://tracker.aircoach.ie/")
+    private val aircoachWebScraper = RhinoEngineAircoachWebScraper("https://tracker.aircoach.ie/")
 
-    private val jcDecauxApi =
-        Retrofit.Builder()
-            .baseUrl("https://api.jcdecaux.com/vls/v1/")
-            .client(defaultOkHttpClient)
-            .addCallAdapterFactory(callAdapterFactory)
-            .addConverterFactory(gsonConverterFactory)
-            .build()
-            .create(JcDecauxApi::class.java)
+    private val jcDecauxApi = Retrofit.Builder()
+        .baseUrl("https://api.jcdecaux.com/vls/v1/")
+        .client(defaultOkHttpClient)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(gsonConverterFactory)
+        .build()
+        .create(JcDecauxApi::class.java)
 
-    private val rtpiApi =
-        Retrofit.Builder()
-            .baseUrl("https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/")
-            .client(defaultOkHttpClient)
-            .addCallAdapterFactory(callAdapterFactory)
-            .addConverterFactory(gsonConverterFactory)
-            .build()
-            .create(RtpiApi::class.java)
+    private val rtpiApi = Retrofit.Builder()
+        .baseUrl("https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/")
+        .client(defaultOkHttpClient)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(gsonConverterFactory)
+        .build()
+        .create(RtpiApi::class.java)
 
-    private val irishRailApi =
-        Retrofit.Builder()
-            .baseUrl("http://api.irishrail.ie/realtime/realtime.asmx/")
-            .client(defaultOkHttpClient)
-            .addCallAdapterFactory(callAdapterFactory)
-            .addConverterFactory(xmlConverterFactory)
-            .build()
-            .create(IrishRailApi::class.java)
+    private val irishRailApi = Retrofit.Builder()
+        .baseUrl("http://api.irishrail.ie/realtime/realtime.asmx/")
+        .client(defaultOkHttpClient)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(xmlConverterFactory)
+        .build()
+        .create(IrishRailApi::class.java)
 
-    private val staticDataApi =
-        Retrofit.Builder()
-            .baseUrl("https://raw.githubusercontent.com/conor-ob/rtpi-static-data/master/")
-            .addCallAdapterFactory(callAdapterFactory)
-            .addConverterFactory(gsonConverterFactory)
-            .addConverterFactory(xmlConverterFactory)
-            .build()
-            .create(StaticDataApi::class.java)
+    private val staticDataApi = Retrofit.Builder()
+        .baseUrl("https://raw.githubusercontent.com/conor-ob/rtpi-static-data/master/")
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(gsonConverterFactory)
+        .addConverterFactory(xmlConverterFactory)
+        .build()
+        .create(StaticDataApi::class.java)
 
-    private val aircoachClient =
-        AircoachClient(
-            AircoachStopService(aircoachWebScraper, staticDataApi),
-            AircoachLiveDataService(aircoachApi)
-        )
+    private val aircoachClient = AircoachClient(
+        AircoachStopService(aircoachWebScraper, staticDataApi),
+        AircoachLiveDataService(aircoachApi)
+    )
 
-    private val busEireannClient =
-        BusEireannClient(
-            BusEireannStopService(rtpiApi),
-            BusEireannLiveDataService(rtpiApi)
-        )
+    private val busEireannClient = BusEireannClient(
+        BusEireannStopService(rtpiApi),
+        BusEireannLiveDataService(rtpiApi)
+    )
 
-    private val dublinBikesClient =
-        DublinBikesClient(
-            DublinBikesDockService(jcDecauxApi),
-            DublinBikesLiveDataService(jcDecauxApi)
-        )
+    private val dublinBikesClient = DublinBikesClient(
+        DublinBikesDockService(jcDecauxApi),
+        DublinBikesLiveDataService(jcDecauxApi)
+    )
 
-    private val dublinBusClient =
-        DublinBusClient(
-            DublinBusStopService(rtpiApi),
-            DublinBusLiveDataService(rtpiApi)
-        )
+    private val dublinBusClient = DublinBusClient(
+        DublinBusStopService(rtpiApi),
+        DublinBusLiveDataService(rtpiApi)
+    )
 
-    private val irishRailClient =
-        IrishRailClient(
-            IrishRailStationService(irishRailApi),
-            IrishRailLiveDataService(irishRailApi)
-        )
+    private val irishRailClient = IrishRailClient(
+        IrishRailStationService(irishRailApi),
+        IrishRailLiveDataService(irishRailApi)
+    )
 
-    private val luasClient =
-        LuasClient(
-            LuasStopService(rtpiApi),
-            LuasLiveDataService(rtpiApi)
-        )
+    private val luasClient = LuasClient(
+        LuasStopService(rtpiApi),
+        LuasLiveDataService(rtpiApi)
+    )
 
     fun aircoach() = aircoachClient
 
@@ -185,5 +173,4 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
     fun irishRail() = irishRailClient
 
     fun luas() = luasClient
-
 }
