@@ -23,7 +23,7 @@ import javax.ws.rs.QueryParam
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
-@Api
+@Api(tags = ["Live Data"])
 @Path("livedata")
 class LiveDataResource @Inject constructor(
     private val aircoachLiveDataService: AircoachLiveDataService,
@@ -39,6 +39,7 @@ class LiveDataResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Aircoach live data",
+        notes = "Gets live data using the <a href=\"https://tracker.aircoach.ie/\">Aircoach API</a>",
         response = AircoachLiveData::class,
         responseContainer = "List"
     )
@@ -55,6 +56,7 @@ class LiveDataResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Bus Éireann live data",
+        notes = "Gets live data using the <a href=\"https://data.smartdublin.ie/dataset/real-time-passenger-information-rtpi-for-dublin-bus-bus-eireann-luas-and-irish-rail/\">RTPI API</a>",
         response = BusEireannLiveData::class,
         responseContainer = "List"
     )
@@ -71,6 +73,7 @@ class LiveDataResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Dublin Bikes live data",
+        notes = "Gets live data using the <a href=\"https://developer.jcdecaux.com/#/home/\">JCDecaux API</a>",
         response = DublinBikesLiveData::class,
         responseContainer = "List"
     )
@@ -90,6 +93,7 @@ class LiveDataResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Dublin Bus live data",
+        notes = "Gets live data using the <a href=\"https://data.smartdublin.ie/dataset/real-time-passenger-information-rtpi-for-dublin-bus-bus-eireann-luas-and-irish-rail/\">RTPI API</a>",
         response = DublinBusLiveData::class,
         responseContainer = "List"
     )
@@ -106,6 +110,7 @@ class LiveDataResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Irish Rail live data",
+        notes = "Gets live data using the <a href=\"http://api.irishrail.ie/realtime/\">Irish Rail API</a>",
         response = IrishRailLiveData::class,
         responseContainer = "List"
     )
@@ -122,6 +127,7 @@ class LiveDataResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Luas live data",
+        notes = "Gets live data using the <a href=\"https://data.smartdublin.ie/dataset/real-time-passenger-information-rtpi-for-dublin-bus-bus-eireann-luas-and-irish-rail/\">RTPI API</a>",
         response = LuasLiveData::class,
         responseContainer = "List"
     )

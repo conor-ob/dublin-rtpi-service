@@ -23,7 +23,7 @@ import javax.ws.rs.QueryParam
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
-@Api
+@Api(tags = ["Locations"])
 @Path("locations")
 class ServiceLocationResource @Inject constructor(
     private val aircoachStopService: AircoachStopService,
@@ -39,6 +39,7 @@ class ServiceLocationResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Aircoach stops",
+        notes = "Gets locations by scraping the <a href=\"https://tracker.aircoach.ie/stop-finder/\">Aircoach Stop Finder</a>",
         response = AircoachStop::class,
         responseContainer = "List"
     )
@@ -51,6 +52,7 @@ class ServiceLocationResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Bus Éireann stops",
+        notes = "Gets locations using the <a href=\"https://data.smartdublin.ie/dataset/real-time-passenger-information-rtpi-for-dublin-bus-bus-eireann-luas-and-irish-rail/\">RTPI API</a>",
         response = BusEireannStop::class,
         responseContainer = "List"
     )
@@ -63,6 +65,7 @@ class ServiceLocationResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Dublin Bikes docks",
+        notes = "Gets locations using the <a href=\"https://developer.jcdecaux.com/#/home/\">JCDecaux API</a>",
         response = DublinBikesDock::class,
         responseContainer = "List"
     )
@@ -79,6 +82,7 @@ class ServiceLocationResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Dublin Bus stops",
+        notes = "Gets locations using the <a href=\"https://data.smartdublin.ie/dataset/real-time-passenger-information-rtpi-for-dublin-bus-bus-eireann-luas-and-irish-rail/\">RTPI API</a>",
         response = DublinBusStop::class,
         responseContainer = "List"
     )
@@ -91,6 +95,7 @@ class ServiceLocationResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Irish Rail stations",
+        notes = "Gets locations using the <a href=\"http://api.irishrail.ie/realtime/\">Irish Rail API</a>",
         response = IrishRailStation::class,
         responseContainer = "List"
     )
@@ -103,6 +108,7 @@ class ServiceLocationResource @Inject constructor(
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
         value = "Get Luas stops",
+        notes = "Gets locations using the <a href=\"https://data.smartdublin.ie/dataset/real-time-passenger-information-rtpi-for-dublin-bus-bus-eireann-luas-and-irish-rail/\">RTPI API</a>",
         response = LuasStop::class,
         responseContainer = "List"
     )
