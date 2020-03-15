@@ -14,12 +14,8 @@ import io.rtpi.module.ExternalApiModule
 import io.rtpi.module.HttpClientModule
 import io.rtpi.module.RxModule
 import io.rtpi.module.SerializationModule
-import io.rtpi.resource.AircoachResource
-import io.rtpi.resource.BusEireannResource
-import io.rtpi.resource.DublinBikesResource
-import io.rtpi.resource.DublinBusResource
-import io.rtpi.resource.IrishRailResource
-import io.rtpi.resource.LuasResource
+import io.rtpi.resource.LiveDataResource
+import io.rtpi.resource.ServiceLocationResource
 import io.rtpi.swagger.SwaggerResource
 import io.swagger.jaxrs.config.BeanConfig
 import io.swagger.jaxrs.listing.ApiListingResource
@@ -40,12 +36,8 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
     }
 
     private fun registerResources(environment: Environment, injector: Injector) {
-        environment.jersey().register(injector.getInstance(AircoachResource::class.java))
-        environment.jersey().register(injector.getInstance(BusEireannResource::class.java))
-        environment.jersey().register(injector.getInstance(DublinBikesResource::class.java))
-        environment.jersey().register(injector.getInstance(DublinBusResource::class.java))
-        environment.jersey().register(injector.getInstance(IrishRailResource::class.java))
-        environment.jersey().register(injector.getInstance(LuasResource::class.java))
+        environment.jersey().register(injector.getInstance(ServiceLocationResource::class.java))
+        environment.jersey().register(injector.getInstance(LiveDataResource::class.java))
     }
 
     private fun registerSwagger(environment: Environment) {
