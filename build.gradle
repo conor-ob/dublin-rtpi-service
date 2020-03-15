@@ -59,7 +59,7 @@ subprojects {
     apply plugin: 'maven-publish'
 
     group = 'io.rtpi'
-    version = '1-SNAPSHOT'
+    version = '0.1.0'
 
     repositories {
         jcenter()
