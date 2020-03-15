@@ -43,7 +43,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
     private fun registerSwagger(environment: Environment) {
         val beanConfig = BeanConfig()
         beanConfig.title = name
-        beanConfig.schemes = arrayOf("http")
+        beanConfig.schemes = arrayOf("https")
         beanConfig.basePath = "/"
         beanConfig.prettyPrint = true
         beanConfig.resourcePackage = "io.rtpi"
