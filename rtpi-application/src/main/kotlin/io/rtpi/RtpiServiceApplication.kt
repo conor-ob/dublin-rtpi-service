@@ -53,7 +53,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         beanConfig.title = name
         beanConfig.version = "0.1.0"
         beanConfig.description = "Live times for Dublin Bus, Irish Rail, Luas, Bus Éireann, Dublin Bikes and Aircoach"
-        beanConfig.schemes = arrayOf("https")
+        beanConfig.schemes = arrayOf("http")
         beanConfig.basePath = "/"
         beanConfig.prettyPrint = true
         beanConfig.resourcePackage = "io.rtpi"
