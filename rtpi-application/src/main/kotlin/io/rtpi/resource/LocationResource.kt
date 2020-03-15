@@ -25,7 +25,7 @@ import javax.ws.rs.core.Response
 
 @Api(tags = ["Locations"])
 @Path("locations")
-class ServiceLocationResource @Inject constructor(
+class LocationResource @Inject constructor(
     private val aircoachStopService: AircoachStopService,
     private val busEireannStopService: BusEireannStopService,
     private val dublinBikesDockService: DublinBikesDockService,

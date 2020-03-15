@@ -13,7 +13,7 @@
 <script src="//unpkg.com/swagger-ui-dist@3/swagger-ui-standalone-preset.js"></script>
 <script type="text/javascript">
     SwaggerUIBundle({
-        url: 'swagger.json',
+        url: 'swagger.yaml',
         dom_id: '#swagger-ui',
         presets: [
             SwaggerUIBundle.presets.apis,

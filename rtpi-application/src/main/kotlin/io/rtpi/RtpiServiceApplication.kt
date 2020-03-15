@@ -15,7 +15,7 @@ import io.rtpi.module.HttpClientModule
 import io.rtpi.module.RxModule
 import io.rtpi.module.SerializationModule
 import io.rtpi.resource.LiveDataResource
-import io.rtpi.resource.ServiceLocationResource
+import io.rtpi.resource.LocationResource
 import io.rtpi.swagger.SwaggerResource
 import io.swagger.jaxrs.config.BeanConfig
 import io.swagger.jaxrs.listing.ApiListingResource
@@ -36,7 +36,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
     }
 
     private fun registerResources(environment: Environment, injector: Injector) {
-        environment.jersey().register(injector.getInstance(ServiceLocationResource::class.java))
+        environment.jersey().register(injector.getInstance(LocationResource::class.java))
         environment.jersey().register(injector.getInstance(LiveDataResource::class.java))
     }
 
@@ -45,7 +45,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
         beanConfig.title = name
         beanConfig.version = "0.1.0"
         beanConfig.description = "Live times for Dublin Bus, Irish Rail, Luas, Bus Éireann, Dublin Bikes and Aircoach"
-        beanConfig.schemes = arrayOf("http")
+        beanConfig.schemes = arrayOf("https")
         beanConfig.basePath = "/"
         beanConfig.prettyPrint = true
         beanConfig.resourcePackage = "io.rtpi"
