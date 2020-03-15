@@ -23,6 +23,12 @@ dependencies {
     implementation libraries.guice
     implementation libraries.kotlinGuice
 
+    implementation libraries.swaggerCore
+    implementation libraries.swaggerAnnotations
+    implementation libraries.swaggerJersey2Jaxrs
+    implementation libraries.dropwizardViews
+    implementation libraries.dropwizardViewsFreemarker
+
     testImplementation project(path: ':rtpi-api', configuration: 'testOutput')
     testImplementation libraries.junit
     testImplementation libraries.assertj
