@@ -1,5 +1,6 @@
 package io.rtpi.service.aircoach
 
+import com.google.inject.Inject
 import io.rtpi.api.LiveTime
 import io.rtpi.external.aircoach.AircoachApi
 import io.rtpi.external.aircoach.EtaJson
@@ -12,7 +13,7 @@ import java.time.format.DateTimeFormatter
 private const val DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
 private val DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)
 
-class AircoachLiveDataService(aircoachApi: AircoachApi) : AbstractAircoachLiveDataService(aircoachApi) {
+class AircoachLiveDataService @Inject constructor(aircoachApi: AircoachApi) : AbstractAircoachLiveDataService(aircoachApi) {
 
     override fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): LiveTime {
         val currentTime = DateTimeProvider.getCurrentDateTime()

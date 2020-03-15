@@ -1,5 +1,6 @@
 package io.rtpi.resource
 
+import com.google.inject.Inject
 import io.rtpi.service.luas.LuasLiveDataService
 import io.rtpi.service.luas.LuasStopService
 import javax.ws.rs.GET
@@ -10,7 +11,7 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
 @Path("luas")
-class LuasResource(
+class LuasResource @Inject constructor(
     private val luasStopService: LuasStopService,
     private val luasLiveDataService: LuasLiveDataService
 ) {

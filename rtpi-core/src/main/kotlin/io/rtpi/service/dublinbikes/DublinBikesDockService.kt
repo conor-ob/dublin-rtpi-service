@@ -1,12 +1,13 @@
 package io.rtpi.service.dublinbikes
 
+import com.google.inject.Inject
 import io.reactivex.Single
 import io.rtpi.api.Coordinate
 import io.rtpi.api.DublinBikesDock
 import io.rtpi.api.Operator
 import io.rtpi.external.jcdecaux.JcDecauxApi
 
-class DublinBikesDockService(private val jcDecauxApi: JcDecauxApi) {
+class DublinBikesDockService @Inject constructor(private val jcDecauxApi: JcDecauxApi) {
 
     fun getDocks(apiKey: String): Single<List<DublinBikesDock>> {
         return jcDecauxApi.stations(contract = "Dublin", apiKey = apiKey)

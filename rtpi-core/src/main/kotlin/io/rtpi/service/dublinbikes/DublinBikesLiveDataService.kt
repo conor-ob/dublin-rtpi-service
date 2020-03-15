@@ -1,10 +1,11 @@
 package io.rtpi.service.dublinbikes
 
+import com.google.inject.Inject
 import io.reactivex.Single
 import io.rtpi.api.DublinBikesLiveData
 import io.rtpi.external.jcdecaux.JcDecauxApi
 
-class DublinBikesLiveDataService(private val jcDecauxApi: JcDecauxApi) {
+class DublinBikesLiveDataService @Inject constructor(private val jcDecauxApi: JcDecauxApi) {
 
     fun getLiveData(dockId: String, apiKey: String): Single<DublinBikesLiveData> {
         return jcDecauxApi.station(

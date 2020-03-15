@@ -20,6 +20,9 @@ dependencies {
     }
     implementation libraries.rxjava
 
+    implementation libraries.guice
+    implementation libraries.kotlinGuice
+
     testImplementation project(path: ':rtpi-api', configuration: 'testOutput')
     testImplementation libraries.junit
     testImplementation libraries.assertj

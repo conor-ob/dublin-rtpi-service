@@ -1,5 +1,6 @@
 package io.rtpi.service.dublinbus
 
+import com.google.inject.Inject
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 import io.rtpi.api.Coordinate
@@ -10,7 +11,7 @@ import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiBusStopInformationJson
 import io.rtpi.util.RouteComparator
 
-class DublinBusStopService(private val rtpiApi: RtpiApi) {
+class DublinBusStopService @Inject constructor(private val rtpiApi: RtpiApi) {
 
     fun getStops(): Single<List<DublinBusStop>> {
         return Single.zip(

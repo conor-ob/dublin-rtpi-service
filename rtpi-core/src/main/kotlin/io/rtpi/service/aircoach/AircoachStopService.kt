@@ -1,5 +1,6 @@
 package io.rtpi.service.aircoach
 
+import com.google.inject.Inject
 import io.reactivex.Single
 import io.rtpi.api.AircoachStop
 import io.rtpi.api.Coordinate
@@ -10,7 +11,7 @@ import io.rtpi.external.staticdata.StaticDataApi
 import io.rtpi.util.RouteComparator
 import java.lang.Exception
 
-class AircoachStopService(
+class AircoachStopService @Inject constructor(
     private val aircoachWebScraper: AircoachWebScraper,
     private val staticDataApi: StaticDataApi
 ) {
