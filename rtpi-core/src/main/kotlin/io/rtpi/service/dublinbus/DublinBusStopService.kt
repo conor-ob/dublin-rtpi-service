@@ -3,20 +3,19 @@ package io.rtpi.service.dublinbus
 import com.google.inject.Inject
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
-import io.rtpi.api.Coordinate
 import io.rtpi.api.DublinBusStop
-import io.rtpi.api.Operator
-import io.rtpi.api.Route
 import io.rtpi.external.rtpi.RtpiApi
-import io.rtpi.external.rtpi.RtpiBusStopInformationJson
 import io.rtpi.util.RouteComparator
 
-class DublinBusStopService @Inject constructor(private val rtpiApi: RtpiApi) {
+class DublinBusStopService @Inject constructor(rtpiApi: RtpiApi) {
+
+    private val dublinBusDublinBusStopService = DublinBusDublinBusStopService(rtpiApi)
+    private val dublinBusGoAheadStopService = DublinBusGoAheadStopService(rtpiApi)
 
     fun getStops(): Single<List<DublinBusStop>> {
         return Single.zip(
-            getStops(Operator.DUBLIN_BUS),
-            getStops(Operator.GO_AHEAD),
+            dublinBusDublinBusStopService.getStops(),
+            dublinBusGoAheadStopService.getStops(),
             BiFunction { dublinBusStops, goAheadStops ->
                 aggregate(dublinBusStops, goAheadStops)
             }
@@ -24,61 +23,26 @@ class DublinBusStopService @Inject constructor(private val rtpiApi: RtpiApi) {
     }
 
     private fun aggregate(
-        dublinBusStops: List<RtpiBusStopInformationJson>,
-        goAheadStops: List<RtpiBusStopInformationJson>
+        dublinBusStops: List<DublinBusStop>,
+        goAheadStops: List<DublinBusStop>
     ): List<DublinBusStop> {
-        val aggregated = dublinBusStops.associateBy { it.stopId }.toMutableMap()
+        val aggregated = dublinBusStops.associateBy { it.id }.toMutableMap()
         for (goAheadStop in goAheadStops) {
-            var existing = aggregated[goAheadStop.stopId]
+            var existing = aggregated[goAheadStop.id]
             if (existing == null) {
-                aggregated[goAheadStop.stopId] = goAheadStop
+                aggregated[goAheadStop.id] = goAheadStop
             } else {
-                val existingOperators = existing.operators!!.toMutableList()
-                existingOperators.addAll(goAheadStop.operators!!)
+                val existingOperators = existing.operators.toMutableSet()
+                existingOperators.addAll(goAheadStop.operators)
+                val existingRoutes = existing.routes.toMutableList()
+                existingRoutes.addAll(goAheadStop.routes)
                 existing = existing.copy(
-                    operators = existingOperators
+                    operators = existingOperators,
+                    routes = existingRoutes.sortedWith(RouteComparator)
                 )
-                aggregated[goAheadStop.stopId] = existing
+                aggregated[goAheadStop.id] = existing
             }
         }
-        return aggregated.values
-            .map { json ->
-                DublinBusStop(
-                    id = json.stopId!!.trim(),
-                    name = json.fullName!!.trim(),
-                    coordinate = Coordinate(
-                        latitude = json.latitude!!.toDouble(),
-                        longitude = json.longitude!!.toDouble()
-                    ),
-                    operators = json.operators!!.map { operator ->
-                        Operator.parse(operator.name!!.trim())
-                    }.toSet(),
-                    routes = json.operators!!.flatMap { operator ->
-                        operator.routes!!.map { routeId ->
-                            Route(
-                                id = routeId.trim(),
-                                operator = Operator.parse(operator.name!!.trim())
-                            )
-                        }
-                    }.toSet().sortedWith(RouteComparator)
-                )
-            }
+        return aggregated.values.toList()
     }
-
-    private fun getStops(operator: Operator): Single<List<RtpiBusStopInformationJson>> {
-        return rtpiApi.busStopInformation(
-            operator = operator.shortName,
-            format = "json"
-        ).map { response ->
-            response.results!!
-                .filter { json ->
-                    json.stopId != null
-                        && json.fullName != null
-                        && json.latitude != null
-                        && json.longitude != null
-                        && json.operators != null
-                }
-        }
-    }
-
 }
