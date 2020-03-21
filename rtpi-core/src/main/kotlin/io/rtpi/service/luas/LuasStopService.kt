@@ -30,6 +30,9 @@ class LuasStopService @Inject constructor(
     }
 
     override fun filterRoute(routeId: String): Boolean {
-        return !"Luas".equals(routeId, ignoreCase = true) || !"XXX".equals(routeId, ignoreCase = true)
+        if ("XXX".equals(routeId, ignoreCase = true) || "Luas".equals(routeId, ignoreCase = true)) {
+            return false
+        }
+        return true
     }
 }
