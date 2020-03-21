@@ -6,55 +6,54 @@ import retrofit2.http.Query
 
 interface RtpiApi {
 
-    @GET("aircoach/stops")
+    @GET("aircoach/locations")
     fun getAircoachStops(): Single<List<AircoachStop>>
 
     @GET("aircoach/livedata")
     fun getAircoachLiveData(
-        @Query(value = "stopId") stopId: String
+        @Query(value = "locationId") stopId: String
     ): Single<List<AircoachLiveData>>
 
-    @GET("buseireann/stops")
+    @GET("buseireann/locations")
     fun getBusEireannStops(): Single<List<BusEireannStop>>
 
     @GET("buseireann/livedata")
     fun getBusEireannLiveData(
-        @Query(value = "stopId") stopId: String
+        @Query(value = "locationId") stopId: String
     ): Single<List<BusEireannLiveData>>
 
-    @GET("dublinbikes/docks")
+    @GET("dublinbikes/locations")
     fun getDublinBikesDocks(
         @Query(value = "apiKey") apiKey: String
     ): Single<List<DublinBikesDock>>
 
     @GET("dublinbikes/livedata")
     fun getDublinBikesLiveData(
-        @Query(value = "dockId") dockId: String,
+        @Query(value = "locationId") dockId: String,
         @Query(value = "apiKey") apiKey: String
     ): Single<DublinBikesLiveData>
 
-    @GET("dublinbus/stops")
+    @GET("dublinbus/locations")
     fun getDublinBusStops(): Single<List<DublinBusStop>>
 
     @GET("dublinbus/livedata")
     fun getDublinBusLiveData(
-        @Query(value = "stopId") stopId: String
+        @Query(value = "locationId") stopId: String
     ): Single<List<DublinBusLiveData>>
 
-    @GET("irishrail/stations")
+    @GET("irishrail/locations")
     fun getIrishRailStations(): Single<List<IrishRailStation>>
 
     @GET("irishrail/livedata")
     fun getIrishRailLiveData(
-        @Query(value = "stationId") stationId: String
+        @Query(value = "locationId") stationId: String
     ): Single<List<IrishRailLiveData>>
 
-    @GET("luas/stops")
+    @GET("luas/locations")
     fun getLuasStops(): Single<List<LuasStop>>
 
     @GET("luas/livedata")
     fun getLuasLiveData(
-        @Query(value = "stopId") stopId: String
+        @Query(value = "locationId") stopId: String
     ): Single<List<LuasLiveData>>
-
 }
