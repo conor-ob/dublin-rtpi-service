@@ -1,9 +1,9 @@
 package io.rtpi.resource
 
+import io.mockk.mockk
 import io.rtpi.api.Operator
 import io.rtpi.api.createIrishRailLiveData
 import io.rtpi.service.irishrail.IrishRailStationService
-import io.mockk.mockk
 import org.junit.Test
 import java.time.LocalTime
 

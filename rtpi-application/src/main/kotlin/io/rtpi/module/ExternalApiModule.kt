@@ -23,7 +23,7 @@ class ExternalApiModule : KotlinModule() {
     @Singleton
     fun aircoachWebScraper(
         configuration: RtpiServiceConfiguration
-    ): AircoachWebScraper = JavascriptEngineAircoachWebScraper(requireNotNull(configuration.apiConfig.aircoachBaseUrl))
+    ): AircoachWebScraper = JavascriptEngineAircoachWebScraper(requireNotNull(configuration.apiConfiguration.aircoachBaseUrl))
 
     @Provides
     @Singleton
@@ -33,7 +33,7 @@ class ExternalApiModule : KotlinModule() {
         callAdapterFactory: CallAdapter.Factory,
         @Named("json") converterFactory: Converter.Factory
     ): AircoachApi = Retrofit.Builder()
-        .baseUrl(requireNotNull(configuration.apiConfig.aircoachBaseUrl))
+        .baseUrl(requireNotNull(configuration.apiConfiguration.aircoachBaseUrl))
         .client(client)
         .addCallAdapterFactory(callAdapterFactory)
         .addConverterFactory(converterFactory)
@@ -48,7 +48,7 @@ class ExternalApiModule : KotlinModule() {
         callAdapterFactory: CallAdapter.Factory,
         @Named("json") converterFactory: Converter.Factory
     ): JcDecauxApi = Retrofit.Builder()
-        .baseUrl(requireNotNull(configuration.apiConfig.jcDecauxBaseUrl))
+        .baseUrl(requireNotNull(configuration.apiConfiguration.jcDecauxBaseUrl))
         .client(client)
         .addCallAdapterFactory(callAdapterFactory)
         .addConverterFactory(converterFactory)
@@ -63,7 +63,7 @@ class ExternalApiModule : KotlinModule() {
         callAdapterFactory: CallAdapter.Factory,
         @Named("json") converterFactory: Converter.Factory
     ): RtpiApi = Retrofit.Builder()
-        .baseUrl(requireNotNull(configuration.apiConfig.rtpiBaseUrl))
+        .baseUrl(requireNotNull(configuration.apiConfiguration.rtpiBaseUrl))
         .client(client)
         .addCallAdapterFactory(callAdapterFactory)
         .addConverterFactory(converterFactory)
@@ -78,7 +78,7 @@ class ExternalApiModule : KotlinModule() {
         callAdapterFactory: CallAdapter.Factory,
         @Named("xml") converterFactory: Converter.Factory
     ): IrishRailApi = Retrofit.Builder()
-        .baseUrl(requireNotNull(configuration.apiConfig.irishRailBaseUrl))
+        .baseUrl(requireNotNull(configuration.apiConfiguration.irishRailBaseUrl))
         .client(client)
         .addCallAdapterFactory(callAdapterFactory)
         .addConverterFactory(converterFactory)
