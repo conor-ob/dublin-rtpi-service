@@ -40,7 +40,7 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
                         direction = json.dir!!.trim()
                     )
                 }
-                .filter { it.liveTime.waitTime.isPositive() }
+                .filter { !it.liveTime.waitTime.isNegative }
                 .sortedBy { it.liveTime.waitTime }
         }
     }
@@ -80,5 +80,3 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
     }
 
 }
-
-fun Duration.isPositive(): Boolean = !isNegative && !isZero

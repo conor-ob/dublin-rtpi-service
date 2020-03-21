@@ -6,7 +6,10 @@ import io.rtpi.api.LiveTime
 import io.rtpi.api.IrishRailLiveData
 import io.rtpi.api.Operator
 import io.rtpi.external.irishrail.IrishRailApi
+import io.rtpi.external.irishrail.IrishRailStationDataResponseXml
 import io.rtpi.external.irishrail.IrishRailStationDataXml
+import io.rtpi.validation.validate
+import io.rtpi.validation.validateStrings
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -20,37 +23,38 @@ private val dublin = ZoneId.of("Europe/Dublin")
 class IrishRailLiveDataService @Inject constructor(private val irishRailApi: IrishRailApi) {
 
     fun getLiveData(stationId: String): Single<List<IrishRailLiveData>> {
-        return irishRailApi.getStationDataByCodeXml(
-            stationCode = stationId
-        ).map { response ->
-            response.stationData!!
+        return irishRailApi
+            .getStationDataByCodeXml(stationCode = stationId)
+            .map { validateResponse(it) }
+    }
+
+    private fun validateResponse(response: IrishRailStationDataResponseXml): List<IrishRailLiveData> =
+        if (response.stationData.isNullOrEmpty()) {
+            emptyList()
+        } else {
+            requireNotNull(response.stationData)
                 .filter { xml ->
-                    xml.trainType != null
-                        && xml.trainCode != null
-                        && xml.direction != null
-                        && xml.destination != null
-                        && xml.origin != null
-                        && xml.serverTime != null
-                        && xml.dueIn != null
-                        && xml.schArrival != null
-                        && xml.schDepart != null
-                        && xml.expArrival != null
-                        && xml.expDepart != null
+                    validateStrings(
+                        xml.trainType, xml.trainCode, xml.direction, xml.destination, xml.origin,
+                        xml.serverTime, xml.dueIn, xml.schArrival, xml.schDepart, xml.expArrival, xml.schDepart
+                    )
                 }.map { xml ->
-                    val operator = mapOperator(xml.trainType!!.trim(), xml.trainCode!!.trim())
+                    val operator = mapOperator(
+                        xml.trainType.validate(),
+                        xml.trainCode.validate()
+                    )
                     IrishRailLiveData(
                         liveTime = createDueTime(xml),
                         operator = operator,
-                        direction = xml.direction!!.trim(),
+                        direction = xml.direction.validate(),
                         route = operator.fullName,
-                        destination = xml.destination!!.trim(),
-                        origin = xml.origin!!.trim()
+                        destination = xml.destination.validate(),
+                        origin = xml.origin.validate()
                     )
                 }
-                .filter { it.liveTime.waitTime.isPositive() }
+                .filter { !it.liveTime.waitTime.isNegative }
                 .sortedBy { it.liveTime.waitTime }
         }
-    }
 
     private fun mapOperator(trainType: String, trainCode: String): Operator {
         if (Operator.DART.shortName.equals(trainType, ignoreCase = true)) {
@@ -84,20 +88,20 @@ class IrishRailLiveDataService @Inject constructor(private val irishRailApi: Iri
     }
 
     private fun createDueTime(xml: IrishRailStationDataXml): LiveTime {
-        val serverDateTime = LocalDateTime.parse(xml.serverTime, DateTimeFormatter.ISO_DATE_TIME).atZone(dublin)
+        val serverDateTime = LocalDateTime.parse(xml.serverTime.validate(), DateTimeFormatter.ISO_DATE_TIME).atZone(dublin)
         val serverDate = serverDateTime.toLocalDate()
 
         val midnight = LocalTime.of(0, 0)
-        val scheduledArrivalDateTime = parseTime(xml.schArrival!!, serverDate, serverDateTime)
-        val expectedArrivalDateTime = parseTime(xml.expArrival!!, serverDate, serverDateTime)
-        val scheduledDepartureDateTime = parseTime(xml.schDepart!!, serverDate, serverDateTime)
-        val expectedDepartureDateTime = parseTime(xml.expDepart!!, serverDate, serverDateTime)
+        val scheduledArrivalDateTime = parseTime(xml.schArrival.validate(), serverDate, serverDateTime)
+        val expectedArrivalDateTime = parseTime(xml.expArrival.validate(), serverDate, serverDateTime)
+        val scheduledDepartureDateTime = parseTime(xml.schDepart.validate(), serverDate, serverDateTime)
+        val expectedDepartureDateTime = parseTime(xml.expDepart.validate(), serverDate, serverDateTime)
 
         val isStarting = scheduledArrivalDateTime.toLocalTime() == midnight && expectedArrivalDateTime.toLocalTime() == midnight
         val isTerminating = scheduledDepartureDateTime.toLocalTime() == midnight && expectedDepartureDateTime.toLocalTime() == midnight
 
         return LiveTime(
-            waitTime = Duration.ofMinutes(xml.dueIn!!.toLong()),
+            waitTime = Duration.ofMinutes(xml.dueIn.validate().toLong()),
             currentDateTime = serverDateTime,
             expectedDateTime = if (isTerminating) expectedArrivalDateTime else expectedDepartureDateTime,
             scheduledDateTime = if (isTerminating) scheduledArrivalDateTime else scheduledDepartureDateTime
@@ -111,7 +115,4 @@ class IrishRailLiveDataService @Inject constructor(private val irishRailApi: Iri
         }
         return dateTime
     }
-
 }
-
-fun Duration.isPositive(): Boolean = !isNegative && !isZero

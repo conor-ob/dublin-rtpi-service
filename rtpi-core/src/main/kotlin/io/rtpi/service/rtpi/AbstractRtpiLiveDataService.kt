@@ -36,7 +36,7 @@ abstract class AbstractRtpiLiveDataService<T : TimedLiveData>(
                         && json.direction != null
                 }
                 .map { json -> newLiveDataInstance(response.timestamp!!, json) }
-                .filter { it.liveTime.waitTime.isPositive() }
+                .filter { !it.liveTime.waitTime.isNegative }
                 .sortedBy { it.liveTime.waitTime }
         }
     }
@@ -71,5 +71,3 @@ abstract class AbstractRtpiLiveDataService<T : TimedLiveData>(
         return Duration.ofMinutes(requireNotNull(json.dueTime).toLong())
     }
 }
-
-fun Duration.isPositive(): Boolean = !isNegative && !isZero
