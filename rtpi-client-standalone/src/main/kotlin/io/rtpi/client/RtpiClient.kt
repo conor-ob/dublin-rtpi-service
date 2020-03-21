@@ -76,7 +76,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
             .readTimeout(60, TimeUnit.SECONDS)
 
         if (!okHttpClient?.networkInterceptors().isNullOrEmpty()) {
-            okHttpClient!!.networkInterceptors().forEach { interceptor ->
+            requireNotNull(okHttpClient).networkInterceptors().forEach { interceptor ->
                 builder.addInterceptor(interceptor)
             }
         }

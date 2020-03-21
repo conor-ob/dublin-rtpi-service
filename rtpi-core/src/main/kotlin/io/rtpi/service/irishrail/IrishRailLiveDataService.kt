@@ -23,7 +23,7 @@ class IrishRailLiveDataService @Inject constructor(private val irishRailApi: Iri
         return irishRailApi.getStationDataByCodeXml(
             stationCode = stationId
         ).map { response ->
-            response.stationData!! //TODO this could be null
+            response.stationData
                 .filter { xml ->
                     xml.trainType != null
                         && xml.trainCode != null

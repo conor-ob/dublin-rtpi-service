@@ -1,22 +1,24 @@
 package io.rtpi.api
 
+import java.time.Duration
 import java.time.LocalTime
+import java.time.ZonedDateTime
 
 fun createDueTime(
-    waitTimeMinutes: Int,
+    waitTimeMinutes: Duration,
     currentTime: LocalTime = LocalTime.now()
 ): LiveTime {
     return LiveTime(
         waitTime = waitTimeMinutes,
-        currentDateTime = "",
-        scheduledDateTime = "",
-        expectedDateTime = ""
+        currentDateTime = ZonedDateTime.now(),
+        scheduledDateTime = ZonedDateTime.now(),
+        expectedDateTime = ZonedDateTime.now()
     )
 }
 
 fun createIrishRailLiveData(
     currentTime: LocalTime = LocalTime.now(),
-    waitTimeMinutes: Int = 3,
+    waitTimeMinutes: Duration = Duration.ofMinutes(3),
     operator: Operator = Operator.DART,
     direction: String = "Southbound",
     destination: String = "Bray",
@@ -35,7 +37,7 @@ fun createIrishRailLiveData(
 
 fun createLuasLiveData(
     currentTime: LocalTime = LocalTime.now(),
-    waitTimeMinutes: Int = 5,
+    waitTimeMinutes: Duration = Duration.ofMinutes(5),
     route: String = "Green Line",
     destination: String = "Sandyford",
     direction: String = "Outbound",

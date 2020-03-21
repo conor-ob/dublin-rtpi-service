@@ -25,11 +25,11 @@ class BusEireannStopService @Inject constructor(
                 latitude = json.latitude!!.toDouble(),
                 longitude = json.longitude!!.toDouble()
             ),
-            operators = json.operators!!.map { operator ->
+            operators = json.operators.map { operator ->
                 Operator.parse(operator.name!!.trim())
             }.toSet(),
-            routes = json.operators!!.flatMap { operator ->
-                operator.routes!!.map { routeId ->
+            routes = json.operators.flatMap { operator ->
+                operator.routes.map { routeId ->
                     Route(
                         id = routeId.trim(),
                         operator = Operator.parse(operator.name!!.trim())

@@ -12,7 +12,7 @@ data class AircoachStopJson(
     @SerializedName("place") var place: String? = null,
     @SerializedName("stopLatitude") var stopLatitude: Double? = null,
     @SerializedName("stopLongitude") var stopLongitude: Double? = null,
-    @SerializedName("services") var services: List<AircoachStopServiceJson>? = null
+    @SerializedName("services") var services: List<AircoachStopServiceJson> = emptyList()
 )
 
 data class AircoachStopServiceJson(

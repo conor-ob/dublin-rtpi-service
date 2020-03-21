@@ -17,13 +17,13 @@ abstract class AbstractRtpiStopService<T : ServiceLocationRoutes>(
             operator = operator,
             format = JSON
         ).map { response ->
-            response.results!!
+            response.results
                 .filter { json ->
                     json.stopId != null
                         && json.fullName != null
                         && json.latitude != null
                         && json.longitude != null
-                        && json.operators != null
+                        && json.operators.isNotEmpty()
                 }
                 .map { json -> newServiceLocationInstance(response.timestamp!!, json) }
             }

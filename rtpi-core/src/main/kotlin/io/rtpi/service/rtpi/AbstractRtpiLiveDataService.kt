@@ -21,7 +21,7 @@ abstract class AbstractRtpiLiveDataService<T : TimedLiveData>(
             operator = operator,
             format = JSON
         ).map { response ->
-            response.results!!
+            response.results
                 .filter { json ->
                     json.route != null
                         && json.operator != null

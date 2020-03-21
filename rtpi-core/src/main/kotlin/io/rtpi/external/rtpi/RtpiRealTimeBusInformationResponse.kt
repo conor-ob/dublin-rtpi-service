@@ -7,7 +7,7 @@ data class RtpiRealTimeBusInformationResponseJson(
     @SerializedName("errormessage") var errorMessage: String? = null,
     @SerializedName("numberofresults") var numberOfResults: Int? = null,
     @SerializedName("timestamp") var timestamp: String? = null,
-    @SerializedName("results") var results: List<RtpiRealTimeBusInformationJson>? = null
+    @SerializedName("results") var results: List<RtpiRealTimeBusInformationJson> = emptyList()
 )
 
 data class RtpiRealTimeBusInformationJson(
@@ -29,13 +29,4 @@ data class RtpiRealTimeBusInformationJson(
     @SerializedName("route") var route: String? = null,
     @SerializedName("sourcetimestamp") var sourceTimestamp: String? = null,
     @SerializedName("monitored") var monitored: String? = null
-)
-
-data class ValidatedRtpiRealTimeBusInformationResponse(
-    val timestamp: String,
-    val results: List<RtpiRealTimeBusInformationJson>
-)
-
-data class ValidatedRtpiRealTimeBusInformation(
-    val arrivalDateTime: String
 )

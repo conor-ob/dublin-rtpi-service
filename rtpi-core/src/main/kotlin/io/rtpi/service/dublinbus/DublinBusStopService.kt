@@ -33,8 +33,8 @@ class DublinBusStopService @Inject constructor(private val rtpiApi: RtpiApi) {
             if (existing == null) {
                 aggregated[goAheadStop.stopId] = goAheadStop
             } else {
-                val existingOperators = existing.operators!!.toMutableList()
-                existingOperators.addAll(goAheadStop.operators!!)
+                val existingOperators = existing.operators.toMutableList()
+                existingOperators.addAll(goAheadStop.operators)
                 existing = existing.copy(
                     operators = existingOperators
                 )
@@ -50,11 +50,11 @@ class DublinBusStopService @Inject constructor(private val rtpiApi: RtpiApi) {
                         latitude = json.latitude!!.toDouble(),
                         longitude = json.longitude!!.toDouble()
                     ),
-                    operators = json.operators!!.map { operator ->
+                    operators = json.operators.map { operator ->
                         Operator.parse(operator.name!!.trim())
                     }.toSet(),
-                    routes = json.operators!!.flatMap { operator ->
-                        operator.routes!!.map { routeId ->
+                    routes = json.operators.flatMap { operator ->
+                        operator.routes.map { routeId ->
                             Route(
                                 id = routeId.trim(),
                                 operator = Operator.parse(operator.name!!.trim())
@@ -70,13 +70,13 @@ class DublinBusStopService @Inject constructor(private val rtpiApi: RtpiApi) {
             operator = operator.shortName,
             format = "json"
         ).map { response ->
-            response.results!!
+            response.results
                 .filter { json ->
                     json.stopId != null
                         && json.fullName != null
                         && json.latitude != null
                         && json.longitude != null
-                        && json.operators != null
+                        && json.operators.isNotEmpty()
                 }
         }
     }
