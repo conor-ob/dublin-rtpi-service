@@ -4,18 +4,19 @@ import com.google.inject.Inject
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 import io.rtpi.api.DublinBusStop
+import io.rtpi.api.Operator
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.util.RouteComparator
 
 class DublinBusStopService @Inject constructor(rtpiApi: RtpiApi) {
 
-    private val dublinBusDublinBusStopService = DublinBusDublinBusStopService(rtpiApi)
-    private val dublinBusGoAheadStopService = DublinBusGoAheadStopService(rtpiApi)
+    private val dublinBusStopService = InternalDublinBusStopService(rtpiApi, Operator.DUBLIN_BUS.shortName)
+    private val goAheadStopService = InternalDublinBusStopService(rtpiApi, Operator.GO_AHEAD.shortName)
 
     fun getStops(): Single<List<DublinBusStop>> {
         return Single.zip(
-            dublinBusDublinBusStopService.getStops(),
-            dublinBusGoAheadStopService.getStops(),
+            dublinBusStopService.getStops(),
+            goAheadStopService.getStops(),
             BiFunction { dublinBusStops, goAheadStops ->
                 aggregate(dublinBusStops, goAheadStops)
             }
