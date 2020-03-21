@@ -3,7 +3,7 @@ package io.rtpi.external.aircoach
 import com.google.gson.annotations.SerializedName
 
 data class ServiceResponseJson(
-    @SerializedName("services") var services: List<ServiceJson> = emptyList()
+    @SerializedName("services") var services: List<ServiceJson>? = null
 )
 
 data class ServiceJson(
@@ -19,8 +19,8 @@ data class ServiceJson(
     @SerializedName("journeyId") var journeyId: String? = null,
     @SerializedName("linkName") var linkName: String? = null,
     @SerializedName("stopType") var stopType: Int? = null,
-    @SerializedName("stops") var stops: List<String> = emptyList(),
-    @SerializedName("places") var places: List<String> = emptyList(),
+    @SerializedName("stops") var stops: List<String>? = null,
+    @SerializedName("places") var places: List<String>? = null,
     @SerializedName("live") var live: LiveJson? = null,
     @SerializedName("dups") var dups: String? = null,
     @SerializedName("eta") var eta: EtaJson? = null,

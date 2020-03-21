@@ -35,7 +35,7 @@ class AircoachStopService @Inject constructor(
                     && json.name != null
                     && json.stopLatitude != null
                     && json.stopLongitude != null
-                    && json.services.isNotEmpty()
+                    && json.services != null
             }.map { json ->
                 AircoachStop(
                     id = json.id!!.trim(),
@@ -45,7 +45,7 @@ class AircoachStopService @Inject constructor(
                         longitude = json.stopLongitude!!
                     ),
                     operators = setOf(Operator.AIRCOACH),
-                    routes = json.services
+                    routes = json.services!!
                         .map { serviceJson ->
                             Route(
                                 id = serviceJson.route!!.trim(),
@@ -65,7 +65,7 @@ class AircoachStopService @Inject constructor(
                             && json.name != null
                             && json.stopLatitude != null
                             && json.stopLongitude != null
-                            && json.services.isNotEmpty()
+                            && json.services != null
                     }.map { json ->
                     AircoachStop(
                         id = json.id!!.trim(),
@@ -75,7 +75,7 @@ class AircoachStopService @Inject constructor(
                             longitude = json.stopLongitude!!
                         ),
                         operators = setOf(Operator.AIRCOACH),
-                        routes = json.services
+                        routes = json.services!!
                             .map { serviceJson ->
                                 Route(
                                     id = serviceJson.route!!.trim(),

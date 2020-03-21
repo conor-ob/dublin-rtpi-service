@@ -7,7 +7,7 @@ data class RtpiRealTimeBusInformationResponseJson(
     @SerializedName("errormessage") var errorMessage: String? = null,
     @SerializedName("numberofresults") var numberOfResults: Int? = null,
     @SerializedName("timestamp") var timestamp: String? = null,
-    @SerializedName("results") var results: List<RtpiRealTimeBusInformationJson> = emptyList()
+    @SerializedName("results") var results: List<RtpiRealTimeBusInformationJson>? = null
 )
 
 data class RtpiRealTimeBusInformationJson(

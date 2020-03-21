@@ -19,7 +19,7 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
     }
 
     private fun filterStations(responseXml: IrishRailStationResponseXml): List<IrishRailStationXml> {
-        return responseXml.stations.filter { xml ->
+        return responseXml.stations!!.filter { xml ->
             xml.code != null && filterDuplicates(xml)
                 && xml.name != null
                 && xml.latitude != null

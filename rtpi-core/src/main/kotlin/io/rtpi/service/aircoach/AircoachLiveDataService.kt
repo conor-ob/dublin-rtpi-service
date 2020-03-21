@@ -21,7 +21,7 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
         return aircoachApi.getLiveData(
             id = stopId
         ).map { response ->
-            response.services
+            response.services!!
                 .filter { json ->
 //                    json.eta != null
                     json.time != null
@@ -49,14 +49,14 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
         if (json.stops.isNullOrEmpty()) {
             return json.depart!!.trim()
         }
-        return json.stops.first()
+        return json.stops!!.first()
     }
 
     private fun getDestination(json: ServiceJson): String {
         if (json.stops.isNullOrEmpty()) {
             return json.arrival!!.trim()
         }
-        return json.stops.last()
+        return json.stops!!.last()
     }
 
     // TODO check nullable
