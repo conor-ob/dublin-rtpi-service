@@ -9,45 +9,45 @@ import io.rtpi.api.Route
 import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.irishrail.IrishRailStationResponseXml
 import io.rtpi.external.irishrail.IrishRailStationXml
+import io.rtpi.validation.validate
+import io.rtpi.validation.validateDoubles
+import io.rtpi.validation.validateStrings
 
 class IrishRailStationService @Inject constructor(private val irishRailApi: IrishRailApi) {
 
     fun getStations(): Single<List<IrishRailStation>> {
-        return irishRailApi.getAllStationsXml()
-            .map { responseXml -> filterStations(responseXml) }
-            .map { filteredXml -> mapStations(filteredXml) }
+        return irishRailApi
+            .getAllStationsXml()
+            .map { validateResponse(it) }
     }
 
-    private fun filterStations(responseXml: IrishRailStationResponseXml): List<IrishRailStationXml> {
-        return responseXml.stations!!.filter { xml ->
-            xml.code != null && filterDuplicates(xml)
-                && xml.name != null
-                && xml.latitude != null
-                && xml.longitude != null
-                && xml.latitude != 0.0
-                && xml.longitude != 0.0
+    private fun validateResponse(response: IrishRailStationResponseXml): List<IrishRailStation> =
+        if (response.stations.isNullOrEmpty()) {
+            emptyList()
+        } else {
+            requireNotNull(response.stations)
+                .filter { xml ->
+                    validateStrings(xml.code, xml.name) &&
+                        validateDoubles(xml.latitude, xml.longitude) &&
+                        filterDuplicates(xml)
+                }.map { xml ->
+                    val id = xml.code.validate().toUpperCase()
+                    val operators = mapOperators(id)
+                    IrishRailStation(
+                        id = id,
+                        name = xml.name.validate(),
+                        coordinate = Coordinate(xml.latitude.validate(), xml.longitude.validate()),
+                        operators = operators,
+                        routes = operators.map { Route(it.fullName, it) }
+                    )
+                }
         }
-    }
 
     private fun filterDuplicates(xml: IrishRailStationXml): Boolean {
         return xml.code != "ADAMF" && xml.code != "ADAMS" // Adamstown
             && xml.code != "CLONF" && xml.code != "CLONS" // Clondalkin
             && xml.code != "HAZEF" && xml.code != "HAZES" // Hazelhatch
             && xml.code != "PWESF" && xml.code != "PWESS" // Park West and Cherry Orchard
-    }
-
-    private fun mapStations(filteredXml: List<IrishRailStationXml>): List<IrishRailStation>? {
-        return filteredXml.map { xml ->
-            val id = xml.code!!.trim().toUpperCase()
-            val operators = mapOperators(id)
-            IrishRailStation(
-                id = id,
-                name = xml.name!!.trim(),
-                coordinate = Coordinate(xml.latitude!!, xml.longitude!!),
-                operators = operators,
-                routes = operators.map { Route(it.fullName, it) }
-            )
-        }
     }
 
     // https://www.irishrail.ie/Travel-Information/Station-and-Route-maps/Dublin-Symbolic-Map
@@ -155,5 +155,4 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
             else -> setOf(Operator.INTERCITY)
         }
     }
-
 }
