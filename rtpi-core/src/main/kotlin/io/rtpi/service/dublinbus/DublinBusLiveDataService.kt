@@ -1,27 +1,27 @@
-package io.rtpi.service.luas
+package io.rtpi.service.dublinbus
 
 import com.google.inject.Inject
-import io.rtpi.api.LuasLiveData
+import io.rtpi.api.DublinBusLiveData
 import io.rtpi.api.Operator
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiLiveDataService
 
-abstract class AbstractLuasLiveDataService @Inject constructor(
+class DublinBusLiveDataService @Inject constructor(
     rtpiApi: RtpiApi
-) : AbstractRtpiLiveDataService<LuasLiveData>(
+) : AbstractRtpiLiveDataService<DublinBusLiveData>(
     rtpiApi = rtpiApi,
-    operator = Operator.LUAS.shortName
+    operator = ""
 ) {
 
-    override fun newLiveDataInstance(timestamp: String, json: RtpiRealTimeBusInformationJson): LuasLiveData {
-        return LuasLiveData(
+    override fun newLiveDataInstance(timestamp: String, json: RtpiRealTimeBusInformationJson): DublinBusLiveData {
+        return DublinBusLiveData(
             liveTime = createDueTime(timestamp, json),
             operator = Operator.parse(json.operator!!.trim()),
             route = json.route!!.trim(),
-            destination = json.destination!!.replace("LUAS ", "").trim(),
+            destination = json.destination!!.trim(),
             direction = json.direction!!.trim(),
-            origin = json.origin!!.replace("LUAS ", "").trim()
+            origin = json.origin!!.trim()
         )
     }
 

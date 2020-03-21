@@ -1,10 +1,9 @@
-package io.rtpi.service
+package io.rtpi.time
 
 import io.rtpi.api.LiveTime
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
-import io.rtpi.time.DateTimeProvider
-import io.rtpi.time.toIso8601
-import org.threeten.bp.format.DateTimeFormatter
+import java.time.Duration
+import java.time.format.DateTimeFormatter
 
 private const val DUE = "Due"
 private const val DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm:ss"
@@ -26,18 +25,17 @@ object RtpiLiveTimeFactory {
             formatter = DATE_TIME_FORMATTER
         )
         return LiveTime(
-            currentTimestamp = currentTime.toIso8601(),
-            waitTimeMinutes = parseDueTime(json),
-            expectedTimestamp = expectedTime.toIso8601(),
-            scheduledTimestamp = scheduledTime.toIso8601()
+            currentDateTime = currentTime,
+            waitTime = parseDueTime(json),
+            expectedDateTime = expectedTime,
+            scheduledDateTime = scheduledTime
         )
     }
 
-    private fun parseDueTime(json: RtpiRealTimeBusInformationJson): Int {
+    private fun parseDueTime(json: RtpiRealTimeBusInformationJson): Duration {
         if (DUE == json.dueTime?.trim()) {
-            return 0
+            return Duration.ZERO
         }
-        return json.dueTime!!.toInt()
+        return Duration.ofMinutes(requireNotNull(json.dueTime).toLong())
     }
-
 }

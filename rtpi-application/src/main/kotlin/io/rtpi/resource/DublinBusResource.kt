@@ -26,14 +26,6 @@ class DublinBusResource @Inject constructor(
     private val dublinBusLiveDataService: DublinBusLiveDataService
 ) {
 
-//    private val dublinBusStopCache: LoadingCache<Service, List<DublinBusStop>> = CacheBuilder.newBuilder()
-//        .expireAfterWrite(60L, TimeUnit.MINUTES)
-//        .build(
-//            object : CacheLoader<Service, List<DublinBusStop>>() {
-//                override fun load(key: Service) = dublinBusStopService.getStops().blockingGet()
-//            }
-//        )
-
     private val dublinBusLiveDataCache: LoadingCache<String, List<DublinBusLiveData>> = CacheBuilder.newBuilder()
         .expireAfterWrite(30L, TimeUnit.SECONDS)
         .build(

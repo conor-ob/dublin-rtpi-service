@@ -30,3 +30,12 @@ data class RtpiRealTimeBusInformationJson(
     @SerializedName("sourcetimestamp") var sourceTimestamp: String? = null,
     @SerializedName("monitored") var monitored: String? = null
 )
+
+data class ValidatedRtpiRealTimeBusInformationResponse(
+    val timestamp: String,
+    val results: List<RtpiRealTimeBusInformationJson>
+)
+
+data class ValidatedRtpiRealTimeBusInformation(
+    val arrivalDateTime: String
+)

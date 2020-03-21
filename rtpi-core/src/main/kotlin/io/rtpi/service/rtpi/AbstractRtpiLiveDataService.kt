@@ -5,6 +5,8 @@ import io.rtpi.api.LiveTime
 import io.rtpi.api.TimedLiveData
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
+import io.rtpi.time.RtpiLiveTimeFactory
+import java.time.Duration
 
 private const val JSON = "json"
 
@@ -30,13 +32,17 @@ abstract class AbstractRtpiLiveDataService<T : TimedLiveData>(
                         && json.direction != null
                 }
                 .map { json -> newLiveDataInstance(response.timestamp!!, json) }
-                .filter { it.liveTime.waitTimeMinutes >= 0 }
-                .sortedBy { it.liveTime.waitTimeMinutes }
+                .filter { it.liveTime.waitTime.isPositive() }
+                .sortedBy { it.liveTime.waitTime }
         }
     }
 
     protected abstract fun newLiveDataInstance(timestamp: String, json: RtpiRealTimeBusInformationJson): T
 
-    protected abstract fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): LiveTime
+    protected fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): LiveTime {
+        return RtpiLiveTimeFactory.createLiveTime(serverTimestamp, json)
+    }
 
 }
+
+fun Duration.isPositive(): Boolean = !isNegative && !isZero

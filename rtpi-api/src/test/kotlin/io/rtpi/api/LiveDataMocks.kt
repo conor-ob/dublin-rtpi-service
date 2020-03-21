@@ -7,10 +7,10 @@ fun createDueTime(
     currentTime: LocalTime = LocalTime.now()
 ): LiveTime {
     return LiveTime(
-        waitTimeMinutes = waitTimeMinutes,
-        currentTimestamp = "",
-        scheduledTimestamp = "",
-        expectedTimestamp = ""
+        waitTime = waitTimeMinutes,
+        currentDateTime = "",
+        scheduledDateTime = "",
+        expectedDateTime = ""
     )
 }
 
