@@ -4,6 +4,8 @@ fun String?.validate(): String = requireNotNull(this).trim()
 
 fun Double?.validate(): Double = requireNotNull(this)
 
+fun <T> Collection<T>?.validate(): Collection<T> = requireNotNull(this)
+
 fun validateStrings(vararg strings: String?): Boolean {
     for (string in strings) {
         if (string.isNullOrBlank()) {
@@ -15,9 +17,13 @@ fun validateStrings(vararg strings: String?): Boolean {
 
 fun validateDoubles(vararg doubles: Double?): Boolean {
     for (double in doubles) {
-        if (double == null || double <= 0.0) {
+        if (double == null || double == 0.0) {
             return false
         }
     }
     return true
+}
+
+fun <T> validateCollection(collection: Collection<T>?): Boolean {
+    return collection != null
 }
