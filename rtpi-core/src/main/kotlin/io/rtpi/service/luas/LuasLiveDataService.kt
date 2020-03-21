@@ -6,6 +6,7 @@ import io.rtpi.api.Operator
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiLiveDataService
+import io.rtpi.validation.validate
 
 class LuasLiveDataService @Inject constructor(
     rtpiApi: RtpiApi
@@ -17,12 +18,11 @@ class LuasLiveDataService @Inject constructor(
     override fun newLiveDataInstance(timestamp: String, json: RtpiRealTimeBusInformationJson): LuasLiveData {
         return LuasLiveData(
             liveTime = createDueTime(timestamp, json),
-            operator = Operator.parse(json.operator!!.trim()),
-            route = json.route!!.trim(),
-            destination = json.destination!!.replace("LUAS ", "").trim(),
-            direction = json.direction!!.trim(),
-            origin = json.origin!!.replace("LUAS ", "").trim()
+            operator = Operator.parse(json.operator.validate()),
+            route = json.route.validate(),
+            destination = json.destination.validate().replace("LUAS", "").validate(),
+            direction = json.direction.validate(),
+            origin = json.origin.validate().replace("LUAS", "").validate()
         )
     }
-
 }

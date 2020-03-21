@@ -5,7 +5,10 @@ import io.rtpi.api.LiveTime
 import io.rtpi.api.TimedLiveData
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
+import io.rtpi.external.rtpi.RtpiRealTimeBusInformationResponseJson
 import io.rtpi.time.DateTimeProvider
+import io.rtpi.validation.validate
+import io.rtpi.validation.validateStrings
 import java.time.Duration
 import java.time.format.DateTimeFormatter
 
@@ -20,22 +23,24 @@ abstract class AbstractRtpiLiveDataService<T : TimedLiveData>(
 ) {
 
     fun getLiveData(stopId: String): Single<List<T>> {
-        return rtpiApi.realTimeBusInformation(
-            stopId = stopId,
-            operator = operator,
-            format = JSON
-        ).map { response ->
-            response.results!!
+        return rtpiApi.realTimeBusInformation(stopId = stopId, operator = operator, format = JSON)
+            .map { validateResponse(it) }
+    }
+
+    private fun validateResponse(response: RtpiRealTimeBusInformationResponseJson): List<T> {
+        return if (response.results.isNullOrEmpty()) {
+            emptyList()
+        } else {
+            requireNotNull(response.results)
                 .filter { json ->
-                    json.route != null
-                        && json.operator != null
-                        && json.destination != null
-                        && json.arrivalDateTime != null
-                        && json.scheduledArrivalDateTime != null
-                        && json.origin != null
-                        && json.direction != null
+                    validateStrings(
+                        response.timestamp, json.route, json.operator, json.direction, json.arrivalDateTime,
+                        json.scheduledArrivalDateTime, json.origin, json.destination
+                    )
                 }
-                .map { json -> newLiveDataInstance(response.timestamp!!, json) }
+                .map { json ->
+                    newLiveDataInstance(response.timestamp.validate(), json)
+                }
                 .filter { !it.liveTime.waitTime.isNegative }
                 .sortedBy { it.liveTime.waitTime }
         }
@@ -49,11 +54,11 @@ abstract class AbstractRtpiLiveDataService<T : TimedLiveData>(
             formatter = DATE_TIME_FORMATTER
         )
         val expectedTime = DateTimeProvider.getDateTime(
-            timestamp = json.arrivalDateTime!!,
+            timestamp = json.arrivalDateTime.validate(),
             formatter = DATE_TIME_FORMATTER
         )
         val scheduledTime = DateTimeProvider.getDateTime(
-            timestamp = json.scheduledArrivalDateTime!!,
+            timestamp = json.scheduledArrivalDateTime.validate(),
             formatter = DATE_TIME_FORMATTER
         )
         return LiveTime(

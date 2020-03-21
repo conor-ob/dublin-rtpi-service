@@ -7,8 +7,11 @@ import io.rtpi.api.LiveTime
 import io.rtpi.external.aircoach.AircoachApi
 import io.rtpi.external.aircoach.EtaJson
 import io.rtpi.external.aircoach.ServiceJson
+import io.rtpi.external.aircoach.ServiceResponseJson
 import io.rtpi.external.aircoach.TimestampJson
 import io.rtpi.time.DateTimeProvider
+import io.rtpi.validation.validate
+import io.rtpi.validation.validateObjects
 import java.time.Duration
 import java.time.format.DateTimeFormatter
 
@@ -18,26 +21,25 @@ private val DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)
 class AircoachLiveDataService @Inject constructor(private val aircoachApi: AircoachApi) {
 
     fun getLiveData(stopId: String): Single<List<AircoachLiveData>> {
-        return aircoachApi.getLiveData(
-            id = stopId
-        ).map { response ->
-            response.services!!
+        return aircoachApi.getLiveData(id = stopId)
+            .map { validateResponse(it) }
+    }
+
+    private fun validateResponse(response: ServiceResponseJson): List<AircoachLiveData> {
+        if (response.services.isNullOrEmpty()) {
+            return emptyList()
+        } else {
+            return requireNotNull(response.services)
                 .filter { json ->
-//                    json.eta != null
-                    json.time != null
-                        && json.time!!.arrive != null
-                        && json.time!!.arrive!!.dateTime != null
-                        && json.route != null
-//                        && json.arrival != null
-//                        && json.depart != null
-                        && json.dir != null
-                }.map { json ->
+                    validateObjects(json.time, json.time?.arrive, json.time?.arrive?.dateTime, json.route, json.dir)
+                }
+                .map { json ->
                     AircoachLiveData(
-                        liveTime = createDueTime(json.eta, json.time!!.arrive!!),
-                        route = json.route!!.trim(),
+                        liveTime = createDueTime(json.eta, requireNotNull(json.time?.arrive)),
+                        route = json.route.validate(),
                         destination = getDestination(json),
                         origin = getOrigin(json),
-                        direction = json.dir!!.trim()
+                        direction = json.dir.validate()
                     )
                 }
                 .filter { !it.liveTime.waitTime.isNegative }
@@ -47,28 +49,36 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
 
     private fun getOrigin(json: ServiceJson): String {
         if (json.stops.isNullOrEmpty()) {
-            return json.depart!!.trim()
+            return if (json.depart != null) {
+                json.depart.validate()
+            } else {
+                "Unknown Origin"
+            }
         }
-        return json.stops!!.first()
+        return json.stops.validate().first()
     }
 
     private fun getDestination(json: ServiceJson): String {
         if (json.stops.isNullOrEmpty()) {
-            return json.arrival!!.trim()
+            return if (json.arrival != null) {
+                json.arrival.validate()
+            } else {
+                "Unknown Destination"
+            }
         }
-        return json.stops!!.last()
+        return json.stops.validate().last()
     }
 
     // TODO check nullable
     private fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): LiveTime {
         val currentTime = DateTimeProvider.getCurrentDateTime()
-        val expectedTimestamp = expected?.etaArrive?.dateTime ?: scheduled.dateTime!!
+        val expectedTimestamp = expected?.etaArrive?.dateTime ?: requireNotNull(scheduled.dateTime)
         val expectedTime = DateTimeProvider.getDateTime(
             timestamp = expectedTimestamp,
             formatter = DATE_TIME_FORMATTER
         )
         val scheduledTime = DateTimeProvider.getDateTime(
-            timestamp = scheduled.dateTime!!,
+            timestamp = requireNotNull(scheduled.dateTime),
             formatter = DATE_TIME_FORMATTER
         )
         return LiveTime(

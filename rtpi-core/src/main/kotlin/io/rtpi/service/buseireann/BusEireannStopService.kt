@@ -7,6 +7,7 @@ import io.rtpi.api.Operator
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiBusStopInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiStopService
+import io.rtpi.validation.validate
 
 class BusEireannStopService @Inject constructor(
     rtpiApi: RtpiApi
@@ -17,11 +18,11 @@ class BusEireannStopService @Inject constructor(
 
     override fun newServiceLocationInstance(timestamp: String, json: RtpiBusStopInformationJson): BusEireannStop {
         return BusEireannStop(
-            id = json.stopId!!.trim(),
-            name = json.fullName!!.trim(),
+            id = json.stopId.validate(),
+            name = json.fullName.validate(),
             coordinate = Coordinate(
-                latitude = json.latitude!!.toDouble(),
-                longitude = json.longitude!!.toDouble()
+                latitude = json.latitude.validate().toDouble(),
+                longitude = json.longitude.validate().toDouble()
             ),
             operators = mapOperators(json),
             routes = mapRoutes(json)
