@@ -4,11 +4,10 @@ import com.google.inject.Inject
 import io.rtpi.api.Coordinate
 import io.rtpi.api.LuasStop
 import io.rtpi.api.Operator
-import io.rtpi.api.Route
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiBusStopInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiStopService
-import io.rtpi.util.RouteComparator
+import io.rtpi.validation.validate
 
 class LuasStopService @Inject constructor(
     rtpiApi: RtpiApi
@@ -17,26 +16,23 @@ class LuasStopService @Inject constructor(
     operator = Operator.LUAS.shortName
 ) {
 
-    override fun newServiceLocationInstance(timestamp: String, json: RtpiBusStopInformationJson): LuasStop {
+    override fun newServiceLocationInstance(json: RtpiBusStopInformationJson): LuasStop? {
         return LuasStop(
-            id = json.stopId!!.trim(),
-            name = json.fullName!!.trim().replace("LUAS ", ""),
+            id = json.stopId.validate(),
+            name = json.fullName.validate().replace("LUAS", "").validate(),
             coordinate = Coordinate(
-                latitude = json.latitude!!.toDouble(),
-                longitude = json.longitude!!.toDouble()
+                latitude = json.latitude.validate().toDouble(),
+                longitude = json.longitude.validate().toDouble()
             ),
-            operators = json.operators!!.map { operator ->
-                Operator.parse(operator.name!!.trim())
-            }.toSet(),
-            routes = json.operators!!.flatMap { operator ->
-                operator.routes!!.map { routeId ->
-                    Route(
-                        id = routeId.trim(),
-                        operator = Operator.parse(operator.name!!.trim())
-                    )
-                }
-            }.toSet().sortedWith(RouteComparator)
+            operators = mapOperators(json),
+            routes = mapRoutes(json)
         )
     }
 
+    override fun filterRoute(routeId: String): Boolean {
+        if ("XXX".equals(routeId, ignoreCase = true) || "Luas".equals(routeId, ignoreCase = true)) {
+            return false
+        }
+        return true
+    }
 }

@@ -9,6 +9,10 @@ import io.rtpi.api.Route
 import io.rtpi.external.aircoach.AircoachWebScraper
 import io.rtpi.external.staticdata.StaticDataApi
 import io.rtpi.util.RouteComparator
+import io.rtpi.validation.validate
+import io.rtpi.validation.validateCollection
+import io.rtpi.validation.validateDoubles
+import io.rtpi.validation.validateStrings
 import java.lang.Exception
 
 class AircoachStopService @Inject constructor(
@@ -31,26 +35,29 @@ class AircoachStopService @Inject constructor(
     private fun scrapeAircoachStops(): List<AircoachStop> {
         return aircoachWebScraper.scrapeStops()
             .filter { json ->
-                json.id != null
-                    && json.name != null
-                    && json.stopLatitude != null
-                    && json.stopLongitude != null
-                    && json.services != null
-            }.map { json ->
+                validateStrings(json.id, json.name) &&
+                    validateDoubles(json.stopLatitude, json.stopLongitude) &&
+                    validateCollection(json.services)
+            }
+            .map { json ->
                 AircoachStop(
-                    id = json.id!!.trim(),
-                    name = json.name!!.trim(),
+                    id = json.id.validate(),
+                    name = json.name.validate(),
                     coordinate = Coordinate(
-                        latitude = json.stopLatitude!!,
-                        longitude = json.stopLongitude!!
+                        latitude = json.stopLatitude.validate(),
+                        longitude = json.stopLongitude.validate()
                     ),
                     operators = setOf(Operator.AIRCOACH),
-                    routes = json.services!!
-                        .map { serviceJson ->
-                            Route(
-                                id = serviceJson.route!!.trim(),
-                                operator = Operator.AIRCOACH
-                            )
+                    routes = json.services.validate()
+                        .mapNotNull { serviceJson ->
+                            if (serviceJson.route == null) {
+                                null
+                            } else {
+                                Route(
+                                    id = serviceJson.route.validate(),
+                                    operator = Operator.AIRCOACH
+                                )
+                            }
                         }.toSet().sortedWith(RouteComparator)
                 )
             }
@@ -61,28 +68,31 @@ class AircoachStopService @Inject constructor(
             .map { stopsJson ->
                 stopsJson
                     .filter { json ->
-                        json.id != null
-                            && json.name != null
-                            && json.stopLatitude != null
-                            && json.stopLongitude != null
-                            && json.services != null
-                    }.map { json ->
-                    AircoachStop(
-                        id = json.id!!.trim(),
-                        name = json.name!!.trim(),
-                        coordinate = Coordinate(
-                            latitude = json.stopLatitude!!,
-                            longitude = json.stopLongitude!!
-                        ),
-                        operators = setOf(Operator.AIRCOACH),
-                        routes = json.services!!
-                            .map { serviceJson ->
-                                Route(
-                                    id = serviceJson.route!!.trim(),
-                                    operator = Operator.AIRCOACH
-                                )
-                            }.toSet().sortedWith(RouteComparator)
-                    )
+                        validateStrings(json.id, json.name) &&
+                            validateDoubles(json.stopLatitude, json.stopLongitude) &&
+                            validateCollection(json.services)
+                    }
+                    .map { json ->
+                        AircoachStop(
+                            id = json.id.validate(),
+                            name = json.name.validate(),
+                            coordinate = Coordinate(
+                                latitude = json.stopLatitude.validate(),
+                                longitude = json.stopLongitude.validate()
+                            ),
+                            operators = setOf(Operator.AIRCOACH),
+                            routes = json.services.validate()
+                                .mapNotNull { serviceJson ->
+                                    if (serviceJson.route == null) {
+                                        null
+                                    } else {
+                                        Route(
+                                            id = serviceJson.route.validate(),
+                                            operator = Operator.AIRCOACH
+                                        )
+                                    }
+                                }.toSet().sortedWith(RouteComparator)
+                        )
                 }
             }
     }

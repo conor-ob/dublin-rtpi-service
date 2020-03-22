@@ -1,12 +1,14 @@
 package io.rtpi.service.dublinbus
 
+import com.google.inject.Inject
 import io.rtpi.api.DublinBusLiveData
 import io.rtpi.api.Operator
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiLiveDataService
+import io.rtpi.validation.validate
 
-abstract class AbstractDublinBusLiveDataService(
+class DublinBusLiveDataService @Inject constructor(
     rtpiApi: RtpiApi
 ) : AbstractRtpiLiveDataService<DublinBusLiveData>(
     rtpiApi = rtpiApi,
@@ -16,11 +18,11 @@ abstract class AbstractDublinBusLiveDataService(
     override fun newLiveDataInstance(timestamp: String, json: RtpiRealTimeBusInformationJson): DublinBusLiveData {
         return DublinBusLiveData(
             liveTime = createDueTime(timestamp, json),
-            operator = Operator.parse(json.operator!!.trim()),
-            route = json.route!!.trim(),
-            destination = json.destination!!.trim(),
-            direction = json.direction!!.trim(),
-            origin = json.origin!!.trim()
+            operator = Operator.parse(json.operator.validate()),
+            route = json.route.validate(),
+            destination = json.destination.validate(),
+            direction = json.direction.validate(),
+            origin = json.origin.validate()
         )
     }
 

@@ -1,6 +1,7 @@
 package io.rtpi.time
 
 import java.time.Clock
+import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -28,5 +29,3 @@ object DateTimeProvider {
         DateTimeProvider.clock = clock
     }
 }
-
-fun ZonedDateTime.toIso8601(): String = toOffsetDateTime().toString()

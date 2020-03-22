@@ -6,9 +6,13 @@ server:
     - type: http
       port: 9001
 
-apiConfig:
+apiConfiguration:
   aircoachBaseUrl: "https://tracker.aircoach.ie/"
   dublinBusBaseUrl: "http://rtpi.dublinbus.ie/"
   irishRailBaseUrl: "http://api.irishrail.ie/realtime/realtime.asmx/"
   jcDecauxBaseUrl: "https://api.jcdecaux.com/vls/v1/"
   rtpiBaseUrl: "https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/"
+
+cacheConfiguration:
+  serviceLocationExpiry: "PT1H"
+  liveDataExpiry: "PT30S"

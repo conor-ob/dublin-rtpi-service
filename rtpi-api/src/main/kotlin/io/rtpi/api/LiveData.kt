@@ -1,5 +1,8 @@
 package io.rtpi.api
 
+import java.time.Duration
+import java.time.ZonedDateTime
+
 interface LiveData {
     val operator: Operator
 }
@@ -13,10 +16,10 @@ interface TimedLiveData : LiveData {
 }
 
 data class LiveTime(
-    val waitTimeMinutes: Int,
-    val currentTimestamp: String,
-    val expectedTimestamp: String,
-    val scheduledTimestamp: String
+    val waitTime: Duration,
+    val currentDateTime: ZonedDateTime,
+    val expectedDateTime: ZonedDateTime,
+    val scheduledDateTime: ZonedDateTime
 )
 
 data class AircoachLiveData(

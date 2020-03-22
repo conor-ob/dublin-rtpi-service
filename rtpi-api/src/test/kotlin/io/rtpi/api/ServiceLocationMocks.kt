@@ -31,3 +31,17 @@ fun createDublinBusStop(
         routes = routes
     )
 }
+
+fun createLuasStop(
+    id: String = "",
+    name: String = "",
+    coordinate: Coordinate = Coordinate(0.0, 0.0),
+    operators: Set<Operator> = emptySet(),
+    routes: List<Route> = emptyList()
+) = LuasStop(
+    id = id,
+    name = name,
+    coordinate = coordinate,
+    operators = operators,
+    routes = routes
+)

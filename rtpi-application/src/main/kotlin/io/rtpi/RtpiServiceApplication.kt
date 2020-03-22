@@ -29,7 +29,7 @@ class RtpiServiceApplication : Application<RtpiServiceConfiguration>() {
 
     override fun initialize(bootstrap: Bootstrap<RtpiServiceConfiguration>) {
         super.initialize(bootstrap)
-        bootstrap.addBundle(ViewBundle<RtpiServiceConfiguration>())
+        bootstrap.addBundle(ViewBundle())
     }
 
     override fun run(configuration: RtpiServiceConfiguration, environment: Environment) {

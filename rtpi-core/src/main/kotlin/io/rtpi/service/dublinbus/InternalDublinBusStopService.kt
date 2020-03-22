@@ -1,23 +1,22 @@
-package io.rtpi.service.buseireann
+package io.rtpi.service.dublinbus
 
-import com.google.inject.Inject
-import io.rtpi.api.BusEireannStop
 import io.rtpi.api.Coordinate
-import io.rtpi.api.Operator
+import io.rtpi.api.DublinBusStop
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiBusStopInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiStopService
 import io.rtpi.validation.validate
 
-class BusEireannStopService @Inject constructor(
-    rtpiApi: RtpiApi
-) : AbstractRtpiStopService<BusEireannStop>(
+class InternalDublinBusStopService(
+    rtpiApi: RtpiApi,
+    operator: String
+) : AbstractRtpiStopService<DublinBusStop>(
     rtpiApi = rtpiApi,
-    operator = Operator.BUS_EIREANN.shortName
+    operator = operator
 ) {
 
-    override fun newServiceLocationInstance(json: RtpiBusStopInformationJson): BusEireannStop {
-        return BusEireannStop(
+    override fun newServiceLocationInstance(json: RtpiBusStopInformationJson): DublinBusStop? {
+        return DublinBusStop(
             id = json.stopId.validate(),
             name = json.fullName.validate(),
             coordinate = Coordinate(
