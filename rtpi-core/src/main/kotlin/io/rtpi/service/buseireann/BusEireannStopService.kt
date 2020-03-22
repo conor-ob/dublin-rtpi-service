@@ -16,7 +16,7 @@ class BusEireannStopService @Inject constructor(
     operator = Operator.BUS_EIREANN.shortName
 ) {
 
-    override fun newServiceLocationInstance(timestamp: String, json: RtpiBusStopInformationJson): BusEireannStop {
+    override fun newServiceLocationInstance(json: RtpiBusStopInformationJson): BusEireannStop {
         return BusEireannStop(
             id = json.stopId.validate(),
             name = json.fullName.validate(),

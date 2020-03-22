@@ -30,13 +30,13 @@ abstract class AbstractRtpiStopService<T : ServiceLocationRoutes>(
         } else {
             requireNotNull(response.results)
                 .filter { json ->
-                    validateStrings(response.timestamp, json.stopId, json.fullName) &&
+                    validateStrings(json.stopId, json.fullName) &&
                         validateStrings(json.latitude, json.longitude) &&
                         validateDoubles(json.latitude?.toDouble(), json.longitude?.toDouble())
-                }.mapNotNull { json -> newServiceLocationInstance(response.timestamp.validate(), json) }
+                }.mapNotNull { json -> newServiceLocationInstance(json) }
         }
 
-    protected abstract fun newServiceLocationInstance(timestamp: String, json: RtpiBusStopInformationJson): T?
+    protected abstract fun newServiceLocationInstance(json: RtpiBusStopInformationJson): T?
 
     protected fun mapOperators(json: RtpiBusStopInformationJson): Set<Operator> =
         if (json.operators.isNullOrEmpty()) {
@@ -50,30 +50,33 @@ abstract class AbstractRtpiStopService<T : ServiceLocationRoutes>(
                 .toSet()
         }
 
-    protected fun mapRoutes(json: RtpiBusStopInformationJson): List<Route> {
-        return json.operators
-            .validate()
-            .flatMap { operator ->
-                if (operator.routes.isNullOrEmpty()) {
-                    emptyList()
-                } else {
-                    operator.routes
-                        .validate()
-                        .mapNotNull { routeId ->
-                            val validatedRouteId = routeId.validate()
-                            if (filterRoute(validatedRouteId)) {
-                                Route(
-                                    id = validatedRouteId,
-                                    operator = Operator.parse(operator.name.validate())
-                                )
-                            } else {
-                                null
+    protected fun mapRoutes(json: RtpiBusStopInformationJson): List<Route> =
+        if (json.operators.isNullOrEmpty()) {
+            emptyList()
+        } else {
+            json.operators
+                .validate()
+                .flatMap { operator ->
+                    if (operator.routes.isNullOrEmpty()) {
+                        emptyList()
+                    } else {
+                        operator.routes
+                            .validate()
+                            .mapNotNull { routeId ->
+                                val validatedRouteId = routeId.validate()
+                                if (filterRoute(validatedRouteId)) {
+                                    Route(
+                                        id = validatedRouteId,
+                                        operator = Operator.parse(operator.name.validate())
+                                    )
+                                } else {
+                                    null
+                                }
                             }
-                        }
+                    }
                 }
-            }
-            .toSet()
-            .sortedWith(RouteComparator)
+                .toSet()
+                .sortedWith(RouteComparator)
     }
 
     protected abstract fun filterRoute(routeId: String): Boolean

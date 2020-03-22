@@ -1,6 +1,7 @@
 package io.rtpi.service.aircoach
 
 import io.reactivex.Single
+import io.rtpi.api.Coordinate
 import io.rtpi.api.Operator
 import io.rtpi.api.createAircoachStop
 import io.rtpi.external.aircoach.AircoachStopJson
@@ -25,7 +26,10 @@ class AircoachStopServiceTest {
                 return Single.just(
                     listOf(
                         createAircoachStopJson(
-                            name = "Airport"
+                            id = "2",
+                            name = "Airport2",
+                            stopLatitude = 53.5453,
+                            stopLongitude = -6.4311
                         )
                     )
                 )
@@ -46,7 +50,9 @@ class AircoachStopServiceTest {
         observer.assertValue(
             listOf(
                 createAircoachStop(
-                    name = "Airport",
+                    id = "2",
+                    name = "Airport2",
+                    coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
                     operators = setOf(Operator.AIRCOACH)
                 )
             )
@@ -67,7 +73,10 @@ class AircoachStopServiceTest {
                 return Single.just(
                     listOf(
                         createAircoachStopJson(
-                            name = "Airport"
+                            id = "1",
+                            name = "Airport1",
+                            stopLatitude = 53.5453,
+                            stopLongitude = -6.4311
                         )
                     )
                 )
@@ -88,7 +97,9 @@ class AircoachStopServiceTest {
         observer.assertValue(
             listOf(
                 createAircoachStop(
-                    name = "Airport",
+                    id = "1",
+                    name = "Airport1",
+                    coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
                     operators = setOf(Operator.AIRCOACH)
                 )
             )
@@ -103,10 +114,16 @@ class AircoachStopServiceTest {
             override fun scrapeStops(): List<AircoachStopJson> {
                 return listOf(
                     createAircoachStopJson(
-                        name = "Airport1"
+                        id = "1",
+                        name = "Airport1",
+                        stopLatitude = 53.5453,
+                        stopLongitude = -6.4311
                     ),
                     createAircoachStopJson(
-                        name = "Airport2"
+                        id = "2",
+                        name = "Airport2",
+                        stopLatitude = 53.5453,
+                        stopLongitude = -6.4311
                     )
                 )
             }
@@ -116,7 +133,10 @@ class AircoachStopServiceTest {
                 return Single.just(
                     listOf(
                         createAircoachStopJson(
-                            name = "Airport3"
+                            id = "3",
+                            name = "Airport3",
+                            stopLatitude = 53.5453,
+                            stopLongitude = -6.4311
                         )
                     )
                 )
@@ -137,11 +157,15 @@ class AircoachStopServiceTest {
         observer.assertValue(
             listOf(
                 createAircoachStop(
+                    id = "1",
                     name = "Airport1",
+                    coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
                     operators = setOf(Operator.AIRCOACH)
                 ),
                 createAircoachStop(
+                    id = "2",
                     name = "Airport2",
+                    coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
                     operators = setOf(Operator.AIRCOACH)
                 )
             )

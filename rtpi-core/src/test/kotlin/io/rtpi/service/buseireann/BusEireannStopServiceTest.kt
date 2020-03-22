@@ -1,4 +1,4 @@
-package io.rtpi.service.dublinbus
+package io.rtpi.service.buseireann
 
 import io.rtpi.api.Operator
 import io.rtpi.external.rtpi.RtpiApi
@@ -8,21 +8,21 @@ import io.rtpi.external.rtpi.createRtpiBusStopOperatorInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiStopService
 import io.rtpi.service.rtpi.AbstractRtpiStopServiceTest
 
-class DublinBusStopServiceTest : AbstractRtpiStopServiceTest() {
+class BusEireannStopServiceTest : AbstractRtpiStopServiceTest() {
 
-    override fun getOperator() = Operator.DUBLIN_BUS
+    override fun getOperator() = Operator.BUS_EIREANN
 
-    override fun createStopService(rtpiApi: RtpiApi) = InternalDublinBusStopService(rtpiApi, getOperator().shortName) as AbstractRtpiStopService<*>
+    override fun createStopService(rtpiApi: RtpiApi) = BusEireannStopService(rtpiApi) as AbstractRtpiStopService<*>
 
     override fun createDefaultStop() = createRtpiBusStopInformationJson(
-        stopId = "315",
-        fullName = "Bachelor's Walk",
-        latitude = "53.12332",
-        longitude = "-6.54938",
+        stopId = "601401",
+        fullName = "Tubberquack Road",
+        latitude = "53.342254",
+        longitude = "-6.223423",
         operators = listOf(
             createRtpiBusStopOperatorInformationJson(
-                name = "BAC",
-                routes = listOf("46A", "145", "39A", "15", "747", "115")
+                name = "BE",
+                routes = listOf("100", "100X", "101")
             )
         )
     )

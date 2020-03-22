@@ -15,7 +15,7 @@ class InternalDublinBusStopService(
     operator = operator
 ) {
 
-    override fun newServiceLocationInstance(timestamp: String, json: RtpiBusStopInformationJson): DublinBusStop? {
+    override fun newServiceLocationInstance(json: RtpiBusStopInformationJson): DublinBusStop? {
         return DublinBusStop(
             id = json.stopId.validate(),
             name = json.fullName.validate(),

@@ -16,7 +16,7 @@ class LuasStopService @Inject constructor(
     operator = Operator.LUAS.shortName
 ) {
 
-    override fun newServiceLocationInstance(timestamp: String, json: RtpiBusStopInformationJson): LuasStop? {
+    override fun newServiceLocationInstance(json: RtpiBusStopInformationJson): LuasStop? {
         return LuasStop(
             id = json.stopId.validate(),
             name = json.fullName.validate().replace("LUAS", "").validate(),
