@@ -50,8 +50,7 @@ shadowJar {
         attributes 'Implementation-Title': rootProject.name
         attributes 'Implementation-Version': rootProject.version
         attributes 'Implementation-Vendor-Id': rootProject.group
-        attributes 'Build-Time': ZonedDateTime.now(ZoneId.of("UTC"))
-                .format(DateTimeFormatter.ISO_ZONED_DATE_TIME)
+        attributes 'Build-Time': ZonedDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ISO_ZONED_DATE_TIME)
         attributes 'Built-By': InetAddress.localHost.hostName
         attributes 'Created-By': 'Gradle ' + gradle.gradleVersion
         attributes 'Main-Class': 'io.rtpi.RtpiServiceApplication'
@@ -60,7 +59,7 @@ shadowJar {
 }
 
 def gitBranch = "git rev-parse --abbrev-ref HEAD".execute().text.trim()
-def jarBuildDate = new Date().format('yyyy-MM-dd')
+def jarBuildDate = ZonedDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ISO_LOCAL_DATE)
 def gitCommitHash = "git rev-parse HEAD".execute().text.trim().substring(0, 7)
 
 buildConfig {

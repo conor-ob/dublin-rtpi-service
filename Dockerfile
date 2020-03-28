@@ -1,16 +1,16 @@
 FROM openjdk:8-jdk
 
-EXPOSE 9000-9001
+EXPOSE 8080-8081
 
 WORKDIR /dublin-rtpi-service
 COPY . /dublin-rtpi-service
 
-RUN ./gradlew stage
+RUN ./gradlew shadowJar
 
-CMD java -Ddw.server.applicationConnectors[0].port=$PORT -jar rtpi-application/build/libs/dublin-rtpi-service.jar server rtpi-application/config.yml
+CMD ["java", "-jar", "rtpi-application/build/libs/dublin-rtpi-service.jar", "server", "rtpi-application/config.yml"]
 
-# docker build . -f Dockerfile -t dublin-rtpi-service:latest
-# docker run -p 9000:9000 dublin-rtpi-service
-
+# build and tag image
 # docker build -t dublin-rtpi-service .
-# docker run --rm -it -p 9000:9000 dublin-rtpi-service
+
+# run detached in container
+# docker run -d -p 8080:8080 -p 8081:8081 dublin-rtpi-service
