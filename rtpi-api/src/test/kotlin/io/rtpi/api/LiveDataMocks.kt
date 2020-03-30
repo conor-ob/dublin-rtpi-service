@@ -16,6 +16,22 @@ fun createDueTime(
     )
 }
 
+fun createDublinBusLiveData(
+    operator: Operator,
+    route: String,
+    origin: String,
+    destination: String,
+    direction: String,
+    liveTime: LiveTime
+) = DublinBusLiveData(
+    operator = operator,
+    route = route,
+    origin = origin,
+    destination = destination,
+    direction = direction,
+    liveTime = liveTime
+)
+
 fun createIrishRailLiveData(
     currentTime: LocalTime = LocalTime.now(),
     waitTimeMinutes: Duration = Duration.ofMinutes(3),
