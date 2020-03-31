@@ -19,12 +19,17 @@ data class ServiceJson(
     @SerializedName("journeyId") var journeyId: String? = null,
     @SerializedName("linkName") var linkName: String? = null,
     @SerializedName("stopType") var stopType: Int? = null,
-    @SerializedName("stops") var stops: List<String>? = null,
+    @SerializedName("stops") var stops: List<StopJson>? = null,
     @SerializedName("places") var places: List<String>? = null,
     @SerializedName("live") var live: LiveJson? = null,
     @SerializedName("dups") var dups: String? = null,
     @SerializedName("eta") var eta: EtaJson? = null,
     @SerializedName("delayed") var delayed: Boolean? = null
+)
+
+data class StopJson(
+    @SerializedName("stop") var stop: String? = null,
+    @SerializedName("ticketName") var ticketName: String? = null
 )
 
 data class EtaJson(

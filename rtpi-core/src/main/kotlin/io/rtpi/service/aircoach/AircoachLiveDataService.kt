@@ -55,7 +55,12 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
                 "Unknown Origin"
             }
         }
-        return json.stops.validate().first()
+        val stopNames = json.stops.validate().map { it.stop }
+        return if (stopNames.isNullOrEmpty()) {
+            "Unknown Origin"
+        } else {
+            return stopNames.first().validate()
+        }
     }
 
     private fun getDestination(json: ServiceJson): String {
@@ -66,7 +71,12 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
                 "Unknown Destination"
             }
         }
-        return json.stops.validate().last()
+        val stopNames = json.stops.validate().map { it.stop }
+        return if (stopNames.isNullOrEmpty()) {
+            "Unknown Origin"
+        } else {
+            return stopNames.last().validate()
+        }
     }
 
     // TODO check nullable
