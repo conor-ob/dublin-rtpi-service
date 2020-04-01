@@ -7,6 +7,7 @@ import com.google.inject.name.Named
 import io.rtpi.RtpiServiceConfiguration
 import io.rtpi.external.aircoach.AircoachApi
 import io.rtpi.external.aircoach.AircoachWebScraper
+import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.jcdecaux.JcDecauxApi
 import io.rtpi.external.rtpi.RtpiApi
@@ -39,6 +40,21 @@ class ExternalApiModule : KotlinModule() {
         .addConverterFactory(converterFactory)
         .build()
         .create(AircoachApi::class.java)
+
+    @Provides
+    @Singleton
+    fun dublinBusApi(
+        configuration: RtpiServiceConfiguration,
+        @Named("default_client") client: OkHttpClient,
+        callAdapterFactory: CallAdapter.Factory,
+        @Named("xml") converterFactory: Converter.Factory
+    ): DublinBusApi = Retrofit.Builder()
+        .baseUrl(requireNotNull(configuration.apiConfiguration.dublinBusBaseUrl))
+        .client(client)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(converterFactory)
+        .build()
+        .create(DublinBusApi::class.java)
 
     @Provides
     @Singleton
