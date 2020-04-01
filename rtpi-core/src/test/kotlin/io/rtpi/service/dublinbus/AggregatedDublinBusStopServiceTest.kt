@@ -7,6 +7,7 @@ import io.rtpi.api.Coordinate
 import io.rtpi.api.Operator
 import io.rtpi.api.Route
 import io.rtpi.api.createDublinBusStop
+import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiBusStopOperatorInformationJson
 import io.rtpi.external.rtpi.createRtpiBusStopInformationJson
@@ -18,8 +19,9 @@ import org.junit.Test
 
 class AggregatedDublinBusStopServiceTest {
 
+    private val dublinBusApi = mockk<DublinBusApi>()
     private val rtpiApi = mockk<RtpiApi>()
-    private val dublinBusStopService = DublinBusStopService(rtpiApi)
+    private val dublinBusStopService = DublinBusStopService(dublinBusApi, rtpiApi)
     private val defaultDublinBusStop = createRtpiBusStopInformationJson(
         stopId = "444",
         fullName = "Kilmacud Rd",
