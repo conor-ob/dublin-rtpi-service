@@ -2,48 +2,34 @@ package io.rtpi.service.dublinbus
 
 import com.google.inject.Inject
 import io.reactivex.Single
-import io.reactivex.functions.BiFunction
 import io.rtpi.api.DublinBusStop
-import io.rtpi.api.Operator
+import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.rtpi.RtpiApi
-import io.rtpi.util.RouteComparator
 
-class DublinBusStopService @Inject constructor(rtpiApi: RtpiApi) {
+class DublinBusStopService @Inject constructor(
+    dublinBusApi: DublinBusApi,
+    rtpiApi: RtpiApi
+) {
 
-    private val dublinBusStopService = InternalDublinBusStopService(rtpiApi, Operator.DUBLIN_BUS.shortName)
-    private val goAheadStopService = InternalDublinBusStopService(rtpiApi, Operator.GO_AHEAD.shortName)
+    private val dublinBusDefaultStopService = DublinBusDefaultStopService(dublinBusApi)
+    private val dublinBusRtpiStopService = DublinBusRtpiStopService(rtpiApi)
 
     fun getStops(): Single<List<DublinBusStop>> {
-        return Single.zip(
-            dublinBusStopService.getStops(),
-            goAheadStopService.getStops(),
-            BiFunction { dublinBusStops, goAheadStops ->
-                aggregate(dublinBusStops, goAheadStops)
-            }
-        )
+        // TODO
+        return dublinBusRtpiStopService.getStops()
+//        return Single.zip(
+//            dublinBusDefaultStopService.getStops(),
+//            dublinBusRtpiStopService.getStops(),
+//            BiFunction { defaultStops, rtpiStops -> resolve(defaultStops, rtpiStops) }
+//        )
     }
 
-    private fun aggregate(
-        dublinBusStops: List<DublinBusStop>,
-        goAheadStops: List<DublinBusStop>
-    ): List<DublinBusStop> {
-        val aggregated = dublinBusStops.associateBy { it.id }.toMutableMap()
-        for (goAheadStop in goAheadStops) {
-            var existing = aggregated[goAheadStop.id]
-            if (existing == null) {
-                aggregated[goAheadStop.id] = goAheadStop
-            } else {
-                val existingOperators = existing.operators.toMutableSet()
-                existingOperators.addAll(goAheadStop.operators)
-                val existingRoutes = existing.routes.toMutableList()
-                existingRoutes.addAll(goAheadStop.routes)
-                existing = existing.copy(
-                    operators = existingOperators,
-                    routes = existingRoutes.sortedWith(RouteComparator)
-                )
-                aggregated[goAheadStop.id] = existing
-            }
+    private fun resolve(defaultStops: List<DublinBusStop>, rtpiStops: List<DublinBusStop>): List<DublinBusStop> {
+        val defaultStopsById = defaultStops.associateBy { it.id }.toMutableMap()
+        val rtpiStopsById = rtpiStops.associateBy { it.id }
+        for (key in rtpiStopsById.keys) {
+            defaultStopsById.remove(key)
         }
-        return aggregated.values.toList()
+        return rtpiStops.plus(defaultStopsById.values)
     }
 }

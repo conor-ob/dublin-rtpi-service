@@ -7,7 +7,7 @@ import io.rtpi.external.rtpi.RtpiBusStopInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiStopService
 import io.rtpi.validation.validate
 
-class InternalDublinBusStopService(
+class DublinBusRtpiInternalStopService(
     rtpiApi: RtpiApi,
     operator: String
 ) : AbstractRtpiStopService<DublinBusStop>(

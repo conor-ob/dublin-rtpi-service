@@ -2,7 +2,6 @@ package io.rtpi.service.dublinbus
 
 import io.rtpi.api.Operator
 import io.rtpi.external.rtpi.RtpiApi
-import io.rtpi.external.rtpi.RtpiBusStopOperatorInformationJson
 import io.rtpi.external.rtpi.createRtpiBusStopInformationJson
 import io.rtpi.external.rtpi.createRtpiBusStopOperatorInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiStopService
@@ -12,7 +11,7 @@ class DublinBusStopServiceTest : AbstractRtpiStopServiceTest() {
 
     override fun getOperator() = Operator.DUBLIN_BUS
 
-    override fun createStopService(rtpiApi: RtpiApi) = InternalDublinBusStopService(rtpiApi, getOperator().shortName) as AbstractRtpiStopService<*>
+    override fun createStopService(rtpiApi: RtpiApi) = DublinBusRtpiInternalStopService(rtpiApi, getOperator().shortName) as AbstractRtpiStopService<*>
 
     override fun createDefaultStop() = createRtpiBusStopInformationJson(
         stopId = "315",

@@ -4,13 +4,18 @@ import com.google.inject.Inject
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 import io.rtpi.api.DublinBusLiveData
+import io.rtpi.external.dublinbus.DublinBusApi
+import io.rtpi.external.rtpi.RtpiApi
 import java.time.Duration
 import kotlin.math.absoluteValue
 
 class DublinBusLiveDataService @Inject constructor(
-    private val dublinBusDefaultLiveDataService: DublinBusDefaultLiveDataService,
-    private val dublinBusRtpiLiveDataService: DublinBusRtpiLiveDataService
+    dublinBusApi: DublinBusApi,
+    rtpiApi: RtpiApi
 ) {
+
+    private val dublinBusDefaultLiveDataService = DublinBusDefaultLiveDataService(dublinBusApi)
+    private val dublinBusRtpiLiveDataService = DublinBusRtpiLiveDataService(rtpiApi)
 
     fun getLiveData(stopId: String): Single<List<DublinBusLiveData>> {
         return Single.zip(

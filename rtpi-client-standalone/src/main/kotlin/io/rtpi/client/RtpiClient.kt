@@ -159,11 +159,8 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
     )
 
     private val dublinBusClient = DublinBusClient(
-        DublinBusStopService(rtpiApi),
-        DublinBusLiveDataService(
-            DublinBusDefaultLiveDataService(dublinBusApi),
-            DublinBusRtpiLiveDataService(rtpiApi)
-        )
+        DublinBusStopService(dublinBusApi, rtpiApi),
+        DublinBusLiveDataService(dublinBusApi, rtpiApi)
     )
 
     private val irishRailClient = IrishRailClient(
