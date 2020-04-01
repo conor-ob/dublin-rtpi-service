@@ -1,6 +1,7 @@
 package io.rtpi.client
 
 import io.rtpi.external.aircoach.AircoachApi
+import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.jcdecaux.JcDecauxApi
 import io.rtpi.external.rtpi.RtpiApi
@@ -12,7 +13,9 @@ import io.rtpi.service.buseireann.BusEireannLiveDataService
 import io.rtpi.service.buseireann.BusEireannStopService
 import io.rtpi.service.dublinbikes.DublinBikesDockService
 import io.rtpi.service.dublinbikes.DublinBikesLiveDataService
+import io.rtpi.service.dublinbus.DublinBusDefaultLiveDataService
 import io.rtpi.service.dublinbus.DublinBusLiveDataService
+import io.rtpi.service.dublinbus.DublinBusRtpiLiveDataService
 import io.rtpi.service.dublinbus.DublinBusStopService
 import io.rtpi.service.irishrail.IrishRailLiveDataService
 import io.rtpi.service.irishrail.IrishRailStationService
@@ -108,6 +111,14 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         .build()
         .create(JcDecauxApi::class.java)
 
+    private val dublinBusApi = Retrofit.Builder()
+        .baseUrl("http://rtpi.dublinbus.ie/")
+        .client(defaultOkHttpClient)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(xmlConverterFactory)
+        .build()
+        .create(DublinBusApi::class.java)
+
     private val rtpiApi = Retrofit.Builder()
         .baseUrl("https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/")
         .client(defaultOkHttpClient)
@@ -148,8 +159,8 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
     )
 
     private val dublinBusClient = DublinBusClient(
-        DublinBusStopService(rtpiApi),
-        DublinBusLiveDataService(rtpiApi)
+        DublinBusStopService(dublinBusApi, rtpiApi),
+        DublinBusLiveDataService(dublinBusApi, rtpiApi)
     )
 
     private val irishRailClient = IrishRailClient(

@@ -1,29 +1,48 @@
 package io.rtpi.service.dublinbus
 
 import com.google.inject.Inject
+import io.reactivex.Single
+import io.reactivex.functions.BiFunction
 import io.rtpi.api.DublinBusLiveData
-import io.rtpi.api.Operator
+import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.rtpi.RtpiApi
-import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
-import io.rtpi.service.rtpi.AbstractRtpiLiveDataService
-import io.rtpi.validation.validate
+import java.time.Duration
+import kotlin.math.absoluteValue
 
 class DublinBusLiveDataService @Inject constructor(
+    dublinBusApi: DublinBusApi,
     rtpiApi: RtpiApi
-) : AbstractRtpiLiveDataService<DublinBusLiveData>(
-    rtpiApi = rtpiApi,
-    operator = ""
 ) {
 
-    override fun newLiveDataInstance(timestamp: String, json: RtpiRealTimeBusInformationJson): DublinBusLiveData {
-        return DublinBusLiveData(
-            liveTime = createDueTime(timestamp, json),
-            operator = Operator.parse(json.operator.validate()),
-            route = json.route.validate(),
-            destination = json.destination.validate(),
-            direction = json.direction.validate(),
-            origin = json.origin.validate()
+    private val dublinBusDefaultLiveDataService = DublinBusDefaultLiveDataService(dublinBusApi)
+    private val dublinBusRtpiLiveDataService = DublinBusRtpiLiveDataService(rtpiApi)
+
+    fun getLiveData(stopId: String): Single<List<DublinBusLiveData>> {
+        return Single.zip(
+            dublinBusDefaultLiveDataService.getLiveData(stopId),
+            dublinBusRtpiLiveDataService.getLiveData(stopId),
+            BiFunction { defaultLiveData, rtpiLiveData -> resolve(defaultLiveData, rtpiLiveData) }
         )
     }
 
+    private fun resolve(
+        defaultLiveData: List<DublinBusLiveData>,
+        rtpiLiveData: List<DublinBusLiveData>
+    ): List<DublinBusLiveData> {
+        val nonDuplicateDefaultLiveData = defaultLiveData.toMutableList()
+        for (liveData in rtpiLiveData) {
+            val route = liveData.route
+            val scheduledTime = liveData.liveTime.scheduledDateTime
+            val match = defaultLiveData.find {
+                it.route == route &&
+                Duration.between(it.liveTime.scheduledDateTime, scheduledTime).seconds.absoluteValue < 60L
+            }
+            if (match != null) {
+                nonDuplicateDefaultLiveData.remove(match)
+            }
+        }
+        return rtpiLiveData.plus(nonDuplicateDefaultLiveData)
+            .filter { !it.liveTime.waitTime.isNegative }
+            .sortedBy { it.liveTime.waitTime }
+    }
 }
