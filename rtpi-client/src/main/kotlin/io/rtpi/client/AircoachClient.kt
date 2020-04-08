@@ -1,17 +1,17 @@
 package io.rtpi.client
 
-import io.rtpi.api.AircoachLiveData
-import io.rtpi.api.AircoachStop
 import io.rtpi.api.RtpiApi
 import io.reactivex.Single
+import io.rtpi.api.LiveData
+import io.rtpi.api.ServiceLocation
 
 class AircoachClient(private val rtpiApi: RtpiApi) {
 
-    fun getStops(): Single<List<AircoachStop>> {
+    fun getStops(): Single<List<ServiceLocation>> {
         return rtpiApi.getAircoachStops()
     }
 
-    fun getLiveData(stopId: String): Single<List<AircoachLiveData>> {
+    fun getLiveData(stopId: String): Single<List<LiveData>> {
         return rtpiApi.getAircoachLiveData(stopId)
     }
 

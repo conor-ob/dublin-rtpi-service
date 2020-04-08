@@ -8,6 +8,7 @@ import io.rtpi.external.aircoach.AircoachStopJson
 import io.rtpi.external.aircoach.AircoachWebScraper
 import io.rtpi.external.aircoach.createAircoachStopJson
 import io.rtpi.external.staticdata.StaticDataApi
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import java.net.UnknownHostException
 
@@ -151,26 +152,22 @@ class AircoachStopServiceTest {
         val aircoachStopService = AircoachStopService(aircoachWebScraper, staticDatApi)
 
         // act
-        val observer = aircoachStopService.getStops().test()
+        val aircoachStops = aircoachStopService.getStops().blockingGet()
 
         // assert
-        observer.assertValue(
-            listOf(
-                createAircoachStop(
-                    id = "1",
-                    name = "Airport1",
-                    coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
-                    operators = setOf(Operator.AIRCOACH)
-                ),
-                createAircoachStop(
-                    id = "2",
-                    name = "Airport2",
-                    coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
-                    operators = setOf(Operator.AIRCOACH)
-                )
+        assertThat(aircoachStops).containsExactly(
+            createAircoachStop(
+                id = "1",
+                name = "Airport1",
+                coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
+                operators = setOf(Operator.AIRCOACH)
+            ),
+            createAircoachStop(
+                id = "2",
+                name = "Airport2",
+                coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
+                operators = setOf(Operator.AIRCOACH)
             )
         )
-        observer.dispose()
     }
-
 }

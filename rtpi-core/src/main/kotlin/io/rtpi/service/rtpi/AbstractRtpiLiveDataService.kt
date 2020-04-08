@@ -1,8 +1,12 @@
 package io.rtpi.service.rtpi
 
 import io.reactivex.Single
-import io.rtpi.api.LiveTime
-import io.rtpi.api.TimedLiveData
+import io.rtpi.api.LiveData
+import io.rtpi.api.Operator
+import io.rtpi.api.Prediction
+import io.rtpi.api.PredictionLiveData
+import io.rtpi.api.Route
+import io.rtpi.api.Service
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationResponseJson
@@ -17,17 +21,17 @@ private const val DUE = "Due"
 private const val DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm:ss"
 private val DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)
 
-abstract class AbstractRtpiLiveDataService<T : TimedLiveData>(
+abstract class AbstractRtpiLiveDataService(
     private val rtpiApi: RtpiApi,
     private val operator: String
 ) {
 
-    fun getLiveData(stopId: String): Single<List<T>> {
+    fun getLiveData(stopId: String): Single<List<LiveData>> {
         return rtpiApi.realTimeBusInformation(stopId = stopId, operator = operator, format = JSON)
             .map { validateResponse(it) }
     }
 
-    private fun validateResponse(response: RtpiRealTimeBusInformationResponseJson): List<T> {
+    private fun validateResponse(response: RtpiRealTimeBusInformationResponseJson): List<PredictionLiveData> {
         return if (response.results.isNullOrEmpty()) {
             emptyList()
         } else {
@@ -39,16 +43,24 @@ abstract class AbstractRtpiLiveDataService<T : TimedLiveData>(
                     )
                 }
                 .map { json ->
-                    newLiveDataInstance(response.timestamp.validate(), json)
+                    PredictionLiveData(
+                        prediction = createDueTime(response.timestamp.validate(), json),
+                        operator = Operator.parse(json.operator.validate()),
+                        service = Service.LUAS,
+                        route = Route(
+                            id = json.route.validate(),
+                            destination = json.destination.validate().replace("LUAS", "").validate(),
+                            direction = json.direction.validate(),
+                            origin = json.origin.validate().replace("LUAS", "").validate()
+                        )
+                    )
                 }
-                .filter { !it.liveTime.waitTime.isNegative }
-                .sortedBy { it.liveTime.waitTime }
+                .filter { !it.prediction.waitTime.isNegative }
+                .sortedBy { it.prediction.waitTime }
         }
     }
 
-    protected abstract fun newLiveDataInstance(timestamp: String, json: RtpiRealTimeBusInformationJson): T
-
-    protected fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): LiveTime {
+    protected fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): Prediction {
         val currentTime = DateTimeProvider.getDateTime(
             timestamp = serverTimestamp,
             formatter = DATE_TIME_FORMATTER
@@ -61,7 +73,7 @@ abstract class AbstractRtpiLiveDataService<T : TimedLiveData>(
             timestamp = json.scheduledArrivalDateTime.validate(),
             formatter = DATE_TIME_FORMATTER
         )
-        return LiveTime(
+        return Prediction(
             currentDateTime = currentTime,
             waitTime = parseDueTime(json),
             expectedDateTime = expectedTime,

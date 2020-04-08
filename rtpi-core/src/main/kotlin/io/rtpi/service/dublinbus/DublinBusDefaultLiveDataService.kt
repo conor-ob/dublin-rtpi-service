@@ -2,9 +2,11 @@ package io.rtpi.service.dublinbus
 
 import com.google.inject.Inject
 import io.reactivex.Single
-import io.rtpi.api.DublinBusLiveData
-import io.rtpi.api.LiveTime
 import io.rtpi.api.Operator
+import io.rtpi.api.Prediction
+import io.rtpi.api.PredictionLiveData
+import io.rtpi.api.Route
+import io.rtpi.api.Service
 import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.dublinbus.DublinBusRealTimeStopDataRequestBodyXml
 import io.rtpi.external.dublinbus.DublinBusRealTimeStopDataRequestRootXml
@@ -23,7 +25,7 @@ class DublinBusDefaultLiveDataService @Inject constructor(
     private val dublinBusApi: DublinBusApi
 ) {
 
-    fun getLiveData(stopId: String): Single<List<DublinBusLiveData>> {
+    fun getLiveData(stopId: String): Single<List<PredictionLiveData>> {
         return dublinBusApi
             .getRealTimeStopData(newRequest(stopId))
             .map { validateResponse(it) }
@@ -41,17 +43,20 @@ class DublinBusDefaultLiveDataService @Inject constructor(
                     )
                 }
                 .map { xml ->
-                    DublinBusLiveData(
-                        route = xml.routeId.validate(),
+                    PredictionLiveData(
+                        route = Route(
+                            id = xml.routeId.validate(),
+                            origin = "N/A",
+                            destination = mapDestination(xml),
+                            direction = xml.direction.validate()
+                        ),
                         operator = Operator.parse(xml.operator.validate()),
-                        origin = "N/A",
-                        destination = mapDestination(xml),
-                        direction = xml.direction.validate(),
-                        liveTime = mapLiveTime(xml)
+                        service = Service.DUBLIN_BUS,
+                        prediction = mapLiveTime(xml)
                     )
                 }
-                .filter { !it.liveTime.waitTime.isNegative }
-                .sortedBy { it.liveTime.waitTime }
+                .filter { !it.prediction.waitTime.isNegative }
+                .sortedBy { it.prediction.waitTime }
         }
 
     private fun mapDestination(xml: DublinBusRealTimeStopDataXml): String {
@@ -63,11 +68,11 @@ class DublinBusDefaultLiveDataService @Inject constructor(
         return xml.destination.validate()
     }
 
-    private fun mapLiveTime(xml: DublinBusRealTimeStopDataXml): LiveTime {
+    private fun mapLiveTime(xml: DublinBusRealTimeStopDataXml): Prediction {
         val currentTime = OffsetDateTime.parse(xml.responseTimestamp).atZoneSameInstant(dublin)
         val expectedTime = OffsetDateTime.parse(xml.expectedTimestamp).atZoneSameInstant(dublin)
         val scheduledTime = OffsetDateTime.parse(xml.scheduledTimestamp).atZoneSameInstant(dublin)
-        return LiveTime(
+        return Prediction(
             waitTime = Duration.between(currentTime, expectedTime),
             currentDateTime = currentTime,
             expectedDateTime = expectedTime,

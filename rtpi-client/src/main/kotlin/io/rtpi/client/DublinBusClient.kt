@@ -1,17 +1,17 @@
 package io.rtpi.client
 
-import io.rtpi.api.DublinBusLiveData
-import io.rtpi.api.DublinBusStop
 import io.rtpi.api.RtpiApi
 import io.reactivex.Single
+import io.rtpi.api.LiveData
+import io.rtpi.api.ServiceLocation
 
 class DublinBusClient(private val rtpiApi: RtpiApi) {
 
-    fun getStops(): Single<List<DublinBusStop>> {
+    fun getStops(): Single<List<ServiceLocation>> {
         return rtpiApi.getDublinBusStops()
     }
 
-    fun getLiveData(stopId: String): Single<List<DublinBusLiveData>> {
+    fun getLiveData(stopId: String): Single<List<LiveData>> {
         return rtpiApi.getDublinBusLiveData(stopId)
     }
 

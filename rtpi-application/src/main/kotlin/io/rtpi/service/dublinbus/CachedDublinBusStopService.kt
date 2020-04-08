@@ -2,12 +2,13 @@ package io.rtpi.service.dublinbus
 
 import com.google.common.cache.LoadingCache
 import com.google.inject.Inject
-import io.rtpi.api.DublinBusStop
+import com.google.inject.name.Named
 import io.rtpi.api.Service
+import io.rtpi.api.ServiceLocation
 
 class CachedDublinBusStopService @Inject constructor(
-    private val dublinBusStopCache: LoadingCache<Service, List<DublinBusStop>>
+    @Named("DUBLIN_BUS") private val dublinBusStopCache: LoadingCache<Service, List<ServiceLocation>>
 ) {
 
-    fun getStops(): List<DublinBusStop> = dublinBusStopCache[Service.DUBLIN_BUS]
+    fun getStops(): List<ServiceLocation> = dublinBusStopCache[Service.DUBLIN_BUS]
 }

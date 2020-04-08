@@ -2,11 +2,12 @@ package io.rtpi.service.dublinbikes
 
 import com.google.common.cache.LoadingCache
 import com.google.inject.Inject
-import io.rtpi.api.DublinBikesDock
+import com.google.inject.name.Named
+import io.rtpi.api.ServiceLocation
 
 class CachedDublinBikesDockService @Inject constructor(
-    private val dublinBikesDockCache: LoadingCache<String, List<DublinBikesDock>>
+    @Named("DUBLIN_BIKES") private val dublinBikesDockCache: LoadingCache<String, List<ServiceLocation>>
 ) {
 
-    fun getDocks(apiKey: String): List<DublinBikesDock> = dublinBikesDockCache[apiKey]
+    fun getDocks(apiKey: String): List<ServiceLocation> = dublinBikesDockCache[apiKey]
 }

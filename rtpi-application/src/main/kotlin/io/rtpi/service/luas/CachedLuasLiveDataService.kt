@@ -2,11 +2,12 @@ package io.rtpi.service.luas
 
 import com.google.common.cache.LoadingCache
 import com.google.inject.Inject
-import io.rtpi.api.LuasLiveData
+import com.google.inject.name.Named
+import io.rtpi.api.LiveData
 
 class CachedLuasLiveDataService @Inject constructor(
-    private val luasLiveDataCache: LoadingCache<String, List<LuasLiveData>>
+    @Named("LUAS") private val luasLiveDataCache: LoadingCache<String, List<LiveData>>
 ) {
 
-    fun getLiveData(stopId: String): List<LuasLiveData> = luasLiveDataCache[stopId]
+    fun getLiveData(stopId: String): List<LiveData> = luasLiveDataCache[stopId]
 }

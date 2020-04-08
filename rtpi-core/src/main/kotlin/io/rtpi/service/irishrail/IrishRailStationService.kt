@@ -3,9 +3,11 @@ package io.rtpi.service.irishrail
 import com.google.inject.Inject
 import io.reactivex.Single
 import io.rtpi.api.Coordinate
-import io.rtpi.api.IrishRailStation
 import io.rtpi.api.Operator
-import io.rtpi.api.Route
+import io.rtpi.api.RouteGroup
+import io.rtpi.api.Service
+import io.rtpi.api.ServiceLocation
+import io.rtpi.api.StopLocation
 import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.irishrail.IrishRailStationResponseXml
 import io.rtpi.external.irishrail.IrishRailStationXml
@@ -15,13 +17,13 @@ import io.rtpi.validation.validateStrings
 
 class IrishRailStationService @Inject constructor(private val irishRailApi: IrishRailApi) {
 
-    fun getStations(): Single<List<IrishRailStation>> {
+    fun getStations(): Single<List<ServiceLocation>> {
         return irishRailApi
             .getAllStationsXml()
             .map { validateResponse(it) }
     }
 
-    private fun validateResponse(response: IrishRailStationResponseXml): List<IrishRailStation> =
+    private fun validateResponse(response: IrishRailStationResponseXml): List<ServiceLocation> =
         if (response.stations.isNullOrEmpty()) {
             emptyList()
         } else {
@@ -33,12 +35,15 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
                 }.map { xml ->
                     val id = xml.code.validate().toUpperCase()
                     val operators = mapOperators(id)
-                    IrishRailStation(
+                    StopLocation(
                         id = id,
                         name = xml.name.validate(),
+                        service = Service.IRISH_RAIL,
                         coordinate = Coordinate(xml.latitude.validate(), xml.longitude.validate()),
-                        operators = operators,
-                        routes = operators.map { Route(it.fullName, it) }
+                        routeGroups = operators.map { operator ->
+                            RouteGroup(operator, listOf(operator.fullName))
+                        },
+                        properties = mutableMapOf()
                     )
                 }
         }

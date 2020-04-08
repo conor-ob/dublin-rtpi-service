@@ -5,14 +5,15 @@ fun createAircoachStop(
     name: String = "",
     coordinate: Coordinate = Coordinate(0.0, 0.0),
     operators: Set<Operator> = emptySet(),
-    routes: List<Route> = emptyList()
-): AircoachStop {
-    return AircoachStop(
+    routes: List<RouteGroup> = listOf(RouteGroup(operator = Operator.AIRCOACH, routes = emptyList()))
+): ServiceLocation {
+    return StopLocation(
         id = id,
         name = name,
         coordinate = coordinate,
-        operators = operators,
-        routes = routes
+        routeGroups = routes,
+        service = Service.AIRCOACH,
+        properties = mutableMapOf()
     )
 }
 
@@ -21,14 +22,15 @@ fun createDublinBusStop(
     name: String = "",
     coordinate: Coordinate = Coordinate(0.0, 0.0),
     operators: Set<Operator> = emptySet(),
-    routes: List<Route> = emptyList()
-): DublinBusStop {
-    return DublinBusStop(
+    routes: List<RouteGroup> = emptyList()
+): ServiceLocation {
+    return StopLocation(
         id = id,
         name = name,
         coordinate = coordinate,
-        operators = operators,
-        routes = routes
+        routeGroups = routes,
+        service = Service.DUBLIN_BUS,
+        properties = mutableMapOf()
     )
 }
 
@@ -37,11 +39,12 @@ fun createLuasStop(
     name: String = "",
     coordinate: Coordinate = Coordinate(0.0, 0.0),
     operators: Set<Operator> = emptySet(),
-    routes: List<Route> = emptyList()
-) = LuasStop(
+    routes: List<RouteGroup> = emptyList()
+) = StopLocation(
     id = id,
     name = name,
     coordinate = coordinate,
-    operators = operators,
-    routes = routes
+    routeGroups = routes,
+    service = Service.LUAS,
+    properties = mutableMapOf()
 )

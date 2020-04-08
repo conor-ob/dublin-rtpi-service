@@ -7,8 +7,8 @@ import java.time.ZonedDateTime
 fun createDueTime(
     waitTimeMinutes: Duration,
     currentTime: LocalTime = LocalTime.now()
-): LiveTime {
-    return LiveTime(
+): Prediction {
+    return Prediction(
         waitTime = waitTimeMinutes,
         currentDateTime = ZonedDateTime.now(),
         scheduledDateTime = ZonedDateTime.now(),
@@ -22,14 +22,17 @@ fun createDublinBusLiveData(
     origin: String,
     destination: String,
     direction: String,
-    liveTime: LiveTime
-) = DublinBusLiveData(
+    liveTime: Prediction
+) = PredictionLiveData(
+    service = Service.DUBLIN_BUS,
     operator = operator,
-    route = route,
-    origin = origin,
-    destination = destination,
-    direction = direction,
-    liveTime = liveTime
+    route = Route(
+        id = route,
+        origin = origin,
+        destination = destination,
+        direction = direction
+    ),
+    prediction = liveTime
 )
 
 fun createIrishRailLiveData(
@@ -40,16 +43,17 @@ fun createIrishRailLiveData(
     destination: String = "Bray",
     route: String = operator.fullName,
     origin: String = "Howth"
-): IrishRailLiveData {
-    return IrishRailLiveData(
-        liveTime = createDueTime(waitTimeMinutes, currentTime),
-        operator = operator,
+) = PredictionLiveData(
+    prediction = createDueTime(waitTimeMinutes, currentTime),
+    operator = operator,
+    service = Service.IRISH_RAIL,
+    route = Route(
+        id = route,
         direction = direction,
         destination = destination,
-        route = route,
         origin = origin
     )
-}
+)
 
 fun createLuasLiveData(
     currentTime: LocalTime = LocalTime.now(),
@@ -58,13 +62,14 @@ fun createLuasLiveData(
     destination: String = "Sandyford",
     direction: String = "Outbound",
     origin: String = "St Stephen's Green"
-): LuasLiveData {
-    return LuasLiveData(
-        liveTime = createDueTime(waitTimeMinutes, currentTime),
-        operator = Operator.LUAS,
-        route = route,
+) = PredictionLiveData(
+    prediction = createDueTime(waitTimeMinutes, currentTime),
+    operator = Operator.LUAS,
+    service = Service.LUAS,
+    route = Route(
+        id = route,
         destination = destination,
         direction = direction,
         origin = origin
     )
-}
+)
