@@ -26,7 +26,7 @@ class BusEireannStopService @Inject constructor(
                 latitude = json.latitude.validate().toDouble(),
                 longitude = json.longitude.validate().toDouble()
             ),
-            routeGroups = mapRouteGroups(json),
+            routes = mapRouteGroups(json),
             properties = mutableMapOf()
         )
     }

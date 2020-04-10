@@ -33,10 +33,10 @@ class DublinBusRtpiStopService @Inject constructor(rtpiApi: RtpiApi) {
             if (existing == null) {
                 aggregated[goAheadStop.id] = goAheadStop
             } else {
-                val existingRouteGroups = existing.routeGroups.toMutableList()
-                existingRouteGroups.addAll(goAheadStop.routeGroups)
+                val existingRouteGroups = existing.routes.toMutableList()
+                existingRouteGroups.addAll(goAheadStop.routes)
                 existing = existing.copy(
-                    routeGroups = existingRouteGroups
+                    routes = existingRouteGroups
                 )
                 aggregated[goAheadStop.id] = existing
             }

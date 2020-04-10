@@ -11,7 +11,7 @@ interface LiveData {
 data class PredictionLiveData(
     override val operator: Operator,
     override val service: Service,
-    val route: Route,
+    val routeInfo: RouteInfo,
     val prediction: Prediction
 ) : LiveData
 
@@ -23,7 +23,7 @@ data class DockLiveData(
     val totalDocks: Int
 ) : LiveData
 
-data class Route(
+data class RouteInfo(
     val id: String,
     val origin: String,
     val destination: String,

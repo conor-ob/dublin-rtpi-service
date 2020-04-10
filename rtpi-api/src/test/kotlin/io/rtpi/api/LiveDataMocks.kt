@@ -26,7 +26,7 @@ fun createDublinBusLiveData(
 ) = PredictionLiveData(
     service = Service.DUBLIN_BUS,
     operator = operator,
-    route = Route(
+    routeInfo = RouteInfo(
         id = route,
         origin = origin,
         destination = destination,
@@ -47,7 +47,7 @@ fun createIrishRailLiveData(
     prediction = createDueTime(waitTimeMinutes, currentTime),
     operator = operator,
     service = Service.IRISH_RAIL,
-    route = Route(
+    routeInfo = RouteInfo(
         id = route,
         direction = direction,
         destination = destination,
@@ -66,7 +66,7 @@ fun createLuasLiveData(
     prediction = createDueTime(waitTimeMinutes, currentTime),
     operator = Operator.LUAS,
     service = Service.LUAS,
-    route = Route(
+    routeInfo = RouteInfo(
         id = route,
         destination = destination,
         direction = direction,

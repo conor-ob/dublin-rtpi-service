@@ -41,7 +41,7 @@ class DublinBusDefaultStopService(private val dublinBusApi: DublinBusApi) {
                         name = xml.name.validate(),
                         service = Service.DUBLIN_BUS,
                         coordinate = Coordinate(xml.latitude.validate().toDouble(), xml.longitude.validate().toDouble()),
-                        routeGroups = emptyList(),
+                        routes = emptyList(),
                         properties = mutableMapOf()
                     )
                 }

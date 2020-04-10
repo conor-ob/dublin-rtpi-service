@@ -6,7 +6,7 @@ import io.rtpi.api.LiveData
 import io.rtpi.api.Operator
 import io.rtpi.api.Prediction
 import io.rtpi.api.PredictionLiveData
-import io.rtpi.api.Route
+import io.rtpi.api.RouteInfo
 import io.rtpi.api.Service
 import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.irishrail.IrishRailStationDataResponseXml
@@ -50,7 +50,7 @@ class IrishRailLiveDataService @Inject constructor(private val irishRailApi: Iri
                         prediction = createDueTime(xml),
                         operator = operator,
                         service = Service.IRISH_RAIL,
-                        route = Route(
+                        routeInfo = RouteInfo(
                             id = operator.fullName,
                             origin = xml.origin.validate(),
                             destination = xml.destination.validate(),

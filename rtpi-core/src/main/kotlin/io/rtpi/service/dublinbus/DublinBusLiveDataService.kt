@@ -32,10 +32,10 @@ class DublinBusLiveDataService @Inject constructor(
     ): List<LiveData> {
         val nonDuplicateDefaultLiveData = defaultLiveData.toMutableList()
         for (liveData in rtpiLiveData) {
-            val route = liveData.route
+            val route = liveData.routeInfo
             val scheduledTime = liveData.prediction.scheduledDateTime
             val match = defaultLiveData.find {
-                it.route == route &&
+                it.routeInfo == route &&
                 Duration.between(it.prediction.scheduledDateTime, scheduledTime).seconds.absoluteValue < 60L
             }
             if (match != null) {

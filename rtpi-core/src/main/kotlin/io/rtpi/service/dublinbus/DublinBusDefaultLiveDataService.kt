@@ -5,7 +5,7 @@ import io.reactivex.Single
 import io.rtpi.api.Operator
 import io.rtpi.api.Prediction
 import io.rtpi.api.PredictionLiveData
-import io.rtpi.api.Route
+import io.rtpi.api.RouteInfo
 import io.rtpi.api.Service
 import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.dublinbus.DublinBusRealTimeStopDataRequestBodyXml
@@ -44,7 +44,7 @@ class DublinBusDefaultLiveDataService @Inject constructor(
                 }
                 .map { xml ->
                     PredictionLiveData(
-                        route = Route(
+                        routeInfo = RouteInfo(
                             id = xml.routeId.validate(),
                             origin = "N/A",
                             destination = mapDestination(xml),

@@ -6,7 +6,7 @@ import io.rtpi.api.LiveData
 import io.rtpi.api.Operator
 import io.rtpi.api.Prediction
 import io.rtpi.api.PredictionLiveData
-import io.rtpi.api.Route
+import io.rtpi.api.RouteInfo
 import io.rtpi.api.Service
 import io.rtpi.external.aircoach.AircoachApi
 import io.rtpi.external.aircoach.EtaJson
@@ -40,7 +40,7 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
                 .map { json ->
                     PredictionLiveData(
                         prediction = createDueTime(json.eta, requireNotNull(json.time?.arrive)),
-                        route = Route(
+                        routeInfo = RouteInfo(
                             id = json.route.validate(),
                             destination = getDestination(json),
                             origin = getOrigin(json),

@@ -5,7 +5,7 @@ import io.rtpi.api.LiveData
 import io.rtpi.api.Operator
 import io.rtpi.api.Prediction
 import io.rtpi.api.PredictionLiveData
-import io.rtpi.api.Route
+import io.rtpi.api.RouteInfo
 import io.rtpi.api.Service
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
@@ -47,7 +47,7 @@ abstract class AbstractRtpiLiveDataService(
                         prediction = createDueTime(response.timestamp.validate(), json),
                         operator = Operator.parse(json.operator.validate()),
                         service = Service.LUAS,
-                        route = Route(
+                        routeInfo = RouteInfo(
                             id = json.route.validate(),
                             destination = json.destination.validate().replace("LUAS", "").validate(),
                             direction = json.direction.validate(),
