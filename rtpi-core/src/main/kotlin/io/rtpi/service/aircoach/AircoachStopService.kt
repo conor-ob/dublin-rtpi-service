@@ -51,8 +51,7 @@ class AircoachStopService @Inject constructor(
                         latitude = json.stopLatitude.validate(),
                         longitude = json.stopLongitude.validate()
                     ),
-                    routes = mapRouteGroups(json),
-                    properties = mutableMapOf()
+                    routes = mapRouteGroups(json)
                 )
             }
     }
@@ -75,8 +74,7 @@ class AircoachStopService @Inject constructor(
                                 latitude = json.stopLatitude.validate(),
                                 longitude = json.stopLongitude.validate()
                             ),
-                            routes = mapRouteGroups(json),
-                            properties = mutableMapOf()
+                            routes = mapRouteGroups(json)
                         )
                 }
             }

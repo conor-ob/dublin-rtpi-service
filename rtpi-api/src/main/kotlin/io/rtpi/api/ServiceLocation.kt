@@ -13,8 +13,8 @@ data class StopLocation(
     override val name: String,
     override val service: Service,
     override val coordinate: Coordinate,
-    override val properties: Map<String, Any>,
-    val routes: List<RouteGroup>
+    val routes: List<RouteGroup>,
+    override val properties: Map<String, Any> = mutableMapOf()
 ) : ServiceLocation
 
 data class DockLocation(
@@ -22,10 +22,10 @@ data class DockLocation(
     override val name: String,
     override val service: Service,
     override val coordinate: Coordinate,
-    override val properties: Map<String, Any>,
     val availableBikes: Int,
     val availableDocks: Int,
-    val totalDocks: Int
+    val totalDocks: Int,
+    override val properties: Map<String, Any> = mutableMapOf()
 ) : ServiceLocation
 
 data class Coordinate(

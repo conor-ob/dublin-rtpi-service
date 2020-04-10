@@ -12,8 +12,7 @@ fun createAircoachStop(
         name = name,
         coordinate = coordinate,
         routes = routes,
-        service = Service.AIRCOACH,
-        properties = mutableMapOf()
+        service = Service.AIRCOACH
     )
 }
 
@@ -29,8 +28,7 @@ fun createDublinBusStop(
         name = name,
         coordinate = coordinate,
         routes = routes,
-        service = Service.DUBLIN_BUS,
-        properties = mutableMapOf()
+        service = Service.DUBLIN_BUS
     )
 }
 
@@ -45,6 +43,5 @@ fun createLuasStop(
     name = name,
     coordinate = coordinate,
     routes = routes,
-    service = Service.LUAS,
-    properties = mutableMapOf()
+    service = Service.LUAS
 )
