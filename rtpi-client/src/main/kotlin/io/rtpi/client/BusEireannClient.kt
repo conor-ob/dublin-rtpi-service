@@ -8,11 +8,10 @@ import io.rtpi.api.ServiceLocation
 class BusEireannClient(private val rtpiApi: RtpiApi) {
 
     fun getStops(): Single<List<ServiceLocation>> {
-        return rtpiApi.getBusEireannStops()
+        return rtpiApi.getBusEireannStops().map { it }
     }
 
     fun getLiveData(stopId: String): Single<List<LiveData>> {
-        return rtpiApi.getBusEireannLiveData(stopId)
+        return rtpiApi.getBusEireannLiveData(stopId).map { it }
     }
-
 }

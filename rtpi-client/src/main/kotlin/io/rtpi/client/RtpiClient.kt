@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 class RtpiClient(okHttpClient: OkHttpClient? = null) {
 
     private val rtpiApi = Retrofit.Builder()
-        .baseUrl("http://134.122.97.85:8080/")
+        .baseUrl("http://localhost:8080/")
         .client(
             okHttpClient ?: OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)

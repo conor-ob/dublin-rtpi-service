@@ -8,11 +8,10 @@ import io.rtpi.api.ServiceLocation
 class LuasClient(private val rtpiApi: RtpiApi) {
 
     fun getStops(): Single<List<ServiceLocation>> {
-        return rtpiApi.getLuasStops()
+        return rtpiApi.getLuasStops().map { it }
     }
 
     fun getLiveData(stopId: String): Single<List<LiveData>> {
-        return rtpiApi.getLuasLiveData(stopId)
+        return rtpiApi.getLuasLiveData(stopId).map { it }
     }
-
 }
