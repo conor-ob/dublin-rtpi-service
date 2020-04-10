@@ -4,7 +4,7 @@ import io.rtpi.api.RouteInfo
 
 object RouteComparator : Comparator<RouteInfo> {
 
-    override fun compare(r1: RouteInfo, r2: RouteInfo): Int = AlphaNumericComparator.compare(r1.id, r2.id)
+    override fun compare(r1: RouteInfo, r2: RouteInfo): Int = AlphaNumericComparator.compare(r1.route, r2.route)
 
 }
 

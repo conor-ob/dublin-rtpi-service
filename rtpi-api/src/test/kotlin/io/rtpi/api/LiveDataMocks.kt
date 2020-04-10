@@ -27,7 +27,7 @@ fun createDublinBusLiveData(
     service = Service.DUBLIN_BUS,
     operator = operator,
     routeInfo = RouteInfo(
-        id = route,
+        route = route,
         origin = origin,
         destination = destination,
         direction = direction
@@ -48,7 +48,7 @@ fun createIrishRailLiveData(
     operator = operator,
     service = Service.IRISH_RAIL,
     routeInfo = RouteInfo(
-        id = route,
+        route = route,
         direction = direction,
         destination = destination,
         origin = origin
@@ -67,7 +67,7 @@ fun createLuasLiveData(
     operator = Operator.LUAS,
     service = Service.LUAS,
     routeInfo = RouteInfo(
-        id = route,
+        route = route,
         destination = destination,
         direction = direction,
         origin = origin

@@ -15,7 +15,7 @@ object LiveDataGrouper {
                 val groupedLiveData = LinkedHashMap<Int, List<LiveData>>()
                 for (data in liveData) {
                     data as PredictionLiveData
-                    val id = hash(data.operator, data.routeInfo.id, data.routeInfo.destination)
+                    val id = hash(data.operator, data.routeInfo.route, data.routeInfo.destination)
                     val cachedLiveData = groupedLiveData[id]
                     if (cachedLiveData == null) {
                         groupedLiveData[id] = listOf(data)
