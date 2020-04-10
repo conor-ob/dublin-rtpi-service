@@ -41,7 +41,7 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
                     PredictionLiveData(
                         prediction = createDueTime(json.eta, requireNotNull(json.time?.arrive)),
                         routeInfo = RouteInfo(
-                            id = json.route.validate(),
+                            route = json.route.validate(),
                             destination = getDestination(json),
                             origin = getOrigin(json),
                             direction = json.dir.validate()

@@ -45,7 +45,7 @@ class DublinBusDefaultLiveDataService @Inject constructor(
                 .map { xml ->
                     PredictionLiveData(
                         routeInfo = RouteInfo(
-                            id = xml.routeId.validate(),
+                            route = xml.routeId.validate(),
                             origin = "N/A",
                             destination = mapDestination(xml),
                             direction = xml.direction.validate()

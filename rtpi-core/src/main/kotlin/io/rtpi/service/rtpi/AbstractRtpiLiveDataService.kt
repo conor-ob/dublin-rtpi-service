@@ -48,7 +48,7 @@ abstract class AbstractRtpiLiveDataService(
                         operator = Operator.parse(json.operator.validate()),
                         service = Service.LUAS,
                         routeInfo = RouteInfo(
-                            id = json.route.validate(),
+                            route = json.route.validate(),
                             destination = json.destination.validate().replace("LUAS", "").validate(),
                             direction = json.direction.validate(),
                             origin = json.origin.validate().replace("LUAS", "").validate()

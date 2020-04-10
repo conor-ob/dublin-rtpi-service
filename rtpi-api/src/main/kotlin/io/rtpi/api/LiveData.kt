@@ -24,7 +24,7 @@ data class DockLiveData(
 ) : LiveData
 
 data class RouteInfo(
-    val id: String,
+    val route: String,
     val origin: String,
     val destination: String,
     val direction: String

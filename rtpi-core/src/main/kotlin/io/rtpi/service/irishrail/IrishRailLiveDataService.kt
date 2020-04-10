@@ -51,7 +51,7 @@ class IrishRailLiveDataService @Inject constructor(private val irishRailApi: Iri
                         operator = operator,
                         service = Service.IRISH_RAIL,
                         routeInfo = RouteInfo(
-                            id = operator.fullName,
+                            route = operator.fullName,
                             origin = xml.origin.validate(),
                             destination = xml.destination.validate(),
                             direction = xml.direction.validate()
