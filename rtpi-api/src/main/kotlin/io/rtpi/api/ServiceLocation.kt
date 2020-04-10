@@ -5,7 +5,7 @@ interface ServiceLocation {
     val name: String
     val service: Service
     val coordinate: Coordinate
-    val properties: Map<String, Any>
+    val properties: MutableMap<String, Any>
 }
 
 data class StopLocation(
@@ -14,7 +14,7 @@ data class StopLocation(
     override val service: Service,
     override val coordinate: Coordinate,
     val routes: List<RouteGroup>,
-    override val properties: Map<String, Any> = mutableMapOf()
+    override val properties: MutableMap<String, Any> = mutableMapOf()
 ) : ServiceLocation
 
 data class DockLocation(
@@ -25,7 +25,7 @@ data class DockLocation(
     val availableBikes: Int,
     val availableDocks: Int,
     val totalDocks: Int,
-    override val properties: Map<String, Any> = mutableMapOf()
+    override val properties: MutableMap<String, Any> = mutableMapOf()
 ) : ServiceLocation
 
 data class Coordinate(
