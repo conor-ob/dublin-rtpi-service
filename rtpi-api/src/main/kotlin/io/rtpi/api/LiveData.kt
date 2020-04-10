@@ -4,20 +4,20 @@ import java.time.Duration
 import java.time.ZonedDateTime
 
 interface LiveData {
-    val operator: Operator
     val service: Service
+    val operator: Operator
 }
 
 data class PredictionLiveData(
-    override val operator: Operator,
     override val service: Service,
+    override val operator: Operator,
     val routeInfo: RouteInfo,
     val prediction: Prediction
 ) : LiveData
 
 data class DockLiveData(
-    override val operator: Operator,
     override val service: Service,
+    override val operator: Operator,
     val availableBikes: Int,
     val availableDocks: Int,
     val totalDocks: Int

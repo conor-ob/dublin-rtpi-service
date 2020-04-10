@@ -14,7 +14,7 @@ data class StopLocation(
     override val service: Service,
     override val coordinate: Coordinate,
     override val properties: Map<String, Any>,
-    val routes: List<Route>
+    val routes: List<RouteGroup>
 ) : ServiceLocation
 
 data class DockLocation(
@@ -33,7 +33,7 @@ data class Coordinate(
     val longitude: Double
 )
 
-data class Route(
-    val id: String,
-    val operator: Operator
+data class RouteGroup(
+    val operator: Operator,
+    val routes: List<String>
 )

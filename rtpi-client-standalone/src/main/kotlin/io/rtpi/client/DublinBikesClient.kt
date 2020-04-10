@@ -8,15 +8,16 @@ import io.rtpi.service.dublinbikes.DublinBikesLiveDataService
 
 class DublinBikesClient(
     private val dublinBikesDockService: DublinBikesDockService,
-    private val dublinBikesLiveDataService: DublinBikesLiveDataService
+    private val dublinBikesLiveDataService: DublinBikesLiveDataService,
+    private val dublinBikesApiKey: String
 ) {
 
-    fun getDocks(apiKey: String): Single<List<ServiceLocation>> {
-        return dublinBikesDockService.getDocks(apiKey)
+    fun getDocks(): Single<List<ServiceLocation>> {
+        return dublinBikesDockService.getDocks(dublinBikesApiKey)
     }
 
-    fun getLiveData(dockId: String, apiKey: String): Single<LiveData> {
-        return dublinBikesLiveDataService.getLiveData(dockId, apiKey)
+    fun getLiveData(dockId: String): Single<LiveData> {
+        return dublinBikesLiveDataService.getLiveData(dockId, dublinBikesApiKey)
     }
 
 }

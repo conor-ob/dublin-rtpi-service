@@ -60,7 +60,7 @@ abstract class AbstractRtpiLiveDataService(
         }
     }
 
-    protected fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): Prediction {
+    private fun createDueTime(serverTimestamp: String, json: RtpiRealTimeBusInformationJson): Prediction {
         val currentTime = DateTimeProvider.getDateTime(
             timestamp = serverTimestamp,
             formatter = DATE_TIME_FORMATTER
