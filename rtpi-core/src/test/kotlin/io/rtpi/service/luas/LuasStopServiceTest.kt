@@ -4,22 +4,21 @@ import io.mockk.every
 import io.reactivex.Single
 import io.rtpi.api.Coordinate
 import io.rtpi.api.Operator
-import io.rtpi.api.Route
+import io.rtpi.api.RouteGroup
 import io.rtpi.api.createLuasStop
 import io.rtpi.external.rtpi.RtpiApi
 import io.rtpi.external.rtpi.createRtpiBusStopInformationJson
 import io.rtpi.external.rtpi.createRtpiBusStopInformationResponseJson
 import io.rtpi.external.rtpi.createRtpiBusStopOperatorInformationJson
-import io.rtpi.service.rtpi.AbstractRtpiStopService
-import io.rtpi.service.rtpi.AbstractRtpiStopServiceTest
+import io.rtpi.service.rtpi.RtpiStopServiceTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
-class LuasStopServiceTest : AbstractRtpiStopServiceTest() {
+class LuasStopServiceTest : RtpiStopServiceTest() {
 
     override fun getOperator() = Operator.LUAS
 
-    override fun createStopService(rtpiApi: RtpiApi) = LuasStopService(rtpiApi) as AbstractRtpiStopService<*>
+    override fun createStopService(rtpiApi: RtpiApi) = LuasStopService(rtpiApi)
 
     override fun createDefaultStop() = createRtpiBusStopInformationJson(
         stopId = "LUAS24",
@@ -63,7 +62,7 @@ class LuasStopServiceTest : AbstractRtpiStopServiceTest() {
                 coordinate = Coordinate(latitude = 53.2342324, longitude = -6.123445),
                 operators = setOf(Operator.LUAS),
                 routes = listOf(
-                    Route(id = "Green", operator = Operator.LUAS)
+                    RouteGroup(routes = listOf("Green"), operator = Operator.LUAS)
                 )
             )
         )

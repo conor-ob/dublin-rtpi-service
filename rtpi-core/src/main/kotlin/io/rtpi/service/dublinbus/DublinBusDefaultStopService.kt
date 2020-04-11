@@ -2,7 +2,9 @@ package io.rtpi.service.dublinbus
 
 import io.reactivex.Single
 import io.rtpi.api.Coordinate
-import io.rtpi.api.DublinBusStop
+import io.rtpi.api.Service
+import io.rtpi.api.ServiceLocation
+import io.rtpi.api.StopLocation
 import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.dublinbus.DublinBusDestinationRequestBodyXml
 import io.rtpi.external.dublinbus.DublinBusDestinationRequestRootXml
@@ -19,13 +21,13 @@ class DublinBusDefaultStopService(private val dublinBusApi: DublinBusApi) {
         )
     )
 
-    fun getStops(): Single<List<DublinBusStop>> {
+    fun getStops(): Single<List<ServiceLocation>> {
         return dublinBusApi
             .getAllDestinations(request)
             .map { validateResponse(it) }
     }
 
-    private fun validateResponse(response: DublinBusDestinationResponseXml): List<DublinBusStop> =
+    private fun validateResponse(response: DublinBusDestinationResponseXml): List<ServiceLocation> =
         if (response.stops.isNullOrEmpty()) {
             emptyList()
         } else {
@@ -34,12 +36,12 @@ class DublinBusDefaultStopService(private val dublinBusApi: DublinBusApi) {
                     validateStrings(xml.id, xml.name, xml.latitude, xml.longitude)
                 }
                 .map { xml ->
-                    DublinBusStop(
+                    StopLocation(
                         id = xml.id.validate(),
                         name = xml.name.validate(),
+                        service = Service.DUBLIN_BUS,
                         coordinate = Coordinate(xml.latitude.validate().toDouble(), xml.longitude.validate().toDouble()),
-                        operators = emptySet(),
-                        routes = emptyList()
+                        routeGroups = emptyList()
                     )
                 }
         }

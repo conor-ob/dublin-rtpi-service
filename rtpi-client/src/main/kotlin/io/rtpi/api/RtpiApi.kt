@@ -7,53 +7,53 @@ import retrofit2.http.Query
 interface RtpiApi {
 
     @GET("aircoach/locations")
-    fun getAircoachStops(): Single<List<AircoachStop>>
+    fun getAircoachStops(): Single<List<StopLocation>>
 
     @GET("aircoach/livedata")
     fun getAircoachLiveData(
         @Query(value = "locationId") stopId: String
-    ): Single<List<AircoachLiveData>>
+    ): Single<List<PredictionLiveData>>
 
     @GET("buseireann/locations")
-    fun getBusEireannStops(): Single<List<BusEireannStop>>
+    fun getBusEireannStops(): Single<List<StopLocation>>
 
     @GET("buseireann/livedata")
     fun getBusEireannLiveData(
         @Query(value = "locationId") stopId: String
-    ): Single<List<BusEireannLiveData>>
+    ): Single<List<PredictionLiveData>>
 
     @GET("dublinbikes/locations")
     fun getDublinBikesDocks(
         @Query(value = "apiKey") apiKey: String
-    ): Single<List<DublinBikesDock>>
+    ): Single<List<DockLocation>>
 
     @GET("dublinbikes/livedata")
     fun getDublinBikesLiveData(
         @Query(value = "locationId") dockId: String,
         @Query(value = "apiKey") apiKey: String
-    ): Single<DublinBikesLiveData>
+    ): Single<DockLiveData>
 
     @GET("dublinbus/locations")
-    fun getDublinBusStops(): Single<List<DublinBusStop>>
+    fun getDublinBusStops(): Single<List<StopLocation>>
 
     @GET("dublinbus/livedata")
     fun getDublinBusLiveData(
         @Query(value = "locationId") stopId: String
-    ): Single<List<DublinBusLiveData>>
+    ): Single<List<PredictionLiveData>>
 
     @GET("irishrail/locations")
-    fun getIrishRailStations(): Single<List<IrishRailStation>>
+    fun getIrishRailStations(): Single<List<StopLocation>>
 
     @GET("irishrail/livedata")
     fun getIrishRailLiveData(
         @Query(value = "locationId") stationId: String
-    ): Single<List<IrishRailLiveData>>
+    ): Single<List<PredictionLiveData>>
 
     @GET("luas/locations")
-    fun getLuasStops(): Single<List<LuasStop>>
+    fun getLuasStops(): Single<List<StopLocation>>
 
     @GET("luas/livedata")
     fun getLuasLiveData(
         @Query(value = "locationId") stopId: String
-    ): Single<List<LuasLiveData>>
+    ): Single<List<PredictionLiveData>>
 }

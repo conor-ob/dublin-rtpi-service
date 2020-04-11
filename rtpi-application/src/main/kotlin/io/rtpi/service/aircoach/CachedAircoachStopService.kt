@@ -2,12 +2,13 @@ package io.rtpi.service.aircoach
 
 import com.google.common.cache.LoadingCache
 import com.google.inject.Inject
-import io.rtpi.api.AircoachStop
+import com.google.inject.name.Named
 import io.rtpi.api.Service
+import io.rtpi.api.ServiceLocation
 
 class CachedAircoachStopService @Inject constructor(
-    private val aircoachStopCache: LoadingCache<Service, List<AircoachStop>>
+    @Named("AIRCOACH") private val aircoachStopCache: LoadingCache<Service, List<ServiceLocation>>
 ) {
 
-    fun getStops(): List<AircoachStop> = aircoachStopCache[Service.AIRCOACH]
+    fun getStops(): List<ServiceLocation> = aircoachStopCache[Service.AIRCOACH]
 }

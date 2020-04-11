@@ -1,8 +1,8 @@
 package io.rtpi.resource
 
 import com.google.inject.Inject
-import io.rtpi.api.DublinBikesDock
-import io.rtpi.api.DublinBikesLiveData
+import io.rtpi.api.DockLiveData
+import io.rtpi.api.DockLocation
 import io.rtpi.service.dublinbikes.CachedDublinBikesDockService
 import io.rtpi.service.dublinbikes.CachedDublinBikesLiveDataService
 import io.swagger.annotations.Api
@@ -28,7 +28,7 @@ class DublinBikesResource @Inject constructor(
     @ApiOperation(
         value = "Get Dublin Bikes docks",
         notes = "Gets locations using the <a href=\"https://developer.jcdecaux.com/#/home/\">JCDecaux API</a>",
-        response = DublinBikesDock::class,
+        response = DockLocation::class,
         responseContainer = "List"
     )
     fun getDublinBikesDocks(
@@ -45,7 +45,7 @@ class DublinBikesResource @Inject constructor(
     @ApiOperation(
         value = "Get Dublin Bikes live data",
         notes = "Gets live data using the <a href=\"https://developer.jcdecaux.com/#/home/\">JCDecaux API</a>",
-        response = DublinBikesLiveData::class
+        response = DockLiveData::class
     )
     fun getDublinBikesLiveData(
         @QueryParam(value = "locationId")

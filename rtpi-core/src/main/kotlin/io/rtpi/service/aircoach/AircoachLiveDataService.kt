@@ -2,8 +2,12 @@ package io.rtpi.service.aircoach
 
 import com.google.inject.Inject
 import io.reactivex.Single
-import io.rtpi.api.AircoachLiveData
-import io.rtpi.api.LiveTime
+import io.rtpi.api.LiveData
+import io.rtpi.api.Operator
+import io.rtpi.api.Prediction
+import io.rtpi.api.PredictionLiveData
+import io.rtpi.api.RouteInfo
+import io.rtpi.api.Service
 import io.rtpi.external.aircoach.AircoachApi
 import io.rtpi.external.aircoach.EtaJson
 import io.rtpi.external.aircoach.ServiceJson
@@ -20,12 +24,12 @@ private val DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)
 
 class AircoachLiveDataService @Inject constructor(private val aircoachApi: AircoachApi) {
 
-    fun getLiveData(stopId: String): Single<List<AircoachLiveData>> {
+    fun getLiveData(stopId: String): Single<List<LiveData>> {
         return aircoachApi.getLiveData(id = stopId)
             .map { validateResponse(it) }
     }
 
-    private fun validateResponse(response: ServiceResponseJson): List<AircoachLiveData> {
+    private fun validateResponse(response: ServiceResponseJson): List<LiveData> {
         if (response.services.isNullOrEmpty()) {
             return emptyList()
         } else {
@@ -34,16 +38,20 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
                     validateObjects(json.time, json.time?.arrive, json.time?.arrive?.dateTime, json.route, json.dir)
                 }
                 .map { json ->
-                    AircoachLiveData(
-                        liveTime = createDueTime(json.eta, requireNotNull(json.time?.arrive)),
-                        route = json.route.validate(),
-                        destination = getDestination(json),
-                        origin = getOrigin(json),
-                        direction = json.dir.validate()
+                    PredictionLiveData(
+                        prediction = createDueTime(json.eta, requireNotNull(json.time?.arrive)),
+                        routeInfo = RouteInfo(
+                            route = json.route.validate(),
+                            destination = getDestination(json),
+                            origin = getOrigin(json),
+                            direction = json.dir.validate()
+                        ),
+                        operator = Operator.AIRCOACH,
+                        service = Service.AIRCOACH
                     )
                 }
-                .filter { !it.liveTime.waitTime.isNegative }
-                .sortedBy { it.liveTime.waitTime }
+                .filter { !it.prediction.waitTime.isNegative }
+                .sortedBy { it.prediction.waitTime }
         }
     }
 
@@ -80,7 +88,7 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
     }
 
     // TODO check nullable
-    private fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): LiveTime {
+    private fun createDueTime(expected: EtaJson?, scheduled: TimestampJson): Prediction {
         val currentTime = DateTimeProvider.getCurrentDateTime()
         val expectedTimestamp = expected?.etaArrive?.dateTime ?: requireNotNull(scheduled.dateTime)
         val expectedTime = DateTimeProvider.getDateTime(
@@ -91,12 +99,11 @@ class AircoachLiveDataService @Inject constructor(private val aircoachApi: Airco
             timestamp = requireNotNull(scheduled.dateTime),
             formatter = DATE_TIME_FORMATTER
         )
-        return LiveTime(
+        return Prediction(
             waitTime = Duration.between(currentTime, expectedTime),
             currentDateTime = currentTime,
             expectedDateTime = expectedTime,
             scheduledDateTime = scheduledTime
         )
     }
-
 }

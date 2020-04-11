@@ -1,8 +1,8 @@
 package io.rtpi.resource
 
 import com.google.inject.Inject
-import io.rtpi.api.AircoachLiveData
-import io.rtpi.api.AircoachStop
+import io.rtpi.api.PredictionLiveData
+import io.rtpi.api.StopLocation
 import io.rtpi.service.aircoach.CachedAircoachLiveDataService
 import io.rtpi.service.aircoach.CachedAircoachStopService
 import io.swagger.annotations.Api
@@ -28,7 +28,7 @@ class AircoachResource @Inject constructor(
     @ApiOperation(
         value = "Get Aircoach stops",
         notes = "Gets locations by scraping the <a href=\"https://tracker.aircoach.ie/stop-finder/\">Aircoach Stop Finder</a>",
-        response = AircoachStop::class,
+        response = StopLocation::class,
         responseContainer = "List"
     )
     fun getAircoachStops(): Response {
@@ -41,7 +41,7 @@ class AircoachResource @Inject constructor(
     @ApiOperation(
         value = "Get Aircoach live data",
         notes = "Gets live data using the <a href=\"https://tracker.aircoach.ie/\">Aircoach API</a>",
-        response = AircoachLiveData::class,
+        response = PredictionLiveData::class,
         responseContainer = "List"
     )
     fun getAircoachLiveData(

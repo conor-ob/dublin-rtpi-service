@@ -1,7 +1,7 @@
 package io.rtpi.util
 
-import io.rtpi.api.LiveTime
 import io.rtpi.api.Operator
+import io.rtpi.api.Prediction
 import io.rtpi.api.createDublinBusLiveData
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
@@ -20,7 +20,7 @@ class LiveDataGrouperTest {
                 origin = "Mountjoy Square",
                 destination = "Brides Glen",
                 direction = "Outbound",
-                liveTime = LiveTime(
+                liveTime = Prediction(
                     waitTime = Duration.parse("PT8M"),
                     currentDateTime = ZonedDateTime.now(),
                     expectedDateTime = ZonedDateTime.now(),
@@ -33,7 +33,7 @@ class LiveDataGrouperTest {
                 origin = "South Circular Road",
                 destination = "Blackrock",
                 direction = "Outbound",
-                liveTime = LiveTime(
+                liveTime = Prediction(
                     waitTime = Duration.parse("PT20M"),
                     currentDateTime = ZonedDateTime.now(),
                     expectedDateTime = ZonedDateTime.now(),
@@ -46,7 +46,7 @@ class LiveDataGrouperTest {
                 origin = "Mountjoy Square",
                 destination = "Loughlinstown Pk",
                 direction = "Outbound",
-                liveTime = LiveTime(
+                liveTime = Prediction(
                     waitTime = Duration.parse("PT27M"),
                     currentDateTime = ZonedDateTime.now(),
                     expectedDateTime = ZonedDateTime.now(),
@@ -59,7 +59,7 @@ class LiveDataGrouperTest {
                 origin = "Mountjoy Square",
                 destination = "Brides Glen",
                 direction = "Outbound",
-                liveTime = LiveTime(
+                liveTime = Prediction(
                     waitTime = Duration.parse("PT45M"),
                     currentDateTime = ZonedDateTime.now(),
                     expectedDateTime = ZonedDateTime.now(),
@@ -72,7 +72,7 @@ class LiveDataGrouperTest {
                 origin = "South Circular Road",
                 destination = "Blackrock",
                 direction = "Outbound",
-                liveTime = LiveTime(
+                liveTime = Prediction(
                     waitTime = Duration.parse("PT47M"),
                     currentDateTime = ZonedDateTime.now(),
                     expectedDateTime = ZonedDateTime.now(),

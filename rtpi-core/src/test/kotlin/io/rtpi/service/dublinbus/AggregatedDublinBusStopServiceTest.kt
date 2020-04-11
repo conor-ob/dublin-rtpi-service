@@ -5,11 +5,10 @@ import io.mockk.mockk
 import io.reactivex.Single
 import io.rtpi.api.Coordinate
 import io.rtpi.api.Operator
-import io.rtpi.api.Route
+import io.rtpi.api.RouteGroup
 import io.rtpi.api.createDublinBusStop
 import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.rtpi.RtpiApi
-import io.rtpi.external.rtpi.RtpiBusStopOperatorInformationJson
 import io.rtpi.external.rtpi.createRtpiBusStopInformationJson
 import io.rtpi.external.rtpi.createRtpiBusStopInformationResponseJson
 import io.rtpi.external.rtpi.createRtpiBusStopOperatorInformationJson
@@ -107,11 +106,8 @@ class AggregatedDublinBusStopServiceTest {
                 coordinate = Coordinate(53.28813639, -6.207540556),
                 operators = setOf(Operator.DUBLIN_BUS, Operator.GO_AHEAD),
                 routes = listOf(
-                    Route("11", Operator.DUBLIN_BUS),
-                    Route("47", Operator.DUBLIN_BUS),
-                    Route("75", Operator.GO_AHEAD),
-                    Route("75A", Operator.GO_AHEAD),
-                    Route("116", Operator.DUBLIN_BUS)
+                    RouteGroup(routes = listOf("11", "47", "116"), operator = Operator.DUBLIN_BUS),
+                    RouteGroup(routes = listOf("75", "75A"), operator = Operator.GO_AHEAD)
                 )
             )
         )

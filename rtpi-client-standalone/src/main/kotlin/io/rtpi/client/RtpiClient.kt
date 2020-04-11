@@ -1,5 +1,9 @@
 package io.rtpi.client
 
+import io.reactivex.Single
+import io.rtpi.api.LiveData
+import io.rtpi.api.Service
+import io.rtpi.api.ServiceLocation
 import io.rtpi.external.aircoach.AircoachApi
 import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.irishrail.IrishRailApi
@@ -13,9 +17,7 @@ import io.rtpi.service.buseireann.BusEireannLiveDataService
 import io.rtpi.service.buseireann.BusEireannStopService
 import io.rtpi.service.dublinbikes.DublinBikesDockService
 import io.rtpi.service.dublinbikes.DublinBikesLiveDataService
-import io.rtpi.service.dublinbus.DublinBusDefaultLiveDataService
 import io.rtpi.service.dublinbus.DublinBusLiveDataService
-import io.rtpi.service.dublinbus.DublinBusRtpiLiveDataService
 import io.rtpi.service.dublinbus.DublinBusStopService
 import io.rtpi.service.irishrail.IrishRailLiveDataService
 import io.rtpi.service.irishrail.IrishRailStationService
@@ -32,10 +34,10 @@ import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 import javax.net.ssl.X509TrustManager
 
-class RtpiClient(okHttpClient: OkHttpClient? = null) {
+class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
 
     private val defaultOkHttpClient: OkHttpClient =
-        okHttpClient ?: OkHttpClient.Builder()
+        rtpiClientConfiguration.okHttpClient ?: OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
             .connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
@@ -63,7 +65,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         sslContext
     }
 
-    private val aircoachOkHttpClient = newAircoachOkHttpClient(okHttpClient)
+    private val aircoachOkHttpClient = newAircoachOkHttpClient(rtpiClientConfiguration.okHttpClient)
 
     private fun newAircoachOkHttpClient(okHttpClient: OkHttpClient?): OkHttpClient {
         val builder = OkHttpClient.Builder()
@@ -155,7 +157,8 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
 
     private val dublinBikesClient = DublinBikesClient(
         DublinBikesDockService(jcDecauxApi),
-        DublinBikesLiveDataService(jcDecauxApi)
+        DublinBikesLiveDataService(jcDecauxApi),
+        rtpiClientConfiguration.dublinBikesApiKey
     )
 
     private val dublinBusClient = DublinBusClient(
@@ -173,15 +176,25 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         LuasLiveDataService(rtpiApi)
     )
 
-    fun aircoach() = aircoachClient
+    fun getServiceLocations(service: Service): Single<List<ServiceLocation>> {
+        return when (service) {
+            Service.AIRCOACH -> aircoachClient.getStops()
+            Service.BUS_EIREANN -> busEireannClient.getStops()
+            Service.DUBLIN_BIKES -> dublinBikesClient.getDocks()
+            Service.DUBLIN_BUS -> dublinBusClient.getStops()
+            Service.IRISH_RAIL -> irishRailClient.getStations()
+            Service.LUAS -> luasClient.getStops()
+        }
+    }
 
-    fun busEireann() = busEireannClient
-
-    fun dublinBikes() = dublinBikesClient
-
-    fun dublinBus() = dublinBusClient
-
-    fun irishRail() = irishRailClient
-
-    fun luas() = luasClient
+    fun getLiveData(service: Service, locationId: String): Single<List<LiveData>> {
+        return when (service) {
+            Service.AIRCOACH -> aircoachClient.getLiveData(locationId)
+            Service.BUS_EIREANN -> busEireannClient.getLiveData(locationId)
+            Service.DUBLIN_BIKES -> dublinBikesClient.getLiveData(locationId).map { listOf(it) }
+            Service.DUBLIN_BUS -> dublinBusClient.getLiveData(locationId)
+            Service.IRISH_RAIL -> irishRailClient.getLiveData(locationId)
+            Service.LUAS -> luasClient.getLiveData(locationId)
+        }
+    }
 }

@@ -2,7 +2,7 @@ package io.rtpi.service.dublinbus
 
 import com.google.inject.Inject
 import io.reactivex.Single
-import io.rtpi.api.DublinBusStop
+import io.rtpi.api.ServiceLocation
 import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.rtpi.RtpiApi
 
@@ -14,7 +14,7 @@ class DublinBusStopService @Inject constructor(
     private val dublinBusDefaultStopService = DublinBusDefaultStopService(dublinBusApi)
     private val dublinBusRtpiStopService = DublinBusRtpiStopService(rtpiApi)
 
-    fun getStops(): Single<List<DublinBusStop>> {
+    fun getStops(): Single<List<ServiceLocation>> {
         // TODO
         return dublinBusRtpiStopService.getStops()
 //        return Single.zip(
@@ -24,7 +24,7 @@ class DublinBusStopService @Inject constructor(
 //        )
     }
 
-    private fun resolve(defaultStops: List<DublinBusStop>, rtpiStops: List<DublinBusStop>): List<DublinBusStop> {
+    private fun resolve(defaultStops: List<ServiceLocation>, rtpiStops: List<ServiceLocation>): List<ServiceLocation> {
         val defaultStopsById = defaultStops.associateBy { it.id }.toMutableMap()
         val rtpiStopsById = rtpiStops.associateBy { it.id }
         for (key in rtpiStopsById.keys) {

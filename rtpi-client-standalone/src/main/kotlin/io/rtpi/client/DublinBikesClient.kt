@@ -1,22 +1,23 @@
 package io.rtpi.client
 
 import io.reactivex.Single
-import io.rtpi.api.DublinBikesDock
-import io.rtpi.api.DublinBikesLiveData
+import io.rtpi.api.LiveData
+import io.rtpi.api.ServiceLocation
 import io.rtpi.service.dublinbikes.DublinBikesDockService
 import io.rtpi.service.dublinbikes.DublinBikesLiveDataService
 
 class DublinBikesClient(
     private val dublinBikesDockService: DublinBikesDockService,
-    private val dublinBikesLiveDataService: DublinBikesLiveDataService
+    private val dublinBikesLiveDataService: DublinBikesLiveDataService,
+    private val dublinBikesApiKey: String
 ) {
 
-    fun getDocks(apiKey: String): Single<List<DublinBikesDock>> {
-        return dublinBikesDockService.getDocks(apiKey)
+    fun getDocks(): Single<List<ServiceLocation>> {
+        return dublinBikesDockService.getDocks(dublinBikesApiKey)
     }
 
-    fun getLiveData(dockId: String, apiKey: String): Single<DublinBikesLiveData> {
-        return dublinBikesLiveDataService.getLiveData(dockId, apiKey)
+    fun getLiveData(dockId: String): Single<LiveData> {
+        return dublinBikesLiveDataService.getLiveData(dockId, dublinBikesApiKey)
     }
 
 }
