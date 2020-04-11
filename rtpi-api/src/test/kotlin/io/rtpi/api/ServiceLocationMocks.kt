@@ -11,7 +11,7 @@ fun createAircoachStop(
         id = id,
         name = name,
         coordinate = coordinate,
-        routes = routes,
+        routeGroups = routes,
         service = Service.AIRCOACH
     )
 }
@@ -27,7 +27,7 @@ fun createDublinBusStop(
         id = id,
         name = name,
         coordinate = coordinate,
-        routes = routes,
+        routeGroups = routes,
         service = Service.DUBLIN_BUS
     )
 }
@@ -42,6 +42,6 @@ fun createLuasStop(
     id = id,
     name = name,
     coordinate = coordinate,
-    routes = routes,
+    routeGroups = routes,
     service = Service.LUAS
 )
