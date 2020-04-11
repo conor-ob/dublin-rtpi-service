@@ -40,7 +40,7 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
                         name = xml.name.validate(),
                         service = Service.IRISH_RAIL,
                         coordinate = Coordinate(xml.latitude.validate(), xml.longitude.validate()),
-                        routes = operators.map { operator ->
+                        routeGroups = operators.map { operator ->
                             RouteGroup(operator, listOf(operator.fullName))
                         }
                     )

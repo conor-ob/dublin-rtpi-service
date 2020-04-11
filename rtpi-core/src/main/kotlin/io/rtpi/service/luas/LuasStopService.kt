@@ -26,7 +26,7 @@ class LuasStopService @Inject constructor(
                 latitude = json.latitude.validate().toDouble(),
                 longitude = json.longitude.validate().toDouble()
             ),
-            routes = mapRouteGroups(json)
+            routeGroups = mapRouteGroups(json)
         )
     }
 

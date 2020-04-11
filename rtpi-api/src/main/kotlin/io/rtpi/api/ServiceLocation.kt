@@ -13,7 +13,7 @@ data class StopLocation(
     override val name: String,
     override val service: Service,
     override val coordinate: Coordinate,
-    val routes: List<RouteGroup>,
+    val routeGroups: List<RouteGroup>,
     override val properties: MutableMap<String, Any> = mutableMapOf()
 ) : ServiceLocation
 
