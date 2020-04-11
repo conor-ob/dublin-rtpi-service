@@ -23,7 +23,8 @@ private val DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)
 
 abstract class AbstractRtpiLiveDataService(
     private val rtpiApi: RtpiApi,
-    private val operator: String
+    private val operator: String,
+    private val service: Service
 ) {
 
     fun getLiveData(stopId: String): Single<List<LiveData>> {
@@ -46,7 +47,7 @@ abstract class AbstractRtpiLiveDataService(
                     PredictionLiveData(
                         prediction = createDueTime(response.timestamp.validate(), json),
                         operator = Operator.parse(json.operator.validate()),
-                        service = Service.LUAS,
+                        service = service,
                         routeInfo = RouteInfo(
                             route = json.route.validate(),
                             destination = json.destination.validate().replace("LUAS", "").validate(),
