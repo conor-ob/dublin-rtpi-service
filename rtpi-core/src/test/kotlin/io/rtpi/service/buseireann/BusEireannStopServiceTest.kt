@@ -11,7 +11,7 @@ class BusEireannStopServiceTest : RtpiStopServiceTest() {
 
     override fun getOperator() = Operator.BUS_EIREANN
 
-    override fun createStopService(rtpiApi: RtpiApi) = BusEireannStopService(rtpiApi)
+    override fun createStopService(rtpiApi: RtpiApi) = BusEireannStopService(rtpiApi, rtpiApi)
 
     override fun createDefaultStop() = createRtpiBusStopInformationJson(
         stopId = "601401",

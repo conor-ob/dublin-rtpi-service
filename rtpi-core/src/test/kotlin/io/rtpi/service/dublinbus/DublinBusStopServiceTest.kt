@@ -10,7 +10,7 @@ class DublinBusStopServiceTest : RtpiStopServiceTest() {
 
     override fun getOperator() = Operator.DUBLIN_BUS
 
-    override fun createStopService(rtpiApi: RtpiApi) = DublinBusRtpiInternalStopService(rtpiApi, getOperator().shortName)
+    override fun createStopService(rtpiApi: RtpiApi) = DublinBusRtpiInternalStopService(rtpiApi, rtpiApi, getOperator().shortName)
 
     override fun createDefaultStop() = createRtpiBusStopInformationJson(
         stopId = "315",

@@ -32,7 +32,7 @@ class RtpiStaticDataClient {
     )
 
     private val busEireannStaticDataClient = BusEireannStaticDataClient(
-        BusEireannStopService(rtpiApi)
+        BusEireannStopService(rtpiApi, rtpiApi)
     )
 
     private val dublinBikesStaticDataClient = DublinBikesStaticDataClient(
@@ -40,7 +40,7 @@ class RtpiStaticDataClient {
     )
 
     private val dublinBusStaticDataClient = DublinBusStaticDataClient(
-        DublinBusStopService(dublinBusApi, rtpiApi)
+        DublinBusStopService(dublinBusApi, rtpiApi, rtpiApi)
     )
 
     private val irishRailStaticDataCLient = IrishRailStaticDataClient(
@@ -48,7 +48,7 @@ class RtpiStaticDataClient {
     )
 
     private val luasStaticDataClient = LuasStaticDataClient(
-        LuasStopService(rtpiApi)
+        LuasStopService(rtpiApi, rtpiApi)
     )
 
     fun getServiceLocations(service: Service): Single<List<ServiceLocation>> {

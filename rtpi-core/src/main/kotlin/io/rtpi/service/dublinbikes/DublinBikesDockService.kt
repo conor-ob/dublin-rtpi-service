@@ -37,8 +37,7 @@ class DublinBikesDockService @Inject constructor(private val jcDecauxApi: JcDeca
                         coordinate = Coordinate(requireNotNull(json.position).lat.validate(), requireNotNull(json.position).lng.validate()),
                         availableBikes = json.availableBikes.validate(),
                         availableDocks = json.availableBikeStands.validate(),
-                        totalDocks = json.bikeStands.validate(),
-                        properties = mutableMapOf()
+                        totalDocks = json.bikeStands.validate()
                     )
                 }
         }

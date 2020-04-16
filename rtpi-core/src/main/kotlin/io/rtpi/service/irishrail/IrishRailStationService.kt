@@ -82,10 +82,8 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
 //            "ADAMS", // Adamstown
             "ADMTN", // Adamstown
             "ASHTN", // Ashtown
-            "ATLNE", // Athlone
             "BBRDG", // Broombridge
             "BBRGN", // Balbriggan
-            "CLARA", // Clara
             "CLDKN", // Clondalkin
 //            "CLONF", // Clondalkin
 //            "CLONS", // Clondalkin
@@ -95,8 +93,6 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
             "DCKLS", // Docklands
             "DBATE", // Donabate
             "DBYNE", // Dunboyne
-            "DDALK", // Dundalk
-            "DGHDA", // Drogheda
             "GSTON", // Gormanston
             "HAFLD", // Hansfield
 //            "HAZEF", // Hazelhatch
@@ -111,8 +107,7 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
 //            "PWESS", // PARK WEST
             "CHORC", // Park West and Cherry Orchard
             "RLUSK", // Rush and Lusk
-            "SKRES", // Skerries
-            "TMORE"  // Tullamore
+            "SKRES"  // Skerries
             -> setOf(Operator.COMMUTER)
 
             "BROCK", // Blackrock
@@ -124,26 +119,40 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
             -> setOf(Operator.COMMUTER, Operator.DART)
 
             "ARKLW", // Arklow
+            "ATLNE", // Athlone
             "ATHY",  // Athy
+            "CGLOE", // Carrigaloe
+            "CGTWL", // Carrigtwohill
+            "CLARA", // Clara
+            "COBH", // Cobh
+            "CORK", // Cork
             "CRLOW", // Carlow
             "DCDRA", // Drumcondra
+            "DDALK", // Dundalk
+            "DGHDA", // Drogheda
             "ECRTY", // Enniscorthy
             "ENFLD", // Enfield
             "ETOWN", // Edgeworthstown
+            "FOTA", // Fota
             "HSTON", // Dublin Heuston
+            "GHANE", // Glounthaune
             "GOREY", // Gorey
             "KCOCK", // Kilcock
             "KCOOL", // Kilcoole
             "KDARE", // Kildare
             "LFORD", // Longford
+            "LSLND", // LittleIsland
+            "MDLTN", // Midleton
             "MLGAR", // Mullingar
             "MONVN", // Monasterevin
             "MYNTH", // Maynooth
             "NBRGE", // Newbridge
             "PTRTN", // Portarlington
             "PTLSE", // Portlaoise
+            "RBROK", // Rushbrooke
             "RDRUM", // Rathdrum
             "SALNS", // Sallins
+            "TMORE",  // Tullamore
             "WLOW"   // Wicklow
             -> setOf(Operator.COMMUTER, Operator.INTERCITY)
 

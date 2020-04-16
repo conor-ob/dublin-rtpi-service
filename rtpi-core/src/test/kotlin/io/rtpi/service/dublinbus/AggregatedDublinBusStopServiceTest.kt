@@ -20,7 +20,7 @@ class AggregatedDublinBusStopServiceTest {
 
     private val dublinBusApi = mockk<DublinBusApi>()
     private val rtpiApi = mockk<RtpiApi>()
-    private val dublinBusStopService = DublinBusStopService(dublinBusApi, rtpiApi)
+    private val dublinBusStopService = DublinBusStopService(dublinBusApi, rtpiApi, rtpiApi)
     private val defaultDublinBusStop = createRtpiBusStopInformationJson(
         stopId = "444",
         fullName = "Kilmacud Rd",

@@ -17,11 +17,13 @@ private const val JSON = "json"
 
 abstract class AbstractRtpiStopService(
     private val rtpiApi: RtpiApi,
+    private val rtpiFallbackApi: RtpiApi,
     private val operator: String
 ) {
 
     fun getStops(): Single<List<ServiceLocation>> {
         return rtpiApi.busStopInformation(operator = operator, format = JSON)
+//            .onErrorResumeNext { rtpiFallbackApi.busStopInformation(operator = operator, format = JSON) }
             .map { validateResponse(it) }
     }
 

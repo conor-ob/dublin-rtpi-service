@@ -23,12 +23,14 @@ private val DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)
 
 abstract class AbstractRtpiLiveDataService(
     private val rtpiApi: RtpiApi,
+    private val rtpiFallbackApi: RtpiApi,
     private val operator: String,
     private val service: Service
 ) {
 
     fun getLiveData(stopId: String): Single<List<LiveData>> {
         return rtpiApi.realTimeBusInformation(stopId = stopId, operator = operator, format = JSON)
+//            .onErrorResumeNext { rtpiFallbackApi.realTimeBusInformation(stopId = stopId, operator = operator, format = JSON) }
             .map { validateResponse(it) }
     }
 

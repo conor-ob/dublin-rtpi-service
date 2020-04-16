@@ -18,7 +18,7 @@ class LuasStopServiceTest : RtpiStopServiceTest() {
 
     override fun getOperator() = Operator.LUAS
 
-    override fun createStopService(rtpiApi: RtpiApi) = LuasStopService(rtpiApi)
+    override fun createStopService(rtpiApi: RtpiApi) = LuasStopService(rtpiApi, rtpiApi)
 
     override fun createDefaultStop() = createRtpiBusStopInformationJson(
         stopId = "LUAS24",

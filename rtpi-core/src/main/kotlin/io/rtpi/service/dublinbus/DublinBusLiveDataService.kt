@@ -1,8 +1,8 @@
 package io.rtpi.service.dublinbus
 
 import com.google.inject.Inject
+import com.google.inject.name.Named
 import io.reactivex.Single
-import io.reactivex.functions.BiFunction
 import io.rtpi.api.LiveData
 import io.rtpi.api.PredictionLiveData
 import io.rtpi.external.dublinbus.DublinBusApi
@@ -12,18 +12,20 @@ import kotlin.math.absoluteValue
 
 class DublinBusLiveDataService @Inject constructor(
     dublinBusApi: DublinBusApi,
-    rtpiApi: RtpiApi
+    @Named("rtpi_api") rtpiApi: RtpiApi,
+    @Named("rtpi_fallback_api") rtpiFallbackApi: RtpiApi
 ) {
 
     private val dublinBusDefaultLiveDataService = DublinBusDefaultLiveDataService(dublinBusApi)
-    private val dublinBusRtpiLiveDataService = DublinBusRtpiLiveDataService(rtpiApi)
+    private val dublinBusRtpiLiveDataService = DublinBusRtpiLiveDataService(rtpiApi, rtpiFallbackApi)
 
     fun getLiveData(stopId: String): Single<List<LiveData>> {
-        return Single.zip(
-            dublinBusDefaultLiveDataService.getLiveData(stopId),
-            dublinBusRtpiLiveDataService.getLiveData(stopId),
-            BiFunction { defaultLiveData, rtpiLiveData -> resolve(defaultLiveData, rtpiLiveData as List<PredictionLiveData>) }
-        )
+        return dublinBusRtpiLiveDataService.getLiveData(stopId)
+//        return Single.zip(
+//            dublinBusDefaultLiveDataService.getLiveData(stopId),
+//            dublinBusRtpiLiveDataService.getLiveData(stopId),
+//            BiFunction { defaultLiveData, rtpiLiveData -> resolve(defaultLiveData, rtpiLiveData as List<PredictionLiveData>) }
+//        )
     }
 
     private fun resolve(

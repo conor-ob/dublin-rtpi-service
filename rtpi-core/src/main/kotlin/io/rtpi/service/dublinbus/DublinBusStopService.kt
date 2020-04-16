@@ -1,6 +1,7 @@
 package io.rtpi.service.dublinbus
 
 import com.google.inject.Inject
+import com.google.inject.name.Named
 import io.reactivex.Single
 import io.rtpi.api.ServiceLocation
 import io.rtpi.external.dublinbus.DublinBusApi
@@ -8,11 +9,12 @@ import io.rtpi.external.rtpi.RtpiApi
 
 class DublinBusStopService @Inject constructor(
     dublinBusApi: DublinBusApi,
-    rtpiApi: RtpiApi
+    @Named("rtpi_api") rtpiApi: RtpiApi,
+    @Named("rtpi_fallback_api") rtpiFallbackApi: RtpiApi
 ) {
 
     private val dublinBusDefaultStopService = DublinBusDefaultStopService(dublinBusApi)
-    private val dublinBusRtpiStopService = DublinBusRtpiStopService(rtpiApi)
+    private val dublinBusRtpiStopService = DublinBusRtpiStopService(rtpiApi, rtpiFallbackApi)
 
     fun getStops(): Single<List<ServiceLocation>> {
         // TODO

@@ -122,6 +122,14 @@ class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
         .create(DublinBusApi::class.java)
 
     private val rtpiApi = Retrofit.Builder()
+        .baseUrl("https://data.smartdublin.ie/cgi-bin/rtpi/")
+        .client(defaultOkHttpClient)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(gsonConverterFactory)
+        .build()
+        .create(RtpiApi::class.java)
+
+    private val rtpiFallbackApi = Retrofit.Builder()
         .baseUrl("https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/")
         .client(defaultOkHttpClient)
         .addCallAdapterFactory(callAdapterFactory)
@@ -151,8 +159,8 @@ class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
     )
 
     private val busEireannClient = BusEireannClient(
-        BusEireannStopService(rtpiApi),
-        BusEireannLiveDataService(rtpiApi)
+        BusEireannStopService(rtpiApi, rtpiFallbackApi),
+        BusEireannLiveDataService(rtpiApi, rtpiFallbackApi)
     )
 
     private val dublinBikesClient = DublinBikesClient(
@@ -162,8 +170,8 @@ class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
     )
 
     private val dublinBusClient = DublinBusClient(
-        DublinBusStopService(dublinBusApi, rtpiApi),
-        DublinBusLiveDataService(dublinBusApi, rtpiApi)
+        DublinBusStopService(dublinBusApi, rtpiApi, rtpiFallbackApi),
+        DublinBusLiveDataService(dublinBusApi, rtpiApi, rtpiFallbackApi)
     )
 
     private val irishRailClient = IrishRailClient(
@@ -172,8 +180,8 @@ class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
     )
 
     private val luasClient = LuasClient(
-        LuasStopService(rtpiApi),
-        LuasLiveDataService(rtpiApi)
+        LuasStopService(rtpiApi, rtpiFallbackApi),
+        LuasLiveDataService(rtpiApi, rtpiFallbackApi)
     )
 
     fun getServiceLocations(service: Service): Single<List<ServiceLocation>> {

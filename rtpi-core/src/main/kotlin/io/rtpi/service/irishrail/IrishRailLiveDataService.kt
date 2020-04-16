@@ -28,10 +28,10 @@ class IrishRailLiveDataService @Inject constructor(private val irishRailApi: Iri
     fun getLiveData(stationId: String): Single<List<LiveData>> {
         return irishRailApi
             .getStationDataByCodeXml(stationCode = stationId)
-            .map { validateResponse(it) }
+            .map { response -> validateResponse(response, stationId) }
     }
 
-    private fun validateResponse(response: IrishRailStationDataResponseXml): List<LiveData> =
+    private fun validateResponse(response: IrishRailStationDataResponseXml, stationId: String): List<LiveData> =
         if (response.stationData.isNullOrEmpty()) {
             emptyList()
         } else {
@@ -58,9 +58,46 @@ class IrishRailLiveDataService @Inject constructor(private val irishRailApi: Iri
                         )
                     )
                 }
+                .map { predictionLiveData ->
+                    resolveKnownIssues(predictionLiveData, stationId)
+                }
                 .filter { !it.prediction.waitTime.isNegative }
                 .sortedBy { it.prediction.waitTime }
         }
+
+    /**
+     * There are issues at Grand Canal Dock, Pearse, Tara Street and Connolly where the wrong Northbound/Southbound
+     * information is given to Commuter trains probably because geographically the destination station may be north or
+     * south of the current station but that is not the direction the train is travelling through the station
+     */
+    private fun resolveKnownIssues(liveData: PredictionLiveData, stationId: String): PredictionLiveData {
+        if (liveData.operator == Operator.COMMUTER) {
+            when (stationId) {
+                "GCDK",
+                "PERSE",
+                "TARA",
+                "CNLLY" -> {
+                    val destination = liveData.routeInfo.destination
+                    if ("Hazelhatch".equals(destination, ignoreCase = true) ||
+                        "Newbridge".equals(destination, ignoreCase = true)
+                    ) {
+                        return liveData.copy(
+                            routeInfo = liveData.routeInfo.copy(
+                                direction = "Northbound"
+                            )
+                        )
+                    } else if ("Grand Canal Dock".equals(destination, ignoreCase = true)) {
+                        return liveData.copy(
+                            routeInfo = liveData.routeInfo.copy(
+                                direction = "Southbound"
+                            )
+                        )
+                    }
+                }
+            }
+        }
+        return liveData
+    }
 
     private fun mapOperator(trainType: String, trainCode: String): Operator {
         if (Operator.DART.shortName.equals(trainType, ignoreCase = true)) {

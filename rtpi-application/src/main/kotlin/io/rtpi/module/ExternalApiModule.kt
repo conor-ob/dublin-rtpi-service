@@ -73,6 +73,7 @@ class ExternalApiModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("rtpi_api")
     fun rtpiApi(
         configuration: RtpiServiceConfiguration,
         @Named("default_client") client: OkHttpClient,
@@ -80,6 +81,22 @@ class ExternalApiModule : KotlinModule() {
         @Named("json") converterFactory: Converter.Factory
     ): RtpiApi = Retrofit.Builder()
         .baseUrl(requireNotNull(configuration.apiConfiguration.rtpiBaseUrl))
+        .client(client)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(converterFactory)
+        .build()
+        .create(RtpiApi::class.java)
+
+    @Provides
+    @Singleton
+    @Named("rtpi_fallback_api")
+    fun rtpiFallbackApi(
+        configuration: RtpiServiceConfiguration,
+        @Named("default_client") client: OkHttpClient,
+        callAdapterFactory: CallAdapter.Factory,
+        @Named("json") converterFactory: Converter.Factory
+    ): RtpiApi = Retrofit.Builder()
+        .baseUrl(requireNotNull(configuration.apiConfiguration.rtpiFallbackBaseUrl))
         .client(client)
         .addCallAdapterFactory(callAdapterFactory)
         .addConverterFactory(converterFactory)
