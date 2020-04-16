@@ -1,0 +1,2276 @@
+[
+    {
+        "id":"822000255",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"822000255",
+        "name":"Ballsbridge (Sussex Rd): Clayton Hotel",
+        "shortName":"Ballsbridge (Sussex Rd): Clayton Hotel",
+        "linkName":"Ballsbridge_Sussex_Rd_Clayton_Hotel",
+        "ticketName":"Ballsbridge, Sussex Rd, Clayton Hotel",
+        "place":"Ballsbridge",
+        "stopLatitude":53.32972821,
+        "stopLongitude":-6.248903004,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"822000377",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"822000377",
+        "name":"Ballsbridge (Leeson St Upper): near Canal",
+        "shortName":"Ballsbridge (Leeson St Upper): near Canal",
+        "linkName":"Ballsbridge_Leeson_St_Upper_near_Canal",
+        "ticketName":"Leeson St Upper, near Canal",
+        "place":"Ballsbridge",
+        "stopLatitude":53.331199418,
+        "stopLongitude":-6.252386204,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"822000052",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"822000052",
+        "name":"Ballsbridge (Pembroke Rd): Ballsbridge Hotel",
+        "shortName":"Ballsbridge (Pembroke Rd): Ballsbridge Hotel",
+        "linkName":"Ballsbridge_Pembroke_Rd_Ballsbridge_Hotel",
+        "ticketName":"Ballsbridge, Pembroke Rd, Ballsbridge Hotel",
+        "place":"Ballsbridge",
+        "stopLatitude":53.331418434,
+        "stopLongitude":-6.234299456,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"822000386",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"822000386",
+        "name":"Ballsbridge (Northumberland Rd): School House Hotel",
+        "shortName":"Ballsbridge (Northumberland Rd): School House Hotel",
+        "linkName":"Ballsbridge_Northumberland_Rd_School_House_Hotel",
+        "ticketName":"Ballsbridge, School House Hotel",
+        "place":"Ballsbridge",
+        "stopLatitude":53.337230563,
+        "stopLongitude":-6.239555502,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000483",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000483",
+        "name":"Ballsbridge (Merrion Rd): Clayton Hotel",
+        "shortName":"Ballsbridge (Merrion Rd): Clayton Hotel",
+        "linkName":"Ballsbridge_Merrion_Rd_Clayton_Hotel",
+        "ticketName":"Ballsbridge, Merrion Rd, Clayton Hotel",
+        "place":"Ballsbridge",
+        "stopLatitude":53.325997556,
+        "stopLongitude":-6.223939234,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000486",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000486",
+        "name":"Ballsbridge (Merrion Rd): RDS",
+        "shortName":"Ballsbridge (Merrion Rd): RDS",
+        "linkName":"Ballsbridge_Merrion_Rd_RDS",
+        "ticketName":"Ballsbridge, Merrion Rd, RDS",
+        "place":"Ballsbridge",
+        "stopLatitude":53.328398797,
+        "stopLongitude":-6.228869088,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"822000381",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"822000381",
+        "name":"Ballsbridge (Leeson St Upper): opp Clayton Hotel",
+        "shortName":"Ballsbridge (Leeson St Upper): opp Clayton Hotel",
+        "linkName":"Ballsbridge_Leeson_St_Upper_opp_Clayton_Hotel",
+        "ticketName":"Leeson St Upper, opp Clayton Hotel",
+        "place":"Ballsbridge",
+        "stopLatitude":53.328817984,
+        "stopLongitude":-6.247513971,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000490",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000490",
+        "name":"Ballsbridge (Northumberland Rd): opp School House Hotel",
+        "shortName":"Ballsbridge (Northumberland Rd): opp School House Hotel",
+        "linkName":"Ballsbridge_Northumberland_Rd_opp_School_House_Hotel",
+        "ticketName":"Ballsbridge, opp School House Hotel",
+        "place":"Ballsbridge",
+        "stopLatitude":53.336626629,
+        "stopLongitude":-6.238829548,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000416",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000416",
+        "name":"Ballsbridge (Merrion Rd): opp RDS",
+        "shortName":"Ballsbridge (Merrion Rd): opp RDS",
+        "linkName":"Ballsbridge_Merrion_Rd_opp_RDS",
+        "ticketName":"Ballsbridge, Merrion Rd, opp RDS",
+        "place":"Ballsbridge",
+        "stopLatitude":53.328639919,
+        "stopLongitude":-6.229369569,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000414",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000414",
+        "name":"Ballsbridge (Pembroke Rd): opp Ballsbridge Hotel",
+        "shortName":"Ballsbridge (Pembroke Rd): opp Ballsbridge Hotel",
+        "linkName":"Ballsbridge_Pembroke_Rd_opp_Ballsbridge_Hotel",
+        "ticketName":"Ballsbridge, Pembroke Rd, opp Ballsbridge Hotel",
+        "place":"Ballsbridge",
+        "stopLatitude":53.331521686,
+        "stopLongitude":-6.234595488,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000418",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000418",
+        "name":"Ballsbridge (Merrion Rd): opp Clayton Hotel",
+        "shortName":"Ballsbridge (Merrion Rd): opp Clayton Hotel",
+        "linkName":"Ballsbridge_Merrion_Rd_opp_Clayton_Hotel",
+        "ticketName":"Ballsbridge, Merrion Rd, opp Clayton Hotel",
+        "place":"Ballsbridge",
+        "stopLatitude":53.32571981,
+        "stopLongitude":-6.223395298,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8250DB000469",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB000469",
+        "name":"Blackrock (Rock Rd): Mount Merrion Ave Junction",
+        "shortName":"Blackrock (Rock Rd): Mount Merrion Ave Junction",
+        "linkName":"Blackrock_Rock_Rd_Mount_Merrion_Ave_Junction",
+        "ticketName":"Blackrock, Rock Rd, Mount Merrion Ave Junction",
+        "place":"Blackrock",
+        "stopLatitude":53.302845728,
+        "stopLongitude":-6.184072133,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8250DB000464",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB000464",
+        "name":"Blackrock (Mount Merrion Ave): South Hill Avenue",
+        "shortName":"Blackrock (Mount Merrion Ave): South Hill Avenue",
+        "linkName":"Blackrock_Mount_Merrion_Ave_South_Hill_Avenue",
+        "ticketName":"Blackrock, Mount Merrion Ave, South Hill Avenue",
+        "place":"Blackrock",
+        "stopLatitude":53.298202244,
+        "stopLongitude":-6.198522239,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8250DB000433",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB000433",
+        "name":"Blackrock (Mount Merrion Ave): opp South Hill Avenue",
+        "shortName":"Blackrock (Mount Merrion Ave): opp South Hill Avenue",
+        "linkName":"Blackrock_Mount_Merrion_Ave_opp_South_Hill_Avenue",
+        "ticketName":"Blackrock, Mount Merrion Ave, opp South Hill Avenue",
+        "place":"Blackrock",
+        "stopLatitude":53.298452687,
+        "stopLongitude":-6.197251419,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"8250DB000430",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB000430",
+        "name":"Blackrock (Mount Merrion Ave): Frascati Park",
+        "shortName":"Blackrock (Mount Merrion Ave): Frascati Park",
+        "linkName":"Blackrock_Mount_Merrion_Ave_Frascati_Park",
+        "ticketName":"Blackrock, Mount Merrion Ave, Frascati Park",
+        "place":"Blackrock",
+        "stopLatitude":53.30147162,
+        "stopLongitude":-6.185915967,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"825000037",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000037",
+        "name":"Blackrock (Frascati Rd): Frascati Centre",
+        "shortName":"Blackrock (Frascati Rd): Frascati Centre",
+        "linkName":"Blackrock_Frascati_Rd_Frascati_Centre",
+        "ticketName":"Blackrock, Frascati Rd, Frascati Centre",
+        "place":"Blackrock",
+        "stopLatitude":53.301482407,
+        "stopLongitude":-6.180723984,
+        "services":[
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000038",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000038",
+        "name":"Blackrock (Frascati Rd): opp Frascati Centre",
+        "shortName":"Blackrock (Frascati Rd): opp Frascati Centre",
+        "linkName":"Blackrock_Frascati_Rd_opp_Frascati_Centre",
+        "ticketName":"Blackrock, Frascati Rd, opp Frascati Centre",
+        "place":"Blackrock",
+        "stopLatitude":53.30132484,
+        "stopLongitude":-6.181000762,
+        "services":[
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8250DB003073",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB003073",
+        "name":"Monkstown: Knox Memorial Hall",
+        "shortName":"Monkstown: Knox Memorial Hall",
+        "linkName":"Monkstown_Knox_Memorial_Hall",
+        "ticketName":"Monkstown, Knox Memorial Hall",
+        "place":"Blackrock",
+        "stopLatitude":53.293782585,
+        "stopLongitude":-6.155188246,
+        "services":[
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8250DB000426",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB000426",
+        "name":"Booterstown (Merrion Rd): opp Tara Towers Hotel",
+        "shortName":"Booterstown (Merrion Rd): opp Tara Towers Hotel",
+        "linkName":"Booterstown_Merrion_Rd_opp_Tara_Towers_Hotel",
+        "ticketName":"Booterstown, Merrion Rd, opp Tara Towers Hotel",
+        "place":"Booterstown",
+        "stopLatitude":53.310967349,
+        "stopLongitude":-6.19983067,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8250DB004705",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB004705",
+        "name":"Booterstown (Merrion Rd): Tara Towers Hotel",
+        "shortName":"Booterstown (Merrion Rd): Tara Towers Hotel",
+        "linkName":"Booterstown_Merrion_Rd_Tara_Towers_Hotel",
+        "ticketName":"Booterstown, Merrion Rd, Tara Towers Hotel",
+        "place":"Booterstown",
+        "stopLatitude":53.310818268,
+        "stopLongitude":-6.200077066,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"825000039",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000039",
+        "name":"Booterstown (Rock Rd): opp Dart Station",
+        "shortName":"Booterstown (Rock Rd): opp Dart Station",
+        "linkName":"Booterstown_Rock_Rd_opp_Dart_Station",
+        "ticketName":"Booterstown, Rock Rd, opp Dart Station",
+        "place":"Booterstown",
+        "stopLatitude":53.308215068,
+        "stopLongitude":-6.194949236,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000040",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000040",
+        "name":"Booterstown (Rock Rd): Dart Station",
+        "shortName":"Booterstown (Rock Rd): Dart Station",
+        "linkName":"Booterstown_Rock_Rd_Dart_Station",
+        "ticketName":"Booterstown, Rock Rd, Dart Station",
+        "place":"Booterstown",
+        "stopLatitude":53.307871008,
+        "stopLongitude":-6.194783673,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8350DB004208",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8350DB004208",
+        "name":"Bray (Vevay Rd): opp Wilton Hotel",
+        "shortName":"Bray (Vevay Rd): opp Wilton Hotel",
+        "linkName":"Bray_Vevay_Rd_opp_Wilton_Hotel",
+        "ticketName":"Bray, Vevay Rd, opp Wilton Hotel",
+        "place":"Bray",
+        "stopLatitude":53.187070772,
+        "stopLongitude":-6.099076509,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"835000080",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"835000080",
+        "name":"Bray (Castle St): opp Supervalue",
+        "shortName":"Bray (Castle St): opp Supervalue",
+        "linkName":"Bray_Castle_St_opp_Supervalue",
+        "ticketName":"Bray, Castle St, opp Supervalue",
+        "place":"Bray",
+        "stopLatitude":53.206662893,
+        "stopLongitude":-6.111893183,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"835000081",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"835000081",
+        "name":"Bray (Castle St): Supervalue",
+        "shortName":"Bray (Castle St): Supervalue",
+        "linkName":"Bray_Castle_St_Supervalue",
+        "ticketName":"Bray, Castle St, Supervalue",
+        "place":"Bray",
+        "stopLatitude":53.206600492,
+        "stopLongitude":-6.111925869,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8350DB004303",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8350DB004303",
+        "name":"Bray (Vevay Rd): Wilton Hotel",
+        "shortName":"Bray (Vevay Rd): Wilton Hotel",
+        "linkName":"Bray_Vevay_Rd_Wilton_Hotel",
+        "ticketName":"Bray, Vevay Rd, Wilton Hotel",
+        "place":"Bray",
+        "stopLatitude":53.187324269,
+        "stopLongitude":-6.099753671,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8250B1344302",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250B1344302",
+        "name":"Cabinteely Cross (N11): to Airport",
+        "shortName":"Cabinteely Cross (N11): to Airport",
+        "linkName":"Cabinteely_Cross_N11_to_Airport",
+        "ticketName":"Cabinteely Cross, N11, to Airport",
+        "place":"Cabinteely",
+        "stopLatitude":53.26208699,
+        "stopLongitude":-6.15037682,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8250B1022401",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250B1022401",
+        "name":"Cabinteely Cross (N11): to Greystones",
+        "shortName":"Cabinteely Cross (N11): to Greystones",
+        "linkName":"Cabinteely_Cross_N11_to_Greystones",
+        "ticketName":"Cabinteely Cross, N11, to Greystones",
+        "place":"Cabinteely",
+        "stopLatitude":53.261354269,
+        "stopLongitude":-6.148339765,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"8250DB007361",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB007361",
+        "name":"Cabinteely (N11): opp Cornelscourt Shopping Centre",
+        "shortName":"Cabinteely (N11): opp Cornelscourt Shopping Centre",
+        "linkName":"Cabinteely_N11_opp_Cornelscourt_Shopping_Centre",
+        "ticketName":"Cabinteely, N11, opp Shopping Centre",
+        "place":"Cabinteely",
+        "stopLatitude":53.270416303,
+        "stopLongitude":-6.165895434,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"8250DB002996",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB002996",
+        "name":"Cabinteely (N11): Cornelscourt Shopping Centre",
+        "shortName":"Cabinteely (N11): Cornelscourt Shopping Centre",
+        "linkName":"Cabinteely_N11_Cornelscourt_Shopping_Centre",
+        "ticketName":"Cabinteely, N11, Shopping Centre",
+        "place":"Cabinteely",
+        "stopLatitude":53.270763636,
+        "stopLongitude":-6.167439907,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"822000438",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"822000438",
+        "name":"Grand Canal (Cardiff Lane): opp Clayton Hotel",
+        "shortName":"Grand Canal (Cardiff Lane): opp Clayton Hotel",
+        "linkName":"Grand_Canal_Cardiff_Lane_opp_Clayton_Hotel",
+        "ticketName":"Grand Canal, Cardiff Lane, opp Clayton Hotel",
+        "place":"Cardiff Lane",
+        "stopLatitude":53.345236324,
+        "stopLongitude":-6.240592441,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"837000157",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"837000157",
+        "name":"Cork: Patricks Quay",
+        "shortName":"Cork: Patricks Quay",
+        "linkName":"Cork_Patricks_Quay",
+        "ticketName":"Cork, Patricks Quay",
+        "place":"Cork",
+        "stopLatitude":51.900767216,
+        "stopLongitude":-8.468095207,
+        "services":[
+            {
+                "route":"704X",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Cork_Patricks_Quay-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"704X",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_2_Arrivals-Cork_Patricks_Quay"
+            }
+        ]
+    },
+    {
+        "id":"825000099",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000099",
+        "name":"Dalkey (Castle St): Hyde Rd",
+        "shortName":"Dalkey (Castle St): Hyde Rd",
+        "linkName":"Dalkey_Castle_St_Hyde_Rd",
+        "ticketName":"Dalkey, Castle St, Hyde Rd",
+        "place":"Dalkey",
+        "stopLatitude":53.278374644,
+        "stopLongitude":-6.106903636,
+        "services":[
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000100",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000100",
+        "name":"Dalkey (Barnhill Rd): Hyde Rd",
+        "shortName":"Dalkey (Barnhill Rd): Hyde Rd",
+        "linkName":"Dalkey_Barnhill_Rd_Hyde_Rd",
+        "ticketName":"Dalkey, Barnhill Rd, Hyde Rd",
+        "place":"Dalkey",
+        "stopLatitude":53.278381364,
+        "stopLongitude":-6.107893108,
+        "services":[
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220B106421",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220B106421",
+        "name":"North Wall Quay: The 3 Arena",
+        "shortName":"North Wall Quay: The 3 Arena",
+        "linkName":"North_Wall_Quay_The_3_Arena",
+        "ticketName":"The 3 Arena, North Wall Quay",
+        "place":"Docklands",
+        "stopLatitude":53.346851079,
+        "stopLongitude":-6.22884021,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB007399",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB007399",
+        "name":"3 Arena (Gibson St): East Wall",
+        "shortName":"3 Arena (Gibson St): East Wall",
+        "linkName":"3_Arena_Gibson_St_East_Wall",
+        "ticketName":"The 3 Arena, East Wall Rd",
+        "place":"Docklands",
+        "stopLatitude":53.348369112,
+        "stopLongitude":-6.22695976,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8220DB002500",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB002500",
+        "name":"Docklands: Beckett Bridge",
+        "shortName":"Docklands: Beckett Bridge",
+        "linkName":"Docklands_Beckett_Bridge",
+        "ticketName":"Beckett Bridge",
+        "place":"Docklands",
+        "stopLatitude":53.347736567,
+        "stopLongitude":-6.241916425,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000756",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000756",
+        "name":"Donnybrook (Morehampton Rd): opp Hampton Hotel",
+        "shortName":"Donnybrook (Morehampton Rd): opp Hampton Hotel",
+        "linkName":"Donnybrook_Morehampton_Rd_opp_Hampton_Hotel",
+        "ticketName":"Morehampton Rd, opp Hampton Hotel",
+        "place":"Donnybrook",
+        "stopLatitude":53.326399761,
+        "stopLongitude":-6.242598747,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8220B1063801",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220B1063801",
+        "name":"Donnybrook (Stillorgan Rd): RTÉ",
+        "shortName":"Donnybrook (Stillorgan Rd): RTÉ",
+        "linkName":"Donnybrook_Stillorgan_Rd_RTÉ",
+        "ticketName":"Donnybrook, Stillorgan Rd, RTÉ",
+        "place":"Donnybrook",
+        "stopLatitude":53.314971446,
+        "stopLongitude":-6.225913022,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000759",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000759",
+        "name":"Donnybrook (Donnybrook Rd): Old Wesley RFC",
+        "shortName":"Donnybrook (Donnybrook Rd): Old Wesley RFC",
+        "linkName":"Donnybrook_Donnybrook_Rd_Old_Wesley_RFC",
+        "ticketName":"Donnybrook Rd, Old Wesley RFC",
+        "place":"Donnybrook",
+        "stopLatitude":53.32034885,
+        "stopLongitude":-6.233345517,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"822000389",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"822000389",
+        "name":"Donnybrook (Donnybrook Rd): opp Old Wesley RFC",
+        "shortName":"Donnybrook (Donnybrook Rd): opp Old Wesley RFC",
+        "linkName":"Donnybrook_Donnybrook_Rd_opp_Old_Wesley_RFC",
+        "ticketName":"Donnybrook Rd, opp Old Wesley RFC",
+        "place":"Donnybrook",
+        "stopLatitude":53.319977893,
+        "stopLongitude":-6.233180712,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000770",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000770",
+        "name":"Donnybrook (Stillorgan Rd): opp RTÉ",
+        "shortName":"Donnybrook (Stillorgan Rd): opp RTÉ",
+        "linkName":"Donnybrook_Stillorgan_Rd_opp_RTÉ",
+        "ticketName":"Donnybrook, Stillorgan Rd, opp RTÉ",
+        "place":"Donnybrook",
+        "stopLatitude":53.314636187,
+        "stopLongitude":-6.225731811,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000776",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000776",
+        "name":"Donnybrook (Morehampton Rd): Hampton Hotel",
+        "shortName":"Donnybrook (Morehampton Rd): Hampton Hotel",
+        "linkName":"Donnybrook_Morehampton_Rd_Hampton_Hotel",
+        "ticketName":"Morehampton Rd, Hampton Hotel",
+        "place":"Donnybrook",
+        "stopLatitude":53.325479239,
+        "stopLongitude":-6.241735821,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000047",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000047",
+        "name":"Drumcondra: opp Rail Station",
+        "shortName":"Drumcondra: opp Rail Station",
+        "linkName":"Drumcondra_opp_Rail_Station",
+        "ticketName":"Drumcondra, opp Rail Station",
+        "place":"Drumcondra",
+        "stopLatitude":53.363916118,
+        "stopLongitude":-6.257298257,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000017",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000017",
+        "name":"Drumcondra: Rail Station",
+        "shortName":"Drumcondra: Rail Station",
+        "linkName":"Drumcondra_Rail_Station",
+        "ticketName":"Drumcondra, Rail Station",
+        "place":"Drumcondra",
+        "stopLatitude":53.362917072,
+        "stopLongitude":-6.258435917,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"824000550",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"824000550",
+        "name":"Dublin Airport: T2 Departures",
+        "shortName":"Dublin Airport: T2 Departures",
+        "linkName":"Dublin_Airport_T2_Departures",
+        "ticketName":"Dublin Airport, Terminal 2 Departures",
+        "place":"Dublin Airport",
+        "stopLatitude":53.426918604,
+        "stopLongitude":-6.239884143,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"704X",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Cork_Patricks_Quay-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"705X",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Belfast_Glengall_St-Dublin_City_Centre_O_Connell_St_Gresham_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"824000005",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"824000005",
+        "name":"Dublin Airport: T2 Arrivals",
+        "shortName":"Dublin Airport: T2 Arrivals",
+        "linkName":"Dublin_Airport_T2_Arrivals",
+        "ticketName":"Dublin Airport, Terminal 2 Arrivals",
+        "place":"Dublin Airport",
+        "stopLatitude":53.426570062,
+        "stopLongitude":-6.238800017,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            },
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            },
+            {
+                "route":"704X",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_2_Arrivals-Cork_Patricks_Quay"
+            },
+            {
+                "route":"705X",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_City_Centre_O_Connell_St_opp_Gresham_Hotel-Belfast_Glengall_St"
+            }
+        ]
+    },
+    {
+        "id":"8240000551",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8240000551",
+        "name":"Dublin Airport: Terminal 1",
+        "shortName":"Dublin Airport: Terminal 1",
+        "linkName":"Dublin_Airport_Terminal_1",
+        "ticketName":"Dublin Airport, Terminal 1",
+        "place":"Dublin Airport",
+        "stopLatitude":53.428025233,
+        "stopLongitude":-6.244232673,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            },
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            },
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            },
+            {
+                "route":"704X",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Cork_Patricks_Quay-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"704X",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_2_Arrivals-Cork_Patricks_Quay"
+            },
+            {
+                "route":"705X",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Belfast_Glengall_St-Dublin_City_Centre_O_Connell_St_Gresham_Hotel"
+            },
+            {
+                "route":"705X",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_City_Centre_O_Connell_St_opp_Gresham_Hotel-Belfast_Glengall_St"
+            }
+        ]
+    },
+    {
+        "id":"822000408",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"822000408",
+        "name":"Dublin City Centre: Batchelors Walk",
+        "shortName":"Dublin City Centre: Batchelors Walk",
+        "linkName":"Dublin_City_Centre_Batchelors_Walk",
+        "ticketName":"Dublin City Centre, Batchelors Walk",
+        "place":"Dublin City Centre",
+        "stopLatitude":53.347176411,
+        "stopLongitude":-6.260729871,
+        "services":[
+            {
+                "route":"704X",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Cork_Patricks_Quay-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"822000414",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"822000414",
+        "name":"Dublin City Centre (O'Connell St): Gresham Hotel",
+        "shortName":"Dublin City Centre (O'Connell St): Gresham Hotel",
+        "linkName":"Dublin_City_Centre_O_Connell_St_Gresham_Hotel",
+        "ticketName":"Dublin City Centre, O'Connell St, Gresham Hotel",
+        "place":"Dublin City Centre",
+        "stopLatitude":53.351671958,
+        "stopLongitude":-6.260832245,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            },
+            {
+                "route":"705X",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Belfast_Glengall_St-Dublin_City_Centre_O_Connell_St_Gresham_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000273",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000273",
+        "name":"Dublin City Centre: Trinity College",
+        "shortName":"Dublin City Centre: Trinity College",
+        "linkName":"Dublin_City_Centre_Trinity_College",
+        "ticketName":"Dublin City Centre, Trinity College",
+        "place":"Dublin City Centre",
+        "stopLatitude":53.347247415,
+        "stopLongitude":-6.258819402,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000791",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000791",
+        "name":"Dublin City Centre (St. Stephens Green Nth): opp Shelbourne",
+        "shortName":"Dublin City Centre (St. Stephens Green Nth): opp Shelbourne",
+        "linkName":"Dublin_City_Centre_St_Stephens_Green_Nth_opp_Shelbourne",
+        "ticketName":"Dublin City Centre, St. Stephens Green Nth",
+        "place":"Dublin City Centre",
+        "stopLatitude":53.339115151,
+        "stopLongitude":-6.257724097,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB006060",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB006060",
+        "name":"Dublin City Centre (O'Connell St): opp Gresham Hotel",
+        "shortName":"Dublin City Centre (O'Connell St): opp Gresham Hotel",
+        "linkName":"Dublin_City_Centre_O_Connell_St_opp_Gresham_Hotel",
+        "ticketName":"Dublin City Centre, O'Connell St, opp Gresham Hotel",
+        "place":"Dublin City Centre",
+        "stopLatitude":53.351777989,
+        "stopLongitude":-6.261323651,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"705X",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_City_Centre_O_Connell_St_opp_Gresham_Hotel-Belfast_Glengall_St"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000320",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000320",
+        "name":"Dublin City Centre: Westmoreland St",
+        "shortName":"Dublin City Centre: Westmoreland St",
+        "linkName":"Dublin_City_Centre_Westmoreland_St",
+        "ticketName":"Dublin City Centre, Westmoreland St",
+        "place":"Dublin City Centre",
+        "stopLatitude":53.345546602,
+        "stopLongitude":-6.259294247,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000325",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000325",
+        "name":"Dublin City Centre: Aston Quay",
+        "shortName":"Dublin City Centre: Aston Quay",
+        "linkName":"Dublin_City_Centre_Aston_Quay",
+        "ticketName":"Dublin City Centre, Aston Quay",
+        "place":"Dublin City Centre",
+        "stopLatitude":53.346733199,
+        "stopLongitude":-6.259921807,
+        "services":[
+            {
+                "route":"704X",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_2_Arrivals-Cork_Patricks_Quay"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000746",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000746",
+        "name":"Dublin City Centre: Kildare St",
+        "shortName":"Dublin City Centre: Kildare St",
+        "linkName":"Dublin_City_Centre_Kildare_St",
+        "ticketName":"Dublin City Centre, Kildare St",
+        "place":"Dublin City Centre",
+        "stopLatitude":53.340126448,
+        "stopLongitude":-6.255580373,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000030",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000030",
+        "name":"Glasthule (Glasthule Rd): St Jospeh's Church",
+        "shortName":"Glasthule (Glasthule Rd): St Jospeh's Church",
+        "linkName":"Glasthule_Glasthule_Rd_St_Jospeh_s_Church",
+        "ticketName":"Glasthule, Glasthule Rd, St Jospeh's Ch",
+        "place":"DÂ£n Laoghaire",
+        "stopLatitude":53.287436115,
+        "stopLongitude":-6.124607564,
+        "services":[
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000031",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000031",
+        "name":"Glasthule (Glasthule Rd): opp St Jospeh's Church",
+        "shortName":"Glasthule (Glasthule Rd): opp St Jospeh's Church",
+        "linkName":"Glasthule_Glasthule_Rd_opp_St_Jospeh_s_Church",
+        "ticketName":"Glasthule, Glasthule Rd, opp St Jospeh's Ch",
+        "place":"DÂ£n Laoghaire",
+        "stopLatitude":53.287463273,
+        "stopLongitude":-6.12519136,
+        "services":[
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"825000033",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000033",
+        "name":"Dun Laoghaire (Marine Rd): Royal Marine Hotel",
+        "shortName":"Dun Laoghaire (Marine Rd): Royal Marine Hotel",
+        "linkName":"Dun_Laoghaire_Marine_Rd_Royal_Marine_Hotel",
+        "ticketName":"Dun Laoghaire, Marine Rd, Royal Marine Hotel",
+        "place":"DÂ£n Laoghaire",
+        "stopLatitude":53.292521946,
+        "stopLongitude":-6.133309986,
+        "services":[
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000034",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000034",
+        "name":"Dun Laoghaire: Marine Rd",
+        "shortName":"Dun Laoghaire: Marine Rd",
+        "linkName":"Dun_Laoghaire_Marine_Rd",
+        "ticketName":"Dun Laoghaire, Marine Rd",
+        "place":"DÂ£n Laoghaire",
+        "stopLatitude":53.29401221,
+        "stopLongitude":-6.134130709,
+        "services":[
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000035",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000035",
+        "name":"Dun Laoghaire: Marine Rd",
+        "shortName":"Dun Laoghaire: Marine Rd",
+        "linkName":"Dun_Laoghaire_Marine_Rd",
+        "ticketName":"Dun Laoghaire, Marine Rd",
+        "place":"DÂ£n Laoghaire",
+        "stopLatitude":53.294052361,
+        "stopLongitude":-6.134398993,
+        "services":[
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"825000036",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000036",
+        "name":"Monkstown: opp Knox Memorial Hall",
+        "shortName":"Monkstown: opp Knox Memorial Hall",
+        "linkName":"Monkstown_opp_Knox_Memorial_Hall",
+        "ticketName":"Monkstown, opp Knox Memorial Hall",
+        "place":"DÂ£n Laoghaire",
+        "stopLatitude":53.293889909,
+        "stopLongitude":-6.155153617,
+        "services":[
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000055",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000055",
+        "name":"Foxrock (N11): Foxrock opp Church",
+        "shortName":"Foxrock (N11): Foxrock opp Church",
+        "linkName":"Foxrock_N11_Foxrock_opp_Church",
+        "ticketName":"Foxrock, N11, Foxrock opp Ch",
+        "place":"Foxrock",
+        "stopLatitude":53.274004205,
+        "stopLongitude":-6.175368481,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8250DB002017",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB002017",
+        "name":"Foxrock (N11): Foxrock Church",
+        "shortName":"Foxrock (N11): Foxrock Church",
+        "linkName":"Foxrock_N11_Foxrock_Church",
+        "ticketName":"Foxrock, N11, Foxrock Ch",
+        "place":"Foxrock",
+        "stopLatitude":53.274196544,
+        "stopLongitude":-6.175015407,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"825000226",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000226",
+        "name":"Galloping Green: N11",
+        "shortName":"Galloping Green: N11",
+        "linkName":"Galloping_Green_N11",
+        "ticketName":"Galloping Green, N11",
+        "place":"Galloping Green",
+        "stopLatitude":53.280682765,
+        "stopLongitude":-6.190126057,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"825000227",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000227",
+        "name":"Galloping Green: N11",
+        "shortName":"Galloping Green: N11",
+        "linkName":"Galloping_Green_N11",
+        "ticketName":"Galloping Green, N11",
+        "place":"Galloping Green",
+        "stopLatitude":53.280210212,
+        "stopLongitude":-6.189786101,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"835000007",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"835000007",
+        "name":"Greystones: Charlesland",
+        "shortName":"Greystones: Charlesland",
+        "linkName":"Greystones_Charlesland",
+        "ticketName":"Greystones, Charlesland",
+        "place":"Greystones",
+        "stopLatitude":53.128824427,
+        "stopLongitude":-6.062823155,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"835000001",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"835000001",
+        "name":"Greystones (Dublin Rd): Lidl",
+        "shortName":"Greystones (Dublin Rd): Lidl",
+        "linkName":"Greystones_Dublin_Rd_Lidl",
+        "ticketName":"Greystones, Dublin Rd, Lidl",
+        "place":"Greystones",
+        "stopLatitude":53.152199466,
+        "stopLongitude":-6.081418514,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"835000004",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"835000004",
+        "name":"Greystones (Church Rd): DART Station",
+        "shortName":"Greystones (Church Rd): DART Station",
+        "linkName":"Greystones_Church_Rd_DART_Station",
+        "ticketName":"Greystones, Church Rd, DART Station",
+        "place":"Greystones",
+        "stopLatitude":53.143904855,
+        "stopLongitude":-6.061008262,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"835000005",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"835000005",
+        "name":"Greystones (Church Rd): opp DART Station",
+        "shortName":"Greystones (Church Rd): opp DART Station",
+        "linkName":"Greystones_Church_Rd_opp_DART_Station",
+        "ticketName":"Greystones, Church Rd, opp DART Station",
+        "place":"Greystones",
+        "stopLatitude":53.144057083,
+        "stopLongitude":-6.061524645,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"835000003",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"835000003",
+        "name":"Greystones (Dublin Rd): opp Lidl",
+        "shortName":"Greystones (Dublin Rd): opp Lidl",
+        "linkName":"Greystones_Dublin_Rd_opp_Lidl",
+        "ticketName":"Greystones, Dublin Rd, opp Lidl",
+        "place":"Greystones",
+        "stopLatitude":53.152158167,
+        "stopLongitude":-6.081644643,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"825000098",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000098",
+        "name":"Killiney: Fitzpatrick Castle Hotel",
+        "shortName":"Killiney: Fitzpatrick Castle Hotel",
+        "linkName":"Killiney_Fitzpatrick_Castle_Hotel",
+        "ticketName":"Killiney, Fitzpatrick Castle Hotel",
+        "place":"Killiney",
+        "stopLatitude":53.269544735,
+        "stopLongitude":-6.113501101,
+        "services":[
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8250DB004984",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB004984",
+        "name":"Leopardstown: Burton Hall Rd",
+        "shortName":"Leopardstown: Burton Hall Rd",
+        "linkName":"Leopardstown_Burton_Hall_Rd",
+        "ticketName":"Leopardstown, Burton Hall Rd",
+        "place":"Leopardstown",
+        "stopLatitude":53.273720401,
+        "stopLongitude":-6.203435589,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"825000062",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000062",
+        "name":"Leopardstown: Clayton Hotel",
+        "shortName":"Leopardstown: Clayton Hotel",
+        "linkName":"Leopardstown_Clayton_Hotel",
+        "ticketName":"Leopardstown, Clayton Hotel",
+        "place":"Leopardstown",
+        "stopLatitude":53.271340593,
+        "stopLongitude":-6.205364633,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"822000379",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"822000379",
+        "name":"Lesson St (Lesson St Lower): Premier Suites Dublin",
+        "shortName":"Lesson St (Lesson St Lower): Premier Suites Dublin",
+        "linkName":"Lesson_St_Lesson_St_Lower_Premier_Suites_Dublin",
+        "ticketName":"Leeson St, Leeson St Lower, Premier Suites Dublin",
+        "place":"Lesson St",
+        "stopLatitude":53.335356169,
+        "stopLongitude":-6.2563607,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"822000380",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"822000380",
+        "name":"Lesson St: Lesson St Lower",
+        "shortName":"Lesson St: Lesson St Lower",
+        "linkName":"Lesson_St_Lesson_St_Lower",
+        "ticketName":"Leeson St, Leeson St Lower",
+        "place":"Lesson St",
+        "stopLatitude":53.335470313,
+        "stopLongitude":-6.256175849,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000058",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000058",
+        "name":"Loughlinstown Fly Over: N11",
+        "shortName":"Loughlinstown Fly Over: N11",
+        "linkName":"Loughlinstown_Fly_Over_N11",
+        "ticketName":"Loughlinstown Fly Over, N11",
+        "place":"Loughlinstown",
+        "stopLatitude":53.24762639,
+        "stopLongitude":-6.137213891,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"825000059",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000059",
+        "name":"Loughlinstown Fly Over: N11",
+        "shortName":"Loughlinstown Fly Over: N11",
+        "linkName":"Loughlinstown_Fly_Over_N11",
+        "ticketName":"Loughlinstown Fly Over, N11",
+        "place":"Loughlinstown",
+        "stopLatitude":53.247919117,
+        "stopLongitude":-6.138115305,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000478",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000478",
+        "name":"Merrion Rd: St. Vincents Hospital",
+        "shortName":"Merrion Rd: St. Vincents Hospital",
+        "linkName":"Merrion_Rd_St_Vincents_Hospital",
+        "ticketName":"Merrion Rd, St. Vincents Hospital",
+        "place":"Merrion Road",
+        "stopLatitude":53.318114298,
+        "stopLongitude":-6.211267825,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            },
+            {
+                "route":"703",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Killiney_Fitzpatrick_Castle_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8220DB000422",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8220DB000422",
+        "name":"Merrion Rd: opp St. Vincents Hospital",
+        "shortName":"Merrion Rd: opp St. Vincents Hospital",
+        "linkName":"Merrion_Rd_opp_St_Vincents_Hospital",
+        "ticketName":"Merrion Rd, opp St. Vincents Hospital",
+        "place":"Merrion Road",
+        "stopLatitude":53.318064191,
+        "stopLongitude":-6.210324281,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            },
+            {
+                "route":"703",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Killiney_Fitzpatrick_Castle_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8250DB003187",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB003187",
+        "name":"Sandyford: Burton Hall Rd",
+        "shortName":"Sandyford: Burton Hall Rd",
+        "linkName":"Sandyford_Burton_Hall_Rd",
+        "ticketName":"Sandyford, Burton Hall Rd",
+        "place":"Sandyford",
+        "stopLatitude":53.273826611,
+        "stopLongitude":-6.203326171,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000027",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000027",
+        "name":"Sandyford (Blackthorn Avenue): opp Microsoft",
+        "shortName":"Sandyford (Blackthorn Avenue): opp Microsoft",
+        "linkName":"Sandyford_Blackthorn_Avenue_opp_Microsoft",
+        "ticketName":"Sandyford, Blackthorn Avenue, opp Microsoft",
+        "place":"Sandyford",
+        "stopLatitude":53.277053011,
+        "stopLongitude":-6.207479632,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8250DB005142",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB005142",
+        "name":"Sandyford: LUAS Stop",
+        "shortName":"Sandyford: LUAS Stop",
+        "linkName":"Sandyford_LUAS_Stop",
+        "ticketName":"Sandyford, LUAS Stop",
+        "place":"Sandyford",
+        "stopLatitude":53.277674471,
+        "stopLongitude":-6.20517423,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000060",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000060",
+        "name":"Shankill Village: Mickey Byrne’s Bar",
+        "shortName":"Shankill Village: Mickey Byrne’s Bar",
+        "linkName":"Shankill_Village_Mickey_Byrne_s_Bar",
+        "ticketName":"Shankill Village, Mickey Byrne’s Bar",
+        "place":"Shankill",
+        "stopLatitude":53.229991515,
+        "stopLongitude":-6.124063674,
+        "services":[
+            {
+                "route":"702",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Greystones_Charlesland"
+            }
+        ]
+    },
+    {
+        "id":"825000061",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000061",
+        "name":"Shankill Village: opp Mickey Byrne’s Bar",
+        "shortName":"Shankill Village: opp Mickey Byrne’s Bar",
+        "linkName":"Shankill_Village_opp_Mickey_Byrne_s_Bar",
+        "ticketName":"Shankill Village, opp Mickey Byrne’s Bar",
+        "place":"Shankill",
+        "stopLatitude":53.229696985,
+        "stopLongitude":-6.124196387,
+        "services":[
+            {
+                "route":"702",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Greystones_Charlesland-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8250DB002009",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB002009",
+        "name":"Stillorgan (N11): Radisson Blue St. Helens Hotel",
+        "shortName":"Stillorgan (N11): Radisson Blue St. Helens Hotel",
+        "linkName":"Stillorgan_N11_Radisson_Blue_St_Helens_Hotel",
+        "ticketName":"Stillorgan, N11, Radisson Blu Hotel",
+        "place":"Stillorgan",
+        "stopLatitude":53.303322058,
+        "stopLongitude":-6.207834882,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8250DB005045",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB005045",
+        "name":"Kilmacud (Stillorgan Wood): opp St. Raphaela’s School",
+        "shortName":"Kilmacud (Stillorgan Wood): opp St. Raphaela’s School",
+        "linkName":"Kilmacud_Stillorgan_Wood_opp_St_Raphaela_s_School",
+        "ticketName":"Kilmacud, opp St. Raphaela’s School",
+        "place":"Stillorgan",
+        "stopLatitude":53.283576957,
+        "stopLongitude":-6.209171297,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"825000066",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000066",
+        "name":"Stillorgan (N11): opp Talbot Hotel",
+        "shortName":"Stillorgan (N11): opp Talbot Hotel",
+        "linkName":"Stillorgan_N11_opp_Talbot_Hotel",
+        "ticketName":"Stillorgan, N11, opp Talbot Hotel",
+        "place":"Stillorgan",
+        "stopLatitude":53.295107169,
+        "stopLongitude":-6.20367822,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"825000029",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000029",
+        "name":"Stillorgan Village (Lower Kilmacud Rd): Shopping Centre",
+        "shortName":"Stillorgan Village (Lower Kilmacud Rd): Shopping Centre",
+        "linkName":"Stillorgan_Village_Lower_Kilmacud_Rd_Shopping_Centre",
+        "ticketName":"Stillorgan Village Shopping Centre",
+        "place":"Stillorgan",
+        "stopLatitude":53.288514276,
+        "stopLongitude":-6.200399891,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"825000072",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000072",
+        "name":"Stillorgan Village (Lower Kilmacud Rd): opp Shopping Centre",
+        "shortName":"Stillorgan Village (Lower Kilmacud Rd): opp Shopping Centre",
+        "linkName":"Stillorgan_Village_Lower_Kilmacud_Rd_opp_Shopping_Centre",
+        "ticketName":"Stillorgan Village opp Shopping Centre",
+        "place":"Stillorgan",
+        "stopLatitude":53.288070249,
+        "stopLongitude":-6.201948521,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8250DB004779",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB004779",
+        "name":"Kilmacud (Stillorgan Wood): St. Raphaela’s School",
+        "shortName":"Kilmacud (Stillorgan Wood): St. Raphaela’s School",
+        "linkName":"Kilmacud_Stillorgan_Wood_St_Raphaela_s_School",
+        "ticketName":"Kilmacud, St. Raphaela’s School",
+        "place":"Stillorgan",
+        "stopLatitude":53.283178794,
+        "stopLongitude":-6.208992975,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8250B1022101",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250B1022101",
+        "name":"Stillorgan (N11): Talbot Hotel",
+        "shortName":"Stillorgan (N11): Talbot Hotel",
+        "linkName":"Stillorgan_N11_Talbot_Hotel",
+        "ticketName":"Stillorgan, N11, Talbot Hotel",
+        "place":"Stillorgan",
+        "stopLatitude":53.295852046,
+        "stopLongitude":-6.203601952,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"8250DB002070",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB002070",
+        "name":"Stillorgan (N11): opp Radisson Blue St. Helens Hotel",
+        "shortName":"Stillorgan (N11): opp Radisson Blue St. Helens Hotel",
+        "linkName":"Stillorgan_N11_opp_Radisson_Blue_St_Helens_Hotel",
+        "ticketName":"Stillorgan, N11, opp Radisson Blu Hotel",
+        "place":"Stillorgan",
+        "stopLatitude":53.303182843,
+        "stopLongitude":-6.208140812,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"8250DB000764",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"8250DB000764",
+        "name":"UCD: Montrose Student Residence",
+        "shortName":"UCD: Montrose Student Residence",
+        "linkName":"UCD_Montrose_Student_Residence",
+        "ticketName":"UCD, Montrose Student Residence",
+        "place":"UCD",
+        "stopLatitude":53.309835244,
+        "stopLongitude":-6.217812008,
+        "services":[
+            {
+                "route":"700",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_Airport_Terminal_1-Leopardstown_Clayton_Hotel"
+            }
+        ]
+    },
+    {
+        "id":"825000354",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"825000354",
+        "name":"UCD (Stillorgan Rd): entrance to UCD",
+        "shortName":"UCD (Stillorgan Rd): entrance to UCD",
+        "linkName":"UCD_Stillorgan_Rd_entrance_to_UCD",
+        "ticketName":"UCD, Stillorgan Rd, entrance to UCD",
+        "place":"UCD",
+        "stopLatitude":53.309455244,
+        "stopLongitude":-6.218848323,
+        "services":[
+            {
+                "route":"700",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Leopardstown_Clayton_Hotel-Dublin_Airport_Terminal_1"
+            }
+        ]
+    },
+    {
+        "id":"700000014719",
+        "naptan":null,
+        "naptanDir":null,
+        "stopId":"700000014719",
+        "name":"Belfast: Glengall St",
+        "shortName":"Belfast: Glengall St",
+        "linkName":"Belfast_Glengall_St",
+        "ticketName":"Belfast, Glengall St",
+        "place":"",
+        "stopLatitude":54.59508806,
+        "stopLongitude":-5.93719485,
+        "services":[
+            {
+                "route":"705X",
+                "dir":"I",
+                "colour":null,
+                "linkName":"Belfast_Glengall_St-Dublin_City_Centre_O_Connell_St_Gresham_Hotel"
+            },
+            {
+                "route":"705X",
+                "dir":"O",
+                "colour":null,
+                "linkName":"Dublin_City_Centre_O_Connell_St_opp_Gresham_Hotel-Belfast_Glengall_St"
+            }
+        ]
+    }
+]

@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <GetRoutesResponse xmlns="http://dublinbus.ie/">
+            <GetRoutesResult>
+                <Routes>
+                    <Route>
+                        <Number>1</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Sandymount (St. John's Church)</Towards>
+                        <From>Santry (Shanard Rd.)</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>11</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Sandyford Business District</Towards>
+                        <From>Wadelai Park</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>116</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Whitechurch</Towards>
+                        <From>Parnell Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>118</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Eden Quay</Towards>
+                        <From>Kilternan</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>120</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Ashtown Rail Station </Towards>
+                        <From>Parnell St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>122</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Drimnagh Rd.</Towards>
+                        <From>Ashington</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>123</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Marino</Towards>
+                        <From>Walkinstown (Kilnamanagh Rd.)</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>13</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Grange Castle</Towards>
+                        <From>Harristown</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>130</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Castle Ave.</Towards>
+                        <From>Lwr. Abbey St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>14</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Dundrum Luas Station</Towards>
+                        <From>Beaumont (Ardlea Rd.)</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>140</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Palmerston Park</Towards>
+                        <From>Ballymun (IKEA)</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>142</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>UCD Belfield</Towards>
+                        <From>Portmarnock</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>145</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Ballywaltrim</Towards>
+                        <From>Heuston Rail Station</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>14C</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Beaumont / Dundrum</Towards>
+                        <From>City Centre</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>15</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Ballycullen Rd.</Towards>
+                        <From>Clongriffin</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>150</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Rossmore</Towards>
+                        <From>Hawkins St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>151</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Foxborough (Balgaddy Rd.)</Towards>
+                        <From>Docklands (East Rd.)</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>155</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Bray Rail Station</Towards>
+                        <From>IKEA (Ballymun)</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>15A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Limekiln Ave.</Towards>
+                        <From>Ringsend Rd. (Barrow St.)</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>15B</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Stocking Ave.</Towards>
+                        <From>Ringsend Rd. (Barrow St.)</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>15D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Whitechurch</Towards>
+                        <From>Ringsend Rd. (Barrow St.)</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>15E</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Camden St.</Towards>
+                        <From>Clongriffin</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>16</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Ballinteer (Kingston)</Towards>
+                        <From>Dublin Airport</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>16C</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Ballinteer or Airport</Towards>
+                        <From>City Centre</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>16D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>1C</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Parnell Sq.</Towards>
+                        <From>St. John's Church</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>25</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Lucan (Dodsboro)</Towards>
+                        <From>Merrion Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>25A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Lucan (Esker Church)</Towards>
+                        <From>Merrion Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>25B</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Adamstown Rail Station</Towards>
+                        <From>Merrion Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>25D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Adamstown Rail Station</Towards>
+                        <From>Merrion Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>25X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Lucan</Towards>
+                        <From>UCD Belfield</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>26</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Liffey Valley Shopping Centre</Towards>
+                        <From>Merrion Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>27</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Jobstown</Towards>
+                        <From>Clare Hall</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>27A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Blunden Drive</Towards>
+                        <From>Eden Quay</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>27B</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Harristown</Towards>
+                        <From>Eden Quay</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>27X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Clare Hall</Towards>
+                        <From>UCD Belfield</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>29A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Baldoyle (Coast Rd.)</Towards>
+                        <From>Lwr. Abbey St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>31</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Howth Summit</Towards>
+                        <From>Lwr. Abbey St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>31A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Shielmartin Rd.</Towards>
+                        <From>Lwr. Abbey St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>31B</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Howth Summit</Towards>
+                        <From>Talbot St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>31D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Baldoyle</Towards>
+                        <From>DCU  </From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>32</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Malahide</Towards>
+                        <From>Talbot St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>32X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>UCD Belfield</Towards>
+                        <From>Malahide</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>33</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Balbriggan</Towards>
+                        <From>Lwr. Abbey St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>33D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Portrane</Towards>
+                        <From>Custom House Quay / St. Stephens Green</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>33E</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>33X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Skerries</Towards>
+                        <From>Custom House Quay / St. Stephen's Green  </From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>37</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Blanchardstown Centre</Towards>
+                        <From>Baggot St. / Wilton Terrace</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>38</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Damastown</Towards>
+                        <From>Burlington Rd.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>38A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Damastown</Towards>
+                        <From>Burlington Rd.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>38B</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Damastown</Towards>
+                        <From>Burlington Rd.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>38D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Damastown</Towards>
+                        <From>Burlington Rd.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>39</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Ongar</Towards>
+                        <From>Burlington Rd.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>39A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Ongar</Towards>
+                        <From>UCD Belfield</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>39X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Ongar</Towards>
+                        <From>Burlington Rd.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>4</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Monkstown Avenue</Towards>
+                        <From>Harristown</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>40</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Liffey Valley Shopping Centre</Towards>
+                        <From>Charlestown Shopping Centre</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>40B</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Toberburr</Towards>
+                        <From>Parnell St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>40D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Tyrrelstown</Towards>
+                        <From>Parnell St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>40E</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Tyrrelstown</Towards>
+                        <From>Broombridge Luas</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>41</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Swords Manor</Towards>
+                        <From>Lwr. Abbey St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>41A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Swords Manor</Towards>
+                        <From>City Centre</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>41B</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Rolestown</Towards>
+                        <From>Lwr. Abbey St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>41C</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Swords Manor</Towards>
+                        <From>Lwr. Abbey St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>41D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>41X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Knocksedan</Towards>
+                        <From>UCD Belfield</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>42</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Sand's Hotel (Portmarnock)</Towards>
+                        <From>Talbot St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>42D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Portmarnock</Towards>
+                        <From>DCU  </From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>43</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Swords Business Park</Towards>
+                        <From>Talbot St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>44</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Enniskerry</Towards>
+                        <From>DCU  </From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>44B</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Glencullen</Towards>
+                        <From>Dundrum Luas Station</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>46A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Dun Laoghaire</Towards>
+                        <From>Phoenix Park </From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>46E</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Blackrock Rail Station</Towards>
+                        <From>Mountjoy Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>47</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Belarmine</Towards>
+                        <From>Poolbeg St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>49</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Tallaght (The Square)</Towards>
+                        <From>Pearse Street</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>51D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Clondalkin</Towards>
+                        <From>Aston Quay / Waterloo Rd.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>51X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>UCD Belfield</Towards>
+                        <From>Dunawley</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>53</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Dublin Ferryport</Towards>
+                        <From>Talbot St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>53A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Sheriff Street Upper</Towards>
+                        <From>Talbot St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>54A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Ellensborough / Kiltipper Way</Towards>
+                        <From>Pearse Street</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>56A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Tallaght (The Square)</Towards>
+                        <From>Ringsend Rd.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>61</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Whitechurch</Towards>
+                        <From>Eden Quay</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>65</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Blessington / Ballymore</Towards>
+                        <From>Poolbeg St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>65B</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Citywest</Towards>
+                        <From>Poolbeg St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>66</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Maynooth</Towards>
+                        <From>Merrion Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>66A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Leixlip (Captain's Hill)</Towards>
+                        <From>Merrion Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>66B</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Leixlip (Castletown)</Towards>
+                        <From>Merrion Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>66E</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Maynooth</Towards>
+                        <From>Merrion Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>66X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Maynooth</Towards>
+                        <From>UCD Belfield</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>67</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Maynooth</Towards>
+                        <From>Merrion Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>67X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Celbridge (Salesian College)</Towards>
+                        <From>UCD Belfield </From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>68</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Newcastle / Greenogue Business Park</Towards>
+                        <From>Burgh Quay</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>68A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Bulfin Rd.</Towards>
+                        <From>Burgh Quay</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>68X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Hawkins St.</Towards>
+                        <From>Newcastle / Greenogue Business Park</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>69</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Rathcoole</Towards>
+                        <From>Hawkins St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>69X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Rathcoole</Towards>
+                        <From>Hawkins St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>7</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Brides Glen Luas</Towards>
+                        <From>Mountjoy Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>70</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Dunboyne</Towards>
+                        <From>Burlington Rd.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>70D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Dunboyne</Towards>
+                        <From>DCU  </From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>747</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Dublin Airport</Towards>
+                        <From>Heuston Rail Station</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>757</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Dublin Airport</Towards>
+                        <From>Camden Street (Charlotte Way)</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>77A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Citywest</Towards>
+                        <From>Ringsend Rd.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>77X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>UCD Belfield</Towards>
+                        <From>Citywest</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>79</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Spiddal Park</Towards>
+                        <From>Aston Quay</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>79A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Parkwest</Towards>
+                        <From>Aston Quay</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>7A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Loughlinstown</Towards>
+                        <From>Mountjoy Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>7B</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Shankill</Towards>
+                        <From>Mountjoy Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>7D</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Dalkey</Towards>
+                        <From>Mountjoy Sq.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>83</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Kimmage</Towards>
+                        <From>Harristown</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>83A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Kimmage</Towards>
+                        <From>Harristown</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>84</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Newcastle</Towards>
+                        <From>Blackrock</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>84A</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Bray</Towards>
+                        <From>Blackrock</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>84X</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Newcastle/Kilcoole </Towards>
+                        <From>Hawkins St.</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                    <Route>
+                        <Number>9</Number>
+                        <SeqNumber>0</SeqNumber>
+                        <Towards>Limekiln Ave.</Towards>
+                        <From>Charlestown</From>
+                        <IsStaged>false</IsStaged>
+                        <IsXpresso>false</IsXpresso>
+                        <IsNitelink>false</IsNitelink>
+                        <IsMinimumFare>false</IsMinimumFare>
+                    </Route>
+                </Routes>
+            </GetRoutesResult>
+        </GetRoutesResponse>
+    </soap:Body>
+</soap:Envelope>
