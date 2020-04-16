@@ -93,7 +93,7 @@ class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
 
     private val gsonConverterFactory = GsonConverterFactory.create()
 
-    private val xmlConverterFactory =SimpleXmlConverterFactory.create()
+    private val xmlConverterFactory = SimpleXmlConverterFactory.create()
 
     private val aircoachApi = Retrofit.Builder()
         .baseUrl("https://tracker.aircoach.ie/")
