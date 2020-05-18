@@ -75,7 +75,9 @@ subprojects {
     version = '0.2.0'
 
     Properties properties = new Properties()
-    properties.load(project.rootProject.file("github.properties").newDataInputStream())
+    if (project.rootProject.file("github.properties").exists()) {
+        properties.load(project.rootProject.file("github.properties").newDataInputStream())
+    }
 
     repositories {
         jcenter()
