@@ -12,6 +12,8 @@
 *.ipr
 *.iws
 
+github.properties
+
 *.pyc
 *.tar.gz
 

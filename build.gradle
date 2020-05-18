@@ -72,17 +72,33 @@ subprojects {
     apply plugin: 'maven-publish'
 
     group = 'io.rtpi'
-    version = '0.1.0'
+    version = '0.2.0'
+
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file("github.properties").newDataInputStream())
 
     repositories {
         jcenter()
         mavenCentral()
     }
     publishing {
-        publications {
-            maven(MavenPublication) {
-                from components.java
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/conor-ob/dublin-rtpi-service")
+                credentials {
+                    username = properties.getProperty("gpr.usr")
+                    password = properties.getProperty("gpr.key")
+                }
             }
+        }
+        publications {
+            gpr(MavenPublication) {
+                from(components.java)
+            }
+//            maven(MavenPublication) { // do I need this for publishToMavenLocal?
+//                from components.java
+//            }
         }
     }
 }
