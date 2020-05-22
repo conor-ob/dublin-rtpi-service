@@ -98,9 +98,6 @@ subprojects {
             gpr(MavenPublication) {
                 from(components.java)
             }
-//            maven(MavenPublication) { // do I need this for publishToMavenLocal?
-//                from components.java
-//            }
         }
     }
 }
