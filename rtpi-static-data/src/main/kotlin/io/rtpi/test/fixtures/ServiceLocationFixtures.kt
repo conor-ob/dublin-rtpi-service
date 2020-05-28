@@ -30,7 +30,7 @@ fun createDockLocation(
     availableBikes: Int = randomInt(),
     availableDocks: Int = randomInt(),
     totalDocks: Int = randomInt()
-): ServiceLocation = DockLocation(id, name, service, coordinate, availableBikes, availableDocks, totalDocks)
+) = DockLocation(id, name, service, coordinate, availableBikes, availableDocks, totalDocks)
 
 fun randomCoordinatePoint(): Double = Random.nextDouble(from = 0.0, until = 90.0)
 
