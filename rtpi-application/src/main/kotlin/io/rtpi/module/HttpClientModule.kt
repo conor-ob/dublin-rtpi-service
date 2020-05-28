@@ -28,19 +28,22 @@ class HttpClientModule : KotlinModule() {
     @Named("aircoach_client")
     fun aircoachHttpClient(): OkHttpClient {
         val sslContext = SSLContext.getInstance("TLS")
+        val x509TrustManager = object : X509TrustManager {
+
+            override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {
+            }
+
+            override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {
+            }
+
+            override fun getAcceptedIssuers(): Array<X509Certificate> {
+                return emptyArray()
+            }
+        }
+
         sslContext.init(
             null,
-            arrayOf<X509TrustManager>(object : X509TrustManager {
-                override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {
-                }
-
-                override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {
-                }
-
-                override fun getAcceptedIssuers(): Array<X509Certificate> {
-                    return emptyArray()
-                }
-            }),
+            arrayOf(x509TrustManager),
             SecureRandom()
         )
         return OkHttpClient.Builder()
@@ -49,7 +52,7 @@ class HttpClientModule : KotlinModule() {
                     session.peerHost == "tracker.aircoach.ie" &&
                     session.peerPort == 443
             }
-            .sslSocketFactory(sslContext.socketFactory)
+            .sslSocketFactory(sslContext.socketFactory, x509TrustManager)
             .retryOnConnectionFailure(true)
             .connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
