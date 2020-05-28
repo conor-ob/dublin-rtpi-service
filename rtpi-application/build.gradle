@@ -58,9 +58,13 @@ shadowJar {
     archiveName 'dublin-rtpi-service.jar'
 }
 
+def gitBranch = "git rev-parse --abbrev-ref HEAD".execute().text.trim()
+def jarBuildDate = ZonedDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ISO_LOCAL_DATE)
+def gitCommitHash = "git rev-parse HEAD".execute().text.trim().substring(0, 7)
+
 buildConfig {
     appName = project.name
-    version = "${project.version}-heroku"
+    version = "${project.version}-$gitBranch-$jarBuildDate-$gitCommitHash"
     clsName = 'BuildConfig'
     packageName = project.group
     charset = 'UTF-8'

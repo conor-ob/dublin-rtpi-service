@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
 
     private val rtpiApi = Retrofit.Builder()
-        .baseUrl("https://dublin-rtpi.herokuapp.com/")
+        .baseUrl("http://localhost:8080/")
         .client(
             rtpiClientConfiguration.okHttpClient ?: OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
