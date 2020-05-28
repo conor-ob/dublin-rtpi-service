@@ -1,18 +1,18 @@
-package io.rtpi.client
+package io.rtpi.test.client
 
 import io.reactivex.Single
 import io.rtpi.api.ServiceLocation
-import io.rtpi.service.dublinbus.DublinBusStopService
+import io.rtpi.service.buseireann.BusEireannStopService
 
-class DublinBusStaticDataClient(
-    private val dublinBusStopService: DublinBusStopService
+class BusEireannStaticDataClient(
+    private val busEireannStopService: BusEireannStopService
 ) {
 
     private val cached = mutableListOf<ServiceLocation>()
 
     fun getStops(): Single<List<ServiceLocation>> =
         if (cached.isEmpty()) {
-            dublinBusStopService.getStops().doAfterSuccess { cached.addAll(it) }
+            busEireannStopService.getStops().doAfterSuccess { cached.addAll(it) }
         } else {
             Single.just(cached)
         }

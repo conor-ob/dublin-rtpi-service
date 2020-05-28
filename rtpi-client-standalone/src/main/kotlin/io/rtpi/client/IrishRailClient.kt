@@ -18,5 +18,4 @@ class IrishRailClient(
     fun getLiveData(stationId: String): Single<List<LiveData>> {
         return irishRailLiveDataService.getLiveData(stationId)
     }
-
 }

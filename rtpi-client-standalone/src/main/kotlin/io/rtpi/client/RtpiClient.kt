@@ -23,16 +23,16 @@ import io.rtpi.service.irishrail.IrishRailLiveDataService
 import io.rtpi.service.irishrail.IrishRailStationService
 import io.rtpi.service.luas.LuasLiveDataService
 import io.rtpi.service.luas.LuasStopService
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 import javax.net.ssl.X509TrustManager
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 
 class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
 
@@ -57,7 +57,7 @@ class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
                 }
 
                 override fun getAcceptedIssuers(): Array<X509Certificate> {
-                    return  emptyArray()
+                    return emptyArray()
                 }
             }),
             SecureRandom()
@@ -70,9 +70,9 @@ class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
     private fun newAircoachOkHttpClient(okHttpClient: OkHttpClient?): OkHttpClient {
         val builder = OkHttpClient.Builder()
             .hostnameVerifier { hostname, session ->
-                return@hostnameVerifier hostname == "tracker.aircoach.ie"
-                    && session.peerHost == "tracker.aircoach.ie"
-                    && session.peerPort == 443
+                return@hostnameVerifier hostname == "tracker.aircoach.ie" &&
+                    session.peerHost == "tracker.aircoach.ie" &&
+                    session.peerPort == 443
             }
             .sslSocketFactory(sslContext.socketFactory)
             .retryOnConnectionFailure(okHttpClient?.retryOnConnectionFailure() ?: true)

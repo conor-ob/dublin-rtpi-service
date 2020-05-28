@@ -23,12 +23,12 @@ enum class Service(
 
         fun parse(value: String): Service {
             for (service in values()) {
-                if (service.name.equals(value, ignoreCase = true)
-                    || service.fullName.equals(value, ignoreCase = true)
-                    || service.shortName.equals(value, ignoreCase = true)
-                    || service.name.replace(oldValue = "_", newValue = " ").equals(value, ignoreCase = true)
-                    || service.name.normalize().equals(value, ignoreCase = true)
-                    || service.name.replace(oldValue = "_", newValue = " ").normalize().equals(value, ignoreCase = true)
+                if (service.name.equals(value, ignoreCase = true) ||
+                    service.fullName.equals(value, ignoreCase = true) ||
+                    service.shortName.equals(value, ignoreCase = true) ||
+                    service.name.replace(oldValue = "_", newValue = " ").equals(value, ignoreCase = true) ||
+                    service.name.normalize().equals(value, ignoreCase = true) ||
+                    service.name.replace(oldValue = "_", newValue = " ").normalize().equals(value, ignoreCase = true)
                 ) {
                     return service
                 }
@@ -61,12 +61,12 @@ enum class Operator(
 
         fun parse(value: String): Operator {
             for (operator in values()) {
-                if (operator.name.equals(value, ignoreCase = true)
-                    || operator.fullName.equals(value, ignoreCase = true)
-                    || operator.shortName.equals(value, ignoreCase = true)
-                    || operator.name.replace(oldValue = "_", newValue = " ").equals(value, ignoreCase = true)
-                    || operator.name.normalize().equals(value, ignoreCase = true)
-                    || operator.name.replace(oldValue = "_", newValue = " ").normalize().equals(value, ignoreCase = true)
+                if (operator.name.equals(value, ignoreCase = true) ||
+                    operator.fullName.equals(value, ignoreCase = true) ||
+                    operator.shortName.equals(value, ignoreCase = true) ||
+                    operator.name.replace(oldValue = "_", newValue = " ").equals(value, ignoreCase = true) ||
+                    operator.name.normalize().equals(value, ignoreCase = true) ||
+                    operator.name.replace(oldValue = "_", newValue = " ").normalize().equals(value, ignoreCase = true)
                 ) {
                     return operator
                 }

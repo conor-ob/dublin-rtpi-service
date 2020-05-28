@@ -15,7 +15,7 @@ class DurationTypeAdapter : JsonDeserializer<Duration> {
             if (typeOfT != null && typeOfT == Duration::class.java && json != null) {
                 return Duration.parse(json.asJsonPrimitive.asString)
             }
-        } catch (e : DateTimeParseException) {
+        } catch (e: DateTimeParseException) {
             throw JsonParseException(e)
         }
         throw IllegalArgumentException("unknown type: $typeOfT")

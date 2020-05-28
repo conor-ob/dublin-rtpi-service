@@ -1,4 +1,4 @@
-package io.rtpi.client
+package io.rtpi.test.client
 
 import io.reactivex.Single
 import io.rtpi.external.irishrail.IrishRailApi

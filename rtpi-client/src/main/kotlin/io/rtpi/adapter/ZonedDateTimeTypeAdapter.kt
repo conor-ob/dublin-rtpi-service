@@ -15,7 +15,7 @@ class ZonedDateTimeTypeAdapter : JsonDeserializer<ZonedDateTime> {
             if (typeOfT != null && typeOfT == ZonedDateTime::class.java && json != null) {
                 return ZonedDateTime.parse(json.asJsonPrimitive.asString)
             }
-        } catch (e : DateTimeParseException) {
+        } catch (e: DateTimeParseException) {
             throw JsonParseException(e)
         }
         throw IllegalArgumentException("unknown type: $typeOfT")

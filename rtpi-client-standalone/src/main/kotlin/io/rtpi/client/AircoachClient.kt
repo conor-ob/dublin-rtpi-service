@@ -18,5 +18,4 @@ class AircoachClient(
     fun getLiveData(stopId: String): Single<List<LiveData>> {
         return aircoachLiveDataService.getLiveData(stopId)
     }
-
 }

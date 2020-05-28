@@ -1,4 +1,4 @@
-package io.rtpi.client
+package io.rtpi.test.client
 
 import com.google.gson.Gson
 import io.reactivex.Single

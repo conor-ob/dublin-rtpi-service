@@ -18,5 +18,4 @@ class LuasClient(
     fun getLiveData(stopId: String): Single<List<LiveData>> {
         return luasLiveDataService.getLiveData(stopId)
     }
-
 }

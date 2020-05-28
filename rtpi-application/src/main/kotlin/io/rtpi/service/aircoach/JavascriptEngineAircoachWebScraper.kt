@@ -3,8 +3,8 @@ package io.rtpi.service.aircoach
 import io.rtpi.external.aircoach.AbstractAircoachWebScraper
 import io.rtpi.external.aircoach.AircoachStopJson
 import io.rtpi.external.aircoach.AircoachStopServiceJson
-import jdk.nashorn.api.scripting.ScriptObjectMirror
 import javax.script.ScriptEngineManager
+import jdk.nashorn.api.scripting.ScriptObjectMirror
 
 class JavascriptEngineAircoachWebScraper(aircoachBaseUrl: String) : AbstractAircoachWebScraper(aircoachBaseUrl) {
 
@@ -57,5 +57,4 @@ class JavascriptEngineAircoachWebScraper(aircoachBaseUrl: String) : AbstractAirc
         }
         return stops
     }
-
 }

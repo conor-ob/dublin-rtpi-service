@@ -2,11 +2,11 @@ package io.rtpi.util
 
 import io.rtpi.api.Operator
 import io.rtpi.api.Prediction
-import io.rtpi.api.createDublinBusLiveData
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.Test
+import io.rtpi.test.fixtures.createDublinBusLiveData
 import java.time.Duration
 import java.time.ZonedDateTime
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.Test
 
 class LiveDataGrouperTest {
 

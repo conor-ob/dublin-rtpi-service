@@ -18,5 +18,4 @@ class DublinBusClient(
     fun getLiveData(stopId: String): Single<List<LiveData>> {
         return dublinBusLiveDataService.getLiveData(stopId)
     }
-
 }

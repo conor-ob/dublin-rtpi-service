@@ -10,5 +10,4 @@ interface AircoachApi {
     fun getLiveData(
         @Path("id") id: String
     ): Single<ServiceResponseJson>
-
 }

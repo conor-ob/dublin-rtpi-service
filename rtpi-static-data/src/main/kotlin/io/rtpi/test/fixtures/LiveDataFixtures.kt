@@ -1,5 +1,10 @@
-package io.rtpi.api
+package io.rtpi.test.fixtures
 
+import io.rtpi.api.Operator
+import io.rtpi.api.Prediction
+import io.rtpi.api.PredictionLiveData
+import io.rtpi.api.RouteInfo
+import io.rtpi.api.Service
 import java.time.Duration
 import java.time.LocalTime
 import java.time.ZonedDateTime

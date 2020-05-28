@@ -19,5 +19,4 @@ interface JcDecauxApi {
         @Query("contract") contract: String,
         @Query("apiKey") apiKey: String
     ): Single<StationJson>
-
 }
