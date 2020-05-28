@@ -79,7 +79,7 @@ subprojects {
     apply from: "$rootDir/quality/test/logging.gradle"
 
     group = 'io.rtpi'
-    version = '0.3.1'
+    version = '0.3.2'
 
     Properties properties = new Properties()
     if (project.rootProject.file("github.properties").exists()) {
