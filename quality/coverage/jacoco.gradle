@@ -5,17 +5,7 @@ project.afterEvaluate {
         group = "Reporting"
 
         def fileFilter = [
-                '**/R.class',
-                '**/R$*.class',
-                '**/*$ViewInjector*.*',
-                '**/*$ViewBinder*.*',
-                '**/BuildConfig.*',
-                '**/Manifest*.*',
-                '**/*App.*',
-                '**/*Component.*',
-                '**/*Module.*',
-                '**/*Activity.*',
-                '**/*Fragment.*'
+                '**/*Fixtures.*'
         ]
         def debugTree = fileTree(dir: "${buildDir}/classes/kotlin/main", excludes: fileFilter)
         def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
