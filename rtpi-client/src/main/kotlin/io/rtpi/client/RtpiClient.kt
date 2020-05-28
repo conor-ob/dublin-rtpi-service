@@ -8,13 +8,13 @@ import io.rtpi.api.LiveData
 import io.rtpi.api.RtpiApi
 import io.rtpi.api.Service
 import io.rtpi.api.ServiceLocation
+import java.time.Duration
+import java.time.ZonedDateTime
+import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.time.Duration
-import java.time.ZonedDateTime
-import java.util.concurrent.TimeUnit
 
 class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
 

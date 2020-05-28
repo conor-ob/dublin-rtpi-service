@@ -1,6 +1,7 @@
 package io.rtpi.client
 
 import io.rtpi.api.Service
+import io.rtpi.test.client.RtpiStaticDataClient
 import org.junit.Test
 
 class RtpiStaticDataClientTest {

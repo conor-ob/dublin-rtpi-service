@@ -1,6 +1,8 @@
 # Dublin RTPI Service
 
-[![CircleCI](https://circleci.com/gh/conor-ob/dublin-rtpi-service.svg?style=shield&circle-token=cc9f4593b0a9d68eeb6ba045b33b34ba42096773)](https://circleci.com/gh/conor-ob/dublin-rtpi-service)
+![Dublin RTPI Service CI](https://github.com/conor-ob/dublin-rtpi-service/workflows/Dublin%20RTPI%20Service%20CI/badge.svg)
+[![codecov](https://codecov.io/gh/conor-ob/dublin-rtpi-service/branch/master/graph/badge.svg?token=CFG1R8086X)](https://codecov.io/gh/conor-ob/dublin-rtpi-service)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 Dropwizard service written in Kotlin to provide a unified API to aggregate data from Dublin public transport APIs into a common canonical data model.
 

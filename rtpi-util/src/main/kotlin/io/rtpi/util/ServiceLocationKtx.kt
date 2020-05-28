@@ -31,18 +31,18 @@ private fun ServiceLocation.isDartStation(): Boolean =
         "SMONT", // Sandymount
         "SUTTN", // Sutton
         "BROCK", // Blackrock
-        "GCDK",  // Grand Canal Dock
+        "GCDK", // Grand Canal Dock
         "GRGRD", // Clongriffin
         "HWTHJ", // Howth Junction
         "LDWNE", // Lansdowne Road
         "PMNCK", // Portmarnock
-        "BRAY",  // Bray
+        "BRAY", // Bray
         "CNLLY", // Dublin Connolly
         "DLERY", // Dun Laoghaire
         "GSTNS", // Greystones
         "MHIDE", // Malahide
         "PERSE", // Dublin Pearse
-        "TARA"   // Tara Street
+        "TARA" // Tara Street
         -> true
         else -> false
     }

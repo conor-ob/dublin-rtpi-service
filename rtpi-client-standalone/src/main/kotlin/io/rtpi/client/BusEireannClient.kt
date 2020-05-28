@@ -18,5 +18,4 @@ class BusEireannClient(
     fun getLiveData(stopId: String): Single<List<LiveData>> {
         return busEireannLiveDataService.getLiveData(stopId)
     }
-
 }

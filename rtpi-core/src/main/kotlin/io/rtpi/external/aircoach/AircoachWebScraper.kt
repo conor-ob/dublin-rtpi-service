@@ -5,7 +5,6 @@ import org.jsoup.Jsoup
 interface AircoachWebScraper {
 
     fun scrapeStops(): List<AircoachStopJson>
-
 }
 
 abstract class AbstractAircoachWebScraper(private val aircoachBaseUrl: String) : AircoachWebScraper {
@@ -33,5 +32,4 @@ abstract class AbstractAircoachWebScraper(private val aircoachBaseUrl: String) :
     }
 
     abstract fun scrapeStops(javascript: String): List<AircoachStopJson>
-
 }

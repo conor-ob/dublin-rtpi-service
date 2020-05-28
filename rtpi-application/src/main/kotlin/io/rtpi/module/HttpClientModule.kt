@@ -4,12 +4,12 @@ import com.authzee.kotlinguice4.KotlinModule
 import com.google.inject.Provides
 import com.google.inject.Singleton
 import com.google.inject.name.Named
-import okhttp3.OkHttpClient
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 import javax.net.ssl.X509TrustManager
+import okhttp3.OkHttpClient
 
 class HttpClientModule : KotlinModule() {
 
@@ -38,16 +38,16 @@ class HttpClientModule : KotlinModule() {
                 }
 
                 override fun getAcceptedIssuers(): Array<X509Certificate> {
-                    return  emptyArray()
+                    return emptyArray()
                 }
             }),
             SecureRandom()
         )
         return OkHttpClient.Builder()
             .hostnameVerifier { hostname, session ->
-                return@hostnameVerifier hostname == "tracker.aircoach.ie"
-                    && session.peerHost == "tracker.aircoach.ie"
-                    && session.peerPort == 443
+                return@hostnameVerifier hostname == "tracker.aircoach.ie" &&
+                    session.peerHost == "tracker.aircoach.ie" &&
+                    session.peerPort == 443
             }
             .sslSocketFactory(sslContext.socketFactory)
             .retryOnConnectionFailure(true)

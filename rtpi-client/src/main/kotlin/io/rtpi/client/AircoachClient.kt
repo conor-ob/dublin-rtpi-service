@@ -1,8 +1,8 @@
 package io.rtpi.client
 
-import io.rtpi.api.RtpiApi
 import io.reactivex.Single
 import io.rtpi.api.LiveData
+import io.rtpi.api.RtpiApi
 import io.rtpi.api.ServiceLocation
 
 class AircoachClient(private val rtpiApi: RtpiApi) {

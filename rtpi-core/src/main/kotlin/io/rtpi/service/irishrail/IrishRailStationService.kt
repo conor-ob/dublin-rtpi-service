@@ -48,10 +48,10 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
         }
 
     private fun filterDuplicates(xml: IrishRailStationXml): Boolean {
-        return xml.code != "ADAMF" && xml.code != "ADAMS" // Adamstown
-            && xml.code != "CLONF" && xml.code != "CLONS" // Clondalkin
-            && xml.code != "HAZEF" && xml.code != "HAZES" // Hazelhatch
-            && xml.code != "PWESF" && xml.code != "PWESS" // Park West and Cherry Orchard
+        return xml.code != "ADAMF" && xml.code != "ADAMS" && // Adamstown
+            xml.code != "CLONF" && xml.code != "CLONS" && // Clondalkin
+            xml.code != "HAZEF" && xml.code != "HAZES" && // Hazelhatch
+            xml.code != "PWESF" && xml.code != "PWESS" // Park West and Cherry Orchard
     }
 
     // https://www.irishrail.ie/Travel-Information/Station-and-Route-maps/Dublin-Symbolic-Map
@@ -75,7 +75,7 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
             "SIDNY", // Sydney Parade
             "SKILL", // Shankill
             "SMONT", // Sandymount
-            "SUTTN"  // Sutton
+            "SUTTN" // Sutton
             -> setOf(Operator.DART)
 
 //            "ADAMF", // Adamstown
@@ -107,20 +107,20 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
 //            "PWESS", // PARK WEST
             "CHORC", // Park West and Cherry Orchard
             "RLUSK", // Rush and Lusk
-            "SKRES"  // Skerries
+            "SKRES" // Skerries
             -> setOf(Operator.COMMUTER)
 
             "BROCK", // Blackrock
-            "GCDK",  // Grand Canal Dock
+            "GCDK", // Grand Canal Dock
             "GRGRD", // Clongriffin
             "HWTHJ", // Howth Junction
             "LDWNE", // Lansdowne Road
-            "PMNCK"  // Portmarnock
+            "PMNCK" // Portmarnock
             -> setOf(Operator.COMMUTER, Operator.DART)
 
             "ARKLW", // Arklow
             "ATLNE", // Athlone
-            "ATHY",  // Athy
+            "ATHY", // Athy
             "CGLOE", // Carrigaloe
             "CGTWL", // Carrigtwohill
             "CLARA", // Clara
@@ -152,17 +152,17 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
             "RBROK", // Rushbrooke
             "RDRUM", // Rathdrum
             "SALNS", // Sallins
-            "TMORE",  // Tullamore
-            "WLOW"   // Wicklow
+            "TMORE", // Tullamore
+            "WLOW" // Wicklow
             -> setOf(Operator.COMMUTER, Operator.INTERCITY)
 
-            "BRAY",  // Bray
+            "BRAY", // Bray
             "CNLLY", // Dublin Connolly
             "DLERY", // Dun Laoghaire
             "GSTNS", // Greystones
             "MHIDE", // Malahide
             "PERSE", // Dublin Pearse
-            "TARA"   // Tara Street
+            "TARA" // Tara Street
             -> setOf(Operator.COMMUTER, Operator.DART, Operator.INTERCITY)
 
             else -> setOf(Operator.INTERCITY)

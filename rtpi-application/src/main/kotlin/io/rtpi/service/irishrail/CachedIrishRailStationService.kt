@@ -12,4 +12,3 @@ class CachedIrishRailStationService @Inject constructor(
 
     fun getStations(): List<ServiceLocation> = irishRailStationCache[Service.IRISH_RAIL]
 }
-

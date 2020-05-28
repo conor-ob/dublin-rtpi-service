@@ -5,7 +5,6 @@ import io.rtpi.api.RouteInfo
 object RouteComparator : Comparator<RouteInfo> {
 
     override fun compare(r1: RouteInfo, r2: RouteInfo): Int = AlphaNumericComparator.compare(r1.route, r2.route)
-
 }
 
 object AlphaNumericComparator : Comparator<String> {
@@ -81,5 +80,4 @@ object AlphaNumericComparator : Comparator<String> {
 
         return chunk.toString()
     }
-
 }

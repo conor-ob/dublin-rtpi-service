@@ -12,6 +12,5 @@ interface IrishRailApi {
     @GET("getStationDataByCodeXML")
     fun getStationDataByCodeXml(
         @Query("StationCode") stationCode: String
-    ) : Single<IrishRailStationDataResponseXml>
-
+    ): Single<IrishRailStationDataResponseXml>
 }

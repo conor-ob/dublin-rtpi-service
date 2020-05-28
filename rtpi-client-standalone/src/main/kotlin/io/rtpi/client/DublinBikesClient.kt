@@ -19,5 +19,4 @@ class DublinBikesClient(
     fun getLiveData(dockId: String): Single<LiveData> {
         return dublinBikesLiveDataService.getLiveData(dockId, dublinBikesApiKey)
     }
-
 }
