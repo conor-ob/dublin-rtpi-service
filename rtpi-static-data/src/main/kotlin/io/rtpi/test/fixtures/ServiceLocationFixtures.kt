@@ -4,7 +4,6 @@ import io.rtpi.api.Coordinate
 import io.rtpi.api.DockLocation
 import io.rtpi.api.RouteGroup
 import io.rtpi.api.Service
-import io.rtpi.api.ServiceLocation
 import io.rtpi.api.StopLocation
 import java.util.UUID
 import kotlin.random.Random
