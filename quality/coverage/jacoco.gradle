@@ -5,7 +5,10 @@ project.afterEvaluate {
         group = "Reporting"
 
         def fileFilter = [
-                '**/*Fixtures*'
+                '**/*Fixtures*',
+                '**/*Api.*',
+                '**/*Json.*',
+                '**/*Xml.*'
         ]
         def debugTree = fileTree(dir: "${buildDir}/classes/kotlin/main", excludes: fileFilter)
         def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
