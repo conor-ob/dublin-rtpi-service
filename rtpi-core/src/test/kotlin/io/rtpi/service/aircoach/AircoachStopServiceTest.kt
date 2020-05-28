@@ -3,13 +3,16 @@ package io.rtpi.service.aircoach
 import io.reactivex.Single
 import io.rtpi.api.Coordinate
 import io.rtpi.api.Operator
-import io.rtpi.api.createAircoachStop
+import io.rtpi.api.RouteGroup
+import io.rtpi.api.Service
 import io.rtpi.external.aircoach.AircoachStopJson
 import io.rtpi.external.aircoach.AircoachWebScraper
 import io.rtpi.external.aircoach.createAircoachStopJson
 import io.rtpi.external.staticdata.StaticDataApi
-import org.junit.Test
+import io.rtpi.test.fixtures.createStopLocation
 import java.net.UnknownHostException
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.Test
 
 class AircoachStopServiceTest {
 
@@ -49,11 +52,12 @@ class AircoachStopServiceTest {
         // assert
         observer.assertValue(
             listOf(
-                createAircoachStop(
+                createStopLocation(
                     id = "2",
                     name = "Airport2",
+                    service = Service.AIRCOACH,
                     coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
-                    operators = setOf(Operator.AIRCOACH)
+                    routeGroups = listOf(RouteGroup(operator = Operator.AIRCOACH, routes = emptyList()))
                 )
             )
         )
@@ -96,11 +100,12 @@ class AircoachStopServiceTest {
         // assert
         observer.assertValue(
             listOf(
-                createAircoachStop(
+                createStopLocation(
                     id = "1",
                     name = "Airport1",
+                    service = Service.AIRCOACH,
                     coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
-                    operators = setOf(Operator.AIRCOACH)
+                    routeGroups = listOf(RouteGroup(operator = Operator.AIRCOACH, routes = emptyList()))
                 )
             )
         )
@@ -151,26 +156,24 @@ class AircoachStopServiceTest {
         val aircoachStopService = AircoachStopService(aircoachWebScraper, staticDatApi)
 
         // act
-        val observer = aircoachStopService.getStops().test()
+        val aircoachStops = aircoachStopService.getStops().blockingGet()
 
         // assert
-        observer.assertValue(
-            listOf(
-                createAircoachStop(
-                    id = "1",
-                    name = "Airport1",
-                    coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
-                    operators = setOf(Operator.AIRCOACH)
-                ),
-                createAircoachStop(
-                    id = "2",
-                    name = "Airport2",
-                    coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
-                    operators = setOf(Operator.AIRCOACH)
-                )
+        assertThat(aircoachStops).containsExactly(
+            createStopLocation(
+                id = "1",
+                name = "Airport1",
+                service = Service.AIRCOACH,
+                coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
+                routeGroups = listOf(RouteGroup(operator = Operator.AIRCOACH, routes = emptyList()))
+            ),
+            createStopLocation(
+                id = "2",
+                name = "Airport2",
+                service = Service.AIRCOACH,
+                coordinate = Coordinate(latitude = 53.5453, longitude = -6.4311),
+                routeGroups = listOf(RouteGroup(operator = Operator.AIRCOACH, routes = emptyList()))
             )
         )
-        observer.dispose()
     }
-
 }

@@ -7,6 +7,7 @@ import com.google.inject.name.Named
 import io.rtpi.RtpiServiceConfiguration
 import io.rtpi.external.aircoach.AircoachApi
 import io.rtpi.external.aircoach.AircoachWebScraper
+import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.jcdecaux.JcDecauxApi
 import io.rtpi.external.rtpi.RtpiApi
@@ -42,6 +43,21 @@ class ExternalApiModule : KotlinModule() {
 
     @Provides
     @Singleton
+    fun dublinBusApi(
+        configuration: RtpiServiceConfiguration,
+        @Named("default_client") client: OkHttpClient,
+        callAdapterFactory: CallAdapter.Factory,
+        @Named("xml") converterFactory: Converter.Factory
+    ): DublinBusApi = Retrofit.Builder()
+        .baseUrl(requireNotNull(configuration.apiConfiguration.dublinBusBaseUrl))
+        .client(client)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(converterFactory)
+        .build()
+        .create(DublinBusApi::class.java)
+
+    @Provides
+    @Singleton
     fun jcDecauxApi(
         configuration: RtpiServiceConfiguration,
         @Named("default_client") client: OkHttpClient,
@@ -57,6 +73,7 @@ class ExternalApiModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("rtpi_api")
     fun rtpiApi(
         configuration: RtpiServiceConfiguration,
         @Named("default_client") client: OkHttpClient,
@@ -64,6 +81,22 @@ class ExternalApiModule : KotlinModule() {
         @Named("json") converterFactory: Converter.Factory
     ): RtpiApi = Retrofit.Builder()
         .baseUrl(requireNotNull(configuration.apiConfiguration.rtpiBaseUrl))
+        .client(client)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(converterFactory)
+        .build()
+        .create(RtpiApi::class.java)
+
+    @Provides
+    @Singleton
+    @Named("rtpi_fallback_api")
+    fun rtpiFallbackApi(
+        configuration: RtpiServiceConfiguration,
+        @Named("default_client") client: OkHttpClient,
+        callAdapterFactory: CallAdapter.Factory,
+        @Named("json") converterFactory: Converter.Factory
+    ): RtpiApi = Retrofit.Builder()
+        .baseUrl(requireNotNull(configuration.apiConfiguration.rtpiFallbackBaseUrl))
         .client(client)
         .addCallAdapterFactory(callAdapterFactory)
         .addConverterFactory(converterFactory)

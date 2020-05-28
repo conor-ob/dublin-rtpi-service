@@ -1,8 +1,8 @@
 package io.rtpi.resource
 
 import com.google.inject.Inject
-import io.rtpi.api.LuasLiveData
-import io.rtpi.api.LuasStop
+import io.rtpi.api.LiveData
+import io.rtpi.api.StopLocation
 import io.rtpi.service.luas.CachedLuasLiveDataService
 import io.rtpi.service.luas.CachedLuasStopService
 import io.swagger.annotations.Api
@@ -28,7 +28,7 @@ class LuasResource @Inject constructor(
     @ApiOperation(
         value = "Get Luas stops",
         notes = "Gets locations using the <a href=\"https://data.smartdublin.ie/dataset/real-time-passenger-information-rtpi-for-dublin-bus-bus-eireann-luas-and-irish-rail/\">RTPI API</a>",
-        response = LuasStop::class,
+        response = StopLocation::class,
         responseContainer = "List"
     )
     fun getLuasStops(): Response {
@@ -41,7 +41,7 @@ class LuasResource @Inject constructor(
     @ApiOperation(
         value = "Get Luas live data",
         notes = "Gets live data using the <a href=\"https://data.smartdublin.ie/dataset/real-time-passenger-information-rtpi-for-dublin-bus-bus-eireann-luas-and-irish-rail/\">RTPI API</a>",
-        response = LuasLiveData::class,
+        response = LiveData::class,
         responseContainer = "List"
     )
     fun getLuasLiveData(

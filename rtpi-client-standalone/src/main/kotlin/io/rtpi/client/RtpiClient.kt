@@ -1,6 +1,11 @@
 package io.rtpi.client
 
+import io.reactivex.Single
+import io.rtpi.api.LiveData
+import io.rtpi.api.Service
+import io.rtpi.api.ServiceLocation
 import io.rtpi.external.aircoach.AircoachApi
+import io.rtpi.external.dublinbus.DublinBusApi
 import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.jcdecaux.JcDecauxApi
 import io.rtpi.external.rtpi.RtpiApi
@@ -18,21 +23,21 @@ import io.rtpi.service.irishrail.IrishRailLiveDataService
 import io.rtpi.service.irishrail.IrishRailStationService
 import io.rtpi.service.luas.LuasLiveDataService
 import io.rtpi.service.luas.LuasStopService
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 import javax.net.ssl.X509TrustManager
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 
-class RtpiClient(okHttpClient: OkHttpClient? = null) {
+class RtpiClient(rtpiClientConfiguration: RtpiClientConfiguration) {
 
     private val defaultOkHttpClient: OkHttpClient =
-        okHttpClient ?: OkHttpClient.Builder()
+        rtpiClientConfiguration.okHttpClient ?: OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
             .connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
@@ -52,7 +57,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
                 }
 
                 override fun getAcceptedIssuers(): Array<X509Certificate> {
-                    return  emptyArray()
+                    return emptyArray()
                 }
             }),
             SecureRandom()
@@ -60,14 +65,14 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         sslContext
     }
 
-    private val aircoachOkHttpClient = newAircoachOkHttpClient(okHttpClient)
+    private val aircoachOkHttpClient = newAircoachOkHttpClient(rtpiClientConfiguration.okHttpClient)
 
     private fun newAircoachOkHttpClient(okHttpClient: OkHttpClient?): OkHttpClient {
         val builder = OkHttpClient.Builder()
             .hostnameVerifier { hostname, session ->
-                return@hostnameVerifier hostname == "tracker.aircoach.ie"
-                    && session.peerHost == "tracker.aircoach.ie"
-                    && session.peerPort == 443
+                return@hostnameVerifier hostname == "tracker.aircoach.ie" &&
+                    session.peerHost == "tracker.aircoach.ie" &&
+                    session.peerPort == 443
             }
             .sslSocketFactory(sslContext.socketFactory)
             .retryOnConnectionFailure(okHttpClient?.retryOnConnectionFailure() ?: true)
@@ -88,7 +93,7 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
 
     private val gsonConverterFactory = GsonConverterFactory.create()
 
-    private val xmlConverterFactory =SimpleXmlConverterFactory.create()
+    private val xmlConverterFactory = SimpleXmlConverterFactory.create()
 
     private val aircoachApi = Retrofit.Builder()
         .baseUrl("https://tracker.aircoach.ie/")
@@ -108,7 +113,23 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
         .build()
         .create(JcDecauxApi::class.java)
 
+    private val dublinBusApi = Retrofit.Builder()
+        .baseUrl("http://rtpi.dublinbus.ie/")
+        .client(defaultOkHttpClient)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(xmlConverterFactory)
+        .build()
+        .create(DublinBusApi::class.java)
+
     private val rtpiApi = Retrofit.Builder()
+        .baseUrl("https://data.smartdublin.ie/cgi-bin/rtpi/")
+        .client(defaultOkHttpClient)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(gsonConverterFactory)
+        .build()
+        .create(RtpiApi::class.java)
+
+    private val rtpiFallbackApi = Retrofit.Builder()
         .baseUrl("https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/")
         .client(defaultOkHttpClient)
         .addCallAdapterFactory(callAdapterFactory)
@@ -138,18 +159,19 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
     )
 
     private val busEireannClient = BusEireannClient(
-        BusEireannStopService(rtpiApi),
-        BusEireannLiveDataService(rtpiApi)
+        BusEireannStopService(rtpiApi, rtpiFallbackApi),
+        BusEireannLiveDataService(rtpiApi, rtpiFallbackApi)
     )
 
     private val dublinBikesClient = DublinBikesClient(
         DublinBikesDockService(jcDecauxApi),
-        DublinBikesLiveDataService(jcDecauxApi)
+        DublinBikesLiveDataService(jcDecauxApi),
+        rtpiClientConfiguration.dublinBikesApiKey
     )
 
     private val dublinBusClient = DublinBusClient(
-        DublinBusStopService(rtpiApi),
-        DublinBusLiveDataService(rtpiApi)
+        DublinBusStopService(dublinBusApi, rtpiApi, rtpiFallbackApi),
+        DublinBusLiveDataService(dublinBusApi, rtpiApi, rtpiFallbackApi)
     )
 
     private val irishRailClient = IrishRailClient(
@@ -158,19 +180,29 @@ class RtpiClient(okHttpClient: OkHttpClient? = null) {
     )
 
     private val luasClient = LuasClient(
-        LuasStopService(rtpiApi),
-        LuasLiveDataService(rtpiApi)
+        LuasStopService(rtpiApi, rtpiFallbackApi),
+        LuasLiveDataService(rtpiApi, rtpiFallbackApi)
     )
 
-    fun aircoach() = aircoachClient
+    fun getServiceLocations(service: Service): Single<List<ServiceLocation>> {
+        return when (service) {
+            Service.AIRCOACH -> aircoachClient.getStops()
+            Service.BUS_EIREANN -> busEireannClient.getStops()
+            Service.DUBLIN_BIKES -> dublinBikesClient.getDocks()
+            Service.DUBLIN_BUS -> dublinBusClient.getStops()
+            Service.IRISH_RAIL -> irishRailClient.getStations()
+            Service.LUAS -> luasClient.getStops()
+        }
+    }
 
-    fun busEireann() = busEireannClient
-
-    fun dublinBikes() = dublinBikesClient
-
-    fun dublinBus() = dublinBusClient
-
-    fun irishRail() = irishRailClient
-
-    fun luas() = luasClient
+    fun getLiveData(service: Service, locationId: String): Single<List<LiveData>> {
+        return when (service) {
+            Service.AIRCOACH -> aircoachClient.getLiveData(locationId)
+            Service.BUS_EIREANN -> busEireannClient.getLiveData(locationId)
+            Service.DUBLIN_BIKES -> dublinBikesClient.getLiveData(locationId).map { listOf(it) }
+            Service.DUBLIN_BUS -> dublinBusClient.getLiveData(locationId)
+            Service.IRISH_RAIL -> irishRailClient.getLiveData(locationId)
+            Service.LUAS -> luasClient.getLiveData(locationId)
+        }
+    }
 }

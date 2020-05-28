@@ -17,5 +17,6 @@ class ApplicationModule(
         environment.objectMapper
             .registerModule(JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+            .disable(SerializationFeature.WRITE_DURATIONS_AS_TIMESTAMPS)
     }
 }

@@ -1,8 +1,8 @@
 package io.rtpi.resource
 
 import com.google.inject.Inject
-import io.rtpi.api.DublinBusLiveData
-import io.rtpi.api.DublinBusStop
+import io.rtpi.api.PredictionLiveData
+import io.rtpi.api.StopLocation
 import io.rtpi.service.dublinbus.CachedDublinBusLiveDataService
 import io.rtpi.service.dublinbus.CachedDublinBusStopService
 import io.swagger.annotations.Api
@@ -28,7 +28,7 @@ class DublinBusResource @Inject constructor(
     @ApiOperation(
         value = "Get Dublin Bus stops",
         notes = "Gets locations using the <a href=\"https://data.smartdublin.ie/dataset/real-time-passenger-information-rtpi-for-dublin-bus-bus-eireann-luas-and-irish-rail/\">RTPI API</a>",
-        response = DublinBusStop::class,
+        response = StopLocation::class,
         responseContainer = "List"
     )
     fun getDublinBusStops(): Response {
@@ -41,7 +41,7 @@ class DublinBusResource @Inject constructor(
     @ApiOperation(
         value = "Get Dublin Bus live data",
         notes = "Gets live data using the <a href=\"https://data.smartdublin.ie/dataset/real-time-passenger-information-rtpi-for-dublin-bus-bus-eireann-luas-and-irish-rail/\">RTPI API</a>",
-        response = DublinBusLiveData::class,
+        response = PredictionLiveData::class,
         responseContainer = "List"
     )
     fun getDublinBusLiveData(

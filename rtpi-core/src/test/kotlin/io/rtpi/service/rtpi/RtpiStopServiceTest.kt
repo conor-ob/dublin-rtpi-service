@@ -11,15 +11,15 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
 
-abstract class AbstractRtpiStopServiceTest {
+abstract class RtpiStopServiceTest {
 
     protected val rtpiApi = mockk<RtpiApi>()
-    protected val stopService: AbstractRtpiStopService<*> by lazy { createStopService(rtpiApi) }
+    protected val stopService: AbstractRtpiStopService by lazy { createStopService(rtpiApi) }
     protected val defaultStop: RtpiBusStopInformationJson by lazy { createDefaultStop() }
 
     protected abstract fun getOperator(): Operator
 
-    protected abstract fun createStopService(rtpiApi: RtpiApi): AbstractRtpiStopService<*>
+    protected abstract fun createStopService(rtpiApi: RtpiApi): AbstractRtpiStopService
 
     protected abstract fun createDefaultStop(): RtpiBusStopInformationJson
 

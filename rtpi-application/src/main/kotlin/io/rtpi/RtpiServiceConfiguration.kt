@@ -13,7 +13,8 @@ data class ApiConfiguration(
     val dublinBusBaseUrl: String? = null,
     val irishRailBaseUrl: String? = null,
     val jcDecauxBaseUrl: String? = null,
-    val rtpiBaseUrl: String? = null
+    val rtpiBaseUrl: String? = null,
+    val rtpiFallbackBaseUrl: String? = null
 )
 
 data class CacheConfiguration(

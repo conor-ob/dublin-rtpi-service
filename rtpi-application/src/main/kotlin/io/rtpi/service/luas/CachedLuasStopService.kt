@@ -2,12 +2,13 @@ package io.rtpi.service.luas
 
 import com.google.common.cache.LoadingCache
 import com.google.inject.Inject
-import io.rtpi.api.LuasStop
+import com.google.inject.name.Named
 import io.rtpi.api.Service
+import io.rtpi.api.ServiceLocation
 
 class CachedLuasStopService @Inject constructor(
-    private val luasStopCache: LoadingCache<Service, List<LuasStop>>
+    @Named("LUAS") private val luasStopCache: LoadingCache<Service, List<ServiceLocation>>
 ) {
 
-    fun getStops(): List<LuasStop> = luasStopCache[Service.LUAS]
+    fun getStops(): List<ServiceLocation> = luasStopCache[Service.LUAS]
 }

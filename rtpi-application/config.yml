@@ -11,7 +11,8 @@ apiConfiguration:
   dublinBusBaseUrl: "http://rtpi.dublinbus.ie/"
   irishRailBaseUrl: "http://api.irishrail.ie/realtime/realtime.asmx/"
   jcDecauxBaseUrl: "https://api.jcdecaux.com/vls/v1/"
-  rtpiBaseUrl: "https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/"
+  rtpiBaseUrl: "https://data.smartdublin.ie/cgi-bin/rtpi/"
+  rtpiFallbackBaseUrl: "https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/"
 
 cacheConfiguration:
   serviceLocationExpiry: "PT1H"

@@ -6,20 +6,11 @@ import com.google.common.cache.CacheLoader
 import com.google.common.cache.LoadingCache
 import com.google.inject.Provides
 import com.google.inject.Singleton
+import com.google.inject.name.Named
 import io.rtpi.RtpiServiceConfiguration
-import io.rtpi.api.AircoachLiveData
-import io.rtpi.api.AircoachStop
-import io.rtpi.api.BusEireannLiveData
-import io.rtpi.api.BusEireannStop
-import io.rtpi.api.DublinBikesDock
-import io.rtpi.api.DublinBikesLiveData
-import io.rtpi.api.DublinBusLiveData
-import io.rtpi.api.DublinBusStop
-import io.rtpi.api.IrishRailLiveData
-import io.rtpi.api.IrishRailStation
-import io.rtpi.api.LuasLiveData
-import io.rtpi.api.LuasStop
+import io.rtpi.api.LiveData
 import io.rtpi.api.Service
+import io.rtpi.api.ServiceLocation
 import io.rtpi.service.aircoach.AircoachLiveDataService
 import io.rtpi.service.aircoach.AircoachStopService
 import io.rtpi.service.buseireann.BusEireannLiveDataService
@@ -38,17 +29,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("AIRCOACH")
     fun aircoachStopCache(
         aircoachStopService: AircoachStopService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<Service, List<AircoachStop>> = CacheBuilder.newBuilder()
+    ): LoadingCache<Service, List<ServiceLocation>> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.serviceLocationExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<Service, List<AircoachStop>>() {
-                override fun load(key: Service): List<AircoachStop> {
+            object : CacheLoader<Service, List<ServiceLocation>>() {
+                override fun load(key: Service): List<ServiceLocation> {
                     return aircoachStopService.getStops().blockingGet()
                 }
             }
@@ -56,17 +48,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("AIRCOACH")
     fun aircoachLiveDataCache(
         aircoachLiveDataService: AircoachLiveDataService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<String, List<AircoachLiveData>> = CacheBuilder.newBuilder()
+    ): LoadingCache<String, List<LiveData>> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.liveDataExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<String, List<AircoachLiveData>>() {
-                override fun load(key: String): List<AircoachLiveData> {
+            object : CacheLoader<String, List<LiveData>>() {
+                override fun load(key: String): List<LiveData> {
                     return aircoachLiveDataService.getLiveData(key).blockingGet()
                 }
             }
@@ -74,17 +67,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("BUS_EIREANN")
     fun busEireannStopCache(
         busEireannStopService: BusEireannStopService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<Service, List<BusEireannStop>> = CacheBuilder.newBuilder()
+    ): LoadingCache<Service, List<ServiceLocation>> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.serviceLocationExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<Service, List<BusEireannStop>>() {
-                override fun load(key: Service): List<BusEireannStop> {
+            object : CacheLoader<Service, List<ServiceLocation>>() {
+                override fun load(key: Service): List<ServiceLocation> {
                     return busEireannStopService.getStops().blockingGet()
                 }
             }
@@ -92,17 +86,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("BUS_EIREANN")
     fun busEireannLiveDataCache(
         busEireannLiveDataService: BusEireannLiveDataService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<String, List<BusEireannLiveData>> = CacheBuilder.newBuilder()
+    ): LoadingCache<String, List<LiveData>> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.liveDataExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<String, List<BusEireannLiveData>>() {
-                override fun load(key: String): List<BusEireannLiveData> {
+            object : CacheLoader<String, List<LiveData>>() {
+                override fun load(key: String): List<LiveData> {
                     return busEireannLiveDataService.getLiveData(key).blockingGet()
                 }
             }
@@ -110,17 +105,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("DUBLIN_BIKES")
     fun dublinBikesDockCache(
         dublinBikesDockService: DublinBikesDockService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<String, List<DublinBikesDock>> = CacheBuilder.newBuilder()
+    ): LoadingCache<String, List<ServiceLocation>> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.liveDataExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<String, List<DublinBikesDock>>() {
-                override fun load(key: String): List<DublinBikesDock> {
+            object : CacheLoader<String, List<ServiceLocation>>() {
+                override fun load(key: String): List<ServiceLocation> {
                     return dublinBikesDockService.getDocks(key).blockingGet()
                 }
             }
@@ -128,17 +124,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("DUBLIN_BIKES")
     fun dublinBikesLiveDataCache(
         dublinBikesLiveDataService: DublinBikesLiveDataService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<Pair<String, String>, DublinBikesLiveData> = CacheBuilder.newBuilder()
+    ): LoadingCache<Pair<String, String>, LiveData> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.liveDataExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<Pair<String, String>, DublinBikesLiveData>() {
-                override fun load(key: Pair<String, String>): DublinBikesLiveData {
+            object : CacheLoader<Pair<String, String>, LiveData>() {
+                override fun load(key: Pair<String, String>): LiveData {
                     return dublinBikesLiveDataService.getLiveData(key.first, key.second).blockingGet()
                 }
             }
@@ -146,17 +143,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("DUBLIN_BUS")
     fun dublinBusStopCache(
         dublinBusStopService: DublinBusStopService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<Service, List<DublinBusStop>> = CacheBuilder.newBuilder()
+    ): LoadingCache<Service, List<ServiceLocation>> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.serviceLocationExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<Service, List<DublinBusStop>>() {
-                override fun load(key: Service): List<DublinBusStop> {
+            object : CacheLoader<Service, List<ServiceLocation>>() {
+                override fun load(key: Service): List<ServiceLocation> {
                     return dublinBusStopService.getStops().blockingGet()
                 }
             }
@@ -164,17 +162,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("DUBLIN_BUS")
     fun dublinBusLiveDataCache(
         dublinBusLiveDataService: DublinBusLiveDataService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<String, List<DublinBusLiveData>> = CacheBuilder.newBuilder()
+    ): LoadingCache<String, List<LiveData>> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.liveDataExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<String, List<DublinBusLiveData>>() {
-                override fun load(key: String): List<DublinBusLiveData> {
+            object : CacheLoader<String, List<LiveData>>() {
+                override fun load(key: String): List<LiveData> {
                     return dublinBusLiveDataService.getLiveData(key).blockingGet()
                 }
             }
@@ -182,17 +181,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("IRISH_RAIL")
     fun irishRailStationCache(
         irishRailStationService: IrishRailStationService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<Service, List<IrishRailStation>> = CacheBuilder.newBuilder()
+    ): LoadingCache<Service, List<ServiceLocation>> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.serviceLocationExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<Service, List<IrishRailStation>>() {
-                override fun load(key: Service): List<IrishRailStation> {
+            object : CacheLoader<Service, List<ServiceLocation>>() {
+                override fun load(key: Service): List<ServiceLocation> {
                     return irishRailStationService.getStations().blockingGet()
                 }
             }
@@ -200,17 +200,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("IRISH_RAIL")
     fun irishRailLiveDataCache(
         irishRailLiveDataService: IrishRailLiveDataService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<String, List<IrishRailLiveData>> = CacheBuilder.newBuilder()
+    ): LoadingCache<String, List<LiveData>> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.liveDataExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<String, List<IrishRailLiveData>>() {
-                override fun load(key: String): List<IrishRailLiveData> {
+            object : CacheLoader<String, List<LiveData>>() {
+                override fun load(key: String): List<LiveData> {
                     return irishRailLiveDataService.getLiveData(key).blockingGet()
                 }
             }
@@ -218,17 +219,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("LUAS")
     fun luasStopCache(
         luasStopService: LuasStopService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<Service, List<LuasStop>> = CacheBuilder.newBuilder()
+    ): LoadingCache<Service, List<ServiceLocation>> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.serviceLocationExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<Service, List<LuasStop>>() {
-                override fun load(key: Service): List<LuasStop> {
+            object : CacheLoader<Service, List<ServiceLocation>>() {
+                override fun load(key: Service): List<ServiceLocation> {
                     return luasStopService.getStops().blockingGet()
                 }
             }
@@ -236,17 +238,18 @@ class CacheModule : KotlinModule() {
 
     @Provides
     @Singleton
+    @Named("LUAS")
     fun luasLiveDataCache(
         luasLiveDataService: LuasLiveDataService,
         rtpiServiceConfiguration: RtpiServiceConfiguration
-    ): LoadingCache<String, List<LuasLiveData>> = CacheBuilder.newBuilder()
+    ): LoadingCache<String, List<LiveData>> = CacheBuilder.newBuilder()
         .expireAfterWrite(
             requireNotNull(rtpiServiceConfiguration.cacheConfiguration.liveDataExpiry?.seconds),
             TimeUnit.SECONDS
         )
         .build(
-            object : CacheLoader<String, List<LuasLiveData>>() {
-                override fun load(key: String): List<LuasLiveData> {
+            object : CacheLoader<String, List<LiveData>>() {
+                override fun load(key: String): List<LiveData> {
                     return luasLiveDataService.getLiveData(key).blockingGet()
                 }
             }

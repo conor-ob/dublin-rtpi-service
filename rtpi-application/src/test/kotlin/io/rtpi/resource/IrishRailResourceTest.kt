@@ -1,26 +1,22 @@
 package io.rtpi.resource
 
 import io.mockk.mockk
-import io.rtpi.api.Operator
-import io.rtpi.api.createIrishRailLiveData
-import io.rtpi.service.irishrail.IrishRailLiveDataService
 import io.rtpi.service.irishrail.IrishRailStationService
 import org.junit.Test
-import java.time.LocalTime
 
 class IrishRailResourceTest {
 
     companion object {
 
-        private val irishRailLiveData = listOf(
-            createIrishRailLiveData(
-                currentTime = LocalTime.of(12, 32),
-                operator = Operator.DART,
-                direction = "Northbound",
-                destination = "Howth",
-                route = "DART"
-            )
-        )
+//        private val irishRailLiveData = listOf(
+//            createIrishRailLiveData(
+//                currentTime = LocalTime.of(12, 32),
+//                operator = Operator.DART,
+//                direction = "Northbound",
+//                destination = "Howth",
+//                route = "DART"
+//            )
+//        )
         private val irishRailStationService = mockk<IrishRailStationService>()
 //        private val irishRailLiveDataService = mockk<IrishRailLiveDataService> {
 //            every { getLiveData(eq("TARA")) } returns Single.just(irishRailLiveData)
@@ -30,7 +26,6 @@ class IrishRailResourceTest {
 //        val resources: ResourceTestRule = ResourceTestRule.builder()
 //            .addResource(IrishRailResource(irishRailStationService, irishRailLiveDataService))
 //            .build()
-
     }
 
     @Test
@@ -43,8 +38,8 @@ class IrishRailResourceTest {
 
         // assert
 
-        //TODO
-//        val expectedJson = "[\n" +
+        // TODO
+//      val expectedJson = "[\n" +
 //            "   {\n" +
 //            "      \"route\":\"DART\",\n" +
 //            "      \"destination\":\"Howth\",\n" +
@@ -77,5 +72,4 @@ class IrishRailResourceTest {
 //            "]"
 //        assertThat(jsonResponse).isEqualTo(expectedJson.replace("\\s+".toRegex(), ""))
     }
-
 }

@@ -1,0 +1,22 @@
+dependencies {
+    implementation project(':rtpi-api')
+    implementation project(':rtpi-core')
+
+    implementation libraries.kotlin
+    implementation libraries.gson
+    implementation libraries.rxjava
+    implementation(libraries.retrofit_simplexml) {
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+        exclude group: 'xpp3', module: 'xpp3'
+    }
+
+//    testImplementation libraries.assertj
+    testImplementation libraries.junit
+//    testImplementation libraries.mockk
+}
+
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+}

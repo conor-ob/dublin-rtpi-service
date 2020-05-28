@@ -29,5 +29,4 @@ interface StaticDataApi {
 
     @GET("luas/stops.json")
     fun getLuasStops(): Single<RtpiBusStopInformationResponseJson>
-
 }

@@ -3,9 +3,11 @@ package io.rtpi.service.irishrail
 import com.google.inject.Inject
 import io.reactivex.Single
 import io.rtpi.api.Coordinate
-import io.rtpi.api.IrishRailStation
 import io.rtpi.api.Operator
-import io.rtpi.api.Route
+import io.rtpi.api.RouteGroup
+import io.rtpi.api.Service
+import io.rtpi.api.ServiceLocation
+import io.rtpi.api.StopLocation
 import io.rtpi.external.irishrail.IrishRailApi
 import io.rtpi.external.irishrail.IrishRailStationResponseXml
 import io.rtpi.external.irishrail.IrishRailStationXml
@@ -15,13 +17,13 @@ import io.rtpi.validation.validateStrings
 
 class IrishRailStationService @Inject constructor(private val irishRailApi: IrishRailApi) {
 
-    fun getStations(): Single<List<IrishRailStation>> {
+    fun getStations(): Single<List<ServiceLocation>> {
         return irishRailApi
             .getAllStationsXml()
             .map { validateResponse(it) }
     }
 
-    private fun validateResponse(response: IrishRailStationResponseXml): List<IrishRailStation> =
+    private fun validateResponse(response: IrishRailStationResponseXml): List<ServiceLocation> =
         if (response.stations.isNullOrEmpty()) {
             emptyList()
         } else {
@@ -33,21 +35,23 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
                 }.map { xml ->
                     val id = xml.code.validate().toUpperCase()
                     val operators = mapOperators(id)
-                    IrishRailStation(
+                    StopLocation(
                         id = id,
                         name = xml.name.validate(),
+                        service = Service.IRISH_RAIL,
                         coordinate = Coordinate(xml.latitude.validate(), xml.longitude.validate()),
-                        operators = operators,
-                        routes = operators.map { Route(it.fullName, it) }
+                        routeGroups = operators.map { operator ->
+                            RouteGroup(operator, listOf(operator.fullName))
+                        }
                     )
                 }
         }
 
     private fun filterDuplicates(xml: IrishRailStationXml): Boolean {
-        return xml.code != "ADAMF" && xml.code != "ADAMS" // Adamstown
-            && xml.code != "CLONF" && xml.code != "CLONS" // Clondalkin
-            && xml.code != "HAZEF" && xml.code != "HAZES" // Hazelhatch
-            && xml.code != "PWESF" && xml.code != "PWESS" // Park West and Cherry Orchard
+        return xml.code != "ADAMF" && xml.code != "ADAMS" && // Adamstown
+            xml.code != "CLONF" && xml.code != "CLONS" && // Clondalkin
+            xml.code != "HAZEF" && xml.code != "HAZES" && // Hazelhatch
+            xml.code != "PWESF" && xml.code != "PWESS" // Park West and Cherry Orchard
     }
 
     // https://www.irishrail.ie/Travel-Information/Station-and-Route-maps/Dublin-Symbolic-Map
@@ -71,17 +75,15 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
             "SIDNY", // Sydney Parade
             "SKILL", // Shankill
             "SMONT", // Sandymount
-            "SUTTN"  // Sutton
+            "SUTTN" // Sutton
             -> setOf(Operator.DART)
 
 //            "ADAMF", // Adamstown
 //            "ADAMS", // Adamstown
             "ADMTN", // Adamstown
             "ASHTN", // Ashtown
-            "ATLNE", // Athlone
             "BBRDG", // Broombridge
             "BBRGN", // Balbriggan
-            "CLARA", // Clara
             "CLDKN", // Clondalkin
 //            "CLONF", // Clondalkin
 //            "CLONS", // Clondalkin
@@ -91,8 +93,6 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
             "DCKLS", // Docklands
             "DBATE", // Donabate
             "DBYNE", // Dunboyne
-            "DDALK", // Dundalk
-            "DGHDA", // Drogheda
             "GSTON", // Gormanston
             "HAFLD", // Hansfield
 //            "HAZEF", // Hazelhatch
@@ -107,49 +107,62 @@ class IrishRailStationService @Inject constructor(private val irishRailApi: Iris
 //            "PWESS", // PARK WEST
             "CHORC", // Park West and Cherry Orchard
             "RLUSK", // Rush and Lusk
-            "SKRES", // Skerries
-            "TMORE"  // Tullamore
+            "SKRES" // Skerries
             -> setOf(Operator.COMMUTER)
 
             "BROCK", // Blackrock
-            "GCDK",  // Grand Canal Dock
+            "GCDK", // Grand Canal Dock
             "GRGRD", // Clongriffin
             "HWTHJ", // Howth Junction
             "LDWNE", // Lansdowne Road
-            "PMNCK"  // Portmarnock
+            "PMNCK" // Portmarnock
             -> setOf(Operator.COMMUTER, Operator.DART)
 
             "ARKLW", // Arklow
-            "ATHY",  // Athy
+            "ATLNE", // Athlone
+            "ATHY", // Athy
+            "CGLOE", // Carrigaloe
+            "CGTWL", // Carrigtwohill
+            "CLARA", // Clara
+            "COBH", // Cobh
+            "CORK", // Cork
             "CRLOW", // Carlow
             "DCDRA", // Drumcondra
+            "DDALK", // Dundalk
+            "DGHDA", // Drogheda
             "ECRTY", // Enniscorthy
             "ENFLD", // Enfield
             "ETOWN", // Edgeworthstown
+            "FOTA", // Fota
             "HSTON", // Dublin Heuston
+            "GHANE", // Glounthaune
             "GOREY", // Gorey
             "KCOCK", // Kilcock
             "KCOOL", // Kilcoole
             "KDARE", // Kildare
             "LFORD", // Longford
+            "LSLND", // LittleIsland
+            "MDLTN", // Midleton
             "MLGAR", // Mullingar
             "MONVN", // Monasterevin
             "MYNTH", // Maynooth
             "NBRGE", // Newbridge
             "PTRTN", // Portarlington
             "PTLSE", // Portlaoise
+            "RBROK", // Rushbrooke
             "RDRUM", // Rathdrum
             "SALNS", // Sallins
-            "WLOW"   // Wicklow
+            "TMORE", // Tullamore
+            "WLOW" // Wicklow
             -> setOf(Operator.COMMUTER, Operator.INTERCITY)
 
-            "BRAY",  // Bray
+            "BRAY", // Bray
             "CNLLY", // Dublin Connolly
             "DLERY", // Dun Laoghaire
             "GSTNS", // Greystones
             "MHIDE", // Malahide
             "PERSE", // Dublin Pearse
-            "TARA"   // Tara Street
+            "TARA" // Tara Street
             -> setOf(Operator.COMMUTER, Operator.DART, Operator.INTERCITY)
 
             else -> setOf(Operator.INTERCITY)

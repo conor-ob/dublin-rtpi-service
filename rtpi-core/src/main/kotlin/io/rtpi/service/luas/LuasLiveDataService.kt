@@ -1,28 +1,18 @@
 package io.rtpi.service.luas
 
 import com.google.inject.Inject
-import io.rtpi.api.LuasLiveData
+import com.google.inject.name.Named
 import io.rtpi.api.Operator
+import io.rtpi.api.Service
 import io.rtpi.external.rtpi.RtpiApi
-import io.rtpi.external.rtpi.RtpiRealTimeBusInformationJson
 import io.rtpi.service.rtpi.AbstractRtpiLiveDataService
-import io.rtpi.validation.validate
 
 class LuasLiveDataService @Inject constructor(
-    rtpiApi: RtpiApi
-) : AbstractRtpiLiveDataService<LuasLiveData>(
+    @Named("rtpi_api") rtpiApi: RtpiApi,
+    @Named("rtpi_fallback_api") rtpiFallbackApi: RtpiApi
+) : AbstractRtpiLiveDataService(
     rtpiApi = rtpiApi,
-    operator = Operator.LUAS.shortName
-) {
-
-    override fun newLiveDataInstance(timestamp: String, json: RtpiRealTimeBusInformationJson): LuasLiveData {
-        return LuasLiveData(
-            liveTime = createDueTime(timestamp, json),
-            operator = Operator.parse(json.operator.validate()),
-            route = json.route.validate(),
-            destination = json.destination.validate().replace("LUAS", "").validate(),
-            direction = json.direction.validate(),
-            origin = json.origin.validate().replace("LUAS", "").validate()
-        )
-    }
-}
+    rtpiFallbackApi = rtpiFallbackApi,
+    operator = Operator.LUAS.shortName,
+    service = Service.LUAS
+)

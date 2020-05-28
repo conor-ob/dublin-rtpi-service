@@ -3,9 +3,9 @@ package io.rtpi.service.aircoach
 import io.rtpi.external.aircoach.AbstractAircoachWebScraper
 import io.rtpi.external.aircoach.AircoachStopJson
 import io.rtpi.external.aircoach.AircoachStopServiceJson
+import javax.script.ScriptEngineManager
 import org.mozilla.javascript.NativeArray
 import org.mozilla.javascript.NativeObject
-import javax.script.ScriptEngineManager
 
 class RhinoEngineAircoachWebScraper(aircoachBaseUrl: String) : AbstractAircoachWebScraper(aircoachBaseUrl) {
 
@@ -58,5 +58,4 @@ class RhinoEngineAircoachWebScraper(aircoachBaseUrl: String) : AbstractAircoachW
         }
         return stops
     }
-
 }

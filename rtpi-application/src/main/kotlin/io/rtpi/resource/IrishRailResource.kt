@@ -1,8 +1,8 @@
 package io.rtpi.resource
 
 import com.google.inject.Inject
-import io.rtpi.api.IrishRailLiveData
-import io.rtpi.api.IrishRailStation
+import io.rtpi.api.PredictionLiveData
+import io.rtpi.api.StopLocation
 import io.rtpi.service.irishrail.CachedIrishRailLiveDataService
 import io.rtpi.service.irishrail.CachedIrishRailStationService
 import io.swagger.annotations.Api
@@ -28,7 +28,7 @@ class IrishRailResource @Inject constructor(
     @ApiOperation(
         value = "Get Irish Rail stations",
         notes = "Gets locations using the <a href=\"http://api.irishrail.ie/realtime/\">Irish Rail API</a>",
-        response = IrishRailStation::class,
+        response = StopLocation::class,
         responseContainer = "List"
     )
     fun getIrishRailStations(): Response {
@@ -41,7 +41,7 @@ class IrishRailResource @Inject constructor(
     @ApiOperation(
         value = "Get Irish Rail live data",
         notes = "Gets live data using the <a href=\"http://api.irishrail.ie/realtime/\">Irish Rail API</a>",
-        response = IrishRailLiveData::class,
+        response = PredictionLiveData::class,
         responseContainer = "List"
     )
     fun getIrishRailLiveData(

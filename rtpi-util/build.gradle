@@ -2,7 +2,7 @@ dependencies {
     implementation project(':rtpi-api')
     implementation libraries.kotlin
 
-    testImplementation project(path: ':rtpi-api', configuration: 'testOutput')
+    testImplementation project(':rtpi-static-data')
     testImplementation libraries.assertj
     testImplementation libraries.junit
     testImplementation libraries.mockk

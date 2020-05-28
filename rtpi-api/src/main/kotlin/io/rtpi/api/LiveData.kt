@@ -4,73 +4,35 @@ import java.time.Duration
 import java.time.ZonedDateTime
 
 interface LiveData {
+    val service: Service
     val operator: Operator
 }
 
-interface TimedLiveData : LiveData {
-    val route: String
-    val origin: String
-    val destination: String
-    val direction: String
-    val liveTime: LiveTime
-}
+data class PredictionLiveData(
+    override val service: Service,
+    override val operator: Operator,
+    val routeInfo: RouteInfo,
+    val prediction: Prediction
+) : LiveData
 
-data class LiveTime(
-    val waitTime: Duration,
-    val currentDateTime: ZonedDateTime,
-    val expectedDateTime: ZonedDateTime,
-    val scheduledDateTime: ZonedDateTime
+data class DockLiveData(
+    override val service: Service,
+    override val operator: Operator,
+    val availableBikes: Int,
+    val availableDocks: Int,
+    val totalDocks: Int
+) : LiveData
+
+data class RouteInfo(
+    val route: String,
+    val origin: String,
+    val destination: String,
+    val direction: String
 )
 
-data class AircoachLiveData(
-    override val route: String,
-    override val origin: String,
-    override val destination: String,
-    override val direction: String,
-    override val liveTime: LiveTime
-) : TimedLiveData {
-    override val operator = Operator.AIRCOACH
-}
-
-data class BusEireannLiveData(
-    override val operator: Operator,
-    override val route: String,
-    override val origin: String,
-    override val destination: String,
-    override val direction: String,
-    override val liveTime: LiveTime
-) : TimedLiveData
-
-data class DublinBikesLiveData(
-    val bikes: Int,
-    val docks: Int
-) : LiveData {
-    override val operator = Operator.DUBLIN_BIKES
-}
-
-data class DublinBusLiveData(
-    override val operator: Operator,
-    override val route: String,
-    override val origin: String,
-    override val destination: String,
-    override val direction: String,
-    override val liveTime: LiveTime
-) : TimedLiveData
-
-data class IrishRailLiveData(
-    override val operator: Operator,
-    override val route: String,
-    override val origin: String,
-    override val destination: String,
-    override val direction: String,
-    override val liveTime: LiveTime
-) : TimedLiveData
-
-data class LuasLiveData(
-    override val operator: Operator,
-    override val route: String,
-    override val origin: String,
-    override val destination: String,
-    override val direction: String,
-    override val liveTime: LiveTime
-) : TimedLiveData
+data class Prediction(
+    val waitTime: Duration,
+    val currentDateTime: ZonedDateTime,
+    val scheduledDateTime: ZonedDateTime,
+    val expectedDateTime: ZonedDateTime
+)
