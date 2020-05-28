@@ -1,82 +1,81 @@
 package io.rtpi.util
 
+import io.rtpi.api.LiveData
 import io.rtpi.api.Operator
-import io.rtpi.api.Prediction
-import io.rtpi.test.fixtures.createDublinBusLiveData
-import java.time.Duration
-import java.time.ZonedDateTime
+import io.rtpi.test.fixtures.createDockLiveData
+import io.rtpi.test.fixtures.createPredictionLiveData
+import io.rtpi.test.fixtures.createRouteInfo
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 class LiveDataGrouperTest {
 
     @Test
+    fun `should return empty list if input is empty`() {
+        // arrange
+        val liveData = emptyList<LiveData>()
+
+        // act
+        val groupedLiveData = LiveDataGrouper.groupLiveData(liveData)
+
+        // assert
+        assertThat(groupedLiveData).isEmpty()
+    }
+
+    @Test
+    fun `dock live data should not be grouped`() {
+        // arrange
+        val liveData = listOf(
+            createDockLiveData(),
+            createDockLiveData(),
+            createDockLiveData(),
+            createDockLiveData()
+        )
+
+        // act
+        val groupedLiveData = LiveDataGrouper.groupLiveData(liveData)
+
+        // assert
+        assertThat(groupedLiveData).isEqualTo(listOf(liveData))
+    }
+
+    @Test
     fun `identical routes should be grouped`() {
         // arrange
         val liveData = listOf(
-            createDublinBusLiveData(
+            createPredictionLiveData(
                 operator = Operator.DUBLIN_BUS,
-                route = "7",
-                origin = "Mountjoy Square",
-                destination = "Brides Glen",
-                direction = "Outbound",
-                liveTime = Prediction(
-                    waitTime = Duration.parse("PT8M"),
-                    currentDateTime = ZonedDateTime.now(),
-                    expectedDateTime = ZonedDateTime.now(),
-                    scheduledDateTime = ZonedDateTime.now()
+                routeInfo = createRouteInfo(
+                    route = "7",
+                    destination = "Brides Glen"
                 )
             ),
-            createDublinBusLiveData(
+            createPredictionLiveData(
                 operator = Operator.GO_AHEAD,
-                route = "17",
-                origin = "South Circular Road",
-                destination = "Blackrock",
-                direction = "Outbound",
-                liveTime = Prediction(
-                    waitTime = Duration.parse("PT20M"),
-                    currentDateTime = ZonedDateTime.now(),
-                    expectedDateTime = ZonedDateTime.now(),
-                    scheduledDateTime = ZonedDateTime.now()
+                routeInfo = createRouteInfo(
+                    route = "17",
+                    destination = "Blackrock"
                 )
             ),
-            createDublinBusLiveData(
+            createPredictionLiveData(
                 operator = Operator.DUBLIN_BUS,
-                route = "7A",
-                origin = "Mountjoy Square",
-                destination = "Loughlinstown Pk",
-                direction = "Outbound",
-                liveTime = Prediction(
-                    waitTime = Duration.parse("PT27M"),
-                    currentDateTime = ZonedDateTime.now(),
-                    expectedDateTime = ZonedDateTime.now(),
-                    scheduledDateTime = ZonedDateTime.now()
+                routeInfo = createRouteInfo(
+                    route = "7A",
+                    destination = "Loughlinstown Pk"
                 )
             ),
-            createDublinBusLiveData(
+            createPredictionLiveData(
                 operator = Operator.DUBLIN_BUS,
-                route = "7",
-                origin = "Mountjoy Square",
-                destination = "Brides Glen",
-                direction = "Outbound",
-                liveTime = Prediction(
-                    waitTime = Duration.parse("PT45M"),
-                    currentDateTime = ZonedDateTime.now(),
-                    expectedDateTime = ZonedDateTime.now(),
-                    scheduledDateTime = ZonedDateTime.now()
+                routeInfo = createRouteInfo(
+                    route = "7",
+                    destination = "Brides Glen"
                 )
             ),
-            createDublinBusLiveData(
+            createPredictionLiveData(
                 operator = Operator.GO_AHEAD,
-                route = "17",
-                origin = "South Circular Road",
-                destination = "Blackrock",
-                direction = "Outbound",
-                liveTime = Prediction(
-                    waitTime = Duration.parse("PT47M"),
-                    currentDateTime = ZonedDateTime.now(),
-                    expectedDateTime = ZonedDateTime.now(),
-                    scheduledDateTime = ZonedDateTime.now()
+                routeInfo = createRouteInfo(
+                    route = "17",
+                    destination = "Blackrock"
                 )
             )
         )
@@ -86,5 +85,23 @@ class LiveDataGrouperTest {
 
         // assert
         assertThat(groupedLiveData.size).isEqualTo(3)
+    }
+
+    @Test
+    fun `should return empty list if live data types are mixed`() {
+        // arrange
+        val liveData = listOf(
+            createPredictionLiveData(),
+            createDockLiveData(),
+            createDockLiveData(),
+            createPredictionLiveData(),
+            createPredictionLiveData()
+        )
+
+        // act
+        val groupedLiveData = LiveDataGrouper.groupLiveData(liveData)
+
+        // assert
+        assertThat(groupedLiveData).isEmpty()
     }
 }

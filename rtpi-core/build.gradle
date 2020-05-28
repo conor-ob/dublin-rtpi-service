@@ -15,7 +15,7 @@ dependencies {
 
     implementation libraries.guice
 
-    testImplementation project(path: ':rtpi-api', configuration: 'testOutput')
+    testImplementation project(':rtpi-static-data')
     testImplementation libraries.assertj
     testImplementation libraries.junit
     testImplementation libraries.mockk

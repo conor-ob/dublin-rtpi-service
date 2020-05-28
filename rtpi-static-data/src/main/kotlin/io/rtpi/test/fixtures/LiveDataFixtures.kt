@@ -1,80 +1,41 @@
 package io.rtpi.test.fixtures
 
+import io.rtpi.api.DockLiveData
 import io.rtpi.api.Operator
 import io.rtpi.api.Prediction
 import io.rtpi.api.PredictionLiveData
 import io.rtpi.api.RouteInfo
 import io.rtpi.api.Service
 import java.time.Duration
-import java.time.LocalTime
 import java.time.ZonedDateTime
+import java.util.UUID
+import kotlin.random.Random
 
-fun createDueTime(
-    waitTimeMinutes: Duration,
-    currentTime: LocalTime = LocalTime.now()
-): Prediction {
-    return Prediction(
-        waitTime = waitTimeMinutes,
-        currentDateTime = ZonedDateTime.now(),
-        scheduledDateTime = ZonedDateTime.now(),
-        expectedDateTime = ZonedDateTime.now()
-    )
-}
+fun createPredictionLiveData(
+    service: Service = Service.values().random(),
+    operator: Operator = service.operators.random(),
+    routeInfo: RouteInfo = createRouteInfo(),
+    prediction: Prediction = createPrediction()
+) = PredictionLiveData(service, operator, routeInfo, prediction)
 
-fun createDublinBusLiveData(
-    operator: Operator,
-    route: String,
-    origin: String,
-    destination: String,
-    direction: String,
-    liveTime: Prediction
-) = PredictionLiveData(
-    service = Service.DUBLIN_BUS,
-    operator = operator,
-    routeInfo = RouteInfo(
-        route = route,
-        origin = origin,
-        destination = destination,
-        direction = direction
-    ),
-    prediction = liveTime
-)
+fun createDockLiveData(
+    service: Service = Service.values().random(),
+    operator: Operator = service.operators.random(),
+    availableBikes: Int = Random.nextInt(0, 50),
+    availableDocks: Int = Random.nextInt(0, 50),
+    totalDocks: Int = Random.nextInt(0, 50)
+) = DockLiveData(service, operator, availableBikes, availableDocks, totalDocks)
 
-fun createIrishRailLiveData(
-    currentTime: LocalTime = LocalTime.now(),
-    waitTimeMinutes: Duration = Duration.ofMinutes(3),
-    operator: Operator = Operator.DART,
-    direction: String = "Southbound",
-    destination: String = "Bray",
-    route: String = operator.fullName,
-    origin: String = "Howth"
-) = PredictionLiveData(
-    prediction = createDueTime(waitTimeMinutes, currentTime),
-    operator = operator,
-    service = Service.IRISH_RAIL,
-    routeInfo = RouteInfo(
-        route = route,
-        direction = direction,
-        destination = destination,
-        origin = origin
-    )
-)
+fun createPrediction(
+    waitTime: Duration = Duration.ofMinutes(Random.nextInt(0, 90).toLong()),
+    currentDateTime: ZonedDateTime = ZonedDateTime.now(),
+    scheduledDateTime: ZonedDateTime = ZonedDateTime.now().plus(waitTime),
+    expectedDateTime: ZonedDateTime = ZonedDateTime.now().plus(waitTime)
+) = Prediction(waitTime, currentDateTime, scheduledDateTime, expectedDateTime)
 
-fun createLuasLiveData(
-    currentTime: LocalTime = LocalTime.now(),
-    waitTimeMinutes: Duration = Duration.ofMinutes(5),
-    route: String = "Green Line",
-    destination: String = "Sandyford",
-    direction: String = "Outbound",
-    origin: String = "St Stephen's Green"
-) = PredictionLiveData(
-    prediction = createDueTime(waitTimeMinutes, currentTime),
-    operator = Operator.LUAS,
-    service = Service.LUAS,
-    routeInfo = RouteInfo(
-        route = route,
-        destination = destination,
-        direction = direction,
-        origin = origin
-    )
-)
+fun createRouteInfo(
+    route: String = UUID.randomUUID().toString(),
+    origin: String = UUID.randomUUID().toString(),
+    destination: String = UUID.randomUUID().toString(),
+    direction: String = UUID.randomUUID().toString()
+) = RouteInfo(route, origin, destination, direction)

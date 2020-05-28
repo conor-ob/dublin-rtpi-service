@@ -1,21 +1,18 @@
 apply plugin: 'jacoco'
 
+jacoco {
+    toolVersion = "0.8.5"
+}
+
 project.afterEvaluate {
     task "testCoverage" (type:JacocoReport, dependsOn: "test") {
         group = "Reporting"
 
         def fileFilter = [
-                '**/R.class',
-                '**/R$*.class',
-                '**/*$ViewInjector*.*',
-                '**/*$ViewBinder*.*',
-                '**/BuildConfig.*',
-                '**/Manifest*.*',
-                '**/*App.*',
-                '**/*Component.*',
-                '**/*Module.*',
-                '**/*Activity.*',
-                '**/*Fragment.*'
+                '**/*Fixtures*',
+                '**/*Api.*',
+                '**/*Json.*',
+                '**/*Xml.*'
         ]
         def debugTree = fileTree(dir: "${buildDir}/classes/kotlin/main", excludes: fileFilter)
         def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
