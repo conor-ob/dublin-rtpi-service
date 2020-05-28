@@ -1,7 +1,3 @@
-apply from: "$rootDir/quality/coverage/jacoco.gradle"
-apply from: "$rootDir/quality/lint/ktlint.gradle"
-apply from: "$rootDir/quality/test/logging.gradle"
-
 dependencies {
     implementation libraries.kotlin
 
