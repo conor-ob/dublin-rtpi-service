@@ -86,4 +86,22 @@ class LiveDataGrouperTest {
         // assert
         assertThat(groupedLiveData.size).isEqualTo(3)
     }
+
+    @Test
+    fun `should return empty list if live data types are mixed`() {
+        // arrange
+        val liveData = listOf(
+            createPredictionLiveData(),
+            createDockLiveData(),
+            createDockLiveData(),
+            createPredictionLiveData(),
+            createPredictionLiveData()
+        )
+
+        // act
+        val groupedLiveData = LiveDataGrouper.groupLiveData(liveData)
+
+        // assert
+        assertThat(groupedLiveData).isEmpty()
+    }
 }

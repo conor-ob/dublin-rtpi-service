@@ -4,6 +4,7 @@ import io.rtpi.api.Coordinate
 import io.rtpi.api.DockLocation
 import io.rtpi.api.RouteGroup
 import io.rtpi.api.Service
+import io.rtpi.api.ServiceLocation
 import io.rtpi.api.StopLocation
 import java.util.UUID
 import kotlin.random.Random
@@ -29,7 +30,7 @@ fun createDockLocation(
     availableBikes: Int = randomInt(),
     availableDocks: Int = randomInt(),
     totalDocks: Int = randomInt()
-) = DockLocation(id, name, service, coordinate, availableBikes, availableDocks, totalDocks)
+): ServiceLocation = DockLocation(id, name, service, coordinate, availableBikes, availableDocks, totalDocks)
 
 fun randomCoordinatePoint(): Double = Random.nextDouble(from = 0.0, until = 90.0)
 
