@@ -1,9 +1,129 @@
 {
   "errorcode": "0",
   "errormessage": "",
-  "numberofresults": 67,
-  "timestamp": "10/12/2019 22:02:55",
+  "numberofresults": 73,
+  "timestamp": "18/06/2020 20:05:48",
   "results": [
+    {
+      "stopid": "310",
+      "displaystopid": "LUAS O'Connell St",
+      "shortname": "",
+      "shortnamelocalized": "",
+      "fullname": "LUAS O'Connell St",
+      "fullnamelocalized": "",
+      "latitude": "45",
+      "longitude": "-1",
+      "lastupdated": "08/06/2020 10:29:55",
+      "operators": [
+        {
+          "name": "LUAS",
+          "operatortype": 3,
+          "routes": [
+            "XXX"
+          ]
+        }
+      ]
+    },
+    {
+      "stopid": "330",
+      "displaystopid": "LUAS Crampton Quay",
+      "shortname": "",
+      "shortnamelocalized": "",
+      "fullname": "LUAS Crampton Quay",
+      "fullnamelocalized": "",
+      "latitude": "45",
+      "longitude": "-1",
+      "lastupdated": "05/05/2020 09:26:05",
+      "operators": [
+        {
+          "name": "LUAS",
+          "operatortype": 3,
+          "routes": [
+            "XXX"
+          ]
+        }
+      ]
+    },
+    {
+      "stopid": "794",
+      "displaystopid": "LUAS Suffolk Street",
+      "shortname": "",
+      "shortnamelocalized": "",
+      "fullname": "LUAS St. Andrew's Street",
+      "fullnamelocalized": "",
+      "latitude": "53.343589",
+      "longitude": "-6.260366",
+      "lastupdated": "29/04/2020 07:44:09",
+      "operators": [
+        {
+          "name": "LUAS",
+          "operatortype": 3,
+          "routes": [
+            "XXX"
+          ]
+        }
+      ]
+    },
+    {
+      "stopid": "4425",
+      "displaystopid": "LUAS Heuston Station",
+      "shortname": "",
+      "shortnamelocalized": "",
+      "fullname": "LUAS Heuston Station",
+      "fullnamelocalized": "",
+      "latitude": "45",
+      "longitude": "-1",
+      "lastupdated": "05/05/2020 09:26:05",
+      "operators": [
+        {
+          "name": "LUAS",
+          "operatortype": 3,
+          "routes": [
+            "XXX"
+          ]
+        }
+      ]
+    },
+    {
+      "stopid": "4496",
+      "displaystopid": "LUAS O'Connell St",
+      "shortname": "",
+      "shortnamelocalized": "",
+      "fullname": "LUAS O'Connell St",
+      "fullnamelocalized": "",
+      "latitude": "45",
+      "longitude": "-1",
+      "lastupdated": "05/05/2020 09:26:05",
+      "operators": [
+        {
+          "name": "LUAS",
+          "operatortype": 3,
+          "routes": [
+            "XXX"
+          ]
+        }
+      ]
+    },
+    {
+      "stopid": "4842",
+      "displaystopid": "LUAS Suffolk Street",
+      "shortname": "",
+      "shortnamelocalized": "",
+      "fullname": "LUAS Grafton Street",
+      "fullnamelocalized": "",
+      "latitude": "53.343375",
+      "longitude": "-6.259819",
+      "lastupdated": "29/04/2020 07:44:08",
+      "operators": [
+        {
+          "name": "LUAS",
+          "operatortype": 3,
+          "routes": [
+            "XXX"
+          ]
+        }
+      ]
+    },
     {
       "stopid": "LUAS1",
       "displaystopid": "LUAS Tallaght",
@@ -13,12 +133,13 @@
       "fullnamelocalized": "",
       "latitude": "53.28749444",
       "longitude": "-6.374588889",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -33,13 +154,14 @@
       "fullnamelocalized": "",
       "latitude": "53.33536111",
       "longitude": "-6.318161111",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -53,12 +175,13 @@
       "fullnamelocalized": "",
       "latitude": "53.33589167",
       "longitude": "-6.313569444",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -73,13 +196,14 @@
       "fullnamelocalized": "",
       "latitude": "53.33661667",
       "longitude": "-6.307211111",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -93,12 +217,13 @@
       "fullnamelocalized": "",
       "latitude": "53.33790833",
       "longitude": "-6.297241667",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -113,13 +238,14 @@
       "fullnamelocalized": "",
       "latitude": "53.33843889",
       "longitude": "-6.292547222",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -133,12 +259,13 @@
       "fullnamelocalized": "",
       "latitude": "53.34194167",
       "longitude": "-6.293361111",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -153,13 +280,14 @@
       "fullnamelocalized": "",
       "latitude": "53.34664722",
       "longitude": "-6.291808333",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -173,12 +301,13 @@
       "fullnamelocalized": "",
       "latitude": "53.34786667",
       "longitude": "-6.286713889",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -193,13 +322,14 @@
       "fullnamelocalized": "",
       "latitude": "53.34713333",
       "longitude": "-6.277727778",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -213,12 +343,13 @@
       "fullnamelocalized": "",
       "latitude": "53.34686389",
       "longitude": "-6.273436111",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -233,13 +364,14 @@
       "fullnamelocalized": "",
       "latitude": "53.28936944",
       "longitude": "-6.37885",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -253,12 +385,13 @@
       "fullnamelocalized": "",
       "latitude": "53.34768611",
       "longitude": "-6.265333333",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -273,13 +406,14 @@
       "fullnamelocalized": "",
       "latitude": "53.34858889",
       "longitude": "-6.258172222",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -293,12 +427,13 @@
       "fullnamelocalized": "",
       "latitude": "53.350075",
       "longitude": "-6.25145",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -313,13 +448,14 @@
       "fullnamelocalized": "",
       "latitude": "53.35092222",
       "longitude": "-6.249941667",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -333,12 +469,13 @@
       "fullnamelocalized": "",
       "latitude": "53.33907222",
       "longitude": "-6.261333333",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -353,13 +490,14 @@
       "fullnamelocalized": "",
       "latitude": "53.33335833",
       "longitude": "-6.26265",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -373,12 +511,13 @@
       "fullnamelocalized": "",
       "latitude": "53.33066944",
       "longitude": "-6.258683333",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -393,13 +532,14 @@
       "fullnamelocalized": "",
       "latitude": "53.32643333",
       "longitude": "-6.256202778",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -413,12 +553,13 @@
       "fullnamelocalized": "",
       "latitude": "53.32082222",
       "longitude": "-6.254652778",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -433,13 +574,14 @@
       "fullnamelocalized": "",
       "latitude": "53.31646667",
       "longitude": "-6.253447222",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -453,12 +595,13 @@
       "fullnamelocalized": "",
       "latitude": "53.29350556",
       "longitude": "-6.384397222",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -473,13 +616,14 @@
       "fullnamelocalized": "",
       "latitude": "53.30991667",
       "longitude": "-6.251727778",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -493,12 +637,13 @@
       "fullnamelocalized": "",
       "latitude": "53.30155833",
       "longitude": "-6.250708333",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -513,13 +658,14 @@
       "fullnamelocalized": "",
       "latitude": "53.29235833",
       "longitude": "-6.245116667",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -533,12 +679,13 @@
       "fullnamelocalized": "",
       "latitude": "53.28610556",
       "longitude": "-6.236772222",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -553,13 +700,14 @@
       "fullnamelocalized": "",
       "latitude": "53.28300833",
       "longitude": "-6.223886111",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -573,12 +721,13 @@
       "fullnamelocalized": "",
       "latitude": "53.27931111",
       "longitude": "-6.209919444",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -593,13 +742,14 @@
       "fullnamelocalized": "",
       "latitude": "53.27760278",
       "longitude": "-6.204677778",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -613,12 +763,13 @@
       "fullnamelocalized": "",
       "latitude": "53.27015",
       "longitude": "-6.203763889",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -633,13 +784,14 @@
       "fullnamelocalized": "",
       "latitude": "53.26633611",
       "longitude": "-6.209941667",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -653,12 +805,13 @@
       "fullnamelocalized": "",
       "latitude": "53.26116389",
       "longitude": "-6.206022222",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -673,13 +826,14 @@
       "fullnamelocalized": "",
       "latitude": "53.29928611",
       "longitude": "-6.374886111",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -693,12 +847,13 @@
       "fullnamelocalized": "",
       "latitude": "53.25824722",
       "longitude": "-6.198361111",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -713,13 +868,14 @@
       "fullnamelocalized": "",
       "latitude": "53.255047",
       "longitude": "-6.184475",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -733,12 +889,13 @@
       "fullnamelocalized": "",
       "latitude": "53.25403333",
       "longitude": "-6.169908333",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -753,13 +910,14 @@
       "fullnamelocalized": "",
       "latitude": "53.25060556",
       "longitude": "-6.155005556",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -773,12 +931,13 @@
       "fullnamelocalized": "",
       "latitude": "53.24533333",
       "longitude": "-6.145852778",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -793,13 +952,14 @@
       "fullnamelocalized": "",
       "latitude": "53.242075",
       "longitude": "-6.142886111",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -813,12 +973,13 @@
       "fullnamelocalized": "",
       "latitude": "53.29351885",
       "longitude": "-6.395553517",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -833,13 +994,14 @@
       "fullnamelocalized": "",
       "latitude": "53.30369444",
       "longitude": "-6.36525",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -853,12 +1015,13 @@
       "fullnamelocalized": "",
       "latitude": "53.29098242",
       "longitude": "-6.4068485",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -873,13 +1036,14 @@
       "fullnamelocalized": "",
       "latitude": "53.28783255",
       "longitude": "-6.418914583",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -893,12 +1057,13 @@
       "fullnamelocalized": "",
       "latitude": "53.28425063",
       "longitude": "-6.42460165",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "29/04/2020 07:44:09",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -913,13 +1078,14 @@
       "fullnamelocalized": "",
       "latitude": "53.28467885",
       "longitude": "-6.43776255",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -933,12 +1099,13 @@
       "fullnamelocalized": "",
       "latitude": "53.349528",
       "longitude": "-6.247575",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -953,13 +1120,14 @@
       "fullnamelocalized": "",
       "latitude": "53.34924722",
       "longitude": "-6.243394444",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -973,12 +1141,13 @@
       "fullnamelocalized": "",
       "latitude": "53.34882222",
       "longitude": "-6.237147222",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -993,13 +1162,14 @@
       "fullnamelocalized": "",
       "latitude": "53.34835",
       "longitude": "-6.229258333",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -1013,12 +1183,13 @@
       "fullnamelocalized": "",
       "latitude": "53.34216927",
       "longitude": "-6.25796366",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -1033,13 +1204,14 @@
       "fullnamelocalized": "",
       "latitude": "53.31683333",
       "longitude": "-6.369872222",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -1053,12 +1225,13 @@
       "fullnamelocalized": "",
       "latitude": "53.34528172",
       "longitude": "-6.25825674",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -1073,13 +1246,14 @@
       "fullnamelocalized": "",
       "latitude": "53.34635626",
       "longitude": "-6.25897083",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -1093,12 +1267,13 @@
       "fullnamelocalized": "",
       "latitude": "53.34924219",
       "longitude": "-6.25773649",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -1113,13 +1288,14 @@
       "fullnamelocalized": "",
       "latitude": "53.34884509",
       "longitude": "-6.25988168",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -1133,12 +1309,13 @@
       "fullnamelocalized": "",
       "latitude": "53.35161218",
       "longitude": "-6.26102943",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -1153,13 +1330,14 @@
       "fullnamelocalized": "",
       "latitude": "53.35310356",
       "longitude": "-6.26050153",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -1173,12 +1351,13 @@
       "fullnamelocalized": "",
       "latitude": "53.3513492",
       "longitude": "-6.26554234",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -1193,13 +1372,14 @@
       "fullnamelocalized": "",
       "latitude": "53.35407442",
       "longitude": "-6.27375642",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -1213,12 +1393,13 @@
       "fullnamelocalized": "",
       "latitude": "53.35719205",
       "longitude": "-6.27733848",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -1233,13 +1414,14 @@
       "fullnamelocalized": "",
       "latitude": "53.36037646",
       "longitude": "-6.27888498",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -1253,12 +1435,13 @@
       "fullnamelocalized": "",
       "latitude": "53.32665556",
       "longitude": "-6.343444444",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
@@ -1273,13 +1456,14 @@
       "fullnamelocalized": "",
       "latitude": "53.36433419",
       "longitude": "-6.28196899",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Green"
+            "Green",
+            "Luas"
           ]
         }
       ]
@@ -1293,12 +1477,13 @@
       "fullnamelocalized": "",
       "latitude": "53.37223956",
       "longitude": "-6.29768465",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Green"
           ]
         }
@@ -1313,13 +1498,14 @@
       "fullnamelocalized": "",
       "latitude": "53.32929722",
       "longitude": "-6.333791667",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
-            "Red"
+            "Red",
+            "Luas"
           ]
         }
       ]
@@ -1333,12 +1519,13 @@
       "fullnamelocalized": "",
       "latitude": "53.33425833",
       "longitude": "-6.327394444",
-      "lastupdated": "09/12/2019 13:02:03",
+      "lastupdated": "25/05/2020 07:52:19",
       "operators": [
         {
           "name": "LUAS",
           "operatortype": 3,
           "routes": [
+            "Luas",
             "Red"
           ]
         }
