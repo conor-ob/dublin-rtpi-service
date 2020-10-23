@@ -1,7 +1,6 @@
 package io.rtpi
 
 import io.dropwizard.Configuration
-import java.time.Duration
 
 class RtpiServiceConfiguration : Configuration() {
     lateinit var apiConfiguration: ApiConfiguration
@@ -18,6 +17,6 @@ data class ApiConfiguration(
 )
 
 data class CacheConfiguration(
-    val serviceLocationExpiry: Duration? = null,
-    val liveDataExpiry: Duration? = null
+    val serviceLocationCacheSpec: String? = null,
+    val liveDataCacheSpec: String? = null
 )

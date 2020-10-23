@@ -15,5 +15,5 @@ apiConfiguration:
   rtpiFallbackBaseUrl: "https://rtpiapp.rtpi.openskydata.com/RTPIPublicService_V3/service.svc/"
 
 cacheConfiguration:
-  serviceLocationExpiry: "PT1H"
-  liveDataExpiry: "PT30S"
+  serviceLocationCacheSpec: "refreshAfterWrite=30m,expireAfterWrite=1d"
+  liveDataCacheSpec: "refreshAfterWrite=10s,expireAfterWrite=30s"
